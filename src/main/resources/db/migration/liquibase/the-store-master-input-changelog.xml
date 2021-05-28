@@ -8,10 +8,10 @@
    http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <include file="user-changelog.xml" relativeToChangelogFile="true" />
-    <include file="address-changelog.xml" relativeToChangelogFile="true" />
-    <include file="country-changelog.xml" relativeToChangelogFile="true" />
-    <include file="state-changelog.xml" relativeToChangelogFile="true" />
-    <include file="item-changelog.xml" relativeToChangelogFile="true" />
+    <include file="1.0.0/user-changelog-1.0.0.xml" relativeToChangelogFile="true" />
+    <include file="1.0.0/address-changelog-1.0.0.xml" relativeToChangelogFile="true" />
+    <include file="1.0.0/country-changelog-1.0.0.xml" relativeToChangelogFile="true" />
+    <include file="1.0.0/state-changelog-1.0.0.xml" relativeToChangelogFile="true" />
+    <include file="1.0.0/item-changelog-1.0.0.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>
