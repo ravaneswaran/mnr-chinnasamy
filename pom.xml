@@ -88,6 +88,7 @@
 				<version>3.4.1</version>
 				<configuration>
 					<propertyFile>src/main/resources/liquibase.properties</propertyFile>
+					<changeLogFile>src/main/resources/db/migration/liquibase/the-store-master-input-changelog.xml</changeLogFile>
 				</configuration>
 			</plugin>
 		</plugins>
