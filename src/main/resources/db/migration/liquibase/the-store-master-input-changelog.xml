@@ -13,5 +13,7 @@
     <include file="1.0.0/country-changelog-1.0.0.xml" relativeToChangelogFile="true" />
     <include file="1.0.0/state-changelog-1.0.0.xml" relativeToChangelogFile="true" />
     <include file="1.0.0/item-changelog-1.0.0.xml" relativeToChangelogFile="true" />
+    <include file="1.0.0/order-changelog-1.0.0.xml" relativeToChangelogFile="true" />
+    <include file="1.0.0/order-item-changelog-1.0.0.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>
