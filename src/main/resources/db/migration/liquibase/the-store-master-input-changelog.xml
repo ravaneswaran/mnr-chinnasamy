@@ -12,6 +12,6 @@
     <include file="address-changelog.xml" relativeToChangelogFile="true" />
     <include file="country-changelog.xml" relativeToChangelogFile="true" />
     <include file="state-changelog.xml" relativeToChangelogFile="true" />
-
+    <include file="item-changelog.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>

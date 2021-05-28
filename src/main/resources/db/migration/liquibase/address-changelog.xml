@@ -23,11 +23,11 @@
             <column name="country" type="varchar(200)" />
             <column name="zip_code" type="varchar(100)" />
             <column name="type" type="varchar(100)" />
-            <column name="created_date" type="datetime" />
-            <column name="modified_date" type="datetime" />
+            <column name="created_date" type="date" />
+            <column name="modified_date" type="date" />
         </createTable>
         
-        <addForeignKeyConstraint baseTableName="address" baseColumnNames="user_uuid" constraintName="fk_user_uuid"
+        <addForeignKeyConstraint baseTableName="address" baseColumnNames="user_uuid" constraintName="fk_address_user_uuid"
                                  referencedTableName="user"
                                  referencedColumnNames="uuid" />
 

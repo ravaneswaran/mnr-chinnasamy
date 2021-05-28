@@ -10,17 +10,21 @@
 
     <changeSet id="01" author="ravaneswaran">
 
-        <createTable tableName="country">
+        <createTable tableName="item">
             <column name="uuid" type="varchar(200)" >
                 <constraints primaryKey="true"/>
             </column>
+            <column name="user_uuid" type="varchar(200)" />
             <column name="name" type="varchar(200)" />
             <column name="code" type="varchar(200)" />
+            <column name="unit_price" type="varchar(200)" />
             <column name="created_date" type="date" />
             <column name="modified_date" type="date" />
         </createTable>
 
-        <addUniqueConstraint tableName="country" columnNames="name"/>
+        <addForeignKeyConstraint baseTableName="item" baseColumnNames="user_uuid" constraintName="fk_item_user_uuid"
+                                 referencedTableName="user"
+                                 referencedColumnNames="uuid"/>
 
     </changeSet>
 
