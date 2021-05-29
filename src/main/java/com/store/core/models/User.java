@@ -2,6 +2,7 @@ package com.store.core.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -40,6 +41,9 @@ public class User{
 
     @Column(name = "modified_date")
     protected Date modifiedDate;
+
+    @OneToMany
+    private List<Address> addresses;
 
     public String getUUID() {
         return UUID;
@@ -127,5 +131,13 @@ public class User{
 
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 }
