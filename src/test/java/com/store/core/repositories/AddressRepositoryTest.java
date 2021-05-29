@@ -40,7 +40,7 @@ public class AddressRepositoryTest {
         Address address = new Address();
         address.setUUID(uuid);
         address.setAddressLine1("address line one");
-        address.setAddressLine3("address line two");
+        address.setAddressLine2("address line two");
         address.setAddressLine3("address line three");
         address.setCity("test city");
         address.setState("test state");
