@@ -1,12 +1,15 @@
 package com.store.core.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "user")
-public class User extends AbstractModel{
+public class User{
+
+    @Id
+    @Column(name = "uuid")
+    protected String UUID;
 
     @Column(name = "first_name")
     private String firstName;
@@ -31,6 +34,20 @@ public class User extends AbstractModel{
 
     @Column(name = "status")
     private String status;
+
+    @Column(name = "created_date")
+    protected Date createdDate;
+
+    @Column(name = "modified_date")
+    protected Date modifiedDate;
+
+    public String getUUID() {
+        return UUID;
+    }
+
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -96,5 +113,19 @@ public class User extends AbstractModel{
         this.status = status;
     }
 
+    public Date getCreatedDate() {
+        return createdDate;
+    }
 
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
 }

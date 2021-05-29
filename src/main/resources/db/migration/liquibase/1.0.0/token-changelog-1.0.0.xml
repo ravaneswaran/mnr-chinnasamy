@@ -14,7 +14,7 @@
             <column name="uuid" type="varchar(200)" >
                 <constraints primaryKey="true"/>
             </column>
-            <column name="type" type="int" />
+            <column name="type" type="varchar(200)" />
             <column name="expiry_time_in_hours" type="int" />
             <column name="created_date" type="date" />
             <column name="modified_date" type="date" />
