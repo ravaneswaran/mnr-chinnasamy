@@ -2,17 +2,11 @@ package com.store.core.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Entity
 @Table(name = "user")
-public class User {
-
-    @Id
-    @Column(name = "uuid")
-    private String UUID;
+public class User extends AbstractModel{
 
     @Column(name = "first_name")
     private String firstName;
@@ -37,21 +31,6 @@ public class User {
 
     @Column(name = "status")
     private String status;
-
-    @Column(name = "created_date")
-    private Date createdDate;
-
-    @Column(name = "modified_date")
-    private Date modifiedDate;
-
-
-    public String getUUID() {
-        return UUID;
-    }
-
-    public void setUUID(String UUID) {
-        this.UUID = UUID;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -117,19 +96,5 @@ public class User {
         this.status = status;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
 }
