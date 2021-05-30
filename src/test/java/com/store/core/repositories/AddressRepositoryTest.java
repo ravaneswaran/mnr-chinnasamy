@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AddressRepositoryTest {
+public class AddressRepositoryTest extends AbstractRepositoryTest{
 
     @Autowired
     private AddressRepository addressRepository;
@@ -58,28 +58,5 @@ public class AddressRepositoryTest {
         Assert.assertNotNull(result);
         Assert.assertEquals(uuid, result.getUUID());
 
-    }
-
-    private User getTestUser(){
-        String uuid = UUID.randomUUID().toString();
-
-        Random random = new Random();
-        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
-        Date newDate = new Date();
-
-        User user = new User();
-        user.setUUID(uuid);
-        user.setFirstName("Test");
-        user.setMiddleInitial("");
-        user.setLastName("Test");
-        user.setEmailId(String.format("mail%s@test.com", randomNumberString));
-        user.setUniqueId(randomNumberString);
-        user.setMobileNo(randomNumberString);
-        user.setPassword(String.format("password%s", randomNumberString));
-        user.setStatus("YET-TO-VERIFY");
-        user.setCreatedDate(newDate);
-        user.setModifiedDate(newDate);
-
-        return user;
     }
 }
