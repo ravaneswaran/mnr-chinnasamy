@@ -3,6 +3,7 @@ package com.store.core.models;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "user")
@@ -44,6 +45,10 @@ public class User{
 
     @OneToMany
     private List<Address> addresses;
+
+    public User(){
+        this.setUUID(java.util.UUID.randomUUID().toString());
+    }
 
     public String getUUID() {
         return UUID;
