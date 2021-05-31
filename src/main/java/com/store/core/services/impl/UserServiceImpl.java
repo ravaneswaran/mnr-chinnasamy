@@ -29,8 +29,6 @@ public class UserServiceImpl implements UserService {
         user.setCreatedDate(createdDate);
         user.setModifiedDate(modifiedDate);
 
-        System.out.println("=====================================>>>>>>>");
-
         this.userRepository.save(user);
 
         return 0;
