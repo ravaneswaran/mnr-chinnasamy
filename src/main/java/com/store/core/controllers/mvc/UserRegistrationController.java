@@ -2,6 +2,7 @@ package com.store.core.controllers.mvc;
 
 import com.store.core.enums.UserStatus;
 import com.store.core.services.UserService;
+import com.store.core.utils.MailerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class UserRegistrationController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MailerUtil mailerUtil;
 
     @GetMapping("/sign-up")
     public String signUp(){

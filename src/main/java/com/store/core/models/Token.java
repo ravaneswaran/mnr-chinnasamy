@@ -23,6 +23,10 @@ public class Token {
     @Column(name = "modified_date")
     private Date modifiedDate;
 
+    public Token(){
+        this.setUUID(java.util.UUID.randomUUID().toString());
+    }
+
     public String getUUID() {
         return UUID;
     }
