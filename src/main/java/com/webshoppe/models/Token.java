@@ -11,6 +11,12 @@ public class Token {
     @Column(name = "uuid")
     private String UUID;
 
+    @Column(name = "creator_uuid")
+    private String creatorUUID;
+
+    @Column(name = "creator_type")
+    private String creatorType;
+
     @Column(name = "type")
     private String type;
 
@@ -33,6 +39,22 @@ public class Token {
 
     public void setUUID(String UUID) {
         this.UUID = UUID;
+    }
+
+    public String getCreatorUUID() {
+        return creatorUUID;
+    }
+
+    public void setCreatorUUID(String creatorUUID) {
+        this.creatorUUID = creatorUUID;
+    }
+
+    public String getCreatorType() {
+        return creatorType;
+    }
+
+    public void setCreatorType(String creatorType) {
+        this.creatorType = creatorType;
     }
 
     public String getType() {

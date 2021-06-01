@@ -22,4 +22,20 @@
 
     </changeSet>
 
+    <changeSet id="02" author="ravaneswaran">
+
+        <addColumn tableName="token" schemaName="web_shoppe">
+            <column name="creator_uuid"
+                    position="2"
+                    type="varchar(100)"/>
+        </addColumn>
+
+        <addColumn tableName="token" schemaName="web_shoppe">
+            <column name="creator_type"
+                    position="3"
+                    type="varchar(100)"/>
+        </addColumn>
+
+    </changeSet>
+
 </databaseChangeLog>

@@ -9,4 +9,6 @@ public interface TokenService {
     public Token getToken(String type, int expiryTimeInHours);
 
     public Token getSignUpVerificationToken();
+
+    public Token storeAndGetSignUpVerificationToken(String creatorUUID, String creatorType);
 }

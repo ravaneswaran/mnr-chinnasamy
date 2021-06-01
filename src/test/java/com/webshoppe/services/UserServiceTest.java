@@ -1,6 +1,7 @@
 package com.webshoppe.services;
 
 import com.webshoppe.enums.UserStatus;
+import com.webshoppe.valueobj.SignUpVO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,9 +41,9 @@ public class UserServiceTest {
         String password = String.format("password-%s", randomNumberString);
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
 
-        int statusCode = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, status, newDate, newDate);
+        SignUpVO signUpVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, status, newDate, newDate);
 
-        Assert.assertTrue(0 == statusCode);
+        Assert.assertTrue(null != signUpVO.getUserUUID());
     }
 
 }

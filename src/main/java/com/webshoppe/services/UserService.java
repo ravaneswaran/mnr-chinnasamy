@@ -1,5 +1,6 @@
 package com.webshoppe.services;
 
+import com.webshoppe.valueobj.SignUpVO;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -7,7 +8,7 @@ import java.util.Date;
 @Component
 public interface UserService {
 
-    public int signUp(
+    public SignUpVO signUp(
             String firstName,
             String middleInitial,
             String lastName,

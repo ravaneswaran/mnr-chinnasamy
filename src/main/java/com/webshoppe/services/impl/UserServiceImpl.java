@@ -3,6 +3,7 @@ package com.webshoppe.services.impl;
 import com.webshoppe.models.User;
 import com.webshoppe.repositories.UserRepository;
 import com.webshoppe.services.UserService;
+import com.webshoppe.valueobj.SignUpVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public int signUp(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String password, String status, Date createdDate, Date modifiedDate) {
+    public SignUpVO signUp(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String password, String status, Date createdDate, Date modifiedDate) {
         User user = new User();
 
         user.setFirstName(firstName);
@@ -31,6 +32,9 @@ public class UserServiceImpl implements UserService {
 
         this.userRepository.save(user);
 
-        return 0;
+        SignUpVO signUpUserVO = new SignUpVO();
+        signUpUserVO.setUserUUID(user.getUUID());
+
+        return signUpUserVO;
     }
 }
