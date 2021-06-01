@@ -17,8 +17,8 @@
             <column name="country_uuid" type="varchar(200)" />
             <column name="name" type="varchar(200)" />
             <column name="code" type="varchar(200)" />
-            <column name="created_date" type="date" />
-            <column name="modified_date" type="date" />
+            <column name="created_date" type="datetime" />
+            <column name="modified_date" type="datetime" />
         </createTable>
 
         <addForeignKeyConstraint baseTableName="state" baseColumnNames="country_uuid" constraintName="fk_country_uuid"

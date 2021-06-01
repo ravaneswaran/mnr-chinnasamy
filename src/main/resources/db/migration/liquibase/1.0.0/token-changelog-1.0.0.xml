@@ -16,8 +16,8 @@
             </column>
             <column name="type" type="varchar(200)" />
             <column name="expiry_time_in_hours" type="int" />
-            <column name="created_date" type="date" />
-            <column name="modified_date" type="date" />
+            <column name="created_date" type="datetime" />
+            <column name="modified_date" type="datetime" />
         </createTable>
 
     </changeSet>

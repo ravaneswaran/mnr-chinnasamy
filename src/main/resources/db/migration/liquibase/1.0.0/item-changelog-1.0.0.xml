@@ -18,8 +18,8 @@
             <column name="name" type="varchar(200)" />
             <column name="code" type="varchar(200)" />
             <column name="unit_price" type="varchar(200)" />
-            <column name="created_date" type="date" />
-            <column name="modified_date" type="date" />
+            <column name="created_date" type="datetime" />
+            <column name="modified_date" type="datetime" />
         </createTable>
 
         <addForeignKeyConstraint baseTableName="item" baseColumnNames="user_uuid" constraintName="fk_item_user_uuid"

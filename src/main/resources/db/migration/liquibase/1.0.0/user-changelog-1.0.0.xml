@@ -22,8 +22,8 @@
             <column name="mobile_no" type="varchar(200)" />
             <column name="password" type="varchar(200)" />
             <column name="status" type="varchar(200)" />
-            <column name="created_date" type="date" />
-            <column name="modified_date" type="date" />
+            <column name="created_date" type="datetime" />
+            <column name="modified_date" type="datetime" />
         </createTable>
 
     </changeSet>

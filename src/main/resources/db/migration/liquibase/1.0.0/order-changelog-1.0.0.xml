@@ -16,8 +16,8 @@
             </column>
             <column name="user_uuid" type="varchar(200)" />
             <column name="state" type="varchar(200)" />
-            <column name="created_date" type="date" />
-            <column name="modified_date" type="date" />
+            <column name="created_date" type="datetime" />
+            <column name="modified_date" type="datetime" />
         </createTable>
 
         <addForeignKeyConstraint baseTableName="order" baseColumnNames="user_uuid" constraintName="fk_order_user_uuid"
