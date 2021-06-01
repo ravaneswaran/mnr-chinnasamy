@@ -1,4 +1,4 @@
 .idea
-the-store.iml
+web-shoppe.iml
 target
 src/main/resources/db/migration/liquibase/the-store-master-output-changelog.xml
