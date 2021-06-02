@@ -41,7 +41,7 @@ public class UserServiceTest {
         String password = String.format("password-%s", randomNumberString);
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
 
-        SignUpVO signUpVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, status, newDate, newDate);
+        SignUpVO signUpVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, status, newDate, newDate);
 
         Assert.assertTrue(null != signUpVO.getUserUUID());
     }

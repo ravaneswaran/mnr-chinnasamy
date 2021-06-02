@@ -15,22 +15,19 @@ public class TokenServiceImpl implements TokenService {
     @Autowired
     private TokenRepository tokenRepository;
 
+
     @Override
-    public Token getToken(String type, int expiryTimeInHours) {
+    public Token getSignUpVerificationToken() {
+
         Token token = new Token();
         Date newDate = new Date();
 
-        token.setType(type);
-        token.setExpiryTimeInHours(expiryTimeInHours);
+        token.setType(TokenType.SIGNUP_VERIFICATION_TOKEN.toString());
+        token.setExpiryTimeInHours(24);
         token.setCreatedDate(newDate);
         token.setModifiedDate(newDate);
 
         return token;
-    }
-
-    @Override
-    public Token getSignUpVerificationToken() {
-        return this.getToken(TokenType.SIGNUP_VERIFICATION_TOKEN.toString(), 24);
     }
 
     @Override
@@ -42,5 +39,15 @@ public class TokenServiceImpl implements TokenService {
         this.tokenRepository.save(token);
 
         return token;
+    }
+
+    @Override
+    public Token getSignUpVerificationTokenByUUID(String signUpVerificationTokenUUID) {
+        Token token = this.tokenRepository.findById(signUpVerificationTokenUUID).get();
+        if(TokenType.SIGNUP_VERIFICATION_TOKEN.toString().equals(token.getType())){
+            return token;
+        } else {
+            return null;
+        }
     }
 }

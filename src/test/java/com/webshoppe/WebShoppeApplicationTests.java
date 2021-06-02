@@ -8,7 +8,7 @@ class WebShoppeApplicationTests {
 
 	@Test
 	void contextLoads() {
-		
+
 	}
 
 }

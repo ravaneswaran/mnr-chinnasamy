@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 @Component
 public interface TokenService {
 
-    public Token getToken(String type, int expiryTimeInHours);
-
     public Token getSignUpVerificationToken();
 
     public Token storeAndGetSignUpVerificationToken(String creatorUUID, String creatorType);
+
+    public Token getSignUpVerificationTokenByUUID(String signUpVerificationTokenUUID);
 }

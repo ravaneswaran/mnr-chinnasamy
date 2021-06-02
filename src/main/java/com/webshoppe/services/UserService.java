@@ -16,8 +16,10 @@ public interface UserService {
             String uniqueId,
             String mobileNo,
             String password,
+            String confirmPassword,
             String status,
             Date createdDate,
             Date modifiedDate);
 
+    public SignUpVO verifySignedUpUser(String signUpVerificationTokenUUID);
 }
