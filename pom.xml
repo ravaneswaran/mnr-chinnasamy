@@ -118,7 +118,7 @@
 				<version>4.3.5</version>
 				<configuration>
 					<propertyFile>src/main/resources/liquibase.properties</propertyFile>
-					<changeLogFile>src/main/resources/db/migration/liquibase/web-shoppe-master-input-changelog.xml</changeLogFile>
+					<changeLogFile>src/main/resources/liquibase/web-shoppe-master-input-changelog.xml</changeLogFile>
 				</configuration>
 			</plugin>
 
