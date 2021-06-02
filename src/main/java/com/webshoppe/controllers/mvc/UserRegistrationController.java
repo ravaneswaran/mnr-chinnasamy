@@ -40,8 +40,7 @@ public class UserRegistrationController {
             @RequestParam("password") @NotEmpty String password,
             @RequestParam("confirmPassword") @NotEmpty String confirmPassword) {
 
-        Date date = new Date();
-        SignUpVO signUpVO  = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, confirmPassword, UserStatus.SIGN_UP_VERIFICATION_PENDING.toString(), date, date);
+        SignUpVO signUpVO  = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, confirmPassword, UserStatus.SIGN_UP_VERIFICATION_PENDING.toString());
 
         if(signUpVO.isNotErroneous()){
             return "registration/sign-up-success";

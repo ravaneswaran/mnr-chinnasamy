@@ -1,6 +1,10 @@
 package com.webshoppe.services;
 
 import com.webshoppe.enums.UserStatus;
+import com.webshoppe.models.Token;
+import com.webshoppe.models.User;
+import com.webshoppe.repositories.TokenRepository;
+import com.webshoppe.repositories.UserRepository;
 import com.webshoppe.valueobj.SignUpVO;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
 import java.util.Random;
 
 @RunWith(SpringRunner.class)
@@ -19,6 +22,12 @@ public class UserServiceTest {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TokenRepository tokenRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
     @Test
     public void testNotNull(){
         Assert.assertNotNull(this.userService);
@@ -26,11 +35,9 @@ public class UserServiceTest {
 
     @Test
     public void testSignUp(){
-
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
-        Date newDate = new Date();
 
         String firstName = "Ravaneswaran";
         String middleInitial = " ";
@@ -41,9 +48,34 @@ public class UserServiceTest {
         String password = String.format("password-%s", randomNumberString);
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
 
-        SignUpVO signUpVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, status, newDate, newDate);
+        SignUpVO signUpVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, status);
+        User user = this.userRepository.findById(signUpVO.getUserUUID()).get();
 
-        Assert.assertTrue(null != signUpVO.getUserUUID());
+        Assert.assertEquals(UserStatus.SIGN_UP_VERIFICATION_PENDING.toString(), user.getStatus());
+    }
+
+    @Test
+    public void testVerifySignedUpUser(){
+        Random random = new Random();
+        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
+        String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
+
+        String firstName = "Ravaneswaran";
+        String middleInitial = " ";
+        String lastName = "Chinnasamy";
+        String emailId = String.format("mail-%s", randomNumberString);
+        String uniqueId = randomNumberString;
+        String mobileNo = mobileNoString;
+        String password = String.format("password-%s", randomNumberString);
+        String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
+
+        SignUpVO signUpVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, status);
+        Token token = tokenRepository.findSignUpVerificationTokenByCreatorUUID(signUpVO.getUserUUID());
+        this.userService.verifySignedUpUser(token.getUUID());
+        String userUUID = signUpVO.getUserUUID();
+
+        User user = this.userRepository.findById(userUUID).get();
+        Assert.assertEquals(UserStatus.VERIFIED.toString(), user.getStatus());
     }
 
 }

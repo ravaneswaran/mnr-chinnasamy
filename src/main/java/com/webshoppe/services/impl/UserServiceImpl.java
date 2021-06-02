@@ -44,10 +44,11 @@ public class UserServiceImpl implements UserService {
     Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
-    public SignUpVO signUp(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String password, String confirmPassword, String status, Date createdDate, Date modifiedDate) {
+    public SignUpVO signUp(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String password, String confirmPassword, String status) {
 
         SignUpVO signUpUserVO = new SignUpVO();
         if(password.equals(confirmPassword)){
+            Date now = new Date();
             User user = new User();
 
             user.setFirstName(firstName);
@@ -58,8 +59,8 @@ public class UserServiceImpl implements UserService {
             user.setMobileNo(mobileNo);
             user.setPassword(password);
             user.setStatus(status);
-            user.setCreatedDate(createdDate);
-            user.setModifiedDate(modifiedDate);
+            user.setCreatedDate(now);
+            user.setModifiedDate(now);
 
             this.userRepository.save(user);
 
@@ -99,8 +100,11 @@ public class UserServiceImpl implements UserService {
             if (null != user) {
                 Date now = new Date();
                 Date tokenCreatedDate = token.getCreatedDate();
-                if(now.before(tokenCreatedDate)){
+                Date expiryTime = new Date(tokenCreatedDate.getTime() + 24*60*60*1000);
+
+                if(now.before(expiryTime)){
                     user.setStatus(UserStatus.VERIFIED.toString());
+                    user.setModifiedDate(new Date());
                     this.userRepository.save(user);
                 } else {
                     signUpVO.setErrorMessage("Token expired");

@@ -3,8 +3,6 @@ package com.webshoppe.services;
 import com.webshoppe.valueobj.SignUpVO;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 @Component
 public interface UserService {
 
@@ -17,9 +15,7 @@ public interface UserService {
             String mobileNo,
             String password,
             String confirmPassword,
-            String status,
-            Date createdDate,
-            Date modifiedDate);
+            String status);
 
     public SignUpVO verifySignedUpUser(String signUpVerificationTokenUUID);
 }
