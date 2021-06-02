@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
 
             String mailContent = null;
             try {
-                mailContent = this.stringUtil.getResourceAsString("mail-templates/signup-verification-mail.html");
+                mailContent = this.stringUtil.getResourceAsString("mail-messages/signup-verification-mail.html");
             } catch (IOException e) {
                 this.logger.error(e.getMessage(), e);
                 signUpUserVO.setErrorMessage(e.getMessage());

@@ -32,7 +32,7 @@ public class StringUtilTest {
 
     @Test
     public void testGetResourceAsString() throws IOException {
-        String resourcePath = "mail-templates/signup-verification-mail.html";
+        String resourcePath = "mail-messages/signup-verification-mail.html";
 
         String result = this.stringUtil.getResourceAsString(resourcePath);
 
