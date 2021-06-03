@@ -24,14 +24,14 @@ public class UserRegistrationController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/sign-up")
+    @GetMapping("/signup")
     public ModelAndView signUpHome(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("registration/sign-up");
+        modelAndView.setViewName("signup/signup-home");
         return modelAndView;
     }
 
-    @PostMapping("/sign-up-user")
+    @PostMapping("/signup-user")
     public ModelAndView signUpUser(
             @RequestParam(value = "firstName") @NotEmpty String firstName,
             @RequestParam("middleInitial") String middleInitial,
@@ -46,16 +46,16 @@ public class UserRegistrationController {
         SignUpVO signUpVO  = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, confirmPassword, UserStatus.SIGN_UP_VERIFICATION_PENDING.toString());
 
         if(signUpVO.isNotErroneous()){
-            modelAndView.setViewName("registration/sign-up-success");
+            modelAndView.setViewName("signup/signup-success");
         } else {
             modelAndView.addObject("error-message", signUpVO.getErrorMessage());
-            modelAndView.setViewName("registration/sign-up");
+            modelAndView.setViewName("signup/signup-home");
         }
 
         return modelAndView;
     }
 
-    @GetMapping("/sign-up-verification")
+    @GetMapping("/signup-verification")
     public ModelAndView signUpVerification(@RequestParam() @NotEmpty String signUpVerificationTokenUUID){
         ModelAndView modelAndView = new ModelAndView();
         SignUpVO signUpVO = this.userService.verifySignedUpUser(signUpVerificationTokenUUID);

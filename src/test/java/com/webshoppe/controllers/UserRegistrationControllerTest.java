@@ -48,7 +48,7 @@ public class UserRegistrationControllerTest {
         String confirmPassword = String.format("password-%s", randomNumberString);
 
         this.mockMvc.perform(
-                post("/sign-up-user")
+                post("/signup-user")
                         .param("firstName", firstName)
                         .param("middleInitial", middleInitial)
                         .param("lastName", lastName)
@@ -79,7 +79,7 @@ public class UserRegistrationControllerTest {
         String confirmPassword = String.format("password-%s", randomNumberString);
 
         this.mockMvc.perform(
-            post("/sign-up-user")
+            post("/signup-user")
                     .param("firstName", firstName)
                     .param("middleInitial", middleInitial)
                     .param("lastName", lastName)
@@ -108,7 +108,7 @@ public class UserRegistrationControllerTest {
         String confirmPassword = String.format("password-%s", randomNumberString);
 
         this.mockMvc.perform(
-                post("/sign-up-user")
+                post("/signup-user")
                         .param("firstName", firstName)
                         .param("middleInitial", middleInitial)
                         .param("lastName", lastName)
@@ -136,7 +136,7 @@ public class UserRegistrationControllerTest {
         String confirmPassword = String.format("password-%s", randomNumberString);
 
         this.mockMvc.perform(
-                post("/sign-up-user")
+                post("/signup-user")
                         .param("firstName", firstName)
                         .param("middleInitial", middleInitial)
                         .param("lastName", lastName)
@@ -165,7 +165,7 @@ public class UserRegistrationControllerTest {
         String confirmPassword = String.format("password-%s", randomNumberString);
 
         this.mockMvc.perform(
-                post("/sign-up-user")
+                post("/signup-user")
                         .param("firstName", firstName)
                         .param("middleInitial", middleInitial)
                         .param("lastName", lastName)
@@ -194,7 +194,7 @@ public class UserRegistrationControllerTest {
         String confirmPassword = "";
 
         this.mockMvc.perform(
-                post("/sign-up-user")
+                post("/signup-user")
                         .param("firstName", firstName)
                         .param("middleInitial", middleInitial)
                         .param("lastName", lastName)
