@@ -50,7 +50,9 @@ public class WebShoppeConfiguration implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("login");
-        registry.addViewController("/registration").setViewName("registration/signup");
+
+        registry.addViewController("/signup").setViewName("signup/signup-home");
+        registry.addViewController("/signup/success").setViewName("signup/signup-success");
     }
 
 }
