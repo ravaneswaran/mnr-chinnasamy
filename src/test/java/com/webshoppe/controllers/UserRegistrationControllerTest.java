@@ -204,5 +204,7 @@ public class UserRegistrationControllerTest {
                         .param("password", password)
                         .param("confirmPassword", confirmPassword)
                         .accept(MediaType.TEXT_HTML)).andExpect(status().is4xxClientError());
+
+
     }
 }

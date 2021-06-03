@@ -11,9 +11,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.constraints.NotEmpty;
-import java.util.Date;
 
 @Controller
 @Validated
@@ -25,12 +25,14 @@ public class UserRegistrationController {
     private UserService userService;
 
     @GetMapping("/sign-up")
-    public String signUpHome(){
-        return "registration/sign-up";
+    public ModelAndView signUpHome(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("registration/sign-up");
+        return modelAndView;
     }
 
     @PostMapping("/sign-up-user")
-    public String signUpUser(
+    public ModelAndView signUpUser(
             @RequestParam(value = "firstName") @NotEmpty String firstName,
             @RequestParam("middleInitial") String middleInitial,
             @RequestParam("lastName") String lastName,
@@ -40,22 +42,28 @@ public class UserRegistrationController {
             @RequestParam("password") @NotEmpty String password,
             @RequestParam("confirmPassword") @NotEmpty String confirmPassword) {
 
+        ModelAndView modelAndView = new ModelAndView();
         SignUpVO signUpVO  = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, confirmPassword, UserStatus.SIGN_UP_VERIFICATION_PENDING.toString());
 
         if(signUpVO.isNotErroneous()){
-            return "registration/sign-up-success";
+            modelAndView.setViewName("registration/sign-up-success");
         } else {
-            return "registration/sign-up";
+            modelAndView.addObject("error-message", signUpVO.getErrorMessage());
+            modelAndView.setViewName("registration/sign-up");
         }
+
+        return modelAndView;
     }
 
     @GetMapping("/sign-up-verification")
-    public String signUpVerification(@RequestParam() @NotEmpty String signUpVerificationTokenUUID){
+    public ModelAndView signUpVerification(@RequestParam() @NotEmpty String signUpVerificationTokenUUID){
+        ModelAndView modelAndView = new ModelAndView();
         SignUpVO signUpVO = this.userService.verifySignedUpUser(signUpVerificationTokenUUID);
         if(signUpVO.isNotErroneous()){
-            return "login";
+            modelAndView.setViewName("login");
         } else {
-            return "error";
+            modelAndView.setViewName("error");
         }
+        return modelAndView;
     }
 }
