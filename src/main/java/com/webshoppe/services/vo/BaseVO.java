@@ -1,18 +1,8 @@
-package com.webshoppe.valueobj;
+package com.webshoppe.services.vo;
 
-public class SignUpVO {
+public class BaseVO {
 
-    private String userUUID;
-
-    private String errorMessage;
-
-    public String getUserUUID() {
-        return userUUID;
-    }
-
-    public void setUserUUID(String userUUID) {
-        this.userUUID = userUUID;
-    }
+    protected String errorMessage;
 
     public String getErrorMessage() {
         return errorMessage;
@@ -29,4 +19,5 @@ public class SignUpVO {
     public boolean isNotErroneous(){
         return !isErroneous();
     }
+
 }

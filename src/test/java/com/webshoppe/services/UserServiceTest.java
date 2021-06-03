@@ -5,7 +5,7 @@ import com.webshoppe.models.Token;
 import com.webshoppe.models.User;
 import com.webshoppe.repositories.TokenRepository;
 import com.webshoppe.repositories.UserRepository;
-import com.webshoppe.valueobj.SignUpVO;
+import com.webshoppe.services.vo.SignUpVO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

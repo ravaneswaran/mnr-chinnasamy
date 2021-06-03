@@ -2,7 +2,7 @@ package com.webshoppe.controllers.mvc;
 
 import com.webshoppe.enums.UserStatus;
 import com.webshoppe.services.UserService;
-import com.webshoppe.valueobj.SignUpVO;
+import com.webshoppe.services.vo.SignUpVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +17,9 @@ import javax.validation.constraints.NotEmpty;
 
 @Controller
 @Validated
-public class UserRegistrationController {
+public class SignUpController {
 
-    Logger logger = LoggerFactory.getLogger(UserRegistrationController.class);
+    Logger logger = LoggerFactory.getLogger(SignUpController.class);
 
     @Autowired
     private UserService userService;

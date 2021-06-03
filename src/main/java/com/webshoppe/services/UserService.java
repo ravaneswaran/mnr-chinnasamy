@@ -1,6 +1,6 @@
 package com.webshoppe.services;
 
-import com.webshoppe.valueobj.SignUpVO;
+import com.webshoppe.services.vo.SignUpVO;
 import org.springframework.stereotype.Component;
 
 @Component

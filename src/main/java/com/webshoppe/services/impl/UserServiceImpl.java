@@ -9,7 +9,7 @@ import com.webshoppe.services.TokenService;
 import com.webshoppe.services.UserService;
 import com.webshoppe.utils.MailerUtil;
 import com.webshoppe.utils.StringUtil;
-import com.webshoppe.valueobj.SignUpVO;
+import com.webshoppe.services.vo.SignUpVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
