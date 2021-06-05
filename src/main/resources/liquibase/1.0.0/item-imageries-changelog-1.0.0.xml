@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="01" author="ravaneswaran">
+        <createTable tableName="item_imageries">
+            <column name="uuid" type="varchar(200)" >
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="item_uuid" type="varchar(200)" />
+            <column name="image" type="blob" />
+            <column name="position" type="int" />
+            <column name="created_by" type="varchar(200)" />
+            <column name="created_date" type="datetime" />
+            <column name="modified_date" type="datetime" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="02" author="ravaneswaran">
+        <addForeignKeyConstraint baseTableName="item_imageries" baseColumnNames="item_uuid" constraintName="fk_item_imageries_item_uuid"
+                             referencedTableName="item"
+                             referencedColumnNames="uuid" />
+    </changeSet>
+
+</databaseChangeLog>
