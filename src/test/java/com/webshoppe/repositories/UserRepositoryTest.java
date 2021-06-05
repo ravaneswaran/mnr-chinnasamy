@@ -51,7 +51,6 @@ public class UserRepositoryTest {
 
         Assert.assertNotNull(result);
         Assert.assertEquals(uuid, result.getUUID());
-
     }
 
 }
