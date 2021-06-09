@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="01" author="ravaneswaran">
+
+        <insert tableName="user">
+            <column  name="uuid"  value="0000000000"/>
+            <column  name="first_name"  value="Almighty"/>
+            <column  name="middle_initial"  value=" "/>
+            <column  name="last_name"  value=" "/>
+            <column  name="email_id"  value="almighty@test.com"/>
+            <column  name="unique_id"  value=" "/>
+            <column  name="mobile_no"  value=" "/>
+            <column  name="password"  value="almighty"/>
+            <column  name="status"  value="VERIFIED"/>
+            <column  name="created_date"  value="1900-01-01 00:00:00"/>
+            <column  name="modified_date"  value="1900-01-01 00:00:00"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

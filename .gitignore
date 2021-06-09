@@ -1,0 +1,5 @@
+.idea
+shoppe.iml
+target
+src/main/resources/liquibase/shoppe-master-output-changelog.xml
+
