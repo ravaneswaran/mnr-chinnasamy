@@ -1,5 +1,5 @@
 .idea
 web-shoppe.iml
 target
-src/main/resources/liquibase/the-store-master-output-changelog.xml
+src/main/resources/liquibase/shoppe-master-output-changelog.xml
 

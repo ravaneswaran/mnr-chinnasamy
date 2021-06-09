@@ -8,11 +8,11 @@
         <version>2.5.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.webshoppe</groupId>
-    <artifactId>web-shoppe</artifactId>
+    <groupId>com.shoppe</groupId>
+    <artifactId>shoppe</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>web-shoppe</name>
+    <name>shoppe</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
@@ -195,7 +195,7 @@
                 <version>4.3.5</version>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
-                    <changeLogFile>src/main/resources/liquibase/web-shoppe-master-input-changelog.xml</changeLogFile>
+                    <changeLogFile>src/main/resources/liquibase/shoppe-master-input-changelog.xml</changeLogFile>
                 </configuration>
             </plugin>
 
