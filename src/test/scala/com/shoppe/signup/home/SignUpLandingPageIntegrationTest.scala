@@ -1,4 +1,4 @@
-package com.shoppe.signup
+package com.shoppe.signup.home
 
 import io.cucumber.junit.{Cucumber, CucumberOptions}
 import io.cucumber.scala.{EN, ScalaDsl}
@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/signup/signup-landing-page.feature"),
-  glue = Array("com.shoppe.signup"))
+  glue = Array("com.shoppe.signup.error"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class SignUpLandingPageIntegrationTest extends ScalaDsl with EN {
