@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @Controller
@@ -33,14 +35,14 @@ public class SignUpController {
 
     @PostMapping("/signup-user")
     public ModelAndView signUpUser(
-            @RequestParam(value = "firstName") @NotEmpty String firstName,
+            @RequestParam(value = "firstName") @NotEmpty(message = "First Name should not be empty") String firstName,
             @RequestParam("middleInitial") String middleInitial,
             @RequestParam("lastName") String lastName,
-            @RequestParam("emailId") @NotEmpty String emailId,
+            @RequestParam("emailId") @NotEmpty(message = "Email Id should not be empty") @Email(message = "Email ID is not in valid format") String emailId,
             @RequestParam("uniqueId") String uniqueId,
-            @RequestParam("mobileNo") @NotEmpty String mobileNo,
-            @RequestParam("password") @NotEmpty String password,
-            @RequestParam("confirmPassword") @NotEmpty String confirmPassword) {
+            @RequestParam("mobileNo") @NotEmpty(message = "Mobile Number should not be empty") String mobileNo,
+            @RequestParam("password") @NotEmpty(message = "Password should not be empty") String password,
+            @RequestParam("confirmPassword") @NotEmpty(message = "First Name should not be empty") String confirmPassword) {
 
         ModelAndView modelAndView = new ModelAndView();
         SignUpVO signUpVO  = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, confirmPassword, UserStatus.SIGN_UP_VERIFICATION_PENDING.toString());
