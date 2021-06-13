@@ -11,11 +11,11 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
-  features = Array("classpath:features/signup/signup-error-conditions.feature"),
+  features = Array("classpath:features/signup/signup-from-validation.feature"),
   glue = Array("com.shoppe.signup.error"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class SignUpErrorsConditionsIntegrationTest extends BaseIntegrationTest{
+class SignUpFormValidationIntegrationTest extends BaseIntegrationTest{
 
   var webDriver: WebDriver = null
 
@@ -35,8 +35,8 @@ class SignUpErrorsConditionsIntegrationTest extends BaseIntegrationTest{
     assert("Shoppe : Sign Up".equals(pageTitle))
   }
 
-  Then("""the user should see the error message {string}""") { (errorMessage: String) =>
-    val errorMsg = this.webDriver.findElement(By.id("error-message")).getText
-    assert(errorMessage.equals(errorMsg))
+  Then("""the user should see the error message {string}""") { (color: String) =>
+    val borderColor = this.webDriver.findElement(By.id("firstName")).getCssValue("border-color")
+    assert(color.equals(borderColor))
   }
 }

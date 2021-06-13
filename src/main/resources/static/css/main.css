@@ -1,0 +1,46 @@
+.td-height-60 {
+    height: 60px;
+}
+
+.banner-box {
+    height: 250px;
+    width: 100%;
+    background-color: #645757;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 30px;
+}
+
+.section {
+    height: 50px;
+    width: 100%;
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #645757;
+    font-size: 35px;
+    text-indent : 10px;
+    color: #645757;
+}
+
+.top-space{
+    margin-top: 50px;
+}
+
+.input-box-normal {
+    border:1px solid #645757;
+    font-size: 18px;
+    height: 45px;
+    width: 450px;
+    border-radius: 10px;
+    text-indent: 15px;
+
+}
+
+.button-normal {
+    background-color : #645757;
+    border-radius: 10px;
+    color: #FFFFFF;
+    height: 50px;
+    width: 225px;
+    border:1px solid #645757;
+
+}
