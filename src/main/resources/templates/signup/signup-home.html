@@ -6,73 +6,88 @@
         <link rel="stylesheet" th:href="@{/css/main.css}"/>
     </head>
     <body>
-        <div class="banner-box">Shoppe : Admin Module</div>
-        <div class="menu-bar">
-            <div class="menu-item">Home</div>
-            <div class="menu-item">Item Entry</div>
-            <div class="menu-item">Admin Entry</div>
-            <div class="menu-item">Logout</div>
+        <div class="wrapper">
+            <div class="banner">
+                Shoppe : Admin Module
+            </div>
+            <div class="menu-bar">
+                <div class="menu-item">Home</div>
+                <div class="menu-item">Item Registration</div>
+                <div class="menu-item">Admin Registration</div>
+                <div class="menu-item">Logout</div>
+            </div>
+            <div class="content-pane">
+                <div class="top-space section">Admin Registration</div>
+                <div class="top-space sub-section">Personal Information</div>
+                <div class="top-space admin-personal-info">
+                    <table>
+                        <tr>
+                            <td class="td-height-60"><input id="firstName" class="input-box-normal" type="text" name="firstName" placeholder="First Name"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60"><input id="middleInitial" class="input-box-normal" type="text" name="middleInitial" placeholder="Middle Initial"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60"><input id="lastName" class="input-box-normal" type="text" name="lastName" placeholder="Last Name"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60"><input id="emailId"  class="input-box-normal"type="text" name="emailId" placeholder="Email Id"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60"><input id="uniqueId" class="input-box-normal" type="text" name="uniqueId" placeholder="Unique Id"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60"><input id="mobileNo" class="input-box-normal" type="text" name="mobileNo" placeholder="Mobile Number"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60"><input id="password" class="input-box-normal" type="password" name="password" placeholder="Password"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60"><input id="confirmPassword" class="input-box-normal" type="password" name="confirmPassword" placeholder="Confirm Password"/></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="top-space sub-section">Permanent Address</div>
+                <div class="top-space admin-address-info">
+                    <table>
+                        <tr>
+                            <td class="td-height-60"><input id="addressLine1" class="input-box-normal" type="text" name="addressLine1" placeholder="Address Line 1"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60"><input id="addressLine2" class="input-box-normal" type="text" name="addressLine2" placeholder="Address Line 2"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60"><input id="addressLine3" class="input-box-normal" type="text" name="addressLine3" placeholder="Address Line 3"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60"><input id="city"  class="input-box-normal"type="text" name="city" placeholder="City"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60"><input id="state" class="input-box-normal" type="text" name="state" placeholder="State"/></td>
+                        </tr>
+                        <tr>
+                            <td  class="td-height-60"><input id="country" class="input-box-normal" type="text" name="country" placeholder="Country"/></td>
+                        </tr>
+                        <tr>
+                            <td  class="td-height-60"><input id="zipCode" class="input-box-normal" type="text" name="zipCode" placeholder="ZipCode"/></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="top-space admin-registration-commands">
+                    <table>
+                        <tr>
+                            <td colspan="2" class="td-height-60">
+                                <input class="button-normal" type="reset" value="Cancel"/>
+                                <input class="button-normal" id="register" type="submit" value="Register"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="footer">
+                Copyright &copy; 2021 MNR Chinnasamy Softlabs.
+            </div>
         </div>
-        <div class="top-space section">Personal Information</div>
-        <form method="POST" action="/signup-user">
-            <table class="top-space">
-                <tr>
-                    <td class="td-height-60"><input id="firstName" class="input-box-normal" type="text" name="firstName" placeholder="First Name"/></td>
-                </tr>
-                <tr>
-                    <td class="td-height-60"><input id="middleInitial" class="input-box-normal" type="text" name="middleInitial" placeholder="Middle Initial"/></td>
-                </tr>
-                <tr>
-                    <td class="td-height-60"><input id="lastName" class="input-box-normal" type="text" name="lastName" placeholder="Last Name"/></td>
-                </tr>
-                <tr>
-                    <td class="td-height-60"><input id="emailId"  class="input-box-normal"type="text" name="emailId" placeholder="Email Id"/></td>
-                </tr>
-                <tr>
-                    <td class="td-height-60"><input id="uniqueId" class="input-box-normal" type="text" name="uniqueId" placeholder="Unique Id"/></td>
-                </tr>
-                <tr>
-                    <td class="td-height-60"><input id="mobileNo" class="input-box-normal" type="text" name="mobileNo" placeholder="Mobile Number"/></td>
-                </tr>
-                <tr>
-                    <td class="td-height-60"><input id="password" class="input-box-normal" type="password" name="password" placeholder="Password"/></td>
-                </tr>
-                <tr>
-                    <td class="td-height-60"><input id="confirmPassword" class="input-box-normal" type="password" name="confirmPassword" placeholder="Confirm Password"/></td>
-                </tr>
-            </table>
-            <div class="top-space section">Permanent Address</div>
-            <table class="top-space">
-                <tr>
-                    <td class="td-height-60"><input id="addressLine1" class="input-box-normal" type="text" name="addressLine1" placeholder="Address Line 1"/></td>
-                </tr>
-                <tr>
-                    <td class="td-height-60"><input id="addressLine2" class="input-box-normal" type="text" name="addressLine2" placeholder="Address Line 2"/></td>
-                </tr>
-                <tr>
-                    <td class="td-height-60"><input id="addressLine3" class="input-box-normal" type="text" name="addressLine3" placeholder="Address Line 3"/></td>
-                </tr>
-                <tr>
-                    <td class="td-height-60"><input id="city"  class="input-box-normal"type="text" name="city" placeholder="City"/></td>
-                </tr>
-                <tr>
-                    <td class="td-height-60"><input id="state" class="input-box-normal" type="text" name="state" placeholder="State"/></td>
-                </tr>
-                <tr>
-                    <td  class="td-height-60"><input id="country" class="input-box-normal" type="text" name="country" placeholder="Country"/></td>
-                </tr>
-                <tr>
-                    <td  class="td-height-60"><input id="zipCode" class="input-box-normal" type="text" name="zipCode" placeholder="ZipCode"/></td>
-                </tr>
-            </table>
-            <table class="top-space">
-                <tr>
-                    <td colspan="2" class="td-height-60">
-                        <input class="button-normal" type="reset" value="Cancel"/>
-                        <input class="button-normal" id="register" type="submit" value="Register"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
     </body>
 </html>

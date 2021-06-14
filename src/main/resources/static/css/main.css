@@ -1,55 +1,125 @@
-.menu-item {
-    width: 220px;
-    background-color: #FFF;
-    border-color: black;
-    border: 1px solid;
-    height: 45px;
-    float: left;
+body{
+    background-color: #505050;
 }
 
-.td-height-60 {
-    height: 60px;
+.wrapper {
+    background-color: #FFFFFF;
+    border: 3px solid #505050;
+    border-radius: 5px;
+    width: 1500px;
+    margin: auto;
+    min-height:2000px;
+    height:auto;
+    -webkit-box-shadow: 5px 5px 15px 5px #FFFFFF;
+    box-shadow: 0px -4px 15px 5px #FFFFFF;
 }
 
-.banner-box {
-    height: 250px;
+.banner {
+    height: 225px;
     width: 100%;
-    background-color: #645757;
+    background-color: #505050;
     color: #FFFFFF;
     text-align: center;
     font-size: 30px;
 }
 
-.section {
+.menu-bar {
+    border: 0px solid #505050;
     height: 50px;
+}
+
+.content-pane {
+    border: 0px solid red;
+    height: 1670px;
     width: 100%;
-    background-color: #FFFFFF;
-    border-bottom: 2px solid #645757;
-    font-size: 35px;
-    text-indent : 10px;
-    color: #645757;
+}
+
+.footer {
+    background-color: #505050;
+    color: #FFFFFF;
+    border: 0px solid red;
+    width: 100%;
+    font-weight: bold;
+    text-indent: 10px;
+    height: 51px;
+    font-size: 14px;
+}
+
+.menu-item {
+    border: 2px solid #FFF;
+    height: 50px;
+    float: left;
+    width: 371px;
+    background-color: #505050;
+    color: #FFF;
 }
 
 .top-space{
     margin-top: 50px;
 }
 
+.section {
+    height: 50px;
+    width: 75%;
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #505050;
+    font-size: 35px;
+    text-indent : 10px;
+    color: #505050;
+    margin-left: 185px;
+}
+
+.sub-section {
+    height: 50px;
+    width: 60%;
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #505050;
+    font-size: 35px;
+    text-indent: 10px;
+    color: #505050;
+    margin-left: 408px;
+}
+
 .input-box-normal {
-    border:1px solid #645757;
+    border:1px solid #505050;
     font-size: 18px;
     height: 45px;
     width: 450px;
     border-radius: 10px;
     text-indent: 15px;
-
 }
 
 .button-normal {
-    background-color : #645757;
+    background-color : #505050;
     border-radius: 10px;
     color: #FFFFFF;
     height: 50px;
     width: 225px;
-    border:1px solid #645757;
+    border:1px solid #505050;
 
+}
+
+.td-height-60 {
+    height: 60px;
+}
+
+.admin-personal-info {
+    border: 0px solid red;
+    height: 515px;
+    width: 463px;
+    margin-left: 450px;
+}
+
+.admin-address-info {
+    border: 0px solid red;
+    height: 452px;
+    width: 463px;
+    margin-left: 450px;
+}
+
+.admin-registration-commands {
+    border: 0px solid red;
+    height: 67px;
+    width: 463px;
+    margin-left: 450px;
 }
