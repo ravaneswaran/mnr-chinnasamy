@@ -10,7 +10,6 @@ body{
     margin: auto;
     min-height:2000px;
     height:auto;
-    -webkit-box-shadow: 5px 5px 15px 5px #FFFFFF;
     box-shadow: 0px -4px 15px 5px #FFFFFF;
 }
 
@@ -21,6 +20,8 @@ body{
     color: #FFFFFF;
     text-align: center;
     font-size: 30px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .menu-bar {
@@ -104,10 +105,10 @@ body{
 }
 
 .admin-personal-info {
-    border: 0px solid red;
-    height: 515px;
-    width: 463px;
-    margin-left: 450px;
+   border: 0px solid red;
+   height: 515px;
+   width: 490px;
+   margin-left: 450px;
 }
 
 .admin-address-info {
@@ -122,4 +123,33 @@ body{
     height: 67px;
     width: 463px;
     margin-left: 450px;
+}
+
+.required-field {
+    color: red;
+}
+
+.login-pane {
+    border: 2px solid #505050;
+    border-radius: 5px;
+    width: 600px;
+    height: 349px;
+    margin-left: 420px;
+    margin-top: 200px;
+}
+
+.login-header {
+    height: 50px;
+    width: 100%;
+    color: #FFFFFF;
+    background-color: #505050;
+    text-indent : 10px;
+    border-radius: 5px;
+}
+
+.login-body {
+    border: ppx solid red;
+    height: 200px;
+    width: 480px;
+    margin-left: 60px;
 }
