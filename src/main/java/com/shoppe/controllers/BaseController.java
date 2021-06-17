@@ -3,14 +3,14 @@ package com.shoppe.controllers;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class BaseController {
 
     protected Map<String, String> getFieldsAndErrors(BindingResult bindingResult){
-        Map<String, String> fieldsAndErrors = new HashMap<>();
+        Map<String, String> fieldsAndErrors = new TreeMap<>();
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
         for (FieldError fieldError: fieldErrors) {
             String fieldName = fieldError.getField();

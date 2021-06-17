@@ -44,7 +44,7 @@ public class SignUpController extends BaseController {
         if(result.hasErrors()){
             modelAndView.setViewName("signup/signup-home");
             Map<String, String> fieldsAndErrors = this.getFieldsAndErrors(result);
-            modelAndView.addObject("fieldsAndErrors", fieldsAndErrors);
+            modelAndView.addObject("errorMessage", fieldsAndErrors.get("firstName"));
         } else {
             modelAndView.setViewName("signup/signup-success");
         }

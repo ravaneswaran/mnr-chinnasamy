@@ -130,12 +130,13 @@ body{
 }
 
 .login-pane {
-    border: 2px solid #505050;
+    border: 2px solid #FFFFFF;
     border-radius: 5px;
     width: 600px;
-    height: 349px;
+    height: 465px;
     margin-left: 420px;
     margin-top: 200px;
+    box-shadow: 1px -1px 15px 5px #505050;
 }
 
 .login-header {
@@ -152,4 +153,13 @@ body{
     height: 200px;
     width: 480px;
     margin-left: 60px;
+}
+
+.center-text{
+    text-align:center;
+}
+
+a {
+    text-decoration:none;
+    color:#505050;
 }
