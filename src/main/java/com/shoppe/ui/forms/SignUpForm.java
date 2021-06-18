@@ -21,11 +21,11 @@ public class SignUpForm {
     @NotEmpty(message = "{mobile.number.not.empty}")
     private String mobileNo;
 
-    @NotEmpty(message = "{password.not.empty}")
+    /*@NotEmpty(message = "{password.not.empty}")
     private String password;
 
     @NotEmpty(message = "{confirm.password.not.empty}")
-    private String confirmPassword;
+    private String confirmPassword;*/
 
     public String getFirstName() {
         return firstName;
@@ -75,19 +75,4 @@ public class SignUpForm {
         this.mobileNo = mobileNo;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
 }

@@ -66,11 +66,13 @@ public class ShoppeConfiguration implements WebMvcConfigurer {
         return bean;
     }
 
-    public void addViewControllers(ViewControllerRegistry registry) {
+   /* public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("login");
 
-        registry.addViewController("/signup").setViewName("signup/signup-home");
+        registry.addViewController("/admin").setViewName("admin-add");
+        registry.addViewController("/admin/add").setViewName("admin/admin-add");
+
         registry.addViewController("/signup/success").setViewName("signup/signup-success");
-    }
+    }*/
 
 }

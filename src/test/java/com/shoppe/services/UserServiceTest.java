@@ -48,7 +48,7 @@ public class UserServiceTest {
         String password = String.format("password-%s", randomNumberString);
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
 
-        SignUpVO signUpVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, status);
+        SignUpVO signUpVO = this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, status);
         User user = this.userRepository.findById(signUpVO.getUserUUID()).get();
 
         Assert.assertEquals(UserStatus.SIGN_UP_VERIFICATION_PENDING.toString(), user.getStatus());
@@ -69,7 +69,7 @@ public class UserServiceTest {
         String password = String.format("password-%s", randomNumberString);
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
 
-        SignUpVO signUpVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, status);
+        SignUpVO signUpVO = this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, status);
         Token token = tokenRepository.findSignUpVerificationTokenByCreatorUUID(signUpVO.getUserUUID());
         this.userService.verifySignedUpUser(token.getUUID());
         String userUUID = signUpVO.getUserUUID();

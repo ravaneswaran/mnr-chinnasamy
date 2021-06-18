@@ -3,21 +3,22 @@ package com.shoppe.controllers;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
-public class BaseController {
+public  abstract class BaseController {
 
-    protected Map<String, String> getFieldsAndErrors(BindingResult bindingResult){
-        Map<String, String> fieldsAndErrors = new TreeMap<>();
-        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-        for (FieldError fieldError: fieldErrors) {
-            String fieldName = fieldError.getField();
-            String message = bindingResult.getFieldError(fieldName).getDefaultMessage();
-            fieldsAndErrors.put(fieldName, message);
+    protected abstract List<String> getMandatoryFields();
+
+    protected String getError(BindingResult bindingResult){
+        for(String key : getMandatoryFields()){
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+            for (FieldError fieldError: fieldErrors) {
+                String fieldName = fieldError.getField();
+                if(key.equals(fieldName)){
+                    return bindingResult.getFieldError(fieldName).getDefaultMessage();
+                }
+            }
         }
-        return fieldsAndErrors;
+        return null;
     }
-
 }

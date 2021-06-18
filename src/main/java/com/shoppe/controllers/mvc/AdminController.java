@@ -18,35 +18,47 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
-public class SignUpController extends BaseController {
+public class AdminController extends BaseController {
 
-    Logger logger = LoggerFactory.getLogger(SignUpController.class);
+    Logger logger = LoggerFactory.getLogger(AdminController.class);
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/signup")
-    public ModelAndView signUpHome(){
+    @Override
+    protected List<String> getMandatoryFields() {
+        List<String> mandatoryFields = new ArrayList<>();
+
+        mandatoryFields.add("firstName");
+        mandatoryFields.add("emailId");
+        mandatoryFields.add("mobileNo");
+        mandatoryFields.add("password");
+        mandatoryFields.add("confirmPassword");
+
+        return mandatoryFields;
+    }
+
+    @GetMapping("/admin")
+    public ModelAndView adminHome(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("signup/signup-home");
+        modelAndView.setViewName("admin/admin-add");
         return modelAndView;
     }
 
-    @PostMapping("/signup-user")
-    public ModelAndView signUpUser(@Valid @ModelAttribute("signup")SignUpForm signUpForm, BindingResult result) {
-
+    @PostMapping("/admin/add")
+    public ModelAndView addAdmin(@Valid @ModelAttribute("signup")SignUpForm signUpForm, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        SignUpVO signUpVO  = this.userService.signUp(signUpForm.getFirstName(), signUpForm.getMiddleInitial(), signUpForm.getLastName(), signUpForm.getEmailId(), signUpForm.getUniqueId(), signUpForm.getMobileNo(), signUpForm.getPassword(), signUpForm.getConfirmPassword(), UserStatus.SIGN_UP_VERIFICATION_PENDING.toString());
 
-        if(result.hasErrors()){
-            modelAndView.setViewName("signup/signup-home");
-            Map<String, String> fieldsAndErrors = this.getFieldsAndErrors(result);
-            modelAndView.addObject("errorMessage", fieldsAndErrors.get("firstName"));
+        if(!bindingResult.hasErrors()){
+            this.userService.addAdmin(signUpForm.getFirstName(), signUpForm.getMiddleInitial(), signUpForm.getLastName(), signUpForm.getEmailId(), signUpForm.getUniqueId(), signUpForm.getMobileNo(), UserStatus.VERIFIED.toString());
+            modelAndView.setViewName("admin/admin-add-success");
         } else {
-            modelAndView.setViewName("signup/signup-success");
+            modelAndView.setViewName("admin/admin-add");
+            modelAndView.addObject("errorMessage", this.getError(bindingResult));
         }
 
         return modelAndView;
@@ -63,4 +75,5 @@ public class SignUpController extends BaseController {
         }
         return modelAndView;
     }
+
 }
