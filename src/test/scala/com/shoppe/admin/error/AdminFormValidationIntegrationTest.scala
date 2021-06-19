@@ -34,8 +34,22 @@ class AdminFormValidationIntegrationTest extends ScalaDsl with EN {
     assert("Shoppe : Admin Creation".equals(pageTitle))
   }
 
-  Then("""the user should see the {string}""") { (errorMessage: String) =>
+  Then("""the user should see first name error {string}""") { (errorMessage: String) =>
     val errorMessage = this.webDriver.findElement(By.id("errorMessage")).getText
     assert("First name should not be empty".equals(errorMessage))
+    this.webDriver.close()
+  }
+
+  Given("""the user has filled the first name but not the email id in the admin form""") { () =>
+    System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
+    this.webDriver = new FirefoxDriver()
+    this.webDriver.get("http://localhost:8080/admin")
+    this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
+  }
+
+  Then("""the user should see email id error {string}""") { (errorMessage: String) =>
+    val errorMessage = this.webDriver.findElement(By.id("errorMessage")).getText
+    assert("Email Id should not be empty".equals(errorMessage))
+    this.webDriver.close()
   }
 }
