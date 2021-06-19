@@ -59,7 +59,6 @@ public class SignUpControllerTest {
                         .param("confirmPassword", confirmPassword)
                         .accept(MediaType.TEXT_HTML)).andExpect(status().isOk())
         .andExpect(content().contentType(String.format("%s;charset=UTF-8",MediaType.TEXT_HTML)));
-
     }
 
     @Test
