@@ -52,4 +52,19 @@ class AdminFormValidationIntegrationTest extends ScalaDsl with EN {
     assert("Email Id should not be empty".equals(errorMessage))
     this.webDriver.close()
   }
+
+  Given("""the user has filled the first name, email id but not the mobile no in the admin form""") { () =>
+    System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
+    this.webDriver = new FirefoxDriver()
+    this.webDriver.get("http://localhost:8080/admin")
+    this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
+    this.webDriver.findElement(By.id("emailId")).sendKeys("test@test.com")
+  }
+
+  Then("""the user should see mobile no error {string}""") { (errorMessage: String) =>
+    val errorMessage = this.webDriver.findElement(By.id("errorMessage")).getText
+    assert("Mobile Number should not be empty".equals(errorMessage))
+    this.webDriver.close()
+  }
+
 }
