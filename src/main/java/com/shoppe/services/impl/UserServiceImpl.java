@@ -1,6 +1,7 @@
 package com.shoppe.services.impl;
 
 import com.shoppe.enums.UserStatus;
+import com.shoppe.enums.UserType;
 import com.shoppe.models.Token;
 import com.shoppe.models.User;
 import com.shoppe.repositories.UserRepository;
@@ -49,6 +50,38 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(user);
 
         return 0;
+    }
+
+    @Override
+    public SignUpVO signUp(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String password, String confirmPassword, String status) {
+
+        SignUpVO signUpUserVO = new SignUpVO();
+        if(password.equals(confirmPassword)){
+            Date now = new Date();
+            User user = new User();
+
+            user.setFirstName(firstName);
+            user.setMiddleInitial(middleInitial);
+            user.setLastName(lastName);
+            user.setEmailId(emailId);
+            user.setUniqueId(uniqueId);
+            user.setMobileNo(mobileNo);
+            user.setPassword(password);
+            user.setStatus(status);
+            user.setCreatedDate(now);
+            user.setModifiedDate(now);
+
+            this.userRepository.save(user);
+
+            Token token = this.tokenService.storeAndGetSignUpVerificationToken(user.getUUID(), UserType.CUSTOMER.toString());
+            this.mailService.sendUserVerificationMail(token.getUUID(), firstName, middleInitial, lastName, emailId);
+            signUpUserVO.setUserUUID(user.getUUID());
+
+        } else {
+            signUpUserVO.setErrorMessage("Password and Confirm Password do not match.");
+        }
+
+        return signUpUserVO;
     }
 
     @Override

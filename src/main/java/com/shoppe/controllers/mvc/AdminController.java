@@ -3,8 +3,7 @@ package com.shoppe.controllers.mvc;
 import com.shoppe.controllers.BaseController;
 import com.shoppe.enums.UserStatus;
 import com.shoppe.services.UserService;
-import com.shoppe.services.vo.SignUpVO;
-import com.shoppe.ui.forms.SignUpForm;
+import com.shoppe.ui.forms.AdminForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,11 +47,11 @@ public class AdminController extends BaseController {
     }
 
     @PostMapping("/admin/add")
-    public ModelAndView addAdmin(@Valid @ModelAttribute("signup")SignUpForm signUpForm, BindingResult bindingResult) {
+    public ModelAndView addAdmin(@Valid @ModelAttribute("signup") AdminForm adminForm, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
         if(!bindingResult.hasErrors()){
-            this.userService.addAdmin(signUpForm.getFirstName(), signUpForm.getMiddleInitial(), signUpForm.getLastName(), signUpForm.getEmailId(), signUpForm.getUniqueId(), signUpForm.getMobileNo(), UserStatus.VERIFIED.toString());
+            this.userService.addAdmin(adminForm.getFirstName(), adminForm.getMiddleInitial(), adminForm.getLastName(), adminForm.getEmailId(), adminForm.getUniqueId(), adminForm.getMobileNo(), UserStatus.VERIFIED.toString());
             modelAndView.setViewName("admin/admin-add-success");
         } else {
             modelAndView.setViewName("admin/admin-add");
@@ -63,17 +60,4 @@ public class AdminController extends BaseController {
 
         return modelAndView;
     }
-
-    @GetMapping("/signup-verification")
-    public ModelAndView signUpVerification(@RequestParam(name = "token") @NotEmpty String signUpVerificationTokenUUID){
-        ModelAndView modelAndView = new ModelAndView();
-        SignUpVO signUpVO = this.userService.verifySignedUpUser(signUpVerificationTokenUUID);
-        if(signUpVO.isNotErroneous()){
-            modelAndView.setViewName("login");
-        } else {
-            modelAndView.setViewName("error");
-        }
-        return modelAndView;
-    }
-
 }
