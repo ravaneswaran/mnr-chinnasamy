@@ -2,6 +2,7 @@ package com.shoppe.ui.forms;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class AdminForm {
 
@@ -19,6 +20,7 @@ public class AdminForm {
     private String uniqueId;
 
     @NotEmpty(message = "{mobile.number.not.empty}")
+    @Size(min = 10, max = 15, message = "{mobile.number.min.length}")
     private String mobileNo;
 
     public String getFirstName() {

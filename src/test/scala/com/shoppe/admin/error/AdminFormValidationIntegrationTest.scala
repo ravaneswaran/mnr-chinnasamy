@@ -29,12 +29,12 @@ class AdminFormValidationIntegrationTest extends ScalaDsl with EN {
     this.webDriver.findElement(By.id("create")).click();
   }
 
-  Then("""The user should redirected to the same sign up form page""") { () =>
+  Then("""The user should redirected to the same admin form page""") { () =>
     val pageTitle = this.webDriver.getTitle
     assert("Shoppe : Admin Creation".equals(pageTitle))
   }
 
-  Then("""the user should see first name error {string}""") { (errorMessage: String) =>
+  And("""the user should see first name error {string}""") { (errorMessage: String) =>
     val errorMessage = this.webDriver.findElement(By.id("errorMessage")).getText
     assert("First name should not be empty".equals(errorMessage))
     this.webDriver.close()
@@ -47,7 +47,7 @@ class AdminFormValidationIntegrationTest extends ScalaDsl with EN {
     this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
   }
 
-  Then("""the user should see email id error {string}""") { (errorMessage: String) =>
+  And("""the user should see email id error {string}""") { (errorMessage: String) =>
     val errorMessage = this.webDriver.findElement(By.id("errorMessage")).getText
     assert("Email Id should not be empty".equals(errorMessage))
     this.webDriver.close()
@@ -61,9 +61,24 @@ class AdminFormValidationIntegrationTest extends ScalaDsl with EN {
     this.webDriver.findElement(By.id("emailId")).sendKeys("test@test.com")
   }
 
-  Then("""the user should see mobile no error {string}""") { (errorMessage: String) =>
+  And("""the user should see mobile no error {string}""") { (errorMessage: String) =>
     val errorMessage = this.webDriver.findElement(By.id("errorMessage")).getText
     assert("Mobile Number should not be empty".equals(errorMessage))
+    this.webDriver.close()
+  }
+
+  Given("""the user has filled the first name, email id and mobile number with less than 10 characters in the admin form""") { () =>
+    System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
+    this.webDriver = new FirefoxDriver()
+    this.webDriver.get("http://localhost:8080/admin")
+    this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
+    this.webDriver.findElement(By.id("emailId")).sendKeys("test@test.com")
+    this.webDriver.findElement(By.id("mobileNo")).sendKeys("34567")
+  }
+
+  And("""the user should see mobile number length error {string}""") { (errorMessage: String) =>
+    val errorMessage = this.webDriver.findElement(By.id("errorMessage")).getText
+    assert("Mobile Number should be 10 characters in length".equals(errorMessage))
     this.webDriver.close()
   }
 
