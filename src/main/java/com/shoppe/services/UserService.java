@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserService {
 
-    public SignUpVO addAdmin(
+    public int addAdmin(
             String firstName,
             String middleInitial,
             String lastName,

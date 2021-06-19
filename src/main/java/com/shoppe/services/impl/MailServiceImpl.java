@@ -31,8 +31,9 @@ public class MailServiceImpl implements MailService {
 
 
     @Override
-    public void sendUserVerificationMail(String tokenId, String firstName, String middleInitial, String lastName, String emailId) {
+    public int sendUserVerificationMail(String tokenId, String firstName, String middleInitial, String lastName, String emailId) {
         String mailContent = null;
+        int result = -1;
         try {
             mailContent = this.stringUtil.getResourceAsString("mail-messages/signup-verification-mail.html");
         } catch (IOException e) {
@@ -43,9 +44,12 @@ public class MailServiceImpl implements MailService {
             mailContent = String.format(mailContent, firstName, middleInitial, lastName, tokenId);
             try {
                 this.mailerUtil.sendMailMessage(this.noReplyMailId, emailId, this.signUpVerificationSubject, mailContent);
+                result = 0;
             } catch (MessagingException e) {
                 this.logger.error(e.getMessage(), e);
             }
         }
+
+        return result;
     }
 }

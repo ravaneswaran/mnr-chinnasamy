@@ -1,7 +1,6 @@
 package com.shoppe.services.impl;
 
 import com.shoppe.enums.UserStatus;
-import com.shoppe.enums.UserType;
 import com.shoppe.models.Token;
 import com.shoppe.models.User;
 import com.shoppe.repositories.UserRepository;
@@ -31,9 +30,8 @@ public class UserServiceImpl implements UserService {
     Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
-    public SignUpVO addAdmin(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String status) {
+    public int addAdmin(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String status) {
 
-        SignUpVO signUpUserVO = new SignUpVO();
         Date now = new Date();
         User user = new User();
 
@@ -49,10 +47,8 @@ public class UserServiceImpl implements UserService {
         user.setModifiedDate(now);
 
         this.userRepository.save(user);
-        Token token = this.tokenService.storeAndGetSignUpVerificationToken(user.getUUID(), UserType.ADMIN.toString());
-        this.mailService.sendUserVerificationMail(token.getUUID(), firstName, middleInitial, lastName, emailId);
 
-        return signUpUserVO;
+        return 0;
     }
 
     @Override
