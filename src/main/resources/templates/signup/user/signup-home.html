@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/XSL/Transform">
     <head>
         <meta charset="UTF-8">
-        <title>Shoppe : Sign Up</title>
+        <title>Shoppe : User Sign Up</title>
         <link rel="stylesheet" th:href="@{/css/base/main.css}"/>
     </head>
     <body>
         <div class="wrapper">
             <div class="banner">
-                Shoppe : Admin Module
+                Shoppe : User Sign Up
             </div>
             <div class="menu-bar">
                 <div class="menu-item">Home</div>
@@ -17,9 +17,9 @@
                 <div class="menu-item">Logout</div>
             </div>
             <div class="content-pane">
-                <form action="/signup-user" method="POST">
-                    <div class="top-space section">Admin Creation</div>
-                    <div class="top-space error-message-box" th:text="${errorMessage}"></div>
+                <form action="/signup/user/add" method="POST">
+                    <div class="top-space section">User SignUp</div>
+                    <div class="top-space error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
                     <div class="top-space sub-section">Personal Information <span style="font-size:16px;">(fields marked with (*) are mandatory)</span></div>
                     <div class="top-space signup-personal-info">
                         <table>

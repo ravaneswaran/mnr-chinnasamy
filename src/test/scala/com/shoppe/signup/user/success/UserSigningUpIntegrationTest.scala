@@ -1,11 +1,11 @@
-package com.shoppe.signup.success
+package com.shoppe.signup.user.success
 
 import com.shoppe.BaseIntegrationTest
 import io.cucumber.junit.{Cucumber, CucumberOptions}
 import io.cucumber.spring.CucumberContextConfiguration
 import org.junit.runner.RunWith
-import org.openqa.selenium.{By, WebDriver}
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.{By, WebDriver}
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 
@@ -13,11 +13,11 @@ import scala.util.Random
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
-  features = Array("classpath:features/signup/signup.feature"),
-  glue = Array("com.shoppe.signup.success"))
+  features = Array("classpath:features/signup/user/user-signup.feature"),
+  glue = Array("com.shoppe.signup.user.success"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class SigningUpIntegrationTest extends BaseIntegrationTest{
+class UserSigningUpIntegrationTest extends BaseIntegrationTest{
 
   var webDriver: WebDriver = null
 

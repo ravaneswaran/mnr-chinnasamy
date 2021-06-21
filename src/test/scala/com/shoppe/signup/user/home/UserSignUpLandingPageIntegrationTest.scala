@@ -1,4 +1,4 @@
-package com.shoppe.signup.home
+package com.shoppe.signup.user.home
 
 import io.cucumber.junit.{Cucumber, CucumberOptions}
 import io.cucumber.scala.{EN, ScalaDsl}
@@ -11,13 +11,13 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
-  features = Array("classpath:features/signup/signup-landing-page.feature"),
-  glue = Array("com.shoppe.signup.error"))
+  features = Array("classpath:features/signup/user/user-signup-landing-page.feature"),
+  glue = Array("com.shoppe.signup.user.home"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class SignUpLandingPageIntegrationTest extends ScalaDsl with EN {
+class UserSignUpLandingPageIntegrationTest extends ScalaDsl with EN {
 
-  var webDriver: WebDriver = null
+  var webDriver: WebDriver = null;
 
   Given("""the user opens up a browser""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
@@ -30,7 +30,7 @@ class SignUpLandingPageIntegrationTest extends ScalaDsl with EN {
 
   Then("""the user suppose to see the sign in page of the shoppe app""") { () =>
     val titleOfThePage = this.webDriver.getTitle
-    assert("Shoppe : Sign Up".equals(titleOfThePage))
+    assert("Shoppe : User Sign Up".equals(titleOfThePage))
     this.webDriver.close()
   }
 
