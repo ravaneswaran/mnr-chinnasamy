@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,8 +34,6 @@ public class AdminController extends BaseController {
         mandatoryFields.add("firstName");
         mandatoryFields.add("emailId");
         mandatoryFields.add("mobileNo");
-        mandatoryFields.add("password");
-        mandatoryFields.add("confirmPassword");
 
         return mandatoryFields;
     }
@@ -47,7 +46,7 @@ public class AdminController extends BaseController {
     }
 
     @PostMapping("/admin/add")
-    public ModelAndView addAdmin(@Valid @ModelAttribute("signup") AdminForm adminForm, BindingResult bindingResult) {
+    public ModelAndView addAdmin(@Valid @ModelAttribute("admin") AdminForm adminForm, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
         if(!bindingResult.hasErrors()){
