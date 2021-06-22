@@ -34,6 +34,25 @@ public class UserServiceTest {
     }
 
     @Test
+    public void testAddAdmin(){
+        Random random = new Random();
+        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
+        String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
+
+        String firstName = "Ravaneswaran";
+        String middleInitial = " ";
+        String lastName = "Chinnasamy";
+        String emailId = String.format("mail-%s", randomNumberString);
+        String uniqueId = randomNumberString;
+        String mobileNo = mobileNoString;
+        String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
+
+        int result = this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, status);
+
+        Assert.assertEquals(0, result);
+    }
+
+    @Test
     public void testSignUp(){
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
