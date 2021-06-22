@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,6 +53,9 @@ public class AdminController extends BaseController {
             modelAndView.setViewName("admin/admin-add-success");
         } else {
             modelAndView.setViewName("admin/admin-add");
+            modelAndView.addObject("firstName", adminForm.getFirstName());
+            modelAndView.addObject("emailId", adminForm.getEmailId());
+            modelAndView.addObject("mobileNo", adminForm.getMobileNo());
             modelAndView.addObject("errorMessage", this.getError(bindingResult));
         }
 
