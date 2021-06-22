@@ -1,3 +1,7 @@
+@import "admin.css";
+@import "login.css";
+@import "user-signup.css";
+
 body{
     background-color: #505050;
 }
@@ -104,55 +108,8 @@ body{
     height: 60px;
 }
 
-.admin-personal-info {
-   border: 0px solid red;
-   height: 460px;
-   width: 490px;
-   margin-left: 450px;
-}
-
-.admin-address-info {
-    border: 0px solid red;
-    height: 452px;
-    width: 463px;
-    margin-left: 450px;
-}
-
-.admin-registration-commands {
-    border: 0px solid red;
-    height: 67px;
-    width: 463px;
-    margin-left: 450px;
-}
-
 .required-field {
     color: red;
-}
-
-.login-pane {
-    border: 2px solid #FFFFFF;
-    border-radius: 5px;
-    width: 600px;
-    height: 465px;
-    margin-left: 420px;
-    margin-top: 200px;
-    box-shadow: 1px -1px 15px 5px #505050;
-}
-
-.login-header {
-    height: 50px;
-    width: 100%;
-    color: #FFFFFF;
-    background-color: #505050;
-    text-indent : 10px;
-    border-radius: 5px;
-}
-
-.login-body {
-    border: ppx solid red;
-    height: 200px;
-    width: 480px;
-    margin-left: 60px;
 }
 
 .center-text{
@@ -173,23 +130,4 @@ a {
     color: red;
 }
 
-.signup-personal-info {
-   border: 0px solid red;
-   height: 535px;
-   width: 490px;
-   margin-left: 450px;
-}
 
-.signup-address-info {
-    border: 0px solid red;
-    height: 452px;
-    width: 463px;
-    margin-left: 450px;
-}
-
-.signup-registration-commands {
-    border: 0px solid red;
-    height: 67px;
-    width: 463px;
-    margin-left: 450px;
-}
