@@ -55,8 +55,13 @@ public class UserSignUpController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
 
         if(!bindingResult.hasErrors()){
-            this.userService.signUp(signUpForm.getFirstName(), signUpForm.getMiddleInitial(), signUpForm.getLastName(), signUpForm.getEmailId(), signUpForm.getUniqueId(), signUpForm.getMobileNo(), signUpForm.getPassword(), signUpForm.getConfirmPassword(), UserStatus.SIGN_UP_VERIFICATION_PENDING.toString());
-            modelAndView.setViewName("signup/user/signup-success");
+            if(signUpForm.getPassword().equals(signUpForm.getConfirmPassword())) {
+                this.userService.signUp(signUpForm.getFirstName(), signUpForm.getMiddleInitial(), signUpForm.getLastName(), signUpForm.getEmailId(), signUpForm.getUniqueId(), signUpForm.getMobileNo(), signUpForm.getPassword(), signUpForm.getConfirmPassword(), UserStatus.SIGN_UP_VERIFICATION_PENDING.toString());
+                modelAndView.setViewName("signup/user/signup-success");
+            } else {
+                modelAndView.setViewName("signup/user/signup-home");
+                modelAndView.addObject("errorMessage", "Password and Confirm password should be same");
+            }
         } else {
             modelAndView.setViewName("signup/user/signup-home");
             modelAndView.addObject("errorMessage", this.getError(bindingResult));

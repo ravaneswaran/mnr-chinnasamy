@@ -40,4 +40,70 @@ class UserSignUpFormValidationIntegrationTest extends BaseIntegrationTest{
     assert(color.equals(textColor))
     this.webDriver.close();
   }
+
+  Given("""the user has filled the first name and not the email id in the signup form""") { () =>
+    System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
+    val url = "http://localhost:8080/signup/user"
+    this.webDriver = new FirefoxDriver()
+    this.webDriver.get(url)
+    this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
+  }
+
+  Then("""The user should see the error message {string}""") { (errorMessage: String) =>
+    val errMessage = this.webDriver.findElement(By.id("errorMessage")).getText
+    assert(errorMessage.equals(errMessage))
+  }
+
+  Given("""the user has filled the first name, email id and not the mobile number in the signup form""") { () =>
+    System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
+    val url = "http://localhost:8080/signup/user"
+    this.webDriver = new FirefoxDriver()
+    this.webDriver.get(url)
+    this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
+    this.webDriver.findElement(By.id("emailId")).sendKeys("test@test.com")
+  }
+
+  Given("""the user has filled the first name, email id and the mobile number is short in length in signup form""") { () =>
+    System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
+    val url = "http://localhost:8080/signup/user"
+    this.webDriver = new FirefoxDriver()
+    this.webDriver.get(url)
+    this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
+    this.webDriver.findElement(By.id("emailId")).sendKeys("test@test.com")
+    this.webDriver.findElement(By.id("mobileNo")).sendKeys("1234567")
+  }
+
+  Given("""the user has filled the first name, email id, mobile number and left password field empty in signup form""") { () =>
+    System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
+    val url = "http://localhost:8080/signup/user"
+    this.webDriver = new FirefoxDriver()
+    this.webDriver.get(url)
+    this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
+    this.webDriver.findElement(By.id("emailId")).sendKeys("test@test.com")
+    this.webDriver.findElement(By.id("mobileNo")).sendKeys("1234567890")
+  }
+
+  Given("""the user has filled all the mandatory fields except confirm password field empty in signup form""") { () =>
+    System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
+    val url = "http://localhost:8080/signup/user"
+    this.webDriver = new FirefoxDriver()
+    this.webDriver.get(url)
+    this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
+    this.webDriver.findElement(By.id("emailId")).sendKeys("test@test.com")
+    this.webDriver.findElement(By.id("mobileNo")).sendKeys("1234567890")
+    this.webDriver.findElement(By.id("password")).sendKeys("testpassword")
+  }
+
+  Given("""the user has filled all the mandatory fields with different password and confirm password in signup form""") { () =>
+    System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
+    val url = "http://localhost:8080/signup/user"
+    this.webDriver = new FirefoxDriver()
+    this.webDriver.get(url)
+    this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
+    this.webDriver.findElement(By.id("emailId")).sendKeys("test@test.com")
+    this.webDriver.findElement(By.id("mobileNo")).sendKeys("1234567890")
+    this.webDriver.findElement(By.id("password")).sendKeys("testpassword")
+    this.webDriver.findElement(By.id("confirmPassword")).sendKeys("passwordtest")
+  }
+
 }
