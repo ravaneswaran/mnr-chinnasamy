@@ -54,7 +54,7 @@ class UserSignUpFormValidationIntegrationTest extends BaseIntegrationTest{
     assert(errorMessage.equals(errMessage))
   }
 
-  Given("""the user has filled the first name, email id and not the mobile number in the signup form""") { () =>
+  Given("""the user filled the first name, email id and not the mobile number in the signup form""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     val url = "http://localhost:8080/signup/user"
     this.webDriver = new FirefoxDriver()

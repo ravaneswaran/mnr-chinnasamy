@@ -16,9 +16,9 @@ Feature: To validate Sign Up parameters on the server side
     And The user should see the error message 'Email Id should not be empty'
     And The user should see the error message in 'rgb(255, 0, 0)'
 
-  Scenario: When the mobile number parameter is empty
+  Scenario: When empty mobile number is submitted
 
-    Given the user has filled the first name, email id and not the mobile number in the signup form
+    Given the user filled the first name, email id and not the mobile number in the signup form
     When the user tries to submit the page
     Then The user should redirected to the same sign up form page
     And The user should see the error message 'Mobile Number should not be empty'
