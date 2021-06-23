@@ -9,6 +9,7 @@ import com.shoppe.services.MailService;
 import com.shoppe.services.TokenService;
 import com.shoppe.services.UserService;
 import com.shoppe.services.vo.UserVO;
+import liquibase.pro.packaged.U;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,12 +48,28 @@ public class UserServiceImpl implements UserService {
         user.setCreatedDate(now);
         user.setModifiedDate(now);
 
-        this.userRepository.save(user);
+        User admin = this.userRepository.save(user);
 
-        UserVO userVO = new UserVO();
-        userVO.setUserUUID(user.getUUID());
+        if(null != admin){
 
-        return userVO;
+            UserVO userVO = new UserVO();
+            userVO.setUserUUID(user.getUUID());
+            userVO.setFirstName(admin.getFirstName());
+            userVO.setMiddleInitial(admin.getMiddleInitial());
+            userVO.setLastName(admin.getLastName());
+            userVO.setEmailId(admin.getEmailId());
+            userVO.setMobileNo(admin.getMobileNo());
+            userVO.setUniqueId(admin.getUniqueId());
+
+            return userVO;
+        } else {
+            logger.error("unable to save the admin information...");
+            return null;
+        }
+
+
+
+
     }
 
     @Override
@@ -114,4 +131,24 @@ public class UserServiceImpl implements UserService {
 
         return userVO;
     }
+
+    @Override
+    public UserVO getUser(String uuid) {
+        User user = this.userRepository.findById(uuid).get();
+
+        if(null != user){
+            UserVO userVO = new UserVO();
+            userVO.setFirstName(user.getFirstName());
+            userVO.setMiddleInitial(user.getMiddleInitial());
+            userVO.setLastName(user.getLastName());
+            userVO.setEmailId(user.getEmailId());
+            userVO.setMobileNo(user.getMobileNo());
+            userVO.setUniqueId(user.getUniqueId());
+            return userVO;
+        } else {
+            logger.error(String.format("Unable to find the user for the uuid : %s", uuid));
+            return null;
+        }
+    }
+
 }

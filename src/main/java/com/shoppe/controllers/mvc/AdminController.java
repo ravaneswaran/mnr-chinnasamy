@@ -10,9 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -51,14 +49,43 @@ public class AdminController extends BaseController {
 
         if(!bindingResult.hasErrors()){
             UserVO userVO = this.userService.addAdmin(adminForm.getFirstName(), adminForm.getMiddleInitial(), adminForm.getLastName(), adminForm.getEmailId(), adminForm.getUniqueId(), adminForm.getMobileNo(), UserStatus.VERIFIED.toString());
-            modelAndView.setViewName("admin/admin-info");
+            if(null != userVO) {
+                modelAndView.setViewName("admin/admin-info");
+                modelAndView.addObject("adminForm", adminForm);
+            } else {
+                String errorMessage = "Unable to add admin information...";
+                logger.error(errorMessage);
+                modelAndView.setViewName("admin/admin-add");
+                modelAndView.addObject("errorMessage", errorMessage);
+            }
         } else {
             modelAndView.setViewName("admin/admin-add");
-            modelAndView.addObject("firstName", adminForm.getFirstName());
-            modelAndView.addObject("emailId", adminForm.getEmailId());
-            modelAndView.addObject("mobileNo", adminForm.getMobileNo());
+            modelAndView.addObject("adminForm", adminForm);
             modelAndView.addObject("errorMessage", this.getError(bindingResult));
         }
+
+        return modelAndView;
+    }
+
+    @GetMapping("/admin/info")
+    public ModelAndView getAdminInfo(@RequestParam(name = "uuid") String uuid){
+        ModelAndView modelAndView = new ModelAndView();
+
+        if(null != uuid && !"".equals(uuid)){
+            UserVO userVO = this.userService.getUser(uuid);
+            modelAndView.setViewName("admin/admin-info");
+            modelAndView.addObject("userVO", userVO);
+        } else {
+            logger.error("Request parameter uuid is found to be invalid...");
+            modelAndView.setViewName("admin/admin-info");
+        }
+
+        return modelAndView;
+    }
+
+    @GetMapping("/admin/list")
+    public ModelAndView listAdmins(){
+        ModelAndView modelAndView = new ModelAndView();
 
         return modelAndView;
     }

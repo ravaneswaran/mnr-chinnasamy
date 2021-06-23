@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/XSL/Transform">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Shoppe : Admin Information</title>
@@ -24,50 +24,50 @@
                     <td colspan="2" class="admin-info-header">Personal Information...</td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">First Name</td><td class="admin-info-td" th:text="${firstName}"></td>
+                    <td class="admin-info-td">First Name</td><td class="admin-info-td" th:text="${adminForm.firstName}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Middle Initial</td><td class="admin-info-td" th:text="${middleInitial}"></td>
+                    <td class="admin-info-td">Middle Initial</td><td class="admin-info-td" th:text="${adminForm.middleInitial}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Last Name</td><td class="admin-info-td" th:text="${lastName}"></td>
+                    <td class="admin-info-td">Last Name</td><td class="admin-info-td" th:text="${adminForm.lastName}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Email Id</td><td class="admin-info-td" th:text="${emailId}"></td>
+                    <td class="admin-info-td">Email Id</td><td class="admin-info-td" th:text="${adminForm.emailId}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Mobile Number</td><td class="admin-info-td" th:text="${mobileNo}"></td>
+                    <td class="admin-info-td">Mobile Number</td><td class="admin-info-td" th:text="${adminForm.mobileNo}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Unique Id</td><td class="admin-info-td" th:text="${uniqueId}"></td>
+                    <td class="admin-info-td">Unique Id</td><td class="admin-info-td" th:text="${adminForm.uniqueId}"></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="admin-info-header">Address Information...</td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Address Line 1</td><td class="admin-info-td" th:text="${addressLine1}"></td>
+                    <td class="admin-info-td">Address Line 1</td><td class="admin-info-td" th:text="${adminForm.addressLine1}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Address Line 2</td><td class="admin-info-td" th:text="${addressLine2}"></td>
+                    <td class="admin-info-td">Address Line 2</td><td class="admin-info-td" th:text="${adminForm.addressLine2}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Address Line 3</td><td class="admin-info-td" th:text="${addressLine3}"></td>
+                    <td class="admin-info-td">Address Line 3</td><td class="admin-info-td" th:text="${adminForm.addressLine3}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">City</td><td class="admin-info-td" th:text="${city}"></td>
+                    <td class="admin-info-td">City</td><td class="admin-info-td" th:text="${adminForm.city}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">State</td><td class="admin-info-td" th:text="${state}"></td>
+                    <td class="admin-info-td">State</td><td class="admin-info-td" th:text="${adminForm.state}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Zip Code</td><td class="admin-info-td" th:text="${zipCode}"></td>
+                    <td class="admin-info-td">Zip Code</td><td class="admin-info-td" th:text="${adminForm.zipCode}"></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="admin-info-td"></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="admin-info-td">
-                        <a class="admin-info-anchor" href="#">Admin Listing</a>
+                        <a class="admin-info-anchor" href="/admin/listing">Admin Listing</a>
                         <a class="admin-info-anchor" href="#" onclick="javascript:alert('Are you sure want to block this admin?');">Block this Admin</a>
                     </td>
                 </tr>

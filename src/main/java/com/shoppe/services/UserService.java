@@ -19,4 +19,6 @@ public interface UserService {
 
     public UserVO verifySignedUpUser(String signUpVerificationTokenUUID);
 
+    public UserVO getUser(String uuid);
+
 }
