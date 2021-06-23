@@ -1,6 +1,8 @@
 @import "admin.css";
 @import "login.css";
 @import "user-signup.css";
+@import "admin-info.css";
+@import "admin-listing.css";
 
 body{
     background-color: #505050;
@@ -59,8 +61,12 @@ body{
     color: #FFF;
 }
 
-.top-space{
+.top-space-50-pixel{
     margin-top: 50px;
+}
+
+.top-space-100-pixel{
+    margin-top: 100px;
 }
 
 .section {

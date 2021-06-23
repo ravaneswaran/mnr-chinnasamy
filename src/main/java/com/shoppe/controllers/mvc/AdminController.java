@@ -50,7 +50,7 @@ public class AdminController extends BaseController {
 
         if(!bindingResult.hasErrors()){
             this.userService.addAdmin(adminForm.getFirstName(), adminForm.getMiddleInitial(), adminForm.getLastName(), adminForm.getEmailId(), adminForm.getUniqueId(), adminForm.getMobileNo(), UserStatus.VERIFIED.toString());
-            modelAndView.setViewName("admin/admin-add-success");
+            modelAndView.setViewName("admin/admin-info");
         } else {
             modelAndView.setViewName("admin/admin-add");
             modelAndView.addObject("firstName", adminForm.getFirstName());
