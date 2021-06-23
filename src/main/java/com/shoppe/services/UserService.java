@@ -1,12 +1,12 @@
 package com.shoppe.services;
 
-import com.shoppe.services.vo.SignUpVO;
+import com.shoppe.services.vo.UserVO;
 import org.springframework.stereotype.Component;
 
 @Component
 public interface UserService {
 
-    public int addAdmin(
+    public UserVO addAdmin(
             String firstName,
             String middleInitial,
             String lastName,
@@ -15,7 +15,8 @@ public interface UserService {
             String mobileNo,
             String status);
 
-    public SignUpVO signUp(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String password, String confirmPassword, String status);
+    public UserVO signUp(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String password, String confirmPassword, String status);
 
-    public SignUpVO verifySignedUpUser(String signUpVerificationTokenUUID);
+    public UserVO verifySignedUpUser(String signUpVerificationTokenUUID);
+
 }

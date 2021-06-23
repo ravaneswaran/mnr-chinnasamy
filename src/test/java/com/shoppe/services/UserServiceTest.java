@@ -5,7 +5,7 @@ import com.shoppe.models.Token;
 import com.shoppe.models.User;
 import com.shoppe.repositories.TokenRepository;
 import com.shoppe.repositories.UserRepository;
-import com.shoppe.services.vo.SignUpVO;
+import com.shoppe.services.vo.UserVO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,9 +47,9 @@ public class UserServiceTest {
         String mobileNo = mobileNoString;
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
 
-        int result = this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, status);
+        UserVO userVO = this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, status);
 
-        Assert.assertEquals(0, result);
+        Assert.assertNotNull(userVO.getUserUUID());
     }
 
     @Test
@@ -67,8 +67,8 @@ public class UserServiceTest {
         String password = String.format("password-%s", randomNumberString);
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
 
-        SignUpVO signUpVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, status);
-        User user = this.userRepository.findById(signUpVO.getUserUUID()).get();
+        UserVO userVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, status);
+        User user = this.userRepository.findById(userVO.getUserUUID()).get();
 
         Assert.assertEquals(UserStatus.SIGN_UP_VERIFICATION_PENDING.toString(), user.getStatus());
     }
@@ -88,10 +88,10 @@ public class UserServiceTest {
         String password = String.format("password-%s", randomNumberString);
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
 
-        SignUpVO signUpVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, status);
-        Token token = tokenRepository.findSignUpVerificationTokenByCreatorUUID(signUpVO.getUserUUID());
+        UserVO userVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, status);
+        Token token = tokenRepository.findSignUpVerificationTokenByCreatorUUID(userVO.getUserUUID());
         this.userService.verifySignedUpUser(token.getUUID());
-        String userUUID = signUpVO.getUserUUID();
+        String userUUID = userVO.getUserUUID();
 
         User user = this.userRepository.findById(userUUID).get();
         Assert.assertEquals(UserStatus.VERIFIED.toString(), user.getStatus());

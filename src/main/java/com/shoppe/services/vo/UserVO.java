@@ -1,6 +1,6 @@
 package com.shoppe.services.vo;
 
-public class SignUpVO extends BaseVO{
+public class UserVO extends BaseVO{
 
     private String userUUID;
 
@@ -10,5 +10,9 @@ public class SignUpVO extends BaseVO{
 
     public void setUserUUID(String userUUID) {
         this.userUUID = userUUID;
+    }
+
+    public boolean isErroneous(){
+        return !isNotErroneous();
     }
 }

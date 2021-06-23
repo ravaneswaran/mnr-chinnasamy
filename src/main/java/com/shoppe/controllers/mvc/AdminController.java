@@ -3,6 +3,7 @@ package com.shoppe.controllers.mvc;
 import com.shoppe.controllers.BaseController;
 import com.shoppe.enums.UserStatus;
 import com.shoppe.services.UserService;
+import com.shoppe.services.vo.UserVO;
 import com.shoppe.ui.forms.AdminForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +50,7 @@ public class AdminController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
 
         if(!bindingResult.hasErrors()){
-            this.userService.addAdmin(adminForm.getFirstName(), adminForm.getMiddleInitial(), adminForm.getLastName(), adminForm.getEmailId(), adminForm.getUniqueId(), adminForm.getMobileNo(), UserStatus.VERIFIED.toString());
+            UserVO userVO = this.userService.addAdmin(adminForm.getFirstName(), adminForm.getMiddleInitial(), adminForm.getLastName(), adminForm.getEmailId(), adminForm.getUniqueId(), adminForm.getMobileNo(), UserStatus.VERIFIED.toString());
             modelAndView.setViewName("admin/admin-info");
         } else {
             modelAndView.setViewName("admin/admin-add");
