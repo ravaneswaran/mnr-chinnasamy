@@ -6,6 +6,8 @@ import javax.validation.constraints.Size;
 
 public class AdminForm {
 
+    private String adminId;
+
     @NotEmpty(message = "{firstname.not.empty}")
     private String firstName;
 
@@ -133,5 +135,13 @@ public class AdminForm {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public String getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(String adminId) {
+        this.adminId = adminId;
     }
 }

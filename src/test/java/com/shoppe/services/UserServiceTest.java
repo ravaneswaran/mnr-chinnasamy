@@ -7,6 +7,7 @@ import com.shoppe.models.User;
 import com.shoppe.repositories.TokenRepository;
 import com.shoppe.repositories.UserRepository;
 import com.shoppe.services.vo.UserVO;
+import com.shoppe.ui.forms.AdminForm;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Random;
 
 @RunWith(SpringRunner.class)
@@ -35,7 +37,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testAddAdmin(){
+    public void testAddAdmin() {
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
@@ -49,9 +51,9 @@ public class UserServiceTest {
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
         String type = UserType.ADMIN.toString();
 
-        UserVO userVO = this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, type, status);
+        AdminForm adminForm = this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, type, status);
 
-        Assert.assertNotNull(userVO.getUserUUID());
+        Assert.assertNotNull(adminForm.getAdminId());
     }
 
     @Test

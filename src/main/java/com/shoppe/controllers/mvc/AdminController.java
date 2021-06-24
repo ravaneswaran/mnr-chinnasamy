@@ -49,15 +49,15 @@ public class AdminController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
 
         if(!bindingResult.hasErrors()){
-            UserVO userVO = this.userService.addAdmin(adminForm.getFirstName(), adminForm.getMiddleInitial(), adminForm.getLastName(), adminForm.getEmailId(), adminForm.getUniqueId(), adminForm.getMobileNo(), UserType.ADMIN.toString(), UserStatus.VERIFIED.toString());
-            if(null != userVO) {
+            AdminForm response = this.userService.addAdmin(adminForm.getFirstName(), adminForm.getMiddleInitial(), adminForm.getLastName(), adminForm.getEmailId(), adminForm.getUniqueId(), adminForm.getMobileNo(), UserType.ADMIN.toString(), UserStatus.VERIFIED.toString());
+
+            if(null != response) {
                 modelAndView.setViewName("admin/admin-info");
-                modelAndView.addObject("adminForm", adminForm);
+                modelAndView.addObject("adminForm", response);
             } else {
-                String errorMessage = "Unable to add admin information...";
-                logger.error(errorMessage);
                 modelAndView.setViewName("admin/admin-add");
-                modelAndView.addObject("errorMessage", errorMessage);
+                modelAndView.addObject("adminForm",adminForm);
+                modelAndView.addObject("errorMessage", "Unable to add admin information...");
             }
         } else {
             modelAndView.setViewName("admin/admin-add");

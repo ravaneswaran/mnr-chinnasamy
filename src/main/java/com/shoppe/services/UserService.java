@@ -1,12 +1,15 @@
 package com.shoppe.services;
 
 import com.shoppe.services.vo.UserVO;
+import com.shoppe.ui.forms.AdminForm;
 import org.springframework.stereotype.Component;
+
+import java.sql.SQLIntegrityConstraintViolationException;
 
 @Component
 public interface UserService {
 
-    public UserVO addAdmin(
+    public AdminForm addAdmin(
             String firstName,
             String middleInitial,
             String lastName,
