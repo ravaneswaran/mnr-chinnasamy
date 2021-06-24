@@ -1,29 +1,14 @@
-package com.shoppe.ui.forms;
+package com.shoppe.services.vo;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+public class UserVO extends BaseVO{
 
-public class AdminForm {
-
-    private String adminId;
-
-    @NotEmpty(message = "{firstname.not.empty}")
+    private String userUUID;
     private String firstName;
-
     private String middleInitial;
-
     private String lastName;
-
-    @NotEmpty(message = "{email.id.not.empty}")
-    @Email(message = "{email.id.invalid.format}")
     private String emailId;
-
-    private String uniqueId;
-
-    @NotEmpty(message = "{mobile.number.not.empty}")
-    @Size(min = 10, max = 15, message = "{mobile.number.min.length}")
     private String mobileNo;
+    private String uniqueId;
 
     private String addressLine1;
     private String addressLine2;
@@ -33,52 +18,64 @@ public class AdminForm {
     private String country;
     private String zipCode;
 
-    public String getFirstName() {
-        return firstName;
+    public String getUserUUID() {
+        return userUUID;
+    }
+
+    public void setUserUUID(String userUUID) {
+        this.userUUID = userUUID;
+    }
+
+    public boolean isErroneous(){
+        return !isNotErroneous();
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getMiddleInitial() {
-        return middleInitial;
-    }
-
     public void setMiddleInitial(String middleInitial) {
         this.middleInitial = middleInitial;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getEmailId() {
-        return emailId;
-    }
-
     public void setEmailId(String emailId) {
         this.emailId = emailId;
     }
 
-    public String getUniqueId() {
-        return uniqueId;
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
     }
 
     public void setUniqueId(String uniqueId) {
         this.uniqueId = uniqueId;
     }
 
-    public String getMobileNo() {
-        return mobileNo;
+    public String getFirstName() {
+        return this.firstName;
     }
 
-    public void setMobileNo(String mobileNo) {
-        this.mobileNo = mobileNo;
+    public String getMiddleInitial() {
+        return this.middleInitial;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public String getEmailId() {
+        return this.emailId;
+    }
+
+    public String getMobileNo() {
+        return this.mobileNo;
+    }
+
+    public String getUniqueId() {
+        return this.uniqueId;
     }
 
     public String getAddressLine1() {
@@ -135,13 +132,5 @@ public class AdminForm {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
-    }
-
-    public String getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(String adminId) {
-        this.adminId = adminId;
     }
 }

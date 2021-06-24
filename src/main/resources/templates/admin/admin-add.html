@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/XSL/Transform">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Shoppe : Admin Creation</title>
@@ -18,35 +18,35 @@
     </div>
     <div class="content-pane">
         <form action="/admin/add" method="POST">
-            <div class="top-space section">Admin Creation</div>
-            <div class="top-space error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
-            <div class="top-space sub-section">Personal Information <span style="font-size:16px;">(fields marked with (*) are mandatory)</span></div>
-            <div class="top-space admin-personal-info">
+            <div class="top-space-50-pixel section">Admin Creation</div>
+            <div class="top-space-50-pixel error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
+            <div class="top-space-50-pixel sub-section">Personal Information <span style="font-size:16px;">(fields marked with (*) are mandatory)</span></div>
+            <div class="top-space-50-pixel admin-personal-info">
                 <table>
                     <tr>
                         <td class="td-height-60">
-                            <input id="firstName" class="input-box-normal" type="text" name="firstName" placeholder="First Name" th:value="${firstName}"/>
+                            <input id="firstName" class="input-box-normal" type="text" name="firstName" placeholder="First Name" th:value="${adminForm != null} ? ${adminForm.firstName} : ''"/>
                             <span class="required-field">*</span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="middleInitial" class="input-box-normal" type="text" name="middleInitial" placeholder="Middle Initial"/></td>
+                        <td class="td-height-60"><input id="middleInitial" class="input-box-normal" type="text" name="middleInitial" placeholder="Middle Initial" th:value="${adminForm != null} ? ${adminForm.middleInitial} : ''"/></td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="lastName" class="input-box-normal" type="text" name="lastName" placeholder="Last Name"/></td>
+                        <td class="td-height-60"><input id="lastName" class="input-box-normal" type="text" name="lastName" placeholder="Last Name" th:value="${adminForm != null} ? ${adminForm.lastName} : ''"/></td>
                     </tr>
                     <tr>
                         <td class="td-height-60">
-                            <input id="emailId"  class="input-box-normal"type="text" name="emailId" placeholder="Email Id" th:value="${emailId}"/>
+                            <input id="emailId"  class="input-box-normal"type="text" name="emailId" placeholder="Email Id" th:value="${adminForm != null} ? ${adminForm.emailId} : ''"/>
                             <span class="required-field">*</span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="uniqueId" class="input-box-normal" type="text" name="uniqueId" placeholder="Unique Id"/></td>
+                        <td class="td-height-60"><input id="uniqueId" class="input-box-normal" type="text" name="uniqueId" placeholder="Unique Id" th:value="${adminForm != null} ? ${adminForm.uniqueId} : ''"/></td>
                     </tr>
                     <tr>
                         <td class="td-height-60">
-                            <input id="mobileNo" class="input-box-normal" type="text" name="mobileNo" placeholder="Mobile Number" th:value="${mobileNo}"/>
+                            <input id="mobileNo" class="input-box-normal" type="text" name="mobileNo" placeholder="Mobile Number" th:value="${adminForm != null} ? ${adminForm.mobileNo} : ''"/>
                             <span class="required-field">*</span>
                         </td>
                     </tr>
@@ -58,32 +58,32 @@
                 </table>
             </div>
             <div class="sub-section">Permanent Address</div>
-            <div class="top-space admin-address-info">
+            <div class="top-space-50-pixel admin-address-info">
                 <table>
                     <tr>
-                        <td class="td-height-60"><input id="addressLine1" class="input-box-normal" type="text" name="addressLine1" placeholder="Address Line 1"/></td>
+                        <td class="td-height-60"><input id="addressLine1" class="input-box-normal" type="text" name="addressLine1" placeholder="Address Line 1" th:value="${adminForm != null} ? ${adminForm.addressLine1} : ''"/></td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="addressLine2" class="input-box-normal" type="text" name="addressLine2" placeholder="Address Line 2"/></td>
+                        <td class="td-height-60"><input id="addressLine2" class="input-box-normal" type="text" name="addressLine2" placeholder="Address Line 2" th:value="${adminForm != null} ? ${adminForm.addressLine2} : ''"/></td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="addressLine3" class="input-box-normal" type="text" name="addressLine3" placeholder="Address Line 3"/></td>
+                        <td class="td-height-60"><input id="addressLine3" class="input-box-normal" type="text" name="addressLine3" placeholder="Address Line 3" th:value="${adminForm != null} ? ${adminForm.addressLine3} : ''"/></td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="city"  class="input-box-normal"type="text" name="city" placeholder="City"/></td>
+                        <td class="td-height-60"><input id="city"  class="input-box-normal"type="text" name="city" placeholder="City" th:value="${adminForm != null} ? ${adminForm.city} : ''"/></td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="state" class="input-box-normal" type="text" name="state" placeholder="State"/></td>
+                        <td class="td-height-60"><input id="state" class="input-box-normal" type="text" name="state" placeholder="State" th:value="${adminForm != null} ? ${adminForm.state} : ''"/></td>
                     </tr>
                     <tr>
-                        <td  class="td-height-60"><input id="country" class="input-box-normal" type="text" name="country" placeholder="Country"/></td>
+                        <td  class="td-height-60"><input id="country" class="input-box-normal" type="text" name="country" placeholder="Country" th:value="${adminForm != null} ? ${adminForm.country} : ''"/></td>
                     </tr>
                     <tr>
-                        <td  class="td-height-60"><input id="zipCode" class="input-box-normal" type="text" name="zipCode" placeholder="ZipCode"/></td>
+                        <td  class="td-height-60"><input id="zipCode" class="input-box-normal" type="text" name="zipCode" placeholder="ZipCode" th:value="${adminForm != null} ? ${adminForm.zipCode} : ''"/></td>
                     </tr>
                 </table>
             </div>
-            <div class="top-space admin-registration-commands">
+            <div class="top-space-50-pixel admin-registration-commands">
                 <table>
                     <tr>
                         <td colspan="2" class="td-height-60">

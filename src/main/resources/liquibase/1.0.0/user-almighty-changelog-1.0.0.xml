@@ -16,9 +16,10 @@
             <column  name="middle_initial"  value=" "/>
             <column  name="last_name"  value=" "/>
             <column  name="email_id"  value="almighty@test.com"/>
-            <column  name="unique_id"  value=" "/>
-            <column  name="mobile_no"  value=" "/>
+            <column  name="unique_id"  value="0000000000"/>
+            <column  name="mobile_no"  value="0000000000"/>
             <column  name="password"  value="almighty"/>
+            <column  name="type"  value="ALMIGHTY"/>
             <column  name="status"  value="VERIFIED"/>
             <column  name="created_date"  value="1900-01-01 00:00:00"/>
             <column  name="modified_date"  value="1900-01-01 00:00:00"/>

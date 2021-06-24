@@ -21,11 +21,18 @@
             <column name="unique_id" type="varchar(200)" />
             <column name="mobile_no" type="varchar(200)" />
             <column name="password" type="varchar(200)" />
+            <column name="type" type="varchar(200)" />
             <column name="status" type="varchar(200)" />
             <column name="created_date" type="datetime" />
             <column name="modified_date" type="datetime" />
         </createTable>
 
+    </changeSet>
+
+    <changeSet id="02"  author="ravaneswaran">
+        <addUniqueConstraint columnNames="email_id" tableName="user"/>
+        <addUniqueConstraint columnNames="unique_id" tableName="user"/>
+        <addUniqueConstraint columnNames="mobile_no" tableName="user"/>
     </changeSet>
 
 </databaseChangeLog>

@@ -1,0 +1,36 @@
+.admin-info-pane {
+    height: 895px;
+    width: 1014px;
+    box-shadow: 1px -1px 15px 5px #505050;
+    margin-left: 247px;
+    margin-top:100px;
+    border-radius: 5px;
+}
+
+.admin-info-td{
+    border: 1px solid #505050;
+    height: 50px;
+    width: 500px;
+    border-radius: 5px;
+    text-indent: 15px;
+}
+
+.admin-info-header{
+    color:#FFFFFF;
+    background-color:#505050;
+    height: 50px;
+    width: 500px;
+    border-radius: 5px;
+    text-indent: 15px;
+}
+
+.admin-info-anchor {
+    height: 40px;
+    width: 285px;
+    color: #FFFFFF;
+    background-color: #505050;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+}
+
