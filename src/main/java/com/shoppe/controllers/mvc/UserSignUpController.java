@@ -2,6 +2,7 @@ package com.shoppe.controllers.mvc;
 
 import com.shoppe.controllers.BaseController;
 import com.shoppe.enums.UserStatus;
+import com.shoppe.enums.UserType;
 import com.shoppe.services.UserService;
 import com.shoppe.services.vo.UserVO;
 import com.shoppe.ui.forms.SignUpForm;
@@ -56,7 +57,7 @@ public class UserSignUpController extends BaseController {
 
         if(!bindingResult.hasErrors()){
             if(signUpForm.getPassword().equals(signUpForm.getConfirmPassword())) {
-                this.userService.signUp(signUpForm.getFirstName(), signUpForm.getMiddleInitial(), signUpForm.getLastName(), signUpForm.getEmailId(), signUpForm.getUniqueId(), signUpForm.getMobileNo(), signUpForm.getPassword(), signUpForm.getConfirmPassword(), UserStatus.SIGN_UP_VERIFICATION_PENDING.toString());
+                this.userService.signUp(signUpForm.getFirstName(), signUpForm.getMiddleInitial(), signUpForm.getLastName(), signUpForm.getEmailId(), signUpForm.getUniqueId(), signUpForm.getMobileNo(), signUpForm.getPassword(), signUpForm.getConfirmPassword(), UserType.CUSTOMER.toString(), UserStatus.SIGN_UP_VERIFICATION_PENDING.toString());
                 modelAndView.setViewName("signup/user/signup-success");
             } else {
                 modelAndView.setViewName("signup/user/signup-home");

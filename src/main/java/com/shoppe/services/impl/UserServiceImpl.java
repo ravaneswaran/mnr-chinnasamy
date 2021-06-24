@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
-    public UserVO addAdmin(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String status) {
+    public UserVO addAdmin(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String type, String status) {
 
         Date now = new Date();
         User user = new User();
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVO signUp(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String password, String confirmPassword, String status) {
+    public UserVO signUp(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String password, String confirmPassword, String type, String status) {
 
         UserVO userVO = new UserVO();
         if(password.equals(confirmPassword)){

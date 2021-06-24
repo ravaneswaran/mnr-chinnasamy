@@ -1,6 +1,7 @@
 package com.shoppe.services;
 
 import com.shoppe.enums.UserStatus;
+import com.shoppe.enums.UserType;
 import com.shoppe.models.Token;
 import com.shoppe.models.User;
 import com.shoppe.repositories.TokenRepository;
@@ -46,8 +47,9 @@ public class UserServiceTest {
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
+        String type = UserType.ADMIN.toString();
 
-        UserVO userVO = this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, status);
+        UserVO userVO = this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, type, status);
 
         Assert.assertNotNull(userVO.getUserUUID());
     }
@@ -65,9 +67,10 @@ public class UserServiceTest {
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
         String password = String.format("password-%s", randomNumberString);
+        String type = UserType.CUSTOMER.toString();
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
 
-        UserVO userVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, status);
+        UserVO userVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, type, status);
         User user = this.userRepository.findById(userVO.getUserUUID()).get();
 
         Assert.assertEquals(UserStatus.SIGN_UP_VERIFICATION_PENDING.toString(), user.getStatus());
@@ -86,9 +89,10 @@ public class UserServiceTest {
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
         String password = String.format("password-%s", randomNumberString);
+        String type = UserType.CUSTOMER.toString();
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
 
-        UserVO userVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, status);
+        UserVO userVO = this.userService.signUp(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password, type, status);
         Token token = tokenRepository.findSignUpVerificationTokenByCreatorUUID(userVO.getUserUUID());
         this.userService.verifySignedUpUser(token.getUUID());
         String userUUID = userVO.getUserUUID();

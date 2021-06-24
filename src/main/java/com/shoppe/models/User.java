@@ -33,6 +33,9 @@ public class User{
     @Column(name = "password")
     private String password;
 
+    @Column(name = "type")
+    private String type;
+
     @Column(name = "status")
     private String status;
 
@@ -111,6 +114,14 @@ public class User{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getStatus() {

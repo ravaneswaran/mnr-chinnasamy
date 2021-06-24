@@ -2,6 +2,7 @@ package com.shoppe.controllers.mvc;
 
 import com.shoppe.controllers.BaseController;
 import com.shoppe.enums.UserStatus;
+import com.shoppe.enums.UserType;
 import com.shoppe.services.UserService;
 import com.shoppe.services.vo.UserVO;
 import com.shoppe.ui.forms.AdminForm;
@@ -48,7 +49,7 @@ public class AdminController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
 
         if(!bindingResult.hasErrors()){
-            UserVO userVO = this.userService.addAdmin(adminForm.getFirstName(), adminForm.getMiddleInitial(), adminForm.getLastName(), adminForm.getEmailId(), adminForm.getUniqueId(), adminForm.getMobileNo(), UserStatus.VERIFIED.toString());
+            UserVO userVO = this.userService.addAdmin(adminForm.getFirstName(), adminForm.getMiddleInitial(), adminForm.getLastName(), adminForm.getEmailId(), adminForm.getUniqueId(), adminForm.getMobileNo(), UserType.ADMIN.toString(), UserStatus.VERIFIED.toString());
             if(null != userVO) {
                 modelAndView.setViewName("admin/admin-info");
                 modelAndView.addObject("adminForm", adminForm);
