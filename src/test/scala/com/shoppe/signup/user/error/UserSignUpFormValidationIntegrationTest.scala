@@ -4,8 +4,8 @@ import com.shoppe.BaseIntegrationTest
 import io.cucumber.junit.{Cucumber, CucumberOptions}
 import io.cucumber.spring.CucumberContextConfiguration
 import org.junit.runner.RunWith
-import org.openqa.selenium.{By, WebDriver}
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.{By, WebDriver}
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 

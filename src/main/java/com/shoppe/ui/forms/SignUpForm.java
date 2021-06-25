@@ -2,7 +2,7 @@ package com.shoppe.ui.forms;
 
 import javax.validation.constraints.NotEmpty;
 
-public class SignUpForm extends AdminForm{
+public class SignUpForm extends Admin {
 
     @NotEmpty(message = "{password.not.empty}")
     private String password;
