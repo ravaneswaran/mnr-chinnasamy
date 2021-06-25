@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Component
 public class UserServiceImpl implements UserService {
@@ -82,11 +83,9 @@ public class UserServiceImpl implements UserService {
             Token token = this.tokenService.storeAndGetSignUpVerificationToken(user.getUUID(), UserType.CUSTOMER.toString());
             this.mailService.sendUserVerificationMail(token.getUUID(), firstName, middleInitial, lastName, emailId);
             userVO.setUserUUID(user.getUUID());
-
         } else {
             userVO.setErrorMessage("Password and Confirm Password do not match.");
         }
-
         return userVO;
     }
 
@@ -114,7 +113,6 @@ public class UserServiceImpl implements UserService {
         } else {
             userVO.setErrorMessage(String.format("Token id '%s' found to be invalid", signUpVerificationTokenUUID));
         }
-
         return userVO;
     }
 
@@ -153,12 +151,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String uuid) {
-        User user = this.userRepository.findById(uuid).get();
-        if(null != user){
+        Optional<User> optionalUser = this.userRepository.findById(uuid);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
             this.userRepository.delete(user);
         } else {
             logger.error(String.format("UNABLE TO DELETE : User with id '%s' is not found in the repository", uuid));
         }
     }
-
 }

@@ -45,23 +45,23 @@ public class AdminController extends BaseController {
     }
 
     @PostMapping("/admin/add")
-    public ModelAndView addAdmin(@Valid @ModelAttribute("admin") Admin adminForm, BindingResult bindingResult) {
+    public ModelAndView addAdmin(@Valid @ModelAttribute("admin") Admin admin, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
         if(!bindingResult.hasErrors()){
-            Admin response = this.adminService.addAdmin(adminForm.getFirstName(), adminForm.getMiddleInitial(), adminForm.getLastName(), adminForm.getEmailId(), adminForm.getUniqueId(), adminForm.getMobileNo());
+            Admin response = this.adminService.addAdmin(admin.getFirstName(), admin.getMiddleInitial(), admin.getLastName(), admin.getEmailId(), admin.getUniqueId(), admin.getMobileNo());
 
             if(null != response) {
                 modelAndView.setViewName("admin/admin-info");
-                modelAndView.addObject("adminForm", response);
+                modelAndView.addObject("admin", response);
             } else {
                 modelAndView.setViewName("admin/admin-add");
-                modelAndView.addObject("adminForm",adminForm);
+                modelAndView.addObject("admin",admin);
                 modelAndView.addObject("errorMessage", "Unable to add admin information...");
             }
         } else {
             modelAndView.setViewName("admin/admin-add");
-            modelAndView.addObject("adminForm", adminForm);
+            modelAndView.addObject("admin", admin);
             modelAndView.addObject("errorMessage", this.getError(bindingResult));
         }
 
@@ -113,6 +113,19 @@ public class AdminController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
 
         this.adminService.unblockAdmin(uuid);
+
+        List<Admin> admins =  this.adminService.listAdmins();
+        modelAndView.setViewName("/admin/admin-listing");
+        modelAndView.addObject("admins", admins);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/admin/delete")
+    public ModelAndView deleteAdmin(@RequestParam(name = "uuid") String uuid){
+        ModelAndView modelAndView = new ModelAndView();
+
+        this.adminService.deleteAdmin(uuid);
 
         List<Admin> admins =  this.adminService.listAdmins();
         modelAndView.setViewName("/admin/admin-listing");
