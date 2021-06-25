@@ -7,7 +7,6 @@ import com.shoppe.models.User;
 import com.shoppe.repositories.TokenRepository;
 import com.shoppe.repositories.UserRepository;
 import com.shoppe.services.vo.UserVO;
-import com.shoppe.ui.forms.Admin;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -38,7 +36,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testDddUserWithVerifiedStatus() {
+    public void testAddUserWithVerifiedStatus() {
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
@@ -46,7 +44,7 @@ public class UserServiceTest {
         String firstName = "Ravaneswaran";
         String middleInitial = " ";
         String lastName = "Chinnasamy";
-        String emailId = String.format("mail-%s", randomNumberString);
+        String emailId = String.format("mail-%s@test.com", randomNumberString);
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
         String status = UserStatus.VERIFIED.toString();
@@ -66,11 +64,11 @@ public class UserServiceTest {
         String firstName = "Ravaneswaran";
         String middleInitial = " ";
         String lastName = "Chinnasamy";
-        String emailId = String.format("mail-%s", randomNumberString);
+        String emailId = String.format("mail-%s@test.com", randomNumberString);
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
         String password = String.format("password-%s", randomNumberString);
-        String type = UserType.CUSTOMER.toString();
+        String type = UserType.PERSON.toString();
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
 
         UserVO userVO = this.userService.signUpUser(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password);
@@ -88,11 +86,11 @@ public class UserServiceTest {
         String firstName = "Ravaneswaran";
         String middleInitial = " ";
         String lastName = "Chinnasamy";
-        String emailId = String.format("mail-%s", randomNumberString);
+        String emailId = String.format("mail-%s@test.com", randomNumberString);
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
         String password = String.format("password-%s", randomNumberString);
-        String type = UserType.CUSTOMER.toString();
+        String type = UserType.PERSON.toString();
         String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
 
         UserVO userVO = this.userService.signUpUser(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password);
@@ -115,7 +113,7 @@ public class UserServiceTest {
         String firstName = "Ravaneswaran";
         String middleInitial = " ";
         String lastName = "Chinnasamy";
-        String emailId = String.format("mail-%s", randomNumberString);
+        String emailId = String.format("mail-%s@test.com", randomNumberString);
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
         String type = UserType.ADMIN.toString();
@@ -137,7 +135,7 @@ public class UserServiceTest {
         String firstName = "Ravaneswaran";
         String middleInitial = " ";
         String lastName = "Chinnasamy";
-        String emailId = String.format("mail-%s", randomNumberString);
+        String emailId = String.format("mail-%s@test.com", randomNumberString);
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
         String status = UserStatus.VERIFIED.toString();
@@ -161,7 +159,7 @@ public class UserServiceTest {
         String firstName = "Ravaneswaran";
         String middleInitial = " ";
         String lastName = "Chinnasamy";
-        String emailId = String.format("mail-%s", randomNumberString);
+        String emailId = String.format("mail-%s@test.com", randomNumberString);
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
         String status = UserStatus.VERIFIED.toString();

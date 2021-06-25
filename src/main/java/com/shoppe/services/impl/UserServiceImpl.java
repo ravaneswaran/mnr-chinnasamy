@@ -73,14 +73,14 @@ public class UserServiceImpl implements UserService {
             user.setUniqueId(uniqueId);
             user.setMobileNo(mobileNo);
             user.setPassword(password);
-            user.setType(UserType.CUSTOMER.toString());
+            user.setType(UserType.PERSON.toString());
             user.setStatus(UserStatus.SIGN_UP_VERIFICATION_PENDING.toString());
             user.setCreatedDate(now);
             user.setModifiedDate(now);
 
             this.userRepository.save(user);
 
-            Token token = this.tokenService.storeAndGetSignUpVerificationToken(user.getUUID(), UserType.CUSTOMER.toString());
+            Token token = this.tokenService.storeAndGetSignUpVerificationToken(user.getUUID(), UserType.PERSON.toString());
             this.mailService.sendUserVerificationMail(token.getUUID(), firstName, middleInitial, lastName, emailId);
             userVO.setUserUUID(user.getUUID());
         } else {
@@ -118,7 +118,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String uuid) {
-        return this.userRepository.findById(uuid).get();
+        Optional<User> optionalUser =  this.userRepository.findById(uuid);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            if(user.getUniqueId().startsWith("DUMMY-")){
+                user.setUniqueId("");
+            }
+            return user;
+        } else {
+            logger.error(String.format("Unable to find the user for the id '%s'", uuid));
+            return null;
+        }
     }
 
     @Override

@@ -46,26 +46,28 @@ public class AdminController extends BaseController {
 
     @PostMapping("/admin/add")
     public ModelAndView addAdmin(@Valid @ModelAttribute("admin") Admin admin, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
-
         if(!bindingResult.hasErrors()){
             Admin response = this.adminService.addAdmin(admin.getFirstName(), admin.getMiddleInitial(), admin.getLastName(), admin.getEmailId(), admin.getUniqueId(), admin.getMobileNo());
 
             if(null != response) {
-                modelAndView.setViewName("admin/admin-info");
-                modelAndView.addObject("admin", response);
+                String redirect = String.format("redirect:/admin/info?uuid=%s", response.getAdminId());
+                return new ModelAndView(redirect);
             } else {
+                ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("admin/admin-add");
                 modelAndView.addObject("admin",admin);
                 modelAndView.addObject("errorMessage", "Unable to add admin information...");
+
+                return modelAndView;
             }
         } else {
+            ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("admin/admin-add");
             modelAndView.addObject("admin", admin);
             modelAndView.addObject("errorMessage", this.getError(bindingResult));
-        }
 
-        return modelAndView;
+            return modelAndView;
+        }
     }
 
     @GetMapping("/admin/info")
