@@ -16,6 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @RunWith(SpringRunner.class)
@@ -48,7 +50,7 @@ public class UserServiceTest {
         String emailId = String.format("mail-%s", randomNumberString);
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
-        String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
+        String status = UserStatus.VERIFIED.toString();
         String type = UserType.ADMIN.toString();
 
         AdminForm adminForm = this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, type, status);
@@ -103,4 +105,96 @@ public class UserServiceTest {
         Assert.assertEquals(UserStatus.VERIFIED.toString(), user.getStatus());
     }
 
+    @Test
+    public void testListAdmins(){
+        Random random = new Random();
+        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
+        String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
+
+        String firstName = "Ravaneswaran";
+        String middleInitial = " ";
+        String lastName = "Chinnasamy";
+        String emailId = String.format("mail-%s", randomNumberString);
+        String uniqueId = randomNumberString;
+        String mobileNo = mobileNoString;
+        String status = UserStatus.VERIFIED.toString();
+        String type = UserType.ADMIN.toString();
+
+        this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, type, status);
+
+        List<AdminForm> adminForms = this.userService.listAdmins();
+
+        Assert.assertTrue(adminForms.size() > 0);
+
+    }
+
+    @Test
+    public void testBlockUser(){
+
+        Random random = new Random();
+        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
+        String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
+
+        String firstName = "Ravaneswaran";
+        String middleInitial = " ";
+        String lastName = "Chinnasamy";
+        String emailId = String.format("mail-%s", randomNumberString);
+        String uniqueId = randomNumberString;
+        String mobileNo = mobileNoString;
+        String status = UserStatus.VERIFIED.toString();
+        String type = UserType.ADMIN.toString();
+        AdminForm adminForm = this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, type, status);
+
+        this.userService.blockUser(adminForm.getAdminId());
+
+        User user = this.userRepository.findById(adminForm.getAdminId()).get();
+        Assert.assertEquals(UserStatus.BLOCKED.toString(), user.getStatus());
+    }
+
+    @Test
+    public void testUnBlockUser(){
+
+        Random random = new Random();
+        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
+        String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
+
+        String firstName = "Ravaneswaran";
+        String middleInitial = " ";
+        String lastName = "Chinnasamy";
+        String emailId = String.format("mail-%s", randomNumberString);
+        String uniqueId = randomNumberString;
+        String mobileNo = mobileNoString;
+        String status = UserStatus.VERIFIED.toString();
+        String type = UserType.ADMIN.toString();
+        AdminForm adminForm = this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, type, status);
+        this.userService.blockUser(adminForm.getAdminId());
+
+        this.userService.unblockUser(adminForm.getAdminId());
+
+        User user = this.userRepository.findById(adminForm.getAdminId()).get();
+        Assert.assertEquals(UserStatus.VERIFIED.toString(), user.getStatus());
+    }
+
+    @Test
+    public void testDeleteUser(){
+
+        Random random = new Random();
+        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
+        String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
+
+        String firstName = "Ravaneswaran";
+        String middleInitial = " ";
+        String lastName = "Chinnasamy";
+        String emailId = String.format("mail-%s", randomNumberString);
+        String uniqueId = randomNumberString;
+        String mobileNo = mobileNoString;
+        String status = UserStatus.VERIFIED.toString();
+        String type = UserType.ADMIN.toString();
+        AdminForm adminForm = this.userService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, type, status);
+
+        this.userService.deleteUser(adminForm.getAdminId());
+
+        Optional<User> optionalUser = this.userRepository.findById(adminForm.getAdminId());
+        Assert.assertFalse(optionalUser.isPresent());
+    }
 }

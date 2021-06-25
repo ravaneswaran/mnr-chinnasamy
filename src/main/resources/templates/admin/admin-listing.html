@@ -20,17 +20,11 @@
         <div class="top-space-100-pixel section">Admin Listing</div>
         <div class="admin-listing-pane">
             <table>
-                <tr>
-                    <td class="admin-listing-name-td">Ravaneswaran Chinnasamy</td>
-                    <td class="admin-listing-anchor-td">Info</td>
-                    <td class="admin-listing-anchor-td">Delete</td>
-                    <td class="admin-listing-anchor-td">Block</td>
-                </tr>
-                <tr>
-                    <td class="admin-listing-name-td">Ravaneswaran Chinnasamy</td>
-                    <td class="admin-listing-anchor-td">Info</td>
-                    <td class="admin-listing-anchor-td">Delete</td>
-                    <td class="admin-listing-anchor-td">Block</td>
+                <tr th:each="adminForm: ${adminForms}">
+                    <td class="admin-listing-name-td" th:text="${adminForm.firstName + ' ' + adminForm.middleInitial + ' ' +adminForm.lastName}"></td>
+                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/admin/info?uuid=' + adminForm.adminId}">Info</a></td>
+                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/admin/delete?uuid=' + adminForm.adminId}" th:text="${ 'BLOCKED' == adminForm.status ? 'UnBlock' : 'Block' }">Block</a></td>
+                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/admin/block?uuid=' + adminForm.adminId}">Delete</a></td>
                 </tr>
             </table>
         </div>

@@ -15,10 +15,13 @@ import liquibase.pro.packaged.U;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Component;
 
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class UserServiceImpl implements UserService {
@@ -77,6 +80,25 @@ public class UserServiceImpl implements UserService {
             logger.error(exp.getMessage(), exp);
             return null;
         }
+    }
+
+    @Override
+    public List<AdminForm> listAdmins() {
+        List<User> admins = this.userRepository.findAllAdminUsers();
+        List<AdminForm> adminForms = new ArrayList<>();
+        for(User user : admins){
+            AdminForm adminForm = new AdminForm();
+            adminForm.setAdminId(user.getUUID());
+            adminForm.setFirstName(user.getFirstName());
+            adminForm.setMiddleInitial(user.getMiddleInitial());
+            adminForm.setLastName(user.getLastName());
+            adminForm.setEmailId(user.getEmailId());
+            adminForm.setUniqueId(user.getUniqueId());
+            adminForm.setMobileNo(user.getMobileNo());
+
+            adminForms.add(adminForm);
+        }
+        return adminForms;
     }
 
 
@@ -157,6 +179,44 @@ public class UserServiceImpl implements UserService {
         } else {
             logger.error(String.format("Unable to find the user for the uuid : %s", uuid));
             return null;
+        }
+    }
+
+    @Override
+    public void blockUser(String uuid) {
+        User user = this.userRepository.findById(uuid).get();
+        if(null != user){
+            //only user with VERIFIED status can be blocked... in other words only those who can login can be blocked
+            if(UserStatus.VERIFIED.toString().equals(user.getStatus())){
+                user.setStatus(UserStatus.BLOCKED.toString());
+            }
+            this.userRepository.save(user);
+        } else {
+            logger.error(String.format("UNABLE TO BLOCK : User with id '%s' is not found in the repository", uuid));
+        }
+    }
+
+    @Override
+    public void unblockUser(String uuid) {
+        User user = this.userRepository.findById(uuid).get();
+        if(null != user) {
+            //only user with BLOCKED status can be unblocked...
+            if (UserStatus.BLOCKED.toString().equals(user.getStatus())) {
+                user.setStatus(UserStatus.VERIFIED.toString());
+            }
+            this.userRepository.save(user);
+        } else {
+            logger.error(String.format("UNABLE TO UNBLOCK : User with id '%s' is not found in the repository", uuid));
+        }
+    }
+
+    @Override
+    public void deleteUser(String uuid) {
+        User user = this.userRepository.findById(uuid).get();
+        if(null != user){
+            this.userRepository.delete(user);
+        } else {
+            logger.error(String.format("UNABLE TO DELETE : User with id '%s' is not found in the repository", uuid));
         }
     }
 

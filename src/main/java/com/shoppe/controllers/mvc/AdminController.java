@@ -84,9 +84,39 @@ public class AdminController extends BaseController {
         return modelAndView;
     }
 
-    @GetMapping("/admin/list")
+    @GetMapping("/admin/listing")
     public ModelAndView listAdmins(){
         ModelAndView modelAndView = new ModelAndView();
+
+        List<AdminForm> adminForms =  this.userService.listAdmins();
+        modelAndView.setViewName("/admin/admin-listing");
+        modelAndView.addObject("adminForms", adminForms);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/admin/block")
+    public ModelAndView blockAdmin(@RequestParam(name = "uuid") String uuid){
+        ModelAndView modelAndView = new ModelAndView();
+
+        this.userService.blockUser(uuid);
+
+        List<AdminForm> adminForms =  this.userService.listAdmins();
+        modelAndView.setViewName("/admin/admin-listing");
+        modelAndView.addObject("adminForms", adminForms);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/admin/unblock")
+    public ModelAndView unblockAdmin(@RequestParam(name = "uuid") String uuid){
+        ModelAndView modelAndView = new ModelAndView();
+
+        this.userService.unblockUser(uuid);
+
+        List<AdminForm> adminForms =  this.userService.listAdmins();
+        modelAndView.setViewName("/admin/admin-listing");
+        modelAndView.addObject("adminForms", adminForms);
 
         return modelAndView;
     }
