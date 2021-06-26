@@ -128,10 +128,10 @@ a {
 
 .error-message-box {
     height: 50px;
-    width: 500px;
+    width: 550px;
     border: 0px solid red;
     margin-left: 450px;
-    font-size: 25px;
+    font-size: 20px;
     color: red;
 }
 

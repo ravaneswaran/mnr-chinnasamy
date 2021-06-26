@@ -21,8 +21,8 @@ public class Admin {
 
     private String uniqueId;
 
-    @NotEmpty(message = "{mobile.number.not.empty}")
     @Size(min = 10, max = 15, message = "{mobile.number.min.length}")
+    @NotEmpty(message = "{mobile.number.not.empty}")
     private String mobileNo;
 
     private String addressLine1;
