@@ -8,10 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -19,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController extends BaseController {
 
     Logger logger = LoggerFactory.getLogger(AdminController.class);
@@ -37,14 +35,14 @@ public class AdminController extends BaseController {
         return mandatoryFields;
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/home")
     public ModelAndView adminHome(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin/admin-add");
         return modelAndView;
     }
 
-    @PostMapping("/admin/add")
+    @PostMapping("/add")
     public ModelAndView addAdmin(@Valid @ModelAttribute("admin") Admin admin, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()){
 
@@ -71,7 +69,7 @@ public class AdminController extends BaseController {
         }
     }
 
-    @GetMapping("/admin/info")
+    @GetMapping("/info")
     public ModelAndView getAdminInfo(@RequestParam(name = "uuid") String uuid){
         ModelAndView modelAndView = new ModelAndView();
 
@@ -87,7 +85,7 @@ public class AdminController extends BaseController {
         return modelAndView;
     }
 
-    @GetMapping("/admin/listing")
+    @GetMapping("/listing")
     public ModelAndView listAdmins(){
         ModelAndView modelAndView = new ModelAndView();
 
@@ -98,7 +96,7 @@ public class AdminController extends BaseController {
         return modelAndView;
     }
 
-    @GetMapping("/admin/block")
+    @GetMapping("/block")
     public ModelAndView blockAdmin(@RequestParam(name = "uuid") String uuid){
         ModelAndView modelAndView = new ModelAndView();
 
@@ -111,7 +109,7 @@ public class AdminController extends BaseController {
         return modelAndView;
     }
 
-    @GetMapping("/admin/unblock")
+    @GetMapping("/unblock")
     public ModelAndView unblockAdmin(@RequestParam(name = "uuid") String uuid){
         ModelAndView modelAndView = new ModelAndView();
 
@@ -124,7 +122,7 @@ public class AdminController extends BaseController {
         return modelAndView;
     }
 
-    @GetMapping("/admin/delete")
+    @GetMapping("/delete")
     public ModelAndView deleteAdmin(@RequestParam(name = "uuid") String uuid){
         ModelAndView modelAndView = new ModelAndView();
 

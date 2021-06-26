@@ -122,8 +122,8 @@ body{
 }
 
 a {
-    text-decoration:none;
-    color:#505050;
+    color: #505050;
+    font-size: 18px;
 }
 
 .error-message-box {

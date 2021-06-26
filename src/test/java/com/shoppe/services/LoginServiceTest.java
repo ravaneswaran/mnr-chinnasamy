@@ -1,8 +1,11 @@
-package com.shoppe.repositories;
+package com.shoppe.services;
+
 
 import com.shoppe.enums.UserStatus;
 import com.shoppe.enums.UserType;
 import com.shoppe.models.User;
+import com.shoppe.repositories.UserRepository;
+import com.shoppe.ui.forms.Login;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,48 +19,21 @@ import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserRepositoryTest {
+public class LoginServiceTest {
+
+    @Autowired
+    private LoginService loginService;
 
     @Autowired
     private UserRepository userRepository;
 
     @Test
     public void testNotNull(){
-        Assert.assertNotNull(this.userRepository);
+        Assert.assertNotNull(this.loginService);
     }
 
     @Test
-    public void testSave(){
-        String uuid = UUID.randomUUID().toString();
-
-        Random random = new Random();
-        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
-        Date newDate = new Date();
-
-        User user = new User();
-        user.setUUID(uuid);
-        user.setFirstName("Ravaneswaran");
-        user.setMiddleInitial("");
-        user.setLastName("Chinnasamy");
-        user.setEmailId(String.format("mail%s@test.com", randomNumberString));
-        user.setUniqueId(randomNumberString);
-        user.setMobileNo(randomNumberString);
-        user.setPassword(String.format("password%s", randomNumberString));
-        user.setType(UserType.ADMIN.toString());
-        user.setStatus(UserStatus.VERIFIED.toString());
-        user.setCreatedDate(newDate);
-        user.setModifiedDate(newDate);
-        this.userRepository.save(user);
-
-        User result = this.userRepository.findById(uuid).get();
-
-        Assert.assertNotNull(result);
-        Assert.assertEquals(uuid, result.getUUID());
-    }
-
-    @Test
-    public void testFindByEmailIdAndPassword(){
-
+    public void testLogin(){
         String uuid = UUID.randomUUID().toString();
 
         Random random = new Random();
@@ -82,9 +58,9 @@ public class UserRepositoryTest {
         user.setModifiedDate(newDate);
         this.userRepository.save(user);
 
-        User response = this.userRepository.findByEmailIdAndPassword(emailId, password);
+        Login login = this.loginService.login(emailId, password);
 
-        Assert.assertEquals(uuid, response.getUUID());
+        Assert.assertEquals(user.getUUID(), login.getUserId());
+
     }
-
 }

@@ -2,7 +2,7 @@
     border: 2px solid #FFFFFF;
     border-radius: 5px;
     width: 600px;
-    height: 465px;
+    height: 533px;
     margin-left: 420px;
     margin-top: 200px;
     box-shadow: 1px -1px 15px 5px #505050;
@@ -22,4 +22,11 @@
     height: 200px;
     width: 480px;
     margin-left: 60px;
+}
+
+.login-error-message{
+    height: 60px;
+    color: red;
+    font-size: 16px;
+    text-align: center;
 }

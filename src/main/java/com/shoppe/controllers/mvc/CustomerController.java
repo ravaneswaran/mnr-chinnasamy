@@ -1,7 +1,6 @@
 package com.shoppe.controllers.mvc;
 
 import com.shoppe.controllers.BaseController;
-import com.shoppe.enums.UserStatus;
 import com.shoppe.services.UserService;
 import com.shoppe.services.vo.UserVO;
 import com.shoppe.ui.forms.SignUpForm;
@@ -10,10 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -22,9 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class UserSignUpController extends BaseController {
+@RequestMapping("/customer")
+public class CustomerController extends BaseController {
 
-    Logger logger = LoggerFactory.getLogger(UserSignUpController.class);
+    Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
     private UserService userService;
@@ -42,14 +39,14 @@ public class UserSignUpController extends BaseController {
         return mandatoryFields;
     }
 
-    @GetMapping("/signup/user")
-    public ModelAndView userSignUpHome(){
+    @GetMapping("/signup")
+    public ModelAndView customerSignUpHome(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("signup/user/signup-home");
         return modelAndView;
     }
 
-    @PostMapping("/signup/user/add")
+    @PostMapping("/signup/")
     public ModelAndView userSignUp(@Valid @ModelAttribute("signup") SignUpForm signUpForm, BindingResult bindingResult) {
 
         ModelAndView modelAndView = new ModelAndView();

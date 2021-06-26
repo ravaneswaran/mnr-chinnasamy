@@ -171,4 +171,9 @@ public class UserServiceImpl implements UserService {
             logger.error(String.format("UNABLE TO DELETE : User with id '%s' is not found in the repository", uuid));
         }
     }
+
+    @Override
+    public User getUser(String emailId, String password) {
+        return this.userRepository.findByEmailIdAndPassword(emailId, password);
+    }
 }

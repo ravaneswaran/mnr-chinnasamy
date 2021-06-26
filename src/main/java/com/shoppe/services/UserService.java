@@ -27,4 +27,6 @@ public interface UserService {
     public void unblockUser(String uuid);
 
     public void deleteUser(String uuid);
+
+    public User getUser(String emailId, String password);
 }

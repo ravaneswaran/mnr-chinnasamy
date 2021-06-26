@@ -23,4 +23,11 @@ public class DummyController {
         return modelAndView;
     }
 
+    @GetMapping("/login")
+    public ModelAndView getLoginPage(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
+    }
+
 }
