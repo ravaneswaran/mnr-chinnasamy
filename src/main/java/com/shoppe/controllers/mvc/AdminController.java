@@ -47,6 +47,7 @@ public class AdminController extends BaseController {
     @PostMapping("/admin/add")
     public ModelAndView addAdmin(@Valid @ModelAttribute("admin") Admin admin, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()){
+
             Admin response = this.adminService.addAdmin(admin.getFirstName(), admin.getMiddleInitial(), admin.getLastName(), admin.getEmailId(), admin.getUniqueId(), admin.getMobileNo());
 
             if(null != response) {
