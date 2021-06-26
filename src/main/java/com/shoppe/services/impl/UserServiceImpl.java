@@ -133,8 +133,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void blockUser(String uuid) {
-        User user = this.userRepository.findById(uuid).get();
-        if(null != user){
+        Optional<User> optionalUser = this.userRepository.findById(uuid);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
             //only user with VERIFIED status can be blocked... in other words only those who can login can be blocked
             if(UserStatus.VERIFIED.toString().equals(user.getStatus())){
                 user.setStatus(UserStatus.BLOCKED.toString());
@@ -147,8 +148,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void unblockUser(String uuid) {
-        User user = this.userRepository.findById(uuid).get();
-        if(null != user) {
+        Optional<User> optionalUser = this.userRepository.findById(uuid);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
             //only user with BLOCKED status can be unblocked...
             if (UserStatus.BLOCKED.toString().equals(user.getStatus())) {
                 user.setStatus(UserStatus.VERIFIED.toString());
