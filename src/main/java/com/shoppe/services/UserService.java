@@ -29,4 +29,6 @@ public interface UserService {
     public void deleteUser(String uuid);
 
     public User getUser(String emailId, String password);
+
+    public User getUserByEmailId(String emailId);
 }

@@ -3,6 +3,7 @@
 @import "user-signup.css";
 @import "admin-info.css";
 @import "admin-listing.css";
+@import "forgot-password.css";
 
 body{
     background-color: #505050;
@@ -107,6 +108,7 @@ body{
     height: 50px;
     width: 225px;
     border: 4px solid #00FF7F;
+    text-align:center;
 }
 
 .button-reset {

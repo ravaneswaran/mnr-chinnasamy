@@ -30,4 +30,11 @@ public class DummyController {
         return modelAndView;
     }
 
+    @GetMapping("/forgot-password")
+    public ModelAndView forgotPassword(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("forgot-password");
+        return modelAndView;
+    }
+
 }

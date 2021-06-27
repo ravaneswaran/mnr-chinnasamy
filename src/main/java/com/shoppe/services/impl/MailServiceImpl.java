@@ -52,4 +52,9 @@ public class MailServiceImpl implements MailService {
 
         return result;
     }
+
+    @Override
+    public int sendForgotPasswordMail(String firstName, String middleInitial, String lastName, String emailId) {
+        return 0;
+    }
 }

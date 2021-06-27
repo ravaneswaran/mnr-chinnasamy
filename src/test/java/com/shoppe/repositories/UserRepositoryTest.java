@@ -87,4 +87,34 @@ public class UserRepositoryTest {
         Assert.assertEquals(uuid, response.getUUID());
     }
 
+    @Test
+    public void testFindByEmailId(){
+        String uuid = UUID.randomUUID().toString();
+
+        Random random = new Random();
+        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
+        Date newDate = new Date();
+
+        String emailId = String.format("mail%s@test.com", randomNumberString);
+
+        User user = new User();
+        user.setUUID(uuid);
+        user.setFirstName("Ravaneswaran");
+        user.setMiddleInitial("");
+        user.setLastName("Chinnasamy");
+        user.setEmailId(emailId);
+        user.setUniqueId(randomNumberString);
+        user.setMobileNo(randomNumberString);
+        user.setPassword(String.format("password%s", randomNumberString));
+        user.setType(UserType.ADMIN.toString());
+        user.setStatus(UserStatus.VERIFIED.toString());
+        user.setCreatedDate(newDate);
+        user.setModifiedDate(newDate);
+        this.userRepository.save(user);
+
+        User response = this.userRepository.findByEmailId(emailId);
+
+        Assert.assertEquals(uuid, response.getUUID());
+    }
+
 }

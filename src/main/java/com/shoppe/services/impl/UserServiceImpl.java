@@ -182,4 +182,15 @@ public class UserServiceImpl implements UserService {
             return null;
         }
     }
+
+    @Override
+    public User getUserByEmailId(String emailId) {
+        User user = this.userRepository.findByEmailId(emailId);
+        if (null != user){
+            return user;
+        } else {
+            logger.error("NO USER FOUND : Unable to find the user registered with this email id");
+            return null;
+        }
+    }
 }
