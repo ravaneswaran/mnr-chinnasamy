@@ -4,20 +4,20 @@ import javax.validation.constraints.NotEmpty;
 
 public class Login {
 
-    @NotEmpty(message = "${username.not.empty}")
-    private String username;
+    @NotEmpty(message = "{login.emailid.not.empty.error.message}")
+    private String emailId;
 
-    @NotEmpty(message = "${password.not.empty}")
+    @NotEmpty(message = "{login.password.not.empty.error.message}")
     private String password;
 
     private String userId;
 
-    public String getUsername() {
-        return username;
+    public String getEmailId() {
+        return emailId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 
     public String getPassword() {

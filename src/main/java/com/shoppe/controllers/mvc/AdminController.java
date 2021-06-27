@@ -6,6 +6,7 @@ import com.shoppe.ui.forms.Admin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -42,12 +43,10 @@ public class AdminController extends BaseController {
         return modelAndView;
     }
 
-    @PostMapping("/add")
+    @PostMapping("/create")
     public ModelAndView addAdmin(@Valid @ModelAttribute("admin") Admin admin, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()){
-
             Admin response = this.adminService.addAdmin(admin.getFirstName(), admin.getMiddleInitial(), admin.getLastName(), admin.getEmailId(), admin.getUniqueId(), admin.getMobileNo());
-
             if(null != response) {
                 String redirect = String.format("redirect:/admin/info?uuid=%s", response.getAdminId());
                 return new ModelAndView(redirect);
@@ -56,7 +55,6 @@ public class AdminController extends BaseController {
                 modelAndView.setViewName("admin/admin-add");
                 modelAndView.addObject("admin",admin);
                 modelAndView.addObject("errorMessage", "Unable to add admin information...");
-
                 return modelAndView;
             }
         } else {
@@ -71,26 +69,33 @@ public class AdminController extends BaseController {
 
     @GetMapping("/info")
     public ModelAndView getAdminInfo(@RequestParam(name = "uuid") String uuid){
-        ModelAndView modelAndView = new ModelAndView();
-
         if(null != uuid && !"".equals(uuid)){
             Admin admin = this.adminService.getAdmin(uuid);
-            modelAndView.setViewName("admin/admin-info");
-            modelAndView.addObject("admin", admin);
+            System.out.println("--------------------------->>>>>>>>>> "+admin);
+            if(null != admin){
+                ModelAndView modelAndView = new ModelAndView();
+                modelAndView.setViewName("admin/admin-info");
+                modelAndView.addObject("admin", admin);
+                return modelAndView;
+            } else {
+                ModelAndView modelAndView = new ModelAndView("redirect:/http-errors/404");
+                modelAndView.setStatus(HttpStatus.NOT_FOUND);
+                return modelAndView;
+            }
         } else {
             logger.error("Request parameter uuid is found to be invalid...");
+            ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("admin/admin-info");
+            return modelAndView;
         }
-
-        return modelAndView;
     }
 
-    @GetMapping("/listing")
+    @GetMapping("/list")
     public ModelAndView listAdmins(){
         ModelAndView modelAndView = new ModelAndView();
 
         List<Admin> admins =  this.adminService.listAdmins();
-        modelAndView.setViewName("/admin/admin-listing");
+        modelAndView.setViewName("/admin/admin-list");
         modelAndView.addObject("admins", admins);
 
         return modelAndView;
@@ -103,7 +108,7 @@ public class AdminController extends BaseController {
         this.adminService.blockAdmin(uuid);
 
         List<Admin> admins =  this.adminService.listAdmins();
-        modelAndView.setViewName("/admin/admin-listing");
+        modelAndView.setViewName("/admin/admin-list");
         modelAndView.addObject("admins", admins);
 
         return modelAndView;
@@ -116,7 +121,7 @@ public class AdminController extends BaseController {
         this.adminService.unblockAdmin(uuid);
 
         List<Admin> admins =  this.adminService.listAdmins();
-        modelAndView.setViewName("/admin/admin-listing");
+        modelAndView.setViewName("/admin/admin-list");
         modelAndView.addObject("admins", admins);
 
         return modelAndView;
@@ -129,7 +134,7 @@ public class AdminController extends BaseController {
         this.adminService.deleteAdmin(uuid);
 
         List<Admin> admins =  this.adminService.listAdmins();
-        modelAndView.setViewName("/admin/admin-listing");
+        modelAndView.setViewName("/admin/admin-list");
         modelAndView.addObject("admins", admins);
 
         return modelAndView;

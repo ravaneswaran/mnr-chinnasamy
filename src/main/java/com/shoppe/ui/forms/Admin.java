@@ -8,21 +8,21 @@ public class Admin {
 
     private String adminId;
 
-    @NotEmpty(message = "{firstname.not.empty}")
+    @NotEmpty(message = "{admin.firstname.not.empty.error.message}")
     private String firstName;
 
     private String middleInitial;
 
     private String lastName;
 
-    @NotEmpty(message = "{email.id.not.empty}")
-    @Email(message = "{email.id.invalid.format}")
+    @NotEmpty(message = "{admin.email.id.not.empty.error.message}")
+    @Email(message = "{admin.email.id.invalid.format.error.message}")
     private String emailId;
 
     private String uniqueId;
 
-    @NotEmpty(message = "{mobile.number.not.empty}")
-    @Size(min = 10, max = 15, message = "{mobile.number.min.length}")
+    @NotEmpty(message = "{admin.mobile.number.not.empty.error.message}")
+    @Size(min = 10, max = 15, message = "admin.mobile.number.min.length.error.message}")
     private String mobileNo;
 
     private String addressLine1;

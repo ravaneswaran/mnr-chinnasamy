@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ public class LoginController extends BaseController {
     @Override
     protected List<String> getMandatoryFields() {
         List<String> mandatoryFields = new ArrayList<>();
-        mandatoryFields.add("username");
+        mandatoryFields.add("emailId");
         mandatoryFields.add("password");
         return mandatoryFields;
     }
@@ -37,9 +39,9 @@ public class LoginController extends BaseController {
     }
 
     @PostMapping("/login")
-    public ModelAndView login(@Valid @ModelAttribute("login")Login login, BindingResult bindingResult){
+    public ModelAndView login(@Valid @ModelAttribute("login")Login login, BindingResult bindingResult, HttpServletRequest httpServletRequest){
         if(!bindingResult.hasErrors()){
-            Login response = this.loginService.login(login.getUsername(), login.getPassword());
+            Login response = this.loginService.login(login.getEmailId(), login.getPassword());
             if(null != response){
                 ModelAndView modelAndView = new ModelAndView("redirect:/admin/home");
                 return modelAndView;

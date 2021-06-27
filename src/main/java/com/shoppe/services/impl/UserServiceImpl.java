@@ -174,6 +174,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String emailId, String password) {
-        return this.userRepository.findByEmailIdAndPassword(emailId, password);
+        User user = this.userRepository.findByEmailIdAndPassword(emailId, password);
+        if (null != user){
+            return user;
+        } else {
+            logger.error("NO USER FOUND : Unable to find the user for this email id and password combination");
+            return null;
+        }
     }
 }

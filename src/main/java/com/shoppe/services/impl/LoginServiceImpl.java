@@ -21,12 +21,10 @@ public class LoginServiceImpl implements LoginService {
     public Login login(String emailId, String password) {
         User user = this.userService.getUser(emailId, password);
         if(null != user){
-
             Login login = new Login();
-            login.setUsername(emailId);
+            login.setEmailId(emailId);
             login.setPassword(password);
             login.setUserId(user.getUUID());
-
             return login;
         } else {
             logger.error(String.format("UNABLE TO LOGIN : the emailId and password combination does not exist"));

@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AdminControllerTest {
+public class LoginControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
@@ -33,41 +33,26 @@ public class AdminControllerTest {
     }
 
     @Test
-    public void test_home_page_of_admin() throws Exception{
-
-        Random random = new Random();
-        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
-        String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
+    public void test_login_landing_page() throws Exception{
 
         this.mockMvc.perform(
-                get("/admin/home")
+                get("/")
                         .accept(MediaType.TEXT_HTML)).andExpect(status().isOk())
                 .andExpect(content().contentType(String.format("%s;charset=UTF-8",MediaType.TEXT_HTML)));
 
     }
 
     @Test
-    public void test_creating_an_admin() throws Exception{
+    public void test_login_user() throws Exception{
 
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
-        String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
-
-        String firstName = "Ravaneswaran";
-        String middleInitial = " ";
-        String lastName = "Chinnasamy";
         String emailId = String.format("mail%s@gmail.com", randomNumberString);
-        String uniqueId = randomNumberString;
-        String mobileNo = mobileNoString;
 
         this.mockMvc.perform(
                 post("/admin/create")
-                        .param("firstName", firstName)
-                        .param("middleInitial", middleInitial)
-                        .param("lastName", lastName)
                         .param("emailId", emailId)
-                        .param("uniqueId", uniqueId)
-                        .param("mobileNo", mobileNo)
+                        .param("password", randomNumberString)
                         .accept(MediaType.TEXT_HTML)).andExpect(status().isOk())
                 .andExpect(content().contentType(String.format("%s;charset=UTF-8",MediaType.TEXT_HTML)));
 

@@ -23,13 +23,13 @@
                         </tr>
                         <tr>
                             <td class="td-height-60">
-                                <input id="username" class="input-box-normal" type="text" name="username" placeholder="Email Id"/>
+                                <input id="emailId" class="input-box-normal" type="text" name="emailId" placeholder="Email Id" th:value="${login != null} ? ${login.emailId} : ''"/>
                                 <span class="required-field">*</span>
                             </td>
                         </tr>
                         <tr>
                             <td class="td-height-60">
-                                <input id="password" class="input-box-normal" type="password" name="password" placeholder="Password"/>
+                                <input id="password" class="input-box-normal" type="password" name="password" placeholder="Password" th:value="${login != null} ? ${login.password} : ''"/>
                                 <span class="required-field">*</span>
                             </td>
                         </tr>
@@ -38,8 +38,8 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <input class="button-normal" type="reset" value="Cancel"/>
                                 <input class="button-normal" id="login" type="submit" value="Login"/>
+                                <input class="button-reset" type="reset" value="Cancel"/>
                             </td>
                         </tr>
                         <tr>
