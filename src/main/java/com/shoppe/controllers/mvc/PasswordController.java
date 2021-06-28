@@ -44,6 +44,12 @@ public class PasswordController extends BaseController {
         return modelAndView;
     }
 
+    @GetMapping("/mail-my-forgotten-password")
+    public ModelAndView redirectToForgotPasswordHome(){
+        ModelAndView modelAndView = new ModelAndView("redirect:/forgot-password");
+        return modelAndView;
+    }
+
     @PostMapping("/mail-my-forgotten-password")
     public ModelAndView mailForgottenPassword(@Valid ForgotPassword forgotPassword, BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
