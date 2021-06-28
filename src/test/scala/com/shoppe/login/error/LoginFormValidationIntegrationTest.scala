@@ -48,4 +48,5 @@ class LoginFormValidationIntegrationTest extends ScalaDsl with EN {
     assert(errorMessage.equals(errMessage))
     this.webDriver.close()
   }
+
 }

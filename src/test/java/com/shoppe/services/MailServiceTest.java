@@ -33,4 +33,16 @@ public class MailServiceTest {
 
         Assert.assertEquals(0, result);
     }
+
+    @Test
+    public void testSendForgotPasswordMail(){
+        String firstName = "FirstName";
+        String middleInitial = "M";
+        String lastName = "LastName";
+        String emailId = "test@test.com";
+
+        int result = this.mailService.sendForgotPasswordMail(firstName, middleInitial, lastName, "test-password", emailId,"Your Password for your account");
+
+        Assert.assertEquals(0, result);
+    }
 }

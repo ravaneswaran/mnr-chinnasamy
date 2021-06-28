@@ -62,6 +62,11 @@ body{
     color: #FFF;
 }
 
+.banner-logo{
+    border: 0px solid red;
+    height: 175px;
+}
+
 .top-space-50-pixel{
     margin-top: 50px;
 }

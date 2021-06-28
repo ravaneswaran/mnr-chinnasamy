@@ -1,21 +1,21 @@
-package com.shoppe.login.home
+package com.shoppe.forgotpassword.home
 
 import io.cucumber.junit.{Cucumber, CucumberOptions}
 import io.cucumber.scala.{EN, ScalaDsl}
 import io.cucumber.spring.CucumberContextConfiguration
 import org.junit.runner.RunWith
-import org.openqa.selenium.{By, WebDriver}
+import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
-  features = Array("classpath:features/login/login-landing-page.feature"),
-  glue = Array("com.shoppe.login.home"))
+  features = Array("classpath:features/forgot-password/forgot-password-landing-page.feature"),
+  glue = Array("com.shoppe.forgotpassword.home"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class LoginLandingPageIntegrationTest extends ScalaDsl with EN {
+class ForgotPasswordLandingPageIntegrationTest extends ScalaDsl with EN {
 
   var webDriver: WebDriver = null
 
@@ -25,9 +25,9 @@ class LoginLandingPageIntegrationTest extends ScalaDsl with EN {
     this.webDriver.get(url);
   }
 
-  Then("""the user should see the login page""") { () =>
+  Then("""the user should see the forgot password page""") { () =>
     val title = this.webDriver.getTitle
-    assert("Shoppe : Login".equals(title))
+    assert("Shoppe : Forgot Password".equals(title))
     this.webDriver.close()
   }
 }

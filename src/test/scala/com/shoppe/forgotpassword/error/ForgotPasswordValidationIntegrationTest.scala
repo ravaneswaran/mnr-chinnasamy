@@ -1,4 +1,4 @@
-package com.shoppe.login.home
+package com.shoppe.forgotpassword.error
 
 import io.cucumber.junit.{Cucumber, CucumberOptions}
 import io.cucumber.scala.{EN, ScalaDsl}
@@ -11,23 +11,25 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
-  features = Array("classpath:features/login/login-landing-page.feature"),
-  glue = Array("com.shoppe.login.home"))
+  features = Array("classpath:features/forgot-password/forgot-password-validation.feature"),
+  glue = Array("com.shoppe.forgotpassword.error"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class LoginLandingPageIntegrationTest extends ScalaDsl with EN {
+class ForgotPasswordValidationIntegrationTest extends ScalaDsl with EN {
 
   var webDriver: WebDriver = null
 
-  Given("""the user has typed the following address in browser address bar {string}""") { (url: String) =>
+  Given("""When the user submits the form with the empty email id""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get(url);
+    this.webDriver.get("http://localhost:8080/forgot-password");
+    this.webDriver.findElement(By.id("mail-my-password")).click()
   }
 
-  Then("""the user should see the login page""") { () =>
-    val title = this.webDriver.getTitle
-    assert("Shoppe : Login".equals(title))
+  Then("""the user should see the error {string}""") { (errorMessage: String) =>
+    val errMessage = this.webDriver.findElement(By.id("errorMessage")).getText
+    assert(errorMessage.equals(errMessage))
     this.webDriver.close()
   }
+
 }

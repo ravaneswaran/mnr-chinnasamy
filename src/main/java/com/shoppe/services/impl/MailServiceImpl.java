@@ -54,7 +54,25 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
-    public int sendForgotPasswordMail(String firstName, String middleInitial, String lastName, String emailId) {
-        return 0;
+    public int sendForgotPasswordMail(String firstName, String middleInitial, String lastName, String password, String emailId, String subject) {
+        String mailContent = null;
+        int result = -1;
+        try {
+            mailContent = this.stringUtil.getResourceAsString("mail-messages/forgot-password-mail.html");
+        } catch (IOException e) {
+            this.logger.error(e.getMessage(), e);
+        }
+
+        if(null != mailContent){
+            mailContent = String.format(mailContent, firstName, middleInitial, lastName, password);
+            try {
+                this.mailerUtil.sendMailMessage(this.noReplyMailId, emailId, subject, mailContent);
+                result = 0;
+            } catch (MessagingException e) {
+                this.logger.error(e.getMessage(), e);
+            }
+        }
+
+        return result;
     }
 }

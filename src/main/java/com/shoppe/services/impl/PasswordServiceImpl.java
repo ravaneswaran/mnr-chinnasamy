@@ -21,6 +21,9 @@ public class PasswordServiceImpl implements PasswordService {
             forgotPassword.setUserId(user.getUUID());
             forgotPassword.setEmailId(user.getEmailId());
             forgotPassword.setPassword(user.getPassword());
+            forgotPassword.setFirstName(user.getFirstName());
+            forgotPassword.setMiddleInitial(user.getMiddleInitial());
+            forgotPassword.setLastName(user.getLastName());
 
             return forgotPassword;
         } else {
