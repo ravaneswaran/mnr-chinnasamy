@@ -118,7 +118,7 @@ public class PasswordController extends BaseController {
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("/change-password");
             modelAndView.addObject("changePassword", changePassword);
-            modelAndView.addObject("errorMessage", "New password and confirm password do not match");
+            modelAndView.addObject("errorMessage", "New and confirm password do not match");
             return modelAndView;
         }
 
