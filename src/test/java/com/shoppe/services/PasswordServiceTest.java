@@ -4,6 +4,7 @@ import com.shoppe.enums.UserStatus;
 import com.shoppe.enums.UserType;
 import com.shoppe.models.User;
 import com.shoppe.repositories.UserRepository;
+import com.shoppe.ui.forms.ChangePassword;
 import com.shoppe.ui.forms.ForgotPassword;
 import org.junit.Assert;
 import org.junit.Test;
@@ -62,5 +63,38 @@ public class PasswordServiceTest {
         Assert.assertEquals(uuid, forgotPassword.getUserId());
         Assert.assertEquals(emailId, forgotPassword.getEmailId());
         Assert.assertEquals(password, forgotPassword.getPassword());
+    }
+
+    @Test
+    public void testChangePassword(){
+        String uuid = UUID.randomUUID().toString();
+
+        Random random = new Random();
+        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
+        Date newDate = new Date();
+
+        String emailId = String.format("mail%s@test.com", randomNumberString);
+        String password = String.format("password%s", randomNumberString);
+
+        User user = new User();
+        user.setUUID(uuid);
+        user.setFirstName("Ravaneswaran");
+        user.setMiddleInitial("");
+        user.setLastName("Chinnasamy");
+        user.setEmailId(emailId);
+        user.setUniqueId(randomNumberString);
+        user.setMobileNo(randomNumberString);
+        user.setPassword(password);
+        user.setType(UserType.ADMIN.toString());
+        user.setStatus(UserStatus.VERIFIED.toString());
+        user.setCreatedDate(newDate);
+        user.setModifiedDate(newDate);
+        this.userRepository.save(user);
+
+        ChangePassword changePassword = this.passwordService.changePassword(emailId, password, "test");
+
+        Assert.assertEquals(uuid, changePassword.getUserId());
+        Assert.assertEquals(emailId, changePassword.getEmailId());
+        Assert.assertEquals("test", changePassword.getOldPassword());
     }
 }

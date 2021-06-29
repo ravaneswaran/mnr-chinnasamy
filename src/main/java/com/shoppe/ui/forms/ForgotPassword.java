@@ -3,7 +3,7 @@ package com.shoppe.ui.forms;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-public class ForgotPassword {
+public class ForgotPassword extends BaseForm{
 
     private String userId;
 

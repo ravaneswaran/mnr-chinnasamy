@@ -37,4 +37,11 @@ public class DummyController {
         return modelAndView;
     }
 
+    @GetMapping("/change-password")
+    public ModelAndView changePassword(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("change-password");
+        return modelAndView;
+    }
+
 }

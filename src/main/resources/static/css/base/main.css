@@ -4,6 +4,7 @@
 @import "admin-info.css";
 @import "admin-listing.css";
 @import "forgot-password.css";
+@import "change-password.css";
 
 body{
     background-color: #505050;
@@ -40,6 +41,9 @@ body{
     border: 0px solid red;
     height: 1670px;
     width: 100%;
+    background-image: url("/images/feather.png");
+    background-repeat: no-repeat;
+    background-size: auto;
 }
 
 .footer {
@@ -143,12 +147,8 @@ a {
 }
 
 .error-message-box {
-    height: 50px;
-    width: 550px;
-    border: 0px solid red;
-    margin-left: 450px;
-    font-size: 20px;
+    height: 60px;
     color: red;
+    font-size: 16px;
+    text-align: center;
 }
-
-
