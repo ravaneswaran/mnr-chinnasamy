@@ -39,7 +39,7 @@ public class TokenServiceTest {
     @Test
     public void testStoreAndGetSignUpVerificationToken(){
         String uuid = UUID.randomUUID().toString();
-        String type = UserType.CUSTOMER.toString();
+        String type = UserType.PERSON.toString();
         Token token = this.tokenService.storeAndGetSignUpVerificationToken(uuid, type);
         Token fromDB = this.tokenRepository.findById(token.getUUID()).get();
 

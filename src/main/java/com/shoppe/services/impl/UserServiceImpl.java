@@ -9,16 +9,13 @@ import com.shoppe.services.MailService;
 import com.shoppe.services.TokenService;
 import com.shoppe.services.UserService;
 import com.shoppe.services.vo.UserVO;
-import com.shoppe.ui.forms.AdminForm;
-import liquibase.pro.packaged.A;
-import liquibase.pro.packaged.U;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Date;
+import java.util.Optional;
 
 @Component
 public class UserServiceImpl implements UserService {
@@ -35,8 +32,7 @@ public class UserServiceImpl implements UserService {
     Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
-    public AdminForm addAdmin(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String type, String status) {
-
+    public User addUserWithVerifiedStatus(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String type) {
         Date now = new Date();
         User user = new User();
 
@@ -49,39 +45,21 @@ public class UserServiceImpl implements UserService {
         user.setMobileNo(mobileNo);
         user.setPassword("welcome");
         user.setType(type);
-        user.setStatus(status);
+        user.setStatus(UserStatus.VERIFIED.toString());
         user.setCreatedDate(now);
         user.setModifiedDate(now);
 
         try {
-            User admin = this.userRepository.save(user);
-
-            AdminForm adminForm = new AdminForm();
-            adminForm.setAdminId(user.getUUID());
-            adminForm.setFirstName(admin.getFirstName());
-            adminForm.setMiddleInitial(admin.getMiddleInitial());
-            adminForm.setLastName(admin.getLastName());
-            adminForm.setEmailId(admin.getEmailId());
-            adminForm.setMobileNo(admin.getMobileNo());
-            uniqueId = admin.getUniqueId();
-
-            if(uniqueId.startsWith("DUMMY-")){
-                adminForm.setUniqueId("");
-            } else {
-                adminForm.setUniqueId(uniqueId);
-            }
-
-            return adminForm;
-
+            User response = this.userRepository.save(user);
+            return response;
         } catch (Exception exp) {
             logger.error(exp.getMessage(), exp);
             return null;
         }
     }
 
-
     @Override
-    public UserVO signUp(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String password, String confirmPassword, String type, String status) {
+    public UserVO signUpUser(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String password, String confirmPassword) {
 
         UserVO userVO = new UserVO();
         if(password.equals(confirmPassword)){
@@ -95,21 +73,19 @@ public class UserServiceImpl implements UserService {
             user.setUniqueId(uniqueId);
             user.setMobileNo(mobileNo);
             user.setPassword(password);
-            user.setType(type);
-            user.setStatus(status);
+            user.setType(UserType.PERSON.toString());
+            user.setStatus(UserStatus.SIGN_UP_VERIFICATION_PENDING.toString());
             user.setCreatedDate(now);
             user.setModifiedDate(now);
 
             this.userRepository.save(user);
 
-            Token token = this.tokenService.storeAndGetSignUpVerificationToken(user.getUUID(), UserType.CUSTOMER.toString());
+            Token token = this.tokenService.storeAndGetSignUpVerificationToken(user.getUUID(), UserType.PERSON.toString());
             this.mailService.sendUserVerificationMail(token.getUUID(), firstName, middleInitial, lastName, emailId);
             userVO.setUserUUID(user.getUUID());
-
         } else {
             userVO.setErrorMessage("Password and Confirm Password do not match.");
         }
-
         return userVO;
     }
 
@@ -137,27 +113,84 @@ public class UserServiceImpl implements UserService {
         } else {
             userVO.setErrorMessage(String.format("Token id '%s' found to be invalid", signUpVerificationTokenUUID));
         }
-
         return userVO;
     }
 
     @Override
-    public UserVO getUser(String uuid) {
-        User user = this.userRepository.findById(uuid).get();
-
-        if(null != user){
-            UserVO userVO = new UserVO();
-            userVO.setFirstName(user.getFirstName());
-            userVO.setMiddleInitial(user.getMiddleInitial());
-            userVO.setLastName(user.getLastName());
-            userVO.setEmailId(user.getEmailId());
-            userVO.setMobileNo(user.getMobileNo());
-            userVO.setUniqueId(user.getUniqueId());
-            return userVO;
+    public User getUser(String uuid) {
+        Optional<User> optionalUser =  this.userRepository.findById(uuid);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            if(user.getUniqueId().startsWith("DUMMY-")){
+                user.setUniqueId("");
+            }
+            return user;
         } else {
-            logger.error(String.format("Unable to find the user for the uuid : %s", uuid));
+            logger.error(String.format("Unable to find the user for the id '%s'", uuid));
             return null;
         }
     }
 
+    @Override
+    public void blockUser(String uuid) {
+        Optional<User> optionalUser = this.userRepository.findById(uuid);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            //only user with VERIFIED status can be blocked... in other words only those who can login can be blocked
+            if(UserStatus.VERIFIED.toString().equals(user.getStatus())){
+                user.setStatus(UserStatus.BLOCKED.toString());
+            }
+            this.userRepository.save(user);
+        } else {
+            logger.error(String.format("UNABLE TO BLOCK : User with id '%s' is not found in the repository", uuid));
+        }
+    }
+
+    @Override
+    public void unblockUser(String uuid) {
+        Optional<User> optionalUser = this.userRepository.findById(uuid);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            //only user with BLOCKED status can be unblocked...
+            if (UserStatus.BLOCKED.toString().equals(user.getStatus())) {
+                user.setStatus(UserStatus.VERIFIED.toString());
+            }
+            this.userRepository.save(user);
+        } else {
+            logger.error(String.format("UNABLE TO UNBLOCK : User with id '%s' is not found in the repository", uuid));
+        }
+    }
+
+    @Override
+    public void deleteUser(String uuid) {
+        Optional<User> optionalUser = this.userRepository.findById(uuid);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            this.userRepository.delete(user);
+        } else {
+            logger.error(String.format("UNABLE TO DELETE : User with id '%s' is not found in the repository", uuid));
+        }
+    }
+
+    @Override
+    public User getUser(String emailId, String password) {
+        User user = this.userRepository.findByEmailIdAndPassword(emailId, password);
+        if (null != user){
+            return user;
+        } else {
+            logger.error("NO USER FOUND : Unable to find the user for this email id and password combination");
+            return null;
+        }
+    }
+
+    @Override
+    public User getUserByEmailId(String emailId) {
+        User user = this.userRepository.findByEmailId(emailId);
+        if (null != user){
+            return user;
+        } else {
+            logger.error("NO USER FOUND : Unable to find the user registered with this email id");
+            return null;
+        }
+    }
 }

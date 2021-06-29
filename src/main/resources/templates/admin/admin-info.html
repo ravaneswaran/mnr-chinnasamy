@@ -8,7 +8,7 @@
 <body>
 <div class="wrapper">
     <div class="banner">
-        Shoppe : Admin Module
+        <image class="banner-logo" src="/images/logo.png"/>
     </div>
     <div class="menu-bar">
         <div class="menu-item">Home</div>
@@ -24,43 +24,52 @@
                     <td colspan="2" class="admin-info-header">Personal Information...</td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">First Name</td><td class="admin-info-td" th:text="${adminForm.firstName}"></td>
+                    <td colspan="2" class="admin-info-td"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Middle Initial</td><td class="admin-info-td" th:text="${adminForm.middleInitial}"></td>
+                    <td class="admin-info-td">First Name</td><td class="admin-info-td" th:text="${admin.firstName}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Last Name</td><td class="admin-info-td" th:text="${adminForm.lastName}"></td>
+                    <td class="admin-info-td">Middle Initial</td><td class="admin-info-td" th:text="${admin.middleInitial}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Email Id</td><td class="admin-info-td" th:text="${adminForm.emailId}"></td>
+                    <td class="admin-info-td">Last Name</td><td class="admin-info-td" th:text="${admin.lastName}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Mobile Number</td><td class="admin-info-td" th:text="${adminForm.mobileNo}"></td>
+                    <td class="admin-info-td">Email Id</td><td class="admin-info-td" th:text="${admin.emailId}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Unique Id</td><td class="admin-info-td" th:text="${adminForm.uniqueId}"></td>
+                    <td class="admin-info-td">Mobile Number</td><td class="admin-info-td" th:text="${admin.mobileNo}"></td>
+                </tr>
+                <tr>
+                    <td class="admin-info-td">Unique Id</td><td class="admin-info-td" th:text="${admin.uniqueId}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="admin-info-td"></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="admin-info-header">Address Information...</td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Address Line 1</td><td class="admin-info-td" th:text="${adminForm.addressLine1}"></td>
+                    <td colspan="2" class="admin-info-td"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Address Line 2</td><td class="admin-info-td" th:text="${adminForm.addressLine2}"></td>
+                    <td class="admin-info-td">Address Line 1</td><td class="admin-info-td" th:text="${admin.addressLine1}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Address Line 3</td><td class="admin-info-td" th:text="${adminForm.addressLine3}"></td>
+                    <td class="admin-info-td">Address Line 2</td><td class="admin-info-td" th:text="${admin.addressLine2}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">City</td><td class="admin-info-td" th:text="${adminForm.city}"></td>
+                    <td class="admin-info-td">Address Line 3</td><td class="admin-info-td" th:text="${admin.addressLine3}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">State</td><td class="admin-info-td" th:text="${adminForm.state}"></td>
+                    <td class="admin-info-td">City</td><td class="admin-info-td" th:text="${admin.city}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Zip Code</td><td class="admin-info-td" th:text="${adminForm.zipCode}"></td>
+                    <td class="admin-info-td">State</td><td class="admin-info-td" th:text="${admin.state}"></td>
+                </tr>
+                <tr>
+                    <td class="admin-info-td">Zip Code</td><td class="admin-info-td" th:text="${admin.zipCode}"></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="admin-info-td"></td>

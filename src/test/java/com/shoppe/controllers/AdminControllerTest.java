@@ -40,7 +40,7 @@ public class AdminControllerTest {
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
 
         this.mockMvc.perform(
-                get("/admin")
+                get("/admin/home")
                         .accept(MediaType.TEXT_HTML)).andExpect(status().isOk())
                 .andExpect(content().contentType(String.format("%s;charset=UTF-8",MediaType.TEXT_HTML)));
 
@@ -61,7 +61,7 @@ public class AdminControllerTest {
         String mobileNo = mobileNoString;
 
         this.mockMvc.perform(
-                post("/admin/add")
+                post("/admin/create")
                         .param("firstName", firstName)
                         .param("middleInitial", middleInitial)
                         .param("lastName", lastName)
