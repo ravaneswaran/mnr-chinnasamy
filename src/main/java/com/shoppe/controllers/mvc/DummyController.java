@@ -44,4 +44,18 @@ public class DummyController {
         return modelAndView;
     }
 
+    @GetMapping("/500")
+    public ModelAndView internalServerError(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/http-errors/500");
+        return modelAndView;
+    }
+
+    @GetMapping("/404")
+    public ModelAndView resourceNotFound(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/http-errors/404");
+        return modelAndView;
+    }
+
 }

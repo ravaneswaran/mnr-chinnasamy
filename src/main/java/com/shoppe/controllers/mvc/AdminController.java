@@ -36,6 +36,13 @@ public class AdminController extends BaseController {
         return mandatoryFields;
     }
 
+    @GetMapping("/")
+    public ModelAndView test(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin/admin-add");
+        return modelAndView;
+    }
+
     @GetMapping("/home")
     public ModelAndView adminHome(){
         ModelAndView modelAndView = new ModelAndView();
@@ -71,7 +78,6 @@ public class AdminController extends BaseController {
     public ModelAndView getAdminInfo(@RequestParam(name = "uuid") String uuid){
         if(null != uuid && !"".equals(uuid)){
             Admin admin = this.adminService.getAdmin(uuid);
-            System.out.println("--------------------------->>>>>>>>>> "+admin);
             if(null != admin){
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("admin/admin-info");

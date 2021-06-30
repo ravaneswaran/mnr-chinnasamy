@@ -41,9 +41,9 @@ body{
     border: 0px solid red;
     height: 1670px;
     width: 100%;
-    background-image: url("/images/feather.png");
+    /*background-image: url("/images/feather-1.png");
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: auto;*/
 }
 
 .footer {
@@ -152,3 +152,48 @@ a {
     font-size: 16px;
     text-align: center;
 }
+
+.page-not-found-content-pane{
+    width: 750px;
+    height: 420px;
+    margin-left: 375px;
+    margin-top: 200px;
+    border-radius: 5px;
+    box-shadow: 1px -1px 15px 5px #505050;
+    background: #505050;
+}
+
+.page-not-found-header{
+    background: #505050;
+    color: #FFF;
+    height: 50px;
+    border-radius: 5px;
+    text-indent: 10px;
+}
+
+.page-not-found-image {
+    border-radius: 5px;
+}
+
+.internal-server-error-content-pane{
+    width: 750px;
+    height: 420px;
+    margin-left: 375px;
+    margin-top: 200px;
+    border-radius: 5px;
+    box-shadow: 1px -1px 15px 5px #505050;
+    background: #505050;
+}
+
+.internal-server-error-header{
+    background: #505050;
+    color: #FFF;
+    height: 50px;
+    border-radius: 5px;
+    text-indent: 10px;
+}
+
+.internal-server-error-image {
+    border-radius: 5px;
+}
+

@@ -16,7 +16,6 @@ public class LogoutController {
         if(null != httpSession){
             httpSession.invalidate();
         }
-
         return new ModelAndView("redirect:/");
     }
 }
