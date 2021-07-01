@@ -54,7 +54,7 @@ public class DummyController {
     @GetMapping("/404")
     public ModelAndView resourceNotFound(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/http-errors/404");
+        modelAndView.setViewName("404");
         return modelAndView;
     }
 
