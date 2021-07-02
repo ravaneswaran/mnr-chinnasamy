@@ -47,7 +47,7 @@ public class LoginController extends BaseController {
         if(!bindingResult.hasErrors()){
             Login response = this.loginService.login(login.getEmailId(), login.getPassword());
             if(null != response){
-                HttpSession httpSession = httpServletRequest.getSession(true);
+                HttpSession httpSession = httpServletRequest.getSession();
                 httpSession.setAttribute(SessionAttribute.LOGGED_IN_USER.toString(), response);
                 ModelAndView modelAndView = new ModelAndView("redirect:/admin/home");
                 return modelAndView;

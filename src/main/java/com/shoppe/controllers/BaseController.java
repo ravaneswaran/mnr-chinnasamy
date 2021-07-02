@@ -1,8 +1,12 @@
 package com.shoppe.controllers;
 
+import com.shoppe.enums.SessionAttribute;
+import com.shoppe.ui.forms.Login;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public  abstract class BaseController {
@@ -20,5 +24,31 @@ public  abstract class BaseController {
             }
         }
         return null;
+    }
+
+    protected boolean isUserLoggedIn(HttpServletRequest httpServletRequest){
+        HttpSession httpSession = httpServletRequest.getSession();
+        Login login = (Login)httpSession.getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
+        return null != login;
+    }
+
+    protected String getSessionUserId(HttpServletRequest httpServletRequest){
+        HttpSession httpSession = httpServletRequest.getSession();
+        Login login = (Login)httpSession.getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
+        if(null != login){
+            return login.getUserId();
+        } else {
+            return null;
+        }
+    }
+
+    protected String getSessionUserFullName(HttpServletRequest httpServletRequest){
+        HttpSession httpSession = httpServletRequest.getSession();
+        Login login = (Login)httpSession.getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
+        if(null != login){
+            return "test test";
+        } else {
+            return null;
+        }
     }
 }

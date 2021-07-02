@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class AdminController extends BaseController {
     }
 
     @GetMapping("/home")
-    public ModelAndView adminHome(){
+    public ModelAndView adminHome(HttpServletRequest httpServletRequest){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin-create");
         return modelAndView;
