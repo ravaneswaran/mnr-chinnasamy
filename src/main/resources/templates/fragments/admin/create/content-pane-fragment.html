@@ -1,26 +1,5 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Shoppe : Admin Creation</title>
-    <link rel="stylesheet" th:href="@{/css/base/main.css}"/>
-</head>
-<body>
-<div class="wrapper">
-    <div class="banner">
-        <div>
-            <image class="banner-logo" src="/images/logo.png"/>
-        </div>
-        <div>
-            <div>
-                <div class="app-launcher">
-                    <img src="/images/app-launcher.png"/>
-                </div>
-                <div class="logged-in-as">Logged in as : <b>Ravaneswaran Chinnasamy</b></div>
-            </div>
-        </div>
-    </div>
-    <div class="content-pane">
+    <div th:fragment="content-pane">
         <form action="/admin/create" method="POST">
             <div class="top-space-50-pixel section">Admin Creation</div>
             <div class="top-space-50-pixel error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
@@ -99,9 +78,4 @@
             </div>
         </form>
     </div>
-    <div class="footer">
-        Copyright &copy; 2021 MNR Chinnasamy Softlabs.
-    </div>
-</div>
-</body>
 </html>

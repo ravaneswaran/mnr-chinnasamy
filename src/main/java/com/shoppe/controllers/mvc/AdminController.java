@@ -39,14 +39,14 @@ public class AdminController extends BaseController {
     @GetMapping("/")
     public ModelAndView test(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin/admin-add");
+        modelAndView.setViewName("admin-create");
         return modelAndView;
     }
 
     @GetMapping("/home")
     public ModelAndView adminHome(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin/admin-add");
+        modelAndView.setViewName("admin-create");
         return modelAndView;
     }
 
@@ -59,14 +59,14 @@ public class AdminController extends BaseController {
                 return new ModelAndView(redirect);
             } else {
                 ModelAndView modelAndView = new ModelAndView();
-                modelAndView.setViewName("admin/admin-add");
+                modelAndView.setViewName("admin-create");
                 modelAndView.addObject("admin",admin);
                 modelAndView.addObject("errorMessage", "Unable to add admin information...");
                 return modelAndView;
             }
         } else {
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("admin/admin-add");
+            modelAndView.setViewName("admin-create");
             modelAndView.addObject("admin", admin);
             modelAndView.addObject("errorMessage", this.getError(bindingResult));
 
@@ -80,18 +80,18 @@ public class AdminController extends BaseController {
             Admin admin = this.adminService.getAdmin(uuid);
             if(null != admin){
                 ModelAndView modelAndView = new ModelAndView();
-                modelAndView.setViewName("admin/admin-info");
+                modelAndView.setViewName("admin-info");
                 modelAndView.addObject("admin", admin);
                 return modelAndView;
             } else {
-                ModelAndView modelAndView = new ModelAndView("redirect:/http-errors/404");
+                ModelAndView modelAndView = new ModelAndView("redirect:/404");
                 modelAndView.setStatus(HttpStatus.NOT_FOUND);
                 return modelAndView;
             }
         } else {
             logger.error("Request parameter uuid is found to be invalid...");
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("admin/admin-info");
+            modelAndView.setViewName("admin-info");
             return modelAndView;
         }
     }
@@ -101,7 +101,7 @@ public class AdminController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
 
         List<Admin> admins =  this.adminService.listAdmins();
-        modelAndView.setViewName("/admin/admin-list");
+        modelAndView.setViewName("admin-list");
         modelAndView.addObject("admins", admins);
 
         return modelAndView;
@@ -114,7 +114,7 @@ public class AdminController extends BaseController {
         this.adminService.blockAdmin(uuid);
 
         List<Admin> admins =  this.adminService.listAdmins();
-        modelAndView.setViewName("/admin/admin-list");
+        modelAndView.setViewName("admin-list");
         modelAndView.addObject("admins", admins);
 
         return modelAndView;
@@ -127,7 +127,7 @@ public class AdminController extends BaseController {
         this.adminService.unblockAdmin(uuid);
 
         List<Admin> admins =  this.adminService.listAdmins();
-        modelAndView.setViewName("/admin/admin-list");
+        modelAndView.setViewName("admin-list");
         modelAndView.addObject("admins", admins);
 
         return modelAndView;
@@ -140,7 +140,7 @@ public class AdminController extends BaseController {
         this.adminService.deleteAdmin(uuid);
 
         List<Admin> admins =  this.adminService.listAdmins();
-        modelAndView.setViewName("/admin/admin-list");
+        modelAndView.setViewName("admin-list");
         modelAndView.addObject("admins", admins);
 
         return modelAndView;

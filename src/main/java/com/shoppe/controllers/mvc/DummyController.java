@@ -37,6 +37,13 @@ public class DummyController {
         return modelAndView;
     }
 
+    @GetMapping("/forgot-password-msg")
+    public ModelAndView forgotPasswordMsg(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("forgot-password-msg");
+        return modelAndView;
+    }
+
     @GetMapping("/change-password")
     public ModelAndView changePassword(){
         ModelAndView modelAndView = new ModelAndView();
