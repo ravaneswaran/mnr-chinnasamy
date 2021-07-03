@@ -20,7 +20,6 @@ public class HttpStatusConfiguration implements ErrorController {
 
             switch (statusCode){
                 case 404:
-                    System.out.println("404");
                     view = "404";
                     break;
                 case 500:

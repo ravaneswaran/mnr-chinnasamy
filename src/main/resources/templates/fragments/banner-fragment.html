@@ -1,9 +1,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <div th:fragment="banner">
+    <div th:fragment="banner" >
         <image class="banner-logo" src="/images/logo.png"/>
-        <div class="app-launcher">
-            <img src="/images/app-launcher.png"/>
-        </div>
-        <div class="logged-in-as">Logged in as : <b>Ravaneswaran Chinnasamy</b></div>
+        <th:block th:if="${#session != null && #session.getAttribute('LOGGED_IN_USER') != null}">
+            <div class="app-launcher">
+                <img src='/images/app-launcher.png'/>
+            </div>
+            <div class="logged-in-as">
+                Logged in as : <b>Ravaneswaran Chinnasamy</b>
+            </div>
+        </th:block>
     </div>
 </html>
