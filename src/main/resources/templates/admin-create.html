@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title th:include="fragments/admin/create/page-title-fragment :: page-title"></title>
-    <link rel="stylesheet" th:href="@{/css/base/main.css}"/>
-</head>
-<body>
-<div class="wrapper">
-    <div class="banner" th:include="fragments/banner-fragment :: banner"></div>
-    <div class="content-pane" th:include="fragments/admin/create/content-pane-fragment :: content-pane"></div>
-    <div class="footer" th:include="fragments/footer-fragment :: footer"></div>
-</div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title th:include="fragments/admin/create/page-title-fragment :: page-title"></title>
+        <link rel="stylesheet" th:href="@{/css/base/main.css}"/>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="banner" th:include="fragments/banner-fragment :: banner"></div>
+            <div class="content-pane" th:include="fragments/admin/create/content-pane-fragment :: content-pane"></div>
+            <div class="footer" th:include="fragments/footer-fragment :: footer"></div>
+        </div>
+    </body>
 </html>

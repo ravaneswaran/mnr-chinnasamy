@@ -64,14 +64,4 @@ public class ShoppeConfiguration implements WebMvcConfigurer {
         bean.setValidationMessageSource(messageSource);
         return bean;
     }
-
-   /* public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("login");
-
-        registry.addViewController("/admin").setViewName("admin-add");
-        registry.addViewController("/admin/add").setViewName("admin/admin-add");
-
-        registry.addViewController("/signup/success").setViewName("signup/signup-success");
-    }*/
-
 }

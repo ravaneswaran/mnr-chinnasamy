@@ -37,22 +37,22 @@ public class AdminController extends BaseController {
         return mandatoryFields;
     }
 
-    @GetMapping("/")
-    public ModelAndView test(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin-create");
-        return modelAndView;
-    }
-
     @GetMapping("/home")
     public ModelAndView adminHome(HttpServletRequest httpServletRequest){
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin-create");
         return modelAndView;
     }
 
     @PostMapping("/create")
-    public ModelAndView addAdmin(@Valid @ModelAttribute("admin") Admin admin, BindingResult bindingResult) {
+    public ModelAndView addAdmin(@Valid @ModelAttribute("admin") Admin admin, BindingResult bindingResult, HttpServletRequest httpServletRequest) {
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
+
         if(!bindingResult.hasErrors()){
             Admin response = this.adminService.addAdmin(admin.getFirstName(), admin.getMiddleInitial(), admin.getLastName(), admin.getEmailId(), admin.getUniqueId(), admin.getMobileNo());
             if(null != response) {
@@ -76,7 +76,11 @@ public class AdminController extends BaseController {
     }
 
     @GetMapping("/info")
-    public ModelAndView getAdminInfo(@RequestParam(name = "uuid") String uuid){
+    public ModelAndView getAdminInfo(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
+
         if(null != uuid && !"".equals(uuid)){
             Admin admin = this.adminService.getAdmin(uuid);
             if(null != admin){
@@ -98,9 +102,12 @@ public class AdminController extends BaseController {
     }
 
     @GetMapping("/list")
-    public ModelAndView listAdmins(){
-        ModelAndView modelAndView = new ModelAndView();
+    public ModelAndView listAdmins(HttpServletRequest httpServletRequest){
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
 
+        ModelAndView modelAndView = new ModelAndView();
         List<Admin> admins =  this.adminService.listAdmins();
         modelAndView.setViewName("admin-list");
         modelAndView.addObject("admins", admins);
@@ -109,11 +116,13 @@ public class AdminController extends BaseController {
     }
 
     @GetMapping("/block")
-    public ModelAndView blockAdmin(@RequestParam(name = "uuid") String uuid){
+    public ModelAndView blockAdmin(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
+
         ModelAndView modelAndView = new ModelAndView();
-
         this.adminService.blockAdmin(uuid);
-
         List<Admin> admins =  this.adminService.listAdmins();
         modelAndView.setViewName("admin-list");
         modelAndView.addObject("admins", admins);
@@ -122,11 +131,13 @@ public class AdminController extends BaseController {
     }
 
     @GetMapping("/unblock")
-    public ModelAndView unblockAdmin(@RequestParam(name = "uuid") String uuid){
+    public ModelAndView unblockAdmin(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
+
         ModelAndView modelAndView = new ModelAndView();
-
         this.adminService.unblockAdmin(uuid);
-
         List<Admin> admins =  this.adminService.listAdmins();
         modelAndView.setViewName("admin-list");
         modelAndView.addObject("admins", admins);
@@ -135,11 +146,13 @@ public class AdminController extends BaseController {
     }
 
     @GetMapping("/delete")
-    public ModelAndView deleteAdmin(@RequestParam(name = "uuid") String uuid){
+    public ModelAndView deleteAdmin(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
+
         ModelAndView modelAndView = new ModelAndView();
-
         this.adminService.deleteAdmin(uuid);
-
         List<Admin> admins =  this.adminService.listAdmins();
         modelAndView.setViewName("admin-list");
         modelAndView.addObject("admins", admins);

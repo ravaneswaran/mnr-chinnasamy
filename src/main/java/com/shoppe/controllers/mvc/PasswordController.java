@@ -83,20 +83,30 @@ public class PasswordController extends BaseController {
     }
 
     @GetMapping("/change-password")
-    public ModelAndView changePasswordHome(){
+    public ModelAndView changePasswordHome(HttpServletRequest httpServletRequest){
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/change-password");
-
         return modelAndView;
     }
 
     @GetMapping("/change-my-password")
-    public ModelAndView redirectToChangePasswordHome(){
+    public ModelAndView redirectToChangePasswordHome(HttpServletRequest httpServletRequest){
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
+
         return new ModelAndView("redirect:/change-password");
     }
 
     @PostMapping("/change-my-password")
-    public ModelAndView changePassword(@Valid ChangePassword changePassword, BindingResult bindingResult, HttpServletRequest request){
+    public ModelAndView changePassword(@Valid ChangePassword changePassword, BindingResult bindingResult, HttpServletRequest httpServletRequest){
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
 
         if(bindingResult.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView();
@@ -122,7 +132,7 @@ public class PasswordController extends BaseController {
             return modelAndView;
         }
 
-        HttpSession httpSession = request.getSession();
+        HttpSession httpSession = httpServletRequest.getSession();
         String emailIdInSession = ((Login)httpSession.getAttribute(SessionAttribute.LOGGED_IN_USER.toString())).getEmailId();
         String passwordInSession = ((Login)httpSession.getAttribute(SessionAttribute.LOGGED_IN_USER.toString())).getPassword();
 

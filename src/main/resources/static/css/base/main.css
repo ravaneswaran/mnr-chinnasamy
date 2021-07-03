@@ -5,6 +5,7 @@
 @import "admin-listing.css";
 @import "forgot-password.css";
 @import "change-password.css";
+@import "menu.css";
 
 body{
     background-color: #505050;

@@ -32,6 +32,10 @@ public  abstract class BaseController {
         return null != login;
     }
 
+    protected boolean isNotUserLoggedIn(HttpServletRequest httpServletRequest){
+        return !this.isUserLoggedIn(httpServletRequest);
+    }
+
     protected String getSessionUserId(HttpServletRequest httpServletRequest){
         HttpSession httpSession = httpServletRequest.getSession();
         Login login = (Login)httpSession.getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
