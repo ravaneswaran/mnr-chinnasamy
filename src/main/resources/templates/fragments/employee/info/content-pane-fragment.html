@@ -1,23 +1,6 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Shoppe : Admin Information</title>
-    <link rel="stylesheet" th:href="@{/css/base/main.css}"/>
-</head>
-<body>
-<div class="wrapper">
-    <div class="banner">
-        <image class="banner-logo" src="/images/logo.png"/>
-    </div>
-    <div class="menu-bar">
-        <div class="menu-item">Home</div>
-        <div class="menu-item">Item Registration</div>
-        <div class="menu-item">Admin Creation</div>
-        <div class="menu-item">Logout</div>
-    </div>
-    <div class="content-pane">
-        <div class="top-space-100-pixel section">Admin Information</div>
+    <div th:fragment="content-pane">
+        <div class="top-space-100-pixel section">Employee Information</div>
         <div class="admin-info-pane">
             <table>
                 <tr>
@@ -76,16 +59,11 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="admin-info-td">
-                        <a class="admin-info-anchor" href="/admin/listing">Admin Listing</a>
+                        <a class="admin-info-anchor" href="/admin/list">Admin Listing</a>
                         <a class="admin-info-anchor" href="#" onclick="javascript:alert('Are you sure want to block this admin?');">Block this Admin</a>
                     </td>
                 </tr>
             </table>
         </div>
     </div>
-    <div class="footer">
-        Copyright &copy; 2021 MNR Chinnasamy Softlabs.
-    </div>
-</div>
-</body>
 </html>

@@ -1,24 +1,7 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Shoppe : Admin Creation</title>
-    <link rel="stylesheet" th:href="@{/css/base/main.css}"/>
-</head>
-<body>
-<div class="wrapper">
-    <div class="banner">
-        <image src="/images/logo.png"/>
-    </div>
-    <div class="menu-bar">
-        <div class="menu-item">Home</div>
-        <div class="menu-item">Item Registration</div>
-        <div class="menu-item">Admin Creation</div>
-        <div class="menu-item">Logout</div>
-    </div>
-    <div class="content-pane">
+    <div th:fragment="content-pane">
         <form action="/admin/create" method="POST">
-            <div class="top-space-50-pixel section">Admin Creation</div>
+            <div class="top-space-50-pixel section">Employee Creation</div>
             <div class="top-space-50-pixel error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
             <div class="top-space-50-pixel sub-section">Personal Information <span style="font-size:16px;">(fields marked with (*) are mandatory)</span></div>
             <div class="top-space-50-pixel admin-personal-info">
@@ -37,7 +20,7 @@
                     </tr>
                     <tr>
                         <td class="td-height-60">
-                            <input id="emailId"  class="input-box-normal"type="text" name="emailId" placeholder="Email Id" th:value="${admin != null} ? ${admin.emailId} : ''"/>
+                            <input id="emailId" class="input-box-normal" type="text" name="emailId" placeholder="Email Id" th:value="${admin != null} ? ${admin.emailId} : ''"/>
                             <span class="required-field">*</span>
                         </td>
                     </tr>
@@ -70,7 +53,7 @@
                         <td class="td-height-60"><input id="addressLine3" class="input-box-normal" type="text" name="addressLine3" placeholder="Address Line 3" th:value="${admin != null} ? ${admin.addressLine3} : ''"/></td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="city"  class="input-box-normal"type="text" name="city" placeholder="City" th:value="${admin != null} ? ${admin.city} : ''"/></td>
+                        <td class="td-height-60"><input id="city"  class="input-box-normal"  type="text" name="city" placeholder="City" th:value="${admin != null} ? ${admin.city} : ''"/></td>
                     </tr>
                     <tr>
                         <td class="td-height-60"><input id="state" class="input-box-normal" type="text" name="state" placeholder="State" th:value="${admin != null} ? ${admin.state} : ''"/></td>
@@ -95,9 +78,4 @@
             </div>
         </form>
     </div>
-    <div class="footer">
-        Copyright &copy; 2021 MNR Chinnasamy Softlabs.
-    </div>
-</div>
-</body>
 </html>

@@ -20,13 +20,13 @@ public class HttpStatusConfiguration implements ErrorController {
 
             switch (statusCode){
                 case 404:
-                    view = "http-errors/404";
+                    view = "404";
                     break;
                 case 500:
-                    view =  "http-errors/500";
+                    view =  "500";
                     break;
                 case 403:
-                    view =  "http-errors/403";
+                    view =  "403";
                     break;
             }
             return view;

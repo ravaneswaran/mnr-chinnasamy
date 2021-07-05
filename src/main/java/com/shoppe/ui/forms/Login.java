@@ -2,7 +2,7 @@ package com.shoppe.ui.forms;
 
 import javax.validation.constraints.NotEmpty;
 
-public class Login {
+public class Login extends BaseForm {
 
     @NotEmpty(message = "{login.emailid.not.empty.error.message}")
     private String emailId;

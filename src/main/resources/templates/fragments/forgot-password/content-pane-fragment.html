@@ -1,0 +1,29 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="content-pane">
+        <div class="top-space forgot-password-pane">
+            <div class="forgot-password-header">
+                <div>Forgot Password...</div>
+            </div>
+            <div class="forgot-password-body">
+                <form method="POST" action="/mail-my-forgotten-password">
+                    <table style="align:center">
+                        <tr>
+                            <td class="td-height-60 login-error-message" colspan="2" id="errorMessage" th:text="${errorMessage}"></td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60">
+                                <input id="emailId" class="input-box-normal" type="text" name="emailId" placeholder="Enter your registered email id" th:value="${forgotPassword != null} ? ${forgotPassword.emailId} : ''"/>
+                                <span class="required-field">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input class="button-normal" id="mail-my-password" type="submit" value="Mail my Password"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</html>

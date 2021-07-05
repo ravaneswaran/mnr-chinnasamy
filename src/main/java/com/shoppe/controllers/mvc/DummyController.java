@@ -37,4 +37,32 @@ public class DummyController {
         return modelAndView;
     }
 
+    @GetMapping("/forgot-password-msg")
+    public ModelAndView forgotPasswordMsg(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("forgot-password-msg");
+        return modelAndView;
+    }
+
+    @GetMapping("/change-password")
+    public ModelAndView changePassword(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("change-password");
+        return modelAndView;
+    }
+
+    @GetMapping("/500")
+    public ModelAndView internalServerError(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/http-errors/500");
+        return modelAndView;
+    }
+
+    @GetMapping("/404")
+    public ModelAndView resourceNotFound(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("404");
+        return modelAndView;
+    }
+
 }

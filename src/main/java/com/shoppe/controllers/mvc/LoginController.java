@@ -1,6 +1,7 @@
 package com.shoppe.controllers.mvc;
 
 import com.shoppe.controllers.BaseController;
+import com.shoppe.enums.SessionAttribute;
 import com.shoppe.services.LoginService;
 import com.shoppe.ui.forms.Login;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,12 @@ public class LoginController extends BaseController {
 
     @GetMapping("/")
     public ModelAndView home(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/login");
-        return modelAndView;
+        return new ModelAndView("/login");
+    }
+
+    @GetMapping("/login")
+    public ModelAndView redirectToLoginHome(){
+        return new ModelAndView("redirect:/");
     }
 
     @PostMapping("/login")
@@ -43,6 +47,8 @@ public class LoginController extends BaseController {
         if(!bindingResult.hasErrors()){
             Login response = this.loginService.login(login.getEmailId(), login.getPassword());
             if(null != response){
+                HttpSession httpSession = httpServletRequest.getSession();
+                httpSession.setAttribute(SessionAttribute.LOGGED_IN_USER.toString(), response);
                 ModelAndView modelAndView = new ModelAndView("redirect:/admin/home");
                 return modelAndView;
             } else {

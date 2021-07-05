@@ -1,0 +1,45 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="content-pane">
+        <div class="top-space login-pane">
+            <div class="login-header">
+                Login...
+            </div>
+            <div class="login-body">
+                <form action="/login" method="POST">
+                    <table style="align:center">
+                        <tr>
+                            <td class="td-height-60 login-error-message" colspan="2" id="errorMessage" th:text="${errorMessage}"></td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60">
+                                <input id="emailId" class="input-box-normal" type="text" name="emailId" placeholder="Email Id" th:value="${login != null} ? ${login.emailId} : ''"/>
+                                <span class="required-field">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60">
+                                <input id="password" class="input-box-normal" type="password" name="password" placeholder="Password" th:value="${login != null} ? ${login.password} : ''"/>
+                                <span class="required-field">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60" colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input class="button-normal" id="login" type="submit" value="Login"/>
+                                <input class="button-reset" type="reset" value="Cancel"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-height-60" colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="td-height-60 center-text"><a href="/forgot-password">Forgot Password</a></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</html>
