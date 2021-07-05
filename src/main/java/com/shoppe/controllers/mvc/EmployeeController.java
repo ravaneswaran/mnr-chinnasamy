@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin")
-public class AdminController extends BaseController {
+@RequestMapping("/employee")
+public class EmployeeController extends BaseController {
 
-    Logger logger = LoggerFactory.getLogger(AdminController.class);
+    Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
     @Autowired
     private AdminService adminService;
@@ -43,7 +43,7 @@ public class AdminController extends BaseController {
             return new ModelAndView("redirect:/");
         }
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin-create");
+        modelAndView.setViewName("employee-create");
         return modelAndView;
     }
 
@@ -60,14 +60,14 @@ public class AdminController extends BaseController {
                 return new ModelAndView(redirect);
             } else {
                 ModelAndView modelAndView = new ModelAndView();
-                modelAndView.setViewName("admin-create");
+                modelAndView.setViewName("employee-create");
                 modelAndView.addObject("admin",admin);
                 modelAndView.addObject("errorMessage", "Unable to add admin information...");
                 return modelAndView;
             }
         } else {
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("admin-create");
+            modelAndView.setViewName("employee-create");
             modelAndView.addObject("admin", admin);
             modelAndView.addObject("errorMessage", this.getError(bindingResult));
 
@@ -85,7 +85,7 @@ public class AdminController extends BaseController {
             Admin admin = this.adminService.getAdmin(uuid);
             if(null != admin){
                 ModelAndView modelAndView = new ModelAndView();
-                modelAndView.setViewName("admin-info");
+                modelAndView.setViewName("employee-info");
                 modelAndView.addObject("admin", admin);
                 return modelAndView;
             } else {
@@ -96,7 +96,7 @@ public class AdminController extends BaseController {
         } else {
             logger.error("Request parameter uuid is found to be invalid...");
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("admin-info");
+            modelAndView.setViewName("employee-info");
             return modelAndView;
         }
     }
@@ -109,7 +109,7 @@ public class AdminController extends BaseController {
 
         ModelAndView modelAndView = new ModelAndView();
         List<Admin> admins =  this.adminService.listAdmins();
-        modelAndView.setViewName("admin-list");
+        modelAndView.setViewName("employee-list");
         modelAndView.addObject("admins", admins);
 
         return modelAndView;
@@ -124,7 +124,7 @@ public class AdminController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
         this.adminService.blockAdmin(uuid);
         List<Admin> admins =  this.adminService.listAdmins();
-        modelAndView.setViewName("admin-list");
+        modelAndView.setViewName("employee-list");
         modelAndView.addObject("admins", admins);
 
         return modelAndView;
@@ -139,7 +139,7 @@ public class AdminController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
         this.adminService.unblockAdmin(uuid);
         List<Admin> admins =  this.adminService.listAdmins();
-        modelAndView.setViewName("admin-list");
+        modelAndView.setViewName("employee-list");
         modelAndView.addObject("admins", admins);
 
         return modelAndView;
@@ -154,7 +154,7 @@ public class AdminController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
         this.adminService.deleteAdmin(uuid);
         List<Admin> admins =  this.adminService.listAdmins();
-        modelAndView.setViewName("admin-list");
+        modelAndView.setViewName("employee-list");
         modelAndView.addObject("admins", admins);
 
         return modelAndView;
