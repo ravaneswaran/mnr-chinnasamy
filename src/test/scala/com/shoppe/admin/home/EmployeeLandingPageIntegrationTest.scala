@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
   glue = Array("com.shoppe.admin.home"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class AdminLandingPageIntegrationTest extends ScalaDsl with EN {
+class EmployeeLandingPageIntegrationTest extends ScalaDsl with EN {
 
   var webDriver: WebDriver = null
 
@@ -30,7 +30,7 @@ class AdminLandingPageIntegrationTest extends ScalaDsl with EN {
 
   Then("""the user suppose to see the admin page of the shoppe app""") { () =>
     val titleOfThePage = this.webDriver.getTitle
-    assert("Shoppe : Admin Creation".equals(titleOfThePage))
+    assert("Shoppe : Employee Creation".equals(titleOfThePage))
     this.webDriver.close()
   }
 

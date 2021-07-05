@@ -3,11 +3,11 @@
         <div class="top-space-100-pixel section">Employee Listing</div>
         <div class="admin-listing-pane">
             <table>
-                <tr th:each="admin: ${admins}">
-                    <td class="admin-listing-name-td" th:text="${admin.firstName + ' ' + admin.middleInitial + ' ' +admin.lastName}"></td>
-                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/admin/info?uuid=' + admin.adminId}">Info</a></td>
-                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/admin/block?uuid=' + admin.adminId}">Block</a></td>
-                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/admin/delete?uuid=' + admin.adminId}">Delete</a></td>
+                <tr th:each="employee: ${employees}">
+                    <td class="admin-listing-name-td" th:text="${employee.firstName + ' ' + employee.middleInitial + ' ' +employee.lastName}"></td>
+                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/employee/info?uuid=' + employee.employeeId}">Info</a></td>
+                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/employee/block?uuid=' + employee.employeeId}">Block</a></td>
+                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/employee/delete?uuid=' + employee.employeeId}">Delete</a></td>
                 </tr>
             </table>
         </div>

@@ -1,8 +1,6 @@
 package com.shoppe.services;
 
-import com.shoppe.enums.UserStatus;
-import com.shoppe.enums.UserType;
-import com.shoppe.ui.forms.Admin;
+import com.shoppe.ui.forms.Employee;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,18 +13,18 @@ import java.util.Random;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AdminServiceTest {
+public class EmployeeServiceTest {
 
     @Autowired
-    private AdminService adminService;
+    private EmployeeService employeeService;
 
     @Test
     public void testNotNull(){
-        Assert.assertNotNull(this.adminService);
+        Assert.assertNotNull(this.employeeService);
     }
 
     @Test
-    public void testAddAdmin(){
+    public void testAddEmployee(){
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
@@ -38,13 +36,13 @@ public class AdminServiceTest {
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
 
-        Admin admin = this.adminService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
+        Employee admin = this.employeeService.addEmployee(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
 
         Assert.assertNotNull(admin);
     }
 
     @Test
-    public void testListAdmins(){
+    public void testListEmployees(){
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
@@ -55,15 +53,15 @@ public class AdminServiceTest {
         String emailId = String.format("mail-%s@test.com", randomNumberString);
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
-        this.adminService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
+        this.employeeService.addEmployee(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
 
-        List<Admin> admins = this.adminService.listAdmins();
+        List<Employee> admins = this.employeeService.listEmployees();
 
         Assert.assertTrue(admins.size() >= 1 );
     }
 
     @Test
-    public void testGetAdmin(){
+    public void testGetEmployee(){
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
@@ -74,15 +72,15 @@ public class AdminServiceTest {
         String emailId = String.format("mail-%s@test.com", randomNumberString);
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
-        Admin admin = this.adminService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
+        Employee admin = this.employeeService.addEmployee(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
 
-        Admin response = this.adminService.getAdmin(admin.getAdminId());
+        Employee response = this.employeeService.getEmployee(admin.getEmployeeId());
 
-        Assert.assertEquals(admin.getAdminId(), response.getAdminId());
+        Assert.assertEquals(admin.getEmployeeId(), response.getEmployeeId());
     }
 
     @Test
-    public void testBlockAdmin(){
+    public void testBlockEmployee(){
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
@@ -93,16 +91,16 @@ public class AdminServiceTest {
         String emailId = String.format("mail-%s@test.com", randomNumberString);
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
-        Admin admin = this.adminService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
+        Employee admin = this.employeeService.addEmployee(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
 
-        this.adminService.blockAdmin(admin.getAdminId());
-        Admin response = this.adminService.getAdmin(admin.getAdminId());
+        this.employeeService.blockEmployee(admin.getEmployeeId());
+        Employee response = this.employeeService.getEmployee(admin.getEmployeeId());
 
-        Assert.assertEquals(admin.getAdminId(), response.getAdminId());
+        Assert.assertEquals(admin.getEmployeeId(), response.getEmployeeId());
     }
 
     @Test
-    public void testUnBlockAdmin(){
+    public void testUnBlockEmployee(){
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
@@ -113,17 +111,17 @@ public class AdminServiceTest {
         String emailId = String.format("mail-%s@test.com", randomNumberString);
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
-        Admin admin = this.adminService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
-        this.adminService.blockAdmin(admin.getAdminId());
+        Employee admin = this.employeeService.addEmployee(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
+        this.employeeService.blockEmployee(admin.getEmployeeId());
 
-        this.adminService.unblockAdmin(admin.getAdminId());
-        Admin response = this.adminService.getAdmin(admin.getAdminId());
+        this.employeeService.unblockEmployee(admin.getEmployeeId());
+        Employee response = this.employeeService.getEmployee(admin.getEmployeeId());
 
-        Assert.assertEquals(admin.getAdminId(), response.getAdminId());
+        Assert.assertEquals(admin.getEmployeeId(), response.getEmployeeId());
     }
 
     @Test
-    public void testDeleteAdmin(){
+    public void testDeleteEmployee(){
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
@@ -134,10 +132,10 @@ public class AdminServiceTest {
         String emailId = String.format("mail-%s@test.com", randomNumberString);
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
-        Admin admin = this.adminService.addAdmin(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
+        Employee admin = this.employeeService.addEmployee(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
 
-        this.adminService.deleteAdmin(admin.getAdminId());
-        Admin response = this.adminService.getAdmin(admin.getAdminId());
+        this.employeeService.deleteEmployee(admin.getEmployeeId());
+        Employee response = this.employeeService.getEmployee(admin.getEmployeeId());
 
         Assert.assertNull(response);
     }

@@ -24,6 +24,8 @@ public class LoginController extends BaseController {
     @Autowired
     private LoginService loginService;
 
+    private String redirectUrlIfLoggedIn = "redirect:/employee/home";
+
     @Override
     protected List<String> getMandatoryFields() {
         List<String> mandatoryFields = new ArrayList<>();
@@ -33,23 +35,33 @@ public class LoginController extends BaseController {
     }
 
     @GetMapping("/")
-    public ModelAndView home(){
+    public ModelAndView home(HttpServletRequest httpServletRequest){
+        if(this.isUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView(this.redirectUrlIfLoggedIn);
+        }
         return new ModelAndView("/login");
     }
 
     @GetMapping("/login")
-    public ModelAndView redirectToLoginHome(){
+    public ModelAndView redirectToLoginHome(HttpServletRequest httpServletRequest){
+        if(this.isUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView(this.redirectUrlIfLoggedIn);
+        }
         return new ModelAndView("redirect:/");
     }
 
     @PostMapping("/login")
     public ModelAndView login(@Valid @ModelAttribute("login")Login login, BindingResult bindingResult, HttpServletRequest httpServletRequest){
+        if(this.isUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView(this.redirectUrlIfLoggedIn);
+        }
+
         if(!bindingResult.hasErrors()){
             Login response = this.loginService.login(login.getEmailId(), login.getPassword());
             if(null != response){
                 HttpSession httpSession = httpServletRequest.getSession();
                 httpSession.setAttribute(SessionAttribute.LOGGED_IN_USER.toString(), response);
-                ModelAndView modelAndView = new ModelAndView("redirect:/admin/home");
+                ModelAndView modelAndView = new ModelAndView("redirect:/employee/home");
                 return modelAndView;
             } else {
                 ModelAndView modelAndView = new ModelAndView();

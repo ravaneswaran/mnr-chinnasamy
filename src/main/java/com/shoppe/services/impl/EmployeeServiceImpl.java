@@ -3,9 +3,9 @@ package com.shoppe.services.impl;
 import com.shoppe.enums.UserType;
 import com.shoppe.models.User;
 import com.shoppe.repositories.UserRepository;
-import com.shoppe.services.AdminService;
+import com.shoppe.services.EmployeeService;
 import com.shoppe.services.UserService;
-import com.shoppe.ui.forms.Admin;
+import com.shoppe.ui.forms.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class AdminServiceImpl implements AdminService {
+public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private UserService userService;
@@ -22,13 +22,13 @@ public class AdminServiceImpl implements AdminService {
     private UserRepository userRepository;
 
     @Override
-    public Admin addAdmin(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo) {
+    public Employee addEmployee(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo) {
 
         User response = this.userService.addUserWithVerifiedStatus(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, UserType.ADMIN.toString());
 
         if(null != response){
-            Admin admin = new Admin();
-            admin.setAdminId(response.getUUID());
+            Employee admin = new Employee();
+            admin.setEmployeeId(response.getUUID());
             admin.setFirstName(response.getFirstName());
             admin.setMiddleInitial(response.getMiddleInitial());
             admin.setLastName(response.getLastName());
@@ -48,12 +48,12 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<Admin> listAdmins(){
+    public List<Employee> listEmployees(){
         List<User> users =  this.userRepository.findAllUsersByType(UserType.ADMIN.toString());
-        List<Admin> admins = new ArrayList<>();
+        List<Employee> admins = new ArrayList<>();
         for(User user : users){
-            Admin admin = new Admin();
-            admin.setAdminId(user.getUUID());
+            Employee admin = new Employee();
+            admin.setEmployeeId(user.getUUID());
             admin.setFirstName(user.getFirstName());
             admin.setMiddleInitial(user.getMiddleInitial());
             admin.setLastName(user.getLastName());
@@ -73,11 +73,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Admin getAdmin(String uuid) {
+    public Employee getEmployee(String uuid) {
         User user = this.userService.getUser(uuid);
         if(null != user && UserType.ADMIN.toString().equals(user.getType())){
-            Admin admin = new Admin();
-            admin.setAdminId(user.getUUID());
+            Employee admin = new Employee();
+            admin.setEmployeeId(user.getUUID());
             admin.setFirstName(user.getFirstName());
             admin.setMiddleInitial(user.getMiddleInitial());
             admin.setEmailId(user.getEmailId());
@@ -90,17 +90,17 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void blockAdmin(String uuid) {
+    public void blockEmployee(String uuid) {
         this.userService.blockUser(uuid);
     }
 
     @Override
-    public void unblockAdmin(String uuid) {
+    public void unblockEmployee(String uuid) {
         this.userService.unblockUser(uuid);
     }
 
     @Override
-    public void deleteAdmin(String uuid) {
+    public void deleteEmployee(String uuid) {
         this.userService.deleteUser(uuid);
     }
 }

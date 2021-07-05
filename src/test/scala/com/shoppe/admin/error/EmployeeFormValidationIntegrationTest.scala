@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
   glue = Array("com.shoppe.admin.error"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class AdminFormValidationIntegrationTest extends ScalaDsl with EN {
+class EmployeeFormValidationIntegrationTest extends ScalaDsl with EN {
 
   var webDriver: WebDriver = null
 

@@ -4,9 +4,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-public class Admin extends BaseForm{
+public class Employee extends BaseForm{
 
-    private String adminId;
+    private String employeeId;
 
     @NotEmpty(message = "{admin.firstname.not.empty.error.message}")
     private String firstName;
@@ -22,7 +22,7 @@ public class Admin extends BaseForm{
     private String uniqueId;
 
     @NotEmpty(message = "{admin.mobile.number.not.empty.error.message}")
-    @Size(min = 10, max = 15, message = "admin.mobile.number.min.length.error.message}")
+    @Size(min = 10, max = 15, message = "{admin.mobile.number.min.length.error.message}")
     private String mobileNo;
 
     private String addressLine1;
@@ -137,11 +137,11 @@ public class Admin extends BaseForm{
         this.zipCode = zipCode;
     }
 
-    public String getAdminId() {
-        return adminId;
+    public String getEmployeeId() {
+        return employeeId;
     }
 
-    public void setAdminId(String adminId) {
-        this.adminId = adminId;
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
 }

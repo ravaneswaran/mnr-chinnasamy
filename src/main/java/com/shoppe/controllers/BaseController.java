@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public  abstract class BaseController {
+public abstract class BaseController {
 
     protected abstract List<String> getMandatoryFields();
 

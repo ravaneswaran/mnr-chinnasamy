@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AdminControllerTest {
+public class EmployeeControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
@@ -33,7 +33,7 @@ public class AdminControllerTest {
     }
 
     @Test
-    public void test_home_page_of_admin() throws Exception{
+    public void test_home_page_of_employee() throws Exception{
 
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
@@ -47,7 +47,7 @@ public class AdminControllerTest {
     }
 
     @Test
-    public void test_creating_an_admin() throws Exception{
+    public void test_creating_an_employee() throws Exception{
 
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));

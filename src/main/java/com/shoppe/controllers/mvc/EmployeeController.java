@@ -1,8 +1,8 @@
 package com.shoppe.controllers.mvc;
 
 import com.shoppe.controllers.BaseController;
-import com.shoppe.services.AdminService;
-import com.shoppe.ui.forms.Admin;
+import com.shoppe.services.EmployeeService;
+import com.shoppe.ui.forms.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class EmployeeController extends BaseController {
     Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
     @Autowired
-    private AdminService adminService;
+    private EmployeeService employeeService;
 
     @Override
     protected List<String> getMandatoryFields() {
@@ -38,7 +38,7 @@ public class EmployeeController extends BaseController {
     }
 
     @GetMapping("/home")
-    public ModelAndView adminHome(HttpServletRequest httpServletRequest){
+    public ModelAndView employeeHome(HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
@@ -48,15 +48,15 @@ public class EmployeeController extends BaseController {
     }
 
     @PostMapping("/create")
-    public ModelAndView addAdmin(@Valid @ModelAttribute("admin") Admin admin, BindingResult bindingResult, HttpServletRequest httpServletRequest) {
+    public ModelAndView addEmployee(@Valid @ModelAttribute("admin") Employee admin, BindingResult bindingResult, HttpServletRequest httpServletRequest) {
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
 
         if(!bindingResult.hasErrors()){
-            Admin response = this.adminService.addAdmin(admin.getFirstName(), admin.getMiddleInitial(), admin.getLastName(), admin.getEmailId(), admin.getUniqueId(), admin.getMobileNo());
+            Employee response = this.employeeService.addEmployee(admin.getFirstName(), admin.getMiddleInitial(), admin.getLastName(), admin.getEmailId(), admin.getUniqueId(), admin.getMobileNo());
             if(null != response) {
-                String redirect = String.format("redirect:/admin/info?uuid=%s", response.getAdminId());
+                String redirect = String.format("redirect:/admin/info?uuid=%s", response.getEmployeeId());
                 return new ModelAndView(redirect);
             } else {
                 ModelAndView modelAndView = new ModelAndView();
@@ -76,13 +76,13 @@ public class EmployeeController extends BaseController {
     }
 
     @GetMapping("/info")
-    public ModelAndView getAdminInfo(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+    public ModelAndView getEmployeeInfo(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
 
         if(null != uuid && !"".equals(uuid)){
-            Admin admin = this.adminService.getAdmin(uuid);
+            Employee admin = this.employeeService.getEmployee(uuid);
             if(null != admin){
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("employee-info");
@@ -102,28 +102,28 @@ public class EmployeeController extends BaseController {
     }
 
     @GetMapping("/list")
-    public ModelAndView listAdmins(HttpServletRequest httpServletRequest){
+    public ModelAndView listEmployees(HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
 
         ModelAndView modelAndView = new ModelAndView();
-        List<Admin> admins =  this.adminService.listAdmins();
+        List<Employee> employees =  this.employeeService.listEmployees();
         modelAndView.setViewName("employee-list");
-        modelAndView.addObject("admins", admins);
+        modelAndView.addObject("employees", employees);
 
         return modelAndView;
     }
 
     @GetMapping("/block")
-    public ModelAndView blockAdmin(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+    public ModelAndView blockEmployee(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
 
         ModelAndView modelAndView = new ModelAndView();
-        this.adminService.blockAdmin(uuid);
-        List<Admin> admins =  this.adminService.listAdmins();
+        this.employeeService.blockEmployee(uuid);
+        List<Employee> admins =  this.employeeService.listEmployees();
         modelAndView.setViewName("employee-list");
         modelAndView.addObject("admins", admins);
 
@@ -131,14 +131,14 @@ public class EmployeeController extends BaseController {
     }
 
     @GetMapping("/unblock")
-    public ModelAndView unblockAdmin(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+    public ModelAndView unblockEmployee(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
 
         ModelAndView modelAndView = new ModelAndView();
-        this.adminService.unblockAdmin(uuid);
-        List<Admin> admins =  this.adminService.listAdmins();
+        this.employeeService.unblockEmployee(uuid);
+        List<Employee> admins =  this.employeeService.listEmployees();
         modelAndView.setViewName("employee-list");
         modelAndView.addObject("admins", admins);
 
@@ -146,16 +146,16 @@ public class EmployeeController extends BaseController {
     }
 
     @GetMapping("/delete")
-    public ModelAndView deleteAdmin(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+    public ModelAndView deleteEmployee(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
 
         ModelAndView modelAndView = new ModelAndView();
-        this.adminService.deleteAdmin(uuid);
-        List<Admin> admins =  this.adminService.listAdmins();
+        this.employeeService.deleteEmployee(uuid);
+        List<Employee> employees =  this.employeeService.listEmployees();
         modelAndView.setViewName("employee-list");
-        modelAndView.addObject("admins", admins);
+        modelAndView.addObject("employees", employees);
 
         return modelAndView;
     }
