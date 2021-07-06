@@ -2,7 +2,7 @@
     <div th:fragment="content-pane">
         <div class="top-space-100-pixel section">Employee Listing</div>
         <div class="employee-listing-pane">
-            <table>
+            <!--<table>
                 <tr th:each="employee: ${employees}">
                     <td class="employee-listing-name-td" th:text="${employee.firstName + ' ' + employee.middleInitial + ' ' +employee.lastName}"></td>
                     <td class="employee-listing-anchor-td"><a href="#" th:href="${'/employee/info?uuid=' + employee.employeeId}">Info</a></td>
@@ -11,7 +11,58 @@
                     </td>
                     <td class="employee-listing-anchor-td"><a href="#" th:href="${'/employee/delete?uuid=' + employee.employeeId}">Delete</a></td>
                 </tr>
-            </table>
+            </table>-->
+            <div class="employee-listing-preview-div">
+                <div class="employee-listing-preview-image-div">
+                    <image src="/images/no-profile-pic.png" class="employee-listing-preview-image"/>
+                </div>
+                <div class="employee-listing-preview-name-div">Ravaneswaran Chinnsamy</div>
+                <div class="employee-listing-preview-controls-div">
+                    <a href="/employee/info">
+                        <img src=""/>
+                    </a>
+                    <a href="/employee/info">
+                        <img src=""/>
+                    </a>
+                    <a href="/employee/info">
+                        <img src=""/>
+                    </a>
+                </div>
+            </div>
+            <div class="employee-listing-preview-div">
+                <div class="employee-listing-preview-image-div">
+                    <image src="/images/no-profile-pic.png" class="employee-listing-preview-image"/>
+                </div>
+                <div class="employee-listing-preview-name-div">Ravaneswaran Chinnasamy</div>
+                <div class="employee-listing-preview-controls-div">
+
+                </div>
+            </div>
+            <div class="employee-listing-preview-div">
+                <div class="employee-listing-preview-image-div">
+                    <image src="/images/no-profile-pic.png" class="employee-listing-preview-image"/>
+                </div>
+                <div class="employee-listing-preview-name-div">Ravaneswaran Chinnasamy</div>
+                <div class="employee-listing-preview-controls-div">
+
+                </div>
+            </div>
+            <div class="employee-listing-preview-div">
+                <div class="employee-listing-preview-image-div">
+                    <image src="/images/no-profile-pic.png" class="employee-listing-preview-image"/>
+                </div>
+                <div class="employee-listing-preview-name-div">Ravaneswaran Chinnasamy</div>
+                <div class="employee-listing-preview-controls-div">
+
+                </div>
+            </div>
+            <div class="employee-listing-preview-div">
+                <div class="employee-listing-preview-image-div">
+                    <image src="/images/no-profile-pic.png" class="employee-listing-preview-image"/>
+                </div>
+                <div class="employee-listing-preview-name-div">Ravaneswaran Chinnasamy</div>
+                <div class="employee-listing-preview-controls-div"></div>
+            </div>
         </div>
     </div>
 </html>
