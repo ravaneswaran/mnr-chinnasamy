@@ -47,6 +47,7 @@
     border-radius: 5px;
     text-indent: 15px;
     font-size: 18px;
+    color: #505050;
 }
 
 .employee-info-header{
@@ -56,8 +57,6 @@
     border-radius: 5px;
     text-indent: 15px;
     border: 1px solid #505050;
-    text-shadow: beige;
-    text-shadow: 1px 2px 0px #000;
-    text-shadow: 2px 2px 4px #000000;
+    text-shadow: 1px 1px 3px #000;
 }
 

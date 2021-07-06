@@ -1,9 +1,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <div class="dropdown" th:fragment="menu">
         <div id="menu" class="dropdown-content">
-            <a href="/admin/home">Admin</a>
-            <a href="/change-password">Change Password</a>
-            <a href="/logout">Logout</a>
+            <a href="/employee/home"><image src="/images/user-creation.png" class="menu-icon"/><span class="menu-text">Employee Creation</span></a>
+            <a href="/employee/list"><image src="/images/user-list.png" class="menu-icon"/><span class="menu-text">Employee Listing</span></a>
+            <!--<hr class="menu-separator"></hr>-->
+            <a href="/change-password"><image src="/images/change-password.png" class="menu-icon"/><span class="menu-text">Change Password</span></a>
+            <!--<hr class="menu-separator"></hr>-->
+            <a href="/user/settings"><image src="/images/settings.png" class="menu-icon"/><span class="menu-text">Settings</span></a>
+            <!--<hr class="menu-separator"></hr>-->
+            <a href="/logout"><image src="/images/logout.png" class="menu-icon"/><span class="menu-text">Logout</span></a>
         </div>
     </div>
 </html>
