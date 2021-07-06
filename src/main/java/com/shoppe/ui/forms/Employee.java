@@ -25,6 +25,8 @@ public class Employee extends BaseForm{
     @Size(min = 10, max = 15, message = "{admin.mobile.number.min.length.error.message}")
     private String mobileNo;
 
+    private String status;
+
     private String addressLine1;
     private String addressLine2;
     private String addressLine3;
@@ -143,5 +145,13 @@ public class Employee extends BaseForm{
 
     public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

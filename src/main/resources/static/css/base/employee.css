@@ -1,18 +1,18 @@
-.admin-personal-info {
+.employee-personal-info {
    border: 0px solid red;
    height: 460px;
    width: 490px;
    margin-left: 450px;
 }
 
-.admin-address-info {
+.employee-address-info {
     border: 0px solid red;
     height: 452px;
     width: 463px;
     margin-left: 450px;
 }
 
-.admin-registration-commands {
+.employee-registration-commands {
     border: 0px solid red;
     height: 67px;
     width: 463px;

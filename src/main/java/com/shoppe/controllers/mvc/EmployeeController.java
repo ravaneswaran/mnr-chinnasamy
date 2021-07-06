@@ -82,11 +82,11 @@ public class EmployeeController extends BaseController {
         }
 
         if(null != uuid && !"".equals(uuid)){
-            Employee admin = this.employeeService.getEmployee(uuid);
-            if(null != admin){
+            Employee employee = this.employeeService.getEmployee(uuid);
+            if(null != employee){
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("employee-info");
-                modelAndView.addObject("admin", admin);
+                modelAndView.addObject("employee", employee);
                 return modelAndView;
             } else {
                 ModelAndView modelAndView = new ModelAndView("redirect:/404");
@@ -123,9 +123,9 @@ public class EmployeeController extends BaseController {
 
         ModelAndView modelAndView = new ModelAndView();
         this.employeeService.blockEmployee(uuid);
-        List<Employee> admins =  this.employeeService.listEmployees();
+        List<Employee> employees =  this.employeeService.listEmployees();
         modelAndView.setViewName("employee-list");
-        modelAndView.addObject("admins", admins);
+        modelAndView.addObject("employees", employees);
 
         return modelAndView;
     }
@@ -138,9 +138,9 @@ public class EmployeeController extends BaseController {
 
         ModelAndView modelAndView = new ModelAndView();
         this.employeeService.unblockEmployee(uuid);
-        List<Employee> admins =  this.employeeService.listEmployees();
+        List<Employee> employees =  this.employeeService.listEmployees();
         modelAndView.setViewName("employee-list");
-        modelAndView.addObject("admins", admins);
+        modelAndView.addObject("employees", employees);
 
         return modelAndView;
     }

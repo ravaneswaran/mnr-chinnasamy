@@ -1,13 +1,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <div th:fragment="content-pane">
         <div class="top-space-100-pixel section">Employee Listing</div>
-        <div class="admin-listing-pane">
+        <div class="employee-listing-pane">
             <table>
                 <tr th:each="employee: ${employees}">
-                    <td class="admin-listing-name-td" th:text="${employee.firstName + ' ' + employee.middleInitial + ' ' +employee.lastName}"></td>
-                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/employee/info?uuid=' + employee.employeeId}">Info</a></td>
-                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/employee/block?uuid=' + employee.employeeId}">Block</a></td>
-                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/employee/delete?uuid=' + employee.employeeId}">Delete</a></td>
+                    <td class="employee-listing-name-td" th:text="${employee.firstName + ' ' + employee.middleInitial + ' ' +employee.lastName}"></td>
+                    <td class="employee-listing-anchor-td"><a href="#" th:href="${'/employee/info?uuid=' + employee.employeeId}">Info</a></td>
+                    <td class="employee-listing-anchor-td">
+                        <a th:href="${ 'BLOCKED'.equals(employee.status) ? '/employee/unblock?uuid=' + employee.employeeId  : '/employee/block?uuid=' + employee.employeeId}" th:text="${ 'BLOCKED'.equals(employee.status) ? 'UnBlock'  : 'Block'}">Block</a>
+                    </td>
+                    <td class="employee-listing-anchor-td"><a href="#" th:href="${'/employee/delete?uuid=' + employee.employeeId}">Delete</a></td>
                 </tr>
             </table>
         </div>

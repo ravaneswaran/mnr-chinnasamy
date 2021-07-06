@@ -1,35 +1,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <div th:fragment="content-pane">
-        <form action="/admin/create" method="POST">
+        <form action="/employee/create" method="POST">
             <div class="top-space-50-pixel section">Employee Creation</div>
             <div class="top-space-50-pixel error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
             <div class="top-space-50-pixel sub-section">Personal Information <span style="font-size:16px;">(fields marked with (*) are mandatory)</span></div>
-            <div class="top-space-50-pixel admin-personal-info">
+            <div class="top-space-50-pixel employee-personal-info">
                 <table>
                     <tr>
                         <td class="td-height-60">
-                            <input id="firstName" class="input-box-normal" type="text" name="firstName" placeholder="First Name" th:value="${admin != null} ? ${admin.firstName} : ''"/>
+                            <input id="firstName" class="input-box-normal" type="text" name="firstName" placeholder="First Name" th:value="${employee != null} ? ${employee.firstName} : ''"/>
                             <span class="required-field">*</span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="middleInitial" class="input-box-normal" type="text" name="middleInitial" placeholder="Middle Initial" th:value="${admin != null} ? ${admin.middleInitial} : ''"/></td>
+                        <td class="td-height-60"><input id="middleInitial" class="input-box-normal" type="text" name="middleInitial" placeholder="Middle Initial" th:value="${employee != null} ? ${employee.middleInitial} : ''"/></td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="lastName" class="input-box-normal" type="text" name="lastName" placeholder="Last Name" th:value="${admin != null} ? ${admin.lastName} : ''"/></td>
+                        <td class="td-height-60"><input id="lastName" class="input-box-normal" type="text" name="lastName" placeholder="Last Name" th:value="${employee != null} ? ${employee.lastName} : ''"/></td>
                     </tr>
                     <tr>
                         <td class="td-height-60">
-                            <input id="emailId" class="input-box-normal" type="text" name="emailId" placeholder="Email Id" th:value="${admin != null} ? ${admin.emailId} : ''"/>
+                            <input id="emailId" class="input-box-normal" type="text" name="emailId" placeholder="Email Id" th:value="${employee != null} ? ${employee.emailId} : ''"/>
                             <span class="required-field">*</span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="uniqueId" class="input-box-normal" type="text" name="uniqueId" placeholder="Unique Id" th:value="${admin != null} ? ${admin.uniqueId} : ''"/></td>
+                        <td class="td-height-60"><input id="uniqueId" class="input-box-normal" type="text" name="uniqueId" placeholder="Unique Id" th:value="${employee != null} ? ${employee.uniqueId} : ''"/></td>
                     </tr>
                     <tr>
                         <td class="td-height-60">
-                            <input id="mobileNo" class="input-box-normal" type="text" name="mobileNo" placeholder="Mobile Number" th:value="${admin != null} ? ${admin.mobileNo} : ''"/>
+                            <input id="mobileNo" class="input-box-normal" type="text" name="mobileNo" placeholder="Mobile Number" th:value="${employee != null} ? ${employee.mobileNo} : ''"/>
                             <span class="required-field">*</span>
                         </td>
                     </tr>
@@ -41,32 +41,32 @@
                 </table>
             </div>
             <div class="sub-section">Permanent Address</div>
-            <div class="top-space-50-pixel admin-address-info">
+            <div class="top-space-50-pixel employee-address-info">
                 <table>
                     <tr>
-                        <td class="td-height-60"><input id="addressLine1" class="input-box-normal" type="text" name="addressLine1" placeholder="Address Line 1" th:value="${admin != null} ? ${admin.addressLine1} : ''"/></td>
+                        <td class="td-height-60"><input id="addressLine1" class="input-box-normal" type="text" name="addressLine1" placeholder="Address Line 1" th:value="${employee != null} ? ${employee.addressLine1} : ''"/></td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="addressLine2" class="input-box-normal" type="text" name="addressLine2" placeholder="Address Line 2" th:value="${admin != null} ? ${admin.addressLine2} : ''"/></td>
+                        <td class="td-height-60"><input id="addressLine2" class="input-box-normal" type="text" name="addressLine2" placeholder="Address Line 2" th:value="${employee != null} ? ${employee.addressLine2} : ''"/></td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="addressLine3" class="input-box-normal" type="text" name="addressLine3" placeholder="Address Line 3" th:value="${admin != null} ? ${admin.addressLine3} : ''"/></td>
+                        <td class="td-height-60"><input id="addressLine3" class="input-box-normal" type="text" name="addressLine3" placeholder="Address Line 3" th:value="${employee != null} ? ${employee.addressLine3} : ''"/></td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="city"  class="input-box-normal"  type="text" name="city" placeholder="City" th:value="${admin != null} ? ${admin.city} : ''"/></td>
+                        <td class="td-height-60"><input id="city"  class="input-box-normal"  type="text" name="city" placeholder="City" th:value="${employee != null} ? ${employee.city} : ''"/></td>
                     </tr>
                     <tr>
-                        <td class="td-height-60"><input id="state" class="input-box-normal" type="text" name="state" placeholder="State" th:value="${admin != null} ? ${admin.state} : ''"/></td>
+                        <td class="td-height-60"><input id="state" class="input-box-normal" type="text" name="state" placeholder="State" th:value="${employee != null} ? ${employee.state} : ''"/></td>
                     </tr>
                     <tr>
-                        <td  class="td-height-60"><input id="country" class="input-box-normal" type="text" name="country" placeholder="Country" th:value="${admin != null} ? ${admin.country} : ''"/></td>
+                        <td  class="td-height-60"><input id="country" class="input-box-normal" type="text" name="country" placeholder="Country" th:value="${employee != null} ? ${employee.country} : ''"/></td>
                     </tr>
                     <tr>
-                        <td  class="td-height-60"><input id="zipCode" class="input-box-normal" type="text" name="zipCode" placeholder="ZipCode" th:value="${admin != null} ? ${admin.zipCode} : ''"/></td>
+                        <td  class="td-height-60"><input id="zipCode" class="input-box-normal" type="text" name="zipCode" placeholder="ZipCode" th:value="${employee != null} ? ${employee.zipCode} : ''"/></td>
                     </tr>
                 </table>
             </div>
-            <div class="top-space-50-pixel admin-registration-commands">
+            <div class="top-space-50-pixel employee-registration-commands">
                 <table>
                     <tr>
                         <td colspan="2" class="td-height-60">

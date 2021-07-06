@@ -1,4 +1,4 @@
-.admin-listing-pane {
+.employee-listing-pane {
     height: 895px;
     width: 1120px;
     box-shadow: 1px -1px 15px 5px #505050;
@@ -7,7 +7,7 @@
     border-radius: 5px;
 }
 
-.admin-listing-name-td {
+.employee-listing-name-td {
     border: 1px solid #505050;
     height: 50px;
     width: 749px;
@@ -15,7 +15,7 @@
     text-indent: 5px;
 }
 
-.admin-listing-anchor-td {
+.employee-listing-anchor-td {
     border: 2px solid #505050;
     height: 50px;
     width: 115px;

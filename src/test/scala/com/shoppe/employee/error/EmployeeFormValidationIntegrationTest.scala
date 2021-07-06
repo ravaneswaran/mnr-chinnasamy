@@ -1,4 +1,4 @@
-package com.shoppe.admin.error
+package com.shoppe.employee.error
 
 import io.cucumber.junit.{Cucumber, CucumberOptions}
 import io.cucumber.scala.{EN, ScalaDsl}
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
-  features = Array("classpath:features/admin/admin-from-validation.feature"),
+  features = Array("classpath:features/employee/employee-form-validation.feature"),
   glue = Array("com.shoppe.admin.error"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
@@ -22,7 +22,7 @@ class EmployeeFormValidationIntegrationTest extends ScalaDsl with EN {
   Given("""the user has not filled the first name in the admin form""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080/admin")
+    this.webDriver.get("http://localhost:8080/employee")
   }
 
   When("""the user tries to submit the page""") { () =>
@@ -37,14 +37,14 @@ class EmployeeFormValidationIntegrationTest extends ScalaDsl with EN {
   Given("""the user has filled the first name but not the email id in the admin form""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080/admin")
+    this.webDriver.get("http://localhost:8080/employee")
     this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
   }
 
   Given("""the user has filled the first name but the email id in wrong format""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080/admin")
+    this.webDriver.get("http://localhost:8080/employee")
     this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
     this.webDriver.findElement(By.id("emailId")).sendKeys("test")
   }
@@ -52,7 +52,7 @@ class EmployeeFormValidationIntegrationTest extends ScalaDsl with EN {
   Given("""the user has filled the first name, email id but not the mobile no in the admin form""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080/admin")
+    this.webDriver.get("http://localhost:8080/employee")
     this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
     this.webDriver.findElement(By.id("emailId")).sendKeys("test@test.com")
   }
@@ -60,7 +60,7 @@ class EmployeeFormValidationIntegrationTest extends ScalaDsl with EN {
   Given("""the user has filled the first name, email id and mobile number with less than 10 characters in the admin form""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080/admin")
+    this.webDriver.get("http://localhost:8080/employee")
     this.webDriver.findElement(By.id("firstName")).sendKeys("Ravaneswaran")
     this.webDriver.findElement(By.id("emailId")).sendKeys("test@test.com")
     this.webDriver.findElement(By.id("mobileNo")).sendKeys("345679999")

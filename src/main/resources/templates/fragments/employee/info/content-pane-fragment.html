@@ -1,66 +1,66 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <div th:fragment="content-pane">
         <div class="top-space-100-pixel section">Employee Information</div>
-        <div class="admin-info-pane">
+        <div class="employee-info-pane">
             <table>
                 <tr>
-                    <td colspan="2" class="admin-info-header">Personal Information...</td>
+                    <td colspan="2" class="employee-info-header">Personal Information...</td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="admin-info-td"></td>
+                    <td colspan="2" class="employee-info-td"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">First Name</td><td class="admin-info-td" th:text="${employee.firstName}"></td>
+                    <td class="employee-info-td">First Name</td><td class="employee-info-td" th:text="${employee.firstName}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Middle Initial</td><td class="admin-info-td" th:text="${employee.middleInitial}"></td>
+                    <td class="employee-info-td">Middle Initial</td><td class="employee-info-td" th:text="${employee.middleInitial}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Last Name</td><td class="admin-info-td" th:text="${employee.lastName}"></td>
+                    <td class="employee-info-td">Last Name</td><td class="employee-info-td" th:text="${employee.lastName}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Email Id</td><td class="admin-info-td" th:text="${employee.emailId}"></td>
+                    <td class="employee-info-td">Email Id</td><td class="employee-info-td" th:text="${employee.emailId}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Mobile Number</td><td class="admin-info-td" th:text="${employee.mobileNo}"></td>
+                    <td class="employee-info-td">Mobile Number</td><td class="employee-info-td" th:text="${employee.mobileNo}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Unique Id</td><td class="admin-info-td" th:text="${employee.uniqueId}"></td>
+                    <td class="employee-info-td">Unique Id</td><td class="employee-info-td" th:text="${employee.uniqueId}"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="admin-info-td"></td>
+                    <td colspan="2" class="employee-info-td"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="admin-info-header">Address Information...</td>
+                    <td colspan="2" class="employee-info-header">Address Information...</td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="admin-info-td"></td>
+                    <td colspan="2" class="employee-info-td"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Address Line 1</td><td class="admin-info-td" th:text="${employee.addressLine1}"></td>
+                    <td class="employee-info-td">Address Line 1</td><td class="employee-info-td" th:text="${employee.addressLine1}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Address Line 2</td><td class="admin-info-td" th:text="${employee.addressLine2}"></td>
+                    <td class="employee-info-td">Address Line 2</td><td class="employee-info-td" th:text="${employee.addressLine2}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Address Line 3</td><td class="admin-info-td" th:text="${employee.addressLine3}"></td>
+                    <td class="employee-info-td">Address Line 3</td><td class="employee-info-td" th:text="${employee.addressLine3}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">City</td><td class="admin-info-td" th:text="${employee.city}"></td>
+                    <td class="employee-info-td">City</td><td class="employee-info-td" th:text="${employee.city}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">State</td><td class="admin-info-td" th:text="${employee.state}"></td>
+                    <td class="employee-info-td">State</td><td class="employee-info-td" th:text="${employee.state}"></td>
                 </tr>
                 <tr>
-                    <td class="admin-info-td">Zip Code</td><td class="admin-info-td" th:text="${employee.zipCode}"></td>
+                    <td class="employee-info-td">Zip Code</td><td class="employee-info-td" th:text="${employee.zipCode}"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="admin-info-td"></td>
+                    <td colspan="2" class="employee-info-td"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="admin-info-td">
-                        <a class="admin-info-anchor" href="/employee/list">Admin Listing</a>
-                        <a class="admin-info-anchor" href="#" onclick="javascript:alert('Are you sure want to block this admin?');">Block this Admin</a>
+                    <td colspan="2" class="employee-info-td">
+                        <a class="employee-info-anchor" href="/employee/list">Employee Listing</a>
+                        <a class="employee-info-anchor" th:href="${'/employee/block?uuid=' + employee.employeeId}" onclick="javascript:alert('Are you sure want to block this employee?');">Block this Employee</a>
                     </td>
                 </tr>
             </table>

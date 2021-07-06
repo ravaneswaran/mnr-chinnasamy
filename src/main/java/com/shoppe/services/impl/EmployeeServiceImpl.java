@@ -52,21 +52,22 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<User> users =  this.userRepository.findAllUsersByType(UserType.ADMIN.toString());
         List<Employee> admins = new ArrayList<>();
         for(User user : users){
-            Employee admin = new Employee();
-            admin.setEmployeeId(user.getUUID());
-            admin.setFirstName(user.getFirstName());
-            admin.setMiddleInitial(user.getMiddleInitial());
-            admin.setLastName(user.getLastName());
-            admin.setEmailId(user.getEmailId());
-            admin.setMobileNo(user.getMobileNo());
+            Employee employee = new Employee();
+            employee.setEmployeeId(user.getUUID());
+            employee.setFirstName(user.getFirstName());
+            employee.setMiddleInitial(user.getMiddleInitial());
+            employee.setLastName(user.getLastName());
+            employee.setEmailId(user.getEmailId());
+            employee.setMobileNo(user.getMobileNo());
+            employee.setStatus(user.getStatus());
             String uniqueId = user.getUniqueId();
 
             if(uniqueId.startsWith("DUMMY-")){
-                admin.setUniqueId("");
+                employee.setUniqueId("");
             } else {
-                admin.setUniqueId(uniqueId);
+                employee.setUniqueId(uniqueId);
             }
-            admins.add(admin);
+            admins.add(employee);
         }
 
         return admins;

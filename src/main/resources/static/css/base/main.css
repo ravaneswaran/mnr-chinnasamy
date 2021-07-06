@@ -1,8 +1,8 @@
-@import "admin.css";
 @import "login.css";
 @import "user-signup.css";
-@import "admin-info.css";
-@import "admin-listing.css";
+@import "employee.css";
+@import "employee-info.css";
+@import "employee-listing.css";
 @import "forgot-password.css";
 @import "change-password.css";
 @import "menu.css";

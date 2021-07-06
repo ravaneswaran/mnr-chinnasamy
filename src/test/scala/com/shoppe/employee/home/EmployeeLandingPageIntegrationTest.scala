@@ -1,4 +1,4 @@
-package com.shoppe.admin.home
+package com.shoppe.employee.home
 
 import io.cucumber.junit.{Cucumber, CucumberOptions}
 import io.cucumber.scala.{EN, ScalaDsl}
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
-  features = Array("classpath:features/admin/admin-landing-page.feature"),
+  features = Array("classpath:features/employee/employee-landing-page.feature"),
   glue = Array("com.shoppe.admin.home"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
