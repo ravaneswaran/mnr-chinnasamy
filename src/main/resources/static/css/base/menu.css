@@ -65,4 +65,5 @@
 .menu-text {
     margin-left: 10px;
     padding: 5px;
+    vertical-align: super;
 }
