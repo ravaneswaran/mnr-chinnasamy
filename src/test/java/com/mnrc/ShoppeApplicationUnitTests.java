@@ -1,0 +1,14 @@
+package com.mnrc;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ShoppeApplicationUnitTests {
+
+	@Test
+	void contextLoads() {
+
+	}
+
+}
