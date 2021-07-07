@@ -5,7 +5,6 @@
             <div class="employee-info-photo-frame">
                 <img class="employee-info-photo" src="/images/no-profile-pic.png" /><br/><br/>
                 <input type="file" name="upload-photo"/><br/><br/>
-                <a href="/employee/list">Employee Listing</a><br/>
                 <a th:href="${'/employee/block?uuid=' + employee.employeeId}" onclick="javascript:alert('Are you sure want to block this employee?');">Block this Employee</a><br/>
                 <a th:href="${'/employee/delete?uuid=' + employee.employeeId}" onclick="javascript:alert('Are you sure want to delete this employee?');">Delete this Employee</a>
             </div>
