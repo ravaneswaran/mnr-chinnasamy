@@ -1,5 +1,6 @@
 package com.mnrc.services.impl;
 
+import com.mnrc.enums.UserStatus;
 import com.mnrc.models.User;
 import com.mnrc.services.LoginService;
 import com.mnrc.services.UserService;
@@ -25,6 +26,7 @@ public class LoginServiceImpl implements LoginService {
             login.setEmailId(emailId);
             login.setPassword(password);
             login.setUserId(user.getUUID());
+            login.setStatus(user.getStatus());
             return login;
         } else {
             logger.error(String.format("UNABLE TO LOGIN : the emailId and password combination does not exist"));

@@ -1,5 +1,7 @@
 package com.mnrc.ui.forms;
 
+import com.mnrc.enums.UserStatus;
+
 import javax.validation.constraints.NotEmpty;
 
 public class Login extends BaseForm {
@@ -11,6 +13,8 @@ public class Login extends BaseForm {
     private String password;
 
     private String userId;
+
+    private String status;
 
     public String getEmailId() {
         return emailId;
@@ -34,5 +38,13 @@ public class Login extends BaseForm {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public boolean isUserBlocked() {
+        return UserStatus.BLOCKED.toString().equals(this.status);
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
