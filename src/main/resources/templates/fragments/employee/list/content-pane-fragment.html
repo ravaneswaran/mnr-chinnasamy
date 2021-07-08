@@ -8,15 +8,9 @@
                 </div>
                 <div class="employee-listing-preview-name-div">Ravaneswaran Chinnasamy</div>
                 <div class="employee-listing-preview-controls-div">
-                    <a th:href="${'/employee/info?uuid=' + employee.employeeId}">
-                        <img src="/images/user-info.png" class="employee-listing-preview-control-image"/>
-                    </a>
-                    <a th:href="${ 'BLOCKED'.equals(employee.status) ? '/employee/unblock?uuid=' + employee.employeeId  : '/employee/block?uuid=' + employee.employeeId}">
-                        <img src="/images/block-user.png" class="employee-listing-preview-control-image"/>
-                    </a>
-                    <a th:href="${'/employee/delete?uuid=' + employee.employeeId}">
-                        <img src="/images/delete-user.png" class="employee-listing-preview-control-image"/>
-                    </a>
+                    <a th:href="${'/employee/info?uuid=' + employee.employeeId}"><img src="/images/user-info.png" class="employee-listing-preview-control-image"/></a>
+                    <a th:href="${'VERIFIED'.equals(employee.status) ? '/employee/block?uuid=' + employee.employeeId  : '/employee/unblock?uuid=' + employee.employeeId}"><img th:src="${'VERIFIED'.equals(employee.status) ? '/images/block-user.png' : '/images/unblock-user.png'}" class="employee-listing-preview-control-image"/></a>
+                    <a th:href="${'/employee/delete?uuid=' + employee.employeeId}"><img src="/images/delete-user.png" class="employee-listing-preview-control-image"/></a>
                 </div>
             </div>
         </div>

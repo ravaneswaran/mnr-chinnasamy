@@ -77,14 +77,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getEmployee(String uuid) {
         User user = this.userService.getUser(uuid);
         if(null != user && UserType.ADMIN.toString().equals(user.getType())){
-            Employee admin = new Employee();
-            admin.setEmployeeId(user.getUUID());
-            admin.setFirstName(user.getFirstName());
-            admin.setMiddleInitial(user.getMiddleInitial());
-            admin.setEmailId(user.getEmailId());
-            admin.setUniqueId(user.getUniqueId());
-            admin.setMobileNo(user.getMobileNo());
-            return admin;
+            Employee employee = new Employee();
+            employee.setEmployeeId(user.getUUID());
+            employee.setFirstName(user.getFirstName());
+            employee.setMiddleInitial(user.getMiddleInitial());
+            employee.setEmailId(user.getEmailId());
+            employee.setUniqueId(user.getUniqueId());
+            employee.setMobileNo(user.getMobileNo());
+            employee.setStatus(user.getStatus());
+            return employee;
         } else {
             return null;
         }

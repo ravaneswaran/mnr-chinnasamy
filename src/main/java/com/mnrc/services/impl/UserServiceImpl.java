@@ -137,9 +137,10 @@ public class UserServiceImpl implements UserService {
         if(optionalUser.isPresent()){
             User user = optionalUser.get();
             //only user with VERIFIED status can be blocked... in other words only those who can login can be blocked
-            if(UserStatus.VERIFIED.toString().equals(user.getStatus())){
-                user.setStatus(UserStatus.BLOCKED.toString());
-            }
+            //if(UserStatus.VERIFIED.toString().equals(user.getStatus())){
+
+            //}
+            user.setStatus(UserStatus.BLOCKED.toString());
             this.userRepository.save(user);
         } else {
             logger.error(String.format("UNABLE TO BLOCK : User with id '%s' is not found in the repository", uuid));
@@ -152,9 +153,10 @@ public class UserServiceImpl implements UserService {
         if(optionalUser.isPresent()){
             User user = optionalUser.get();
             //only user with BLOCKED status can be unblocked...
-            if (UserStatus.BLOCKED.toString().equals(user.getStatus())) {
-                user.setStatus(UserStatus.VERIFIED.toString());
-            }
+            //if (UserStatus.BLOCKED.toString().equals(user.getStatus())) {
+
+            //}
+            user.setStatus(UserStatus.VERIFIED.toString());
             this.userRepository.save(user);
         } else {
             logger.error(String.format("UNABLE TO UNBLOCK : User with id '%s' is not found in the repository", uuid));
