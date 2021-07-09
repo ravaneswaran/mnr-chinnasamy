@@ -115,8 +115,8 @@ public class EmployeeController extends BaseController {
         return modelAndView;
     }
 
-    @GetMapping("/block")
-    public ModelAndView blockEmployee(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+    @GetMapping("/lock")
+    public ModelAndView lockEmployee(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
@@ -130,8 +130,8 @@ public class EmployeeController extends BaseController {
         return modelAndView;
     }
 
-    @GetMapping("/unblock")
-    public ModelAndView unblockEmployee(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+    @GetMapping("/unlock")
+    public ModelAndView unLockEmployee(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }

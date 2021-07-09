@@ -122,7 +122,7 @@ public class UserServiceTest {
         this.userService.blockUser(user.getUUID());
 
         User response = this.userRepository.findById(user.getUUID()).get();
-        Assert.assertEquals(UserStatus.BLOCKED.toString(), response.getStatus());
+        Assert.assertEquals(UserStatus.LOCKED.toString(), response.getStatus());
     }
 
     @Test

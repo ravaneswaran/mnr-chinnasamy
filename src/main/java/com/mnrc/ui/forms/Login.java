@@ -47,7 +47,7 @@ public class Login extends BaseForm {
     }
 
     public boolean isUserBlocked() {
-        return UserStatus.BLOCKED.toString().equals(this.status);
+        return UserStatus.LOCKED.toString().equals(this.status);
     }
 
     public void setStatus(String status) {

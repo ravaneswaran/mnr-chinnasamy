@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
             //if(UserStatus.VERIFIED.toString().equals(user.getStatus())){
 
             //}
-            user.setStatus(UserStatus.BLOCKED.toString());
+            user.setStatus(UserStatus.LOCKED.toString());
             this.userRepository.save(user);
         } else {
             logger.error(String.format("UNABLE TO BLOCK : User with id '%s' is not found in the repository", uuid));
