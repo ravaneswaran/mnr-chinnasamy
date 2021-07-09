@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/resource-not-found.feature"),
-  glue = Array("com.shoppe"))
+  glue = Array("com.mnrc"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class ResourceNotFoundIntegrationTest extends ScalaDsl with EN {

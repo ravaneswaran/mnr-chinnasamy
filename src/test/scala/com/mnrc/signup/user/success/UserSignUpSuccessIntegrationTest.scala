@@ -14,7 +14,7 @@ import scala.util.Random
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/signup/user/user-signup-success.feature"),
-  glue = Array("com.shoppe.signup.user.success"))
+  glue = Array("com.mnrc.signup.user.success"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class UserSignUpSuccessIntegrationTest extends BaseIntegrationTest{

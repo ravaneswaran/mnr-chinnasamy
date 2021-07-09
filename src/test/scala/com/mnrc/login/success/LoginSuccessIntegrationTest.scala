@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/login/login-success.feature"),
-  glue = Array("com.shoppe.login.success"))
+  glue = Array("com.mnrc.login.success"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class LoginSuccessIntegrationTest extends ScalaDsl with EN {

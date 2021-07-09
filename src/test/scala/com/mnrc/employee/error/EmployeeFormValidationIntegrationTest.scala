@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/employee/employee-form-validation.feature"),
-  glue = Array("com.shoppe.admin.error"))
+  glue = Array("com.mnrc.admin.error"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class EmployeeFormValidationIntegrationTest extends ScalaDsl with EN {

@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/forgot-password/forgot-password-landing-page.feature"),
-  glue = Array("com.shoppe.forgotpassword.home"))
+  glue = Array("com.mnrc.forgotpassword.home"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class ForgotPasswordLandingPageIntegrationTest extends ScalaDsl with EN {

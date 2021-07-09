@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/change-password/change-password-validation.feature"),
-  glue = Array("com.shoppe.changepassword.error"))
+  glue = Array("com.mnrc.changepassword.error"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class ChangePasswordValidationIntegrationTest extends ScalaDsl with EN {

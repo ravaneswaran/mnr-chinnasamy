@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/signup/user/user-signup-from-validation.feature"),
-  glue = Array("com.shoppe.signup.user.error"))
+  glue = Array("com.mnrc.signup.user.error"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class UserSignUpFormValidationIntegrationTest extends BaseIntegrationTest{

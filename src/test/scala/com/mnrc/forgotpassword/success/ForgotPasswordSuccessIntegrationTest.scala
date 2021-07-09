@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/forgot-password/forgot-password-success.feature"),
-  glue = Array("com.shoppe.forgotpassword.success"))
+  glue = Array("com.mnrc.forgotpassword.success"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class ForgotPasswordSuccessIntegrationTest extends ScalaDsl with EN {

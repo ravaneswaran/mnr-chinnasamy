@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/login/login-landing-page.feature"),
-  glue = Array("com.shoppe.login.home"))
+  glue = Array("com.mnrc.login.home"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class LoginLandingPageIntegrationTest extends ScalaDsl with EN {
