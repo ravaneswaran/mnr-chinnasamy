@@ -23,6 +23,10 @@ public class LoginServiceImpl implements LoginService {
         User user = this.userService.getUser(emailId, password);
         if(null != user){
             Login login = new Login();
+
+            login.setFirstName(user.getFirstName());
+            login.setMiddleInitial(user.getMiddleInitial());
+            login.setLastName(user.getLastName());
             login.setEmailId(emailId);
             login.setPassword(password);
             login.setUserId(user.getUUID());

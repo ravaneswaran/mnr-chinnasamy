@@ -6,7 +6,7 @@
                 <div class="employee-listing-preview-image-div">
                     <image src="/images/no-profile-pic.png" class="employee-listing-preview-image"/>
                 </div>
-                <div class="employee-listing-preview-name-div">Ravaneswaran Chinnasamy</div>
+                <div class="employee-listing-preview-name-div" th:text="${employee.firstName + ' ' + employee.middleInitial + ' ' + employee.lastName}">User in List</div>
                 <div class="employee-listing-preview-controls-div">
                     <a th:href="${'/employee/info?uuid=' + employee.employeeId}"><img src="/images/user-info.png" class="employee-listing-preview-control-image"/></a>
                     <a th:href="${'VERIFIED'.equals(employee.status) ? '/employee/block?uuid=' + employee.employeeId  : '/employee/unblock?uuid=' + employee.employeeId}"><img th:src="${'VERIFIED'.equals(employee.status) ? '/images/block-user.png' : '/images/unblock-user.png'}" class="employee-listing-preview-control-image"/></a>
