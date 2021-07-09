@@ -63,7 +63,7 @@ public class LoginController extends BaseController {
                     ModelAndView modelAndView = new ModelAndView();
                     modelAndView.setViewName("/login");
                     modelAndView.addObject("login", login);
-                    modelAndView.addObject("errorMessage", "Sorry you are blocked to login...");
+                    modelAndView.addObject("errorMessage", "Sorry you have been locked...");
                     return modelAndView;
                 } else {
                     HttpSession httpSession = httpServletRequest.getSession();

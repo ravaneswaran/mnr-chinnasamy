@@ -6,13 +6,18 @@
                 <img class="employee-info-photo" src="/images/no-profile-pic.png" /><br/><br/>
                 <input type="file" name="upload-photo"/>
                 <br/><br/>
-                <a
-                        th:href="${'VERIFIED'.equals(employee.status) ? '/employee/lock?uuid=' + employee.employeeId : '/employee/unlock?uuid=' + employee.employeeId}"
-                        onclick="javascript:alert('Are you sure want to block this employee?');"
-                        th:text="${'VERIFIED'.equals(employee.status) ? 'Block this Employee' : 'UnBlock this Employee'}">Block this Employee
-                </a>
-                <br/>
-                <a th:href="${'/employee/delete?uuid=' + employee.employeeId}" onclick="javascript:alert('Are you sure want to delete this employee?');">Delete this Employee</a>
+                <div th:if="${#session.getAttribute('LOGGED_IN_USER').userId.equals(employee.employeeId)}">
+                    <a href="/employee/list">List Employees</a>
+                </div>
+                <div th:unless="${#session.getAttribute('LOGGED_IN_USER').userId.equals(employee.employeeId)}">
+                    <a
+                            th:href="${'VERIFIED'.equals(employee.status) ? '/employee/lock?uuid=' + employee.employeeId : '/employee/unlock?uuid=' + employee.employeeId}"
+                            onclick="javascript:alert('Are you sure want to block this employee?');"
+                            th:text="${'VERIFIED'.equals(employee.status) ? 'Block this Employee' : 'UnBlock this Employee'}">Block this Employee
+                    </a>
+                    <br/>
+                    <a th:href="${'/employee/delete?uuid=' + employee.employeeId}" onclick="javascript:alert('Are you sure want to delete this employee?');">Delete this Employee</a>
+                </div>
             </div>
         </div>
         <div class="employee-info-right-pane">
