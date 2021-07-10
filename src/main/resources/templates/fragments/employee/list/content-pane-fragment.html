@@ -1,15 +1,25 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <div th:fragment="content-pane">
         <div class="top-space-100-pixel section">Employee Listing</div>
-        <div class="admin-listing-pane">
-            <table>
-                <tr th:each="admin: ${admins}">
-                    <td class="admin-listing-name-td" th:text="${admin.firstName + ' ' + admin.middleInitial + ' ' +admin.lastName}"></td>
-                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/admin/info?uuid=' + admin.adminId}">Info</a></td>
-                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/admin/block?uuid=' + admin.adminId}">Block</a></td>
-                    <td class="admin-listing-anchor-td"><a href="#" th:href="${'/admin/delete?uuid=' + admin.adminId}">Delete</a></td>
-                </tr>
-            </table>
+        <div class="employee-listing-pane">
+            <div class="employee-listing-preview-div" th:each="employee: ${employees}">
+                <div class="employee-listing-preview-image-div">
+                    <image src="/images/no-profile-pic.png" class="employee-listing-preview-image"/>
+                </div>
+                <div class="employee-listing-preview-name-div" th:text="${employee.firstName + ' ' + employee.middleInitial + ' ' + employee.lastName}">User in List</div>
+                <div th:if="${#session.getAttribute('LOGGED_IN_USER').userId.equals(employee.employeeId)}">
+                    <div class="employee-listing-preview-controls-div">
+                        <a th:href="${'/employee/info?uuid=' + employee.employeeId}"><img src="/images/user-info.png" class="employee-listing-preview-control-image"/></a>
+                    </div>
+                </div>
+                <div th:unless="${#session.getAttribute('LOGGED_IN_USER').userId.equals(employee.employeeId)}">
+                    <div class="employee-listing-preview-controls-div">
+                        <a th:href="${'/employee/info?uuid=' + employee.employeeId}"><img src="/images/user-info.png" class="employee-listing-preview-control-image"/></a>
+                        <a th:href="${'VERIFIED'.equals(employee.status) ? '/employee/lock?uuid=' + employee.employeeId  : '/employee/unlock?uuid=' + employee.employeeId}"><img th:src="${'VERIFIED'.equals(employee.status) ? '/images/lock-user.png' : '/images/unlock-user.png'}" class="employee-listing-preview-control-image"/></a>
+                        <a th:href="${'/employee/delete?uuid=' + employee.employeeId}"><img src="/images/delete-user.png" class="employee-listing-preview-control-image"/></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </html>

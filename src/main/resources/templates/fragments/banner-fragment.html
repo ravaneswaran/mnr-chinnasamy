@@ -7,7 +7,7 @@
                 <div th:replace="fragments/menu-fragment :: menu"></div>
             </div>
             <div class="logged-in-as">
-                Logged in as : <b>Ravaneswaran Chinnasamy</b>
+                Logged in as : <b th:text="${#session.getAttribute('LOGGED_IN_USER').firstName}">Logged In User</b>
             </div>
         </th:block>
     </div>

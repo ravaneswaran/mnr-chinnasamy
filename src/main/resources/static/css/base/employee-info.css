@@ -1,0 +1,62 @@
+.employee-info-pane {
+    height: 895px;
+    width: 1014px;
+    box-shadow: 1px -1px 15px 5px #505050;
+    margin-left: 247px;
+    margin-top:100px;
+    border-radius: 5px;
+}
+
+.employee-info-left-pane {
+    border-right: 0px solid #505050;
+    width: 299px;
+    margin-left: 190px;
+    margin-top: 100px;
+    height: 1000px;
+}
+
+.employee-info-right-pane {
+    border-left: 0px solid #505050;
+    float: right;
+    width: 765px;
+    margin-top: -1002px;
+    margin-right: 193px;
+    height: 1000px;
+}
+
+.employee-info-photo-frame{
+    border-radius: 5px;
+    width: 290px;
+    height: 320px;
+    box-shadow: 1px -1px 15px 5px #505050;
+}
+
+.employee-info-photo {
+    border: 2px solid #505050;
+    width: 265px;
+    margin-top: 11px;
+    margin-left: 11px;
+    height: 293px;
+    border-radius: 5px;
+}
+
+.employee-info-td {
+    border: 1px solid #505050;
+    height: 50px;
+    width: 500px;
+    border-radius: 5px;
+    text-indent: 15px;
+    font-size: 18px;
+    color: #505050;
+}
+
+.employee-info-header{
+    color: #505050;
+    height: 50px;
+    width: 500px;
+    border-radius: 5px;
+    text-indent: 15px;
+    border: 1px solid #505050;
+    text-shadow: 1px 1px 3px #000;
+}
+
