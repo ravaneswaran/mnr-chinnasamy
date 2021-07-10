@@ -12,7 +12,7 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="user_uuid" type="varchar(200)" />
-            <column name="profile_photo" type="blob" />
+            <column name="profile_picture" type="blob" />
             <column name="created_date" type="datetime" />
             <column name="modified_date" type="datetime" />
         </createTable>

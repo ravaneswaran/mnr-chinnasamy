@@ -44,7 +44,7 @@ public class UserProfileRepositoryTest extends AbstractRepositoryTest{
 
         UserProfile userProfile = new UserProfile();
         userProfile.setUUID(uuid);
-        userProfile.setProfilePhoto(content);
+        userProfile.setProfilePicture(content);
         userProfile.setCreatedDate(newDate);
         userProfile.setModifiedDate(newDate);
         userProfile.setUser(user);

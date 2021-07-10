@@ -12,8 +12,8 @@ public class UserProfile {
     private String UUID;
 
     @Lob
-    @Column(name = "profile_photo")
-    private byte[] profilePhoto;
+    @Column(name = "profile_picture")
+    private byte[] profilePicture;
 
     @Column(name = "created_date")
     private Date createdDate;
@@ -32,12 +32,12 @@ public class UserProfile {
         this.UUID = UUID;
     }
 
-    public byte[] getProfilePhoto() {
-        return profilePhoto;
+    public byte[] getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setProfilePhoto(byte[] profilePhoto) {
-        this.profilePhoto = profilePhoto;
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     public Date getCreatedDate() {
