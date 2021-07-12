@@ -64,7 +64,7 @@ public class UserProfileServiceTest {
         inputStream.read(content);
         inputStream.close();
 
-        UserProfile userProfile = this.userProfileService.addProfilePicture(uuid, content);
+        UserProfile userProfile = this.userProfileService.saveProfilePicture(uuid, content);
 
         Assert.assertNotNull(userProfile);
     }

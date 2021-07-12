@@ -55,4 +55,40 @@ public class UserProfileRepositoryTest extends AbstractRepositoryTest{
 
         Assert.assertNotNull(response);
     }
+
+    @Test
+    public void testFindByUserUUID_When_UserProfile_Does_Not_Exists() throws IOException {
+        User user = this.getTestUser();
+        this.userRepository.save(user);
+
+        UserProfile response = this.userProfileRepository.findByUserUUID(user.getUUID());
+
+        Assert.assertNull(response);
+    }
+
+    @Test
+    public void testFindByUserUUID_When_UserProfile_Does_Exists() throws IOException {
+        User user = this.getTestUser();
+        this.userRepository.save(user);
+
+        String uuid = UUID.randomUUID().toString();
+        Date newDate = new Date();
+        InputStream inputStream = this.getClass().getResourceAsStream("/images/user-profile-pic.png");
+        int availableBytes = inputStream.available();
+        byte[] content = new byte[availableBytes];
+        inputStream.read(content);
+        inputStream.close();
+
+        UserProfile userProfile = new UserProfile();
+        userProfile.setUUID(uuid);
+        userProfile.setProfilePicture(content);
+        userProfile.setCreatedDate(newDate);
+        userProfile.setModifiedDate(newDate);
+        userProfile.setUser(user);
+        this.userProfileRepository.save(userProfile);
+
+        UserProfile response = this.userProfileRepository.findByUserUUID(user.getUUID());
+
+        Assert.assertNotNull(response);
+    }
 }

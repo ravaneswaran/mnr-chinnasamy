@@ -1,12 +1,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <div th:fragment="content-pane">
         <div class="top-space-100-pixel section">Employee Information</div>
+        <div class="employee-info-error-message" th:text="${errorMessage}"></div>
         <div class="employee-info-left-pane">
             <div class="employee-info-photo-frame">
-                <form method="POST" action="/user/profile/picture-upload">
-                    <img class="employee-info-photo" src="/images/no-profile-pic.png" id="employee-info-profile-picture"/><br/><br/>
-                    <input class="employee-info-profile-picture-browse" type="file" name="upload-photo" id="employee-info-profile-picture-browse"/>
-                    <input class="employee-info-profile-picture-submit" type="submit" name="save-profile-picture" id="employee-info-profile-picture-submit" value="Upload Profile Pic"/>
+                <form method="POST" action="/user/profile/picture-upload" enctype="multipart/form-data">
+                    <!--<img class="employee-info-photo" src="/images/no-profile-pic.png" id="employee-info-profile-picture"/>-->
+                    <img class="employee-info-photo" src="/images/no-profile-pic.png" id="employee-info-profile-picture"/>
+                    <br/><br/>
+                    <input class="employee-info-profile-picture-browse" type="file" name="browseProfilePicture" id="employee-info-profile-picture-browse" accept="image/jpeg, image/png, image/jpg"/>
+                    <input class="employee-info-profile-picture-submit" type="submit" name="saveProfilePicture" id="employee-info-profile-picture-submit" value="Upload Profile Pic"/>
+                    <input type="hidden" name="userId" th:value="${employee.employeeId}"/>
                 </form>
                 <br/><br/>
                 <div th:if="${#session.getAttribute('LOGGED_IN_USER').userId.equals(employee.employeeId)}">
