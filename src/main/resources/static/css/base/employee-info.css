@@ -60,3 +60,20 @@
     text-shadow: 1px 1px 3px #000;
 }
 
+.employee-info-profile-picture-browse{
+    border: 4px solid #505050;
+    width: 97px;
+    border-radius: 5px;
+    background-color: #505050;
+}
+
+.employee-info-profile-picture-submit{
+    border: 4px solid #0ff729;
+    border-radius: 5px;
+    height: 43px;
+    background: #505050;
+    color: #FFF;
+    font-size: 18px;
+}
+
+

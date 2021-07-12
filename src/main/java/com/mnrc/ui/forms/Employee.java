@@ -35,6 +35,8 @@ public class Employee extends BaseForm{
     private String country;
     private String zipCode;
 
+    private String profilePic;
+
     public String getFirstName() {
         return firstName;
     }
@@ -153,5 +155,13 @@ public class Employee extends BaseForm{
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
     }
 }

@@ -3,8 +3,11 @@
         <div class="top-space-100-pixel section">Employee Information</div>
         <div class="employee-info-left-pane">
             <div class="employee-info-photo-frame">
-                <img class="employee-info-photo" src="/images/no-profile-pic.png" /><br/><br/>
-                <input type="file" name="upload-photo"/>
+                <form method="POST" action="/user/profile/picture-upload">
+                    <img class="employee-info-photo" src="/images/no-profile-pic.png" id="employee-info-profile-picture"/><br/><br/>
+                    <input class="employee-info-profile-picture-browse" type="file" name="upload-photo" id="employee-info-profile-picture-browse"/>
+                    <input class="employee-info-profile-picture-submit" type="submit" name="save-profile-picture" id="employee-info-profile-picture-submit" value="Upload Profile Pic"/>
+                </form>
                 <br/><br/>
                 <div th:if="${#session.getAttribute('LOGGED_IN_USER').userId.equals(employee.employeeId)}">
                     <a href="/employee/list">List Employees</a>
