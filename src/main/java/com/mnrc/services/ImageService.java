@@ -9,4 +9,6 @@ public interface ImageService {
 
     public byte[] bufferedImageToByteArray(BufferedImage bufferedImage) throws IOException;
 
+    public void createTemporaryProfilePicture(String userId, byte[] imageContent) throws IOException;
+
 }

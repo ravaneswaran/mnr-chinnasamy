@@ -96,6 +96,7 @@ public class UserProfileController extends BaseController {
             UserProfile userProfile = this.userProfileService.saveProfilePicture(userId, content);
 
             if(null != userProfile){
+                this.imageService.createTemporaryProfilePicture(userId, content);
                 ModelAndView modelAndView = new ModelAndView(String.format("redirect:/employee/info?uuid=%s", userId));
                 return modelAndView;
             } else {

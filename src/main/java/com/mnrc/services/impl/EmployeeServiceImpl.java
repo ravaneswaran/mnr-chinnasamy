@@ -85,6 +85,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setUniqueId(user.getUniqueId());
             employee.setMobileNo(user.getMobileNo());
             employee.setStatus(user.getStatus());
+            employee.setProfilePic(String.format("/temp/%s-profile-pic.png", user.getUUID()));
             return employee;
         } else {
             return null;

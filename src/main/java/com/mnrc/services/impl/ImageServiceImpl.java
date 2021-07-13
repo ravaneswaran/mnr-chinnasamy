@@ -7,8 +7,11 @@ import org.springframework.stereotype.Component;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 @Component
 public class ImageServiceImpl implements ImageService {
@@ -35,9 +38,22 @@ public class ImageServiceImpl implements ImageService {
         return outputImage;
     }
 
+    @Override
     public byte[] bufferedImageToByteArray(BufferedImage bufferedImage) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
+    }
+
+    @Override
+    public void createTemporaryProfilePicture(String userId, byte[] imageContent) throws IOException {
+        String tempDirectory = "temp/";
+        Path tempDirectoryPath = Paths.get(tempDirectory);
+        if(!Files.exists(tempDirectoryPath)){Files.createDirectories(tempDirectoryPath);
+            Files.createDirectories(tempDirectoryPath);
+        }
+        InputStream inputStream = new ByteArrayInputStream(imageContent);
+        Path filePath = tempDirectoryPath.resolve(String.format("%s-profile-pic.png", userId));
+        Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
     }
 }
