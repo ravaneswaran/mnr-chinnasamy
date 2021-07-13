@@ -60,6 +60,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setEmailId(user.getEmailId());
             employee.setMobileNo(user.getMobileNo());
             employee.setStatus(user.getStatus());
+            employee.setProfilePic(String.format("/employee/profile/%s-profile-pic.png", user.getUUID()));
             String uniqueId = user.getUniqueId();
 
             if(uniqueId.startsWith("DUMMY-")){
@@ -85,7 +86,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setUniqueId(user.getUniqueId());
             employee.setMobileNo(user.getMobileNo());
             employee.setStatus(user.getStatus());
-            employee.setProfilePic(String.format("/temp/%s-profile-pic.png", user.getUUID()));
+            employee.setProfilePic(String.format("/employee/profile/%s-profile-pic.png", user.getUUID()));
             return employee;
         } else {
             return null;

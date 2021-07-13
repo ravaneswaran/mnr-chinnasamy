@@ -2,21 +2,22 @@ package com.mnrc.configurations;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 @Configuration
+@EnableWebMvc
+@ComponentScan(basePackages = {"com.mnrc"})
 public class MNRChinnasamyConfiguration implements WebMvcConfigurer {
 
     @Bean
@@ -71,8 +72,10 @@ public class MNRChinnasamyConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        Path tempDirectoryPath = Paths.get("./temp/");
-        String tempDirectoryAbsPath = tempDirectoryPath.toFile().getAbsolutePath();
-        registry.addResourceHandler("/temp/**").addResourceLocations("file:/"+tempDirectoryAbsPath+"/");
+        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
+        registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images/");
+
+        registry.addResourceHandler("/employee/profile/**").addResourceLocations("file:/tmp/");
     }
 }

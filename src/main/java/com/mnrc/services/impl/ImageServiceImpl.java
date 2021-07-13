@@ -24,15 +24,15 @@ public class ImageServiceImpl implements ImageService {
         }
         BufferedImage outputImage = new BufferedImage(265, 293, originalImage.getType());
 
-        Graphics2D g = outputImage.createGraphics();
-        g.drawImage(originalImage, 0, 0, 265, 293, null);
-        g.dispose();
-        g.setComposite(AlphaComposite.Src);
-        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+        Graphics2D graphics2D = outputImage.createGraphics();
+        graphics2D.drawImage(originalImage, 0, 0, 265, 293, null);
+        graphics2D.dispose();
+        graphics2D.setComposite(AlphaComposite.Src);
+        graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
                 RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g.setRenderingHint(RenderingHints.KEY_RENDERING,
+        graphics2D.setRenderingHint(RenderingHints.KEY_RENDERING,
                 RenderingHints.VALUE_RENDER_QUALITY);
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         return outputImage;
@@ -47,11 +47,8 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public void createTemporaryProfilePicture(String userId, byte[] imageContent) throws IOException {
-        String tempDirectory = "temp/";
+        String tempDirectory = System.getProperty("java.io.tmpdir");
         Path tempDirectoryPath = Paths.get(tempDirectory);
-        if(!Files.exists(tempDirectoryPath)){Files.createDirectories(tempDirectoryPath);
-            Files.createDirectories(tempDirectoryPath);
-        }
         InputStream inputStream = new ByteArrayInputStream(imageContent);
         Path filePath = tempDirectoryPath.resolve(String.format("%s-profile-pic.png", userId));
         Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
