@@ -31,6 +31,8 @@ public class LoginServiceImpl implements LoginService {
             login.setPassword(password);
             login.setUserId(user.getUUID());
             login.setStatus(user.getStatus());
+            login.setType(user.getType());
+
             return login;
         } else {
             logger.error(String.format("UNABLE TO LOGIN : the emailId and password combination does not exist"));

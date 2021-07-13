@@ -22,6 +22,8 @@ public class Login extends BaseForm {
 
     private String status;
 
+    private String type;
+
     public String getEmailId() {
         return emailId;
     }
@@ -76,5 +78,13 @@ public class Login extends BaseForm {
 
     public void setMiddleInitial(String middleInitial) {
         this.middleInitial = middleInitial;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
