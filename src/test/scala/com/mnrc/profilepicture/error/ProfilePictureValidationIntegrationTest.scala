@@ -4,7 +4,6 @@ import io.cucumber.junit.{Cucumber, CucumberOptions}
 import io.cucumber.scala.{EN, ScalaDsl}
 import io.cucumber.spring.CucumberContextConfiguration
 import org.junit.runner.RunWith
-import org.openqa.selenium.chrome.{ChromeDriver, ChromeOptions}
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.{By, WebDriver}
 import org.springframework.boot.test.context.SpringBootTest
@@ -27,12 +26,6 @@ class ProfilePictureValidationIntegrationTest extends ScalaDsl with EN {
   Given("""the user has logged into the system""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-
-    /*System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver")
-    val options = new ChromeOptions
-    options.setExperimentalOption("useAutomationExtension", false)
-    options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"))
-    this.webDriver = new ChromeDriver(options)*/
 
     this.webDriver.get("http://localhost:8080");
     this.webDriver.findElement(By.id("emailId")).sendKeys("ravaneswaran@gmail.com");
