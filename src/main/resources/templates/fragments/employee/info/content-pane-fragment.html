@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <div th:fragment="content-pane">
         <div class="top-space-100-pixel section">Employee Information</div>
-        <div class="employee-info-error-message" th:text="${errorMessage}"></div>
+        <div id="errorMessage" class="employee-info-error-message" th:text="${errorMessage}"></div>
         <div class="employee-info-left-pane">
             <div class="employee-info-photo-frame">
                 <form method="POST" action="/user/profile/picture-upload" enctype="multipart/form-data">
