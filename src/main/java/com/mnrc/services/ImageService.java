@@ -1,6 +1,7 @@
 package com.mnrc.services;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 public interface ImageService {
@@ -10,5 +11,7 @@ public interface ImageService {
     public byte[] bufferedImageToByteArray(BufferedImage bufferedImage) throws IOException;
 
     public void createTemporaryProfilePicture(String userId, byte[] imageContent) throws IOException;
+
+    public File createTemporaryImageFile() throws IOException;
 
 }

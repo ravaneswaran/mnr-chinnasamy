@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
@@ -66,6 +67,12 @@ public class ImageServiceTest {
 
         Assert.assertNotNull(result);
         Assert.assertTrue(content.length > result.length);
+    }
+
+    @Test
+    public void testCreateTemporaryImageFile() throws IOException {
+        File imageFile = this.imageService.createTemporaryImageFile();
+        Assert.assertNotNull(imageFile);
     }
 
 }
