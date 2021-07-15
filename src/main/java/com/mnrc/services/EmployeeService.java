@@ -14,9 +14,9 @@ public interface EmployeeService {
 
     public Employee getEmployee(String uuid);
 
-    public void blockEmployee(String uuid);
+    public void lockEmployee(String uuid);
 
-    public void unblockEmployee(String uuid);
+    public void unLockEmployee(String uuid);
 
     public void deleteEmployee(String uuid);
 

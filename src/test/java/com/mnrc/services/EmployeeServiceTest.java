@@ -93,7 +93,7 @@ public class EmployeeServiceTest {
         String mobileNo = mobileNoString;
         Employee admin = this.employeeService.addEmployee(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
 
-        this.employeeService.blockEmployee(admin.getEmployeeId());
+        this.employeeService.lockEmployee(admin.getEmployeeId());
         Employee response = this.employeeService.getEmployee(admin.getEmployeeId());
 
         Assert.assertEquals(admin.getEmployeeId(), response.getEmployeeId());
@@ -112,9 +112,9 @@ public class EmployeeServiceTest {
         String uniqueId = randomNumberString;
         String mobileNo = mobileNoString;
         Employee admin = this.employeeService.addEmployee(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
-        this.employeeService.blockEmployee(admin.getEmployeeId());
+        this.employeeService.lockEmployee(admin.getEmployeeId());
 
-        this.employeeService.unblockEmployee(admin.getEmployeeId());
+        this.employeeService.unLockEmployee(admin.getEmployeeId());
         Employee response = this.employeeService.getEmployee(admin.getEmployeeId());
 
         Assert.assertEquals(admin.getEmployeeId(), response.getEmployeeId());

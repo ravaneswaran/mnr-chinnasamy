@@ -9,6 +9,7 @@ import com.mnrc.ui.forms.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +61,14 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setEmailId(user.getEmailId());
             employee.setMobileNo(user.getMobileNo());
             employee.setStatus(user.getStatus());
-            employee.setProfilePic(String.format("/employee/profile/%s-profile-pic.png", user.getUUID()));
+
+            File profilePic = new File(String.format("/tmp/%s-profile-pic.png", user.getUUID()));
+            if(profilePic.exists()){
+                employee.setProfilePic(String.format("/employee/profile/%s-profile-pic.png", user.getUUID()));
+            } else {
+                employee.setProfilePic("/images/no-profile-pic.png");
+            }
+
             String uniqueId = user.getUniqueId();
 
             if(uniqueId.startsWith("DUMMY-")){
@@ -83,10 +91,24 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setFirstName(user.getFirstName());
             employee.setMiddleInitial(user.getMiddleInitial());
             employee.setEmailId(user.getEmailId());
-            employee.setUniqueId(user.getUniqueId());
             employee.setMobileNo(user.getMobileNo());
             employee.setStatus(user.getStatus());
-            employee.setProfilePic(String.format("/employee/profile/%s-profile-pic.png", user.getUUID()));
+
+            String uniqueId = user.getUniqueId();
+
+            if(uniqueId.startsWith("DUMMY-")){
+                employee.setUniqueId("");
+            } else {
+                employee.setUniqueId(uniqueId);
+            }
+
+            File profilePic = new File(String.format("/tmp/%s-profile-pic.png", user.getUUID()));
+            if(profilePic.exists()){
+                employee.setProfilePic(String.format("/employee/profile/%s-profile-pic.png", user.getUUID()));
+            } else {
+                employee.setProfilePic("/images/no-profile-pic.png");
+            }
+
             return employee;
         } else {
             return null;
@@ -94,13 +116,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void blockEmployee(String uuid) {
-        this.userService.blockUser(uuid);
+    public void lockEmployee(String uuid) {
+        this.userService.lockUser(uuid);
     }
 
     @Override
-    public void unblockEmployee(String uuid) {
-        this.userService.unblockUser(uuid);
+    public void unLockEmployee(String uuid) {
+        this.userService.unLockUser(uuid);
     }
 
     @Override

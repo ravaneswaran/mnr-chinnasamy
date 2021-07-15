@@ -132,7 +132,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void blockUser(String uuid) {
+    public void lockUser(String uuid) {
         Optional<User> optionalUser = this.userRepository.findById(uuid);
         if(optionalUser.isPresent()){
             User user = optionalUser.get();
@@ -148,7 +148,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void unblockUser(String uuid) {
+    public void unLockUser(String uuid) {
         Optional<User> optionalUser = this.userRepository.findById(uuid);
         if(optionalUser.isPresent()){
             User user = optionalUser.get();

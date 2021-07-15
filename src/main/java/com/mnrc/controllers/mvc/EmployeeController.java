@@ -122,7 +122,7 @@ public class EmployeeController extends BaseController {
         }
 
         ModelAndView modelAndView = new ModelAndView();
-        this.employeeService.blockEmployee(uuid);
+        this.employeeService.lockEmployee(uuid);
         List<Employee> employees =  this.employeeService.listEmployees();
         modelAndView.setViewName("employee-list");
         modelAndView.addObject("employees", employees);
@@ -137,7 +137,7 @@ public class EmployeeController extends BaseController {
         }
 
         ModelAndView modelAndView = new ModelAndView();
-        this.employeeService.unblockEmployee(uuid);
+        this.employeeService.unLockEmployee(uuid);
         List<Employee> employees =  this.employeeService.listEmployees();
         modelAndView.setViewName("employee-list");
         modelAndView.addObject("employees", employees);
