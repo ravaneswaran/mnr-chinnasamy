@@ -62,7 +62,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public void deleteUserRole(String userRoleId) {
-
+        this.userRoleRepository.deleteById(userRoleId);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public void getUserRole(String userRoleId) {
-
+    public UserRole getUserRole(String userRoleId) {
+        return this.userRoleRepository.findById(userRoleId).get();
     }
 }

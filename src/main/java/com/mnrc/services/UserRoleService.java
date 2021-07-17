@@ -1,5 +1,6 @@
 package com.mnrc.services;
 
+import com.mnrc.models.UserRole;
 import com.mnrc.ui.forms.UserRoleForm;
 
 public interface UserRoleService {
@@ -10,6 +11,6 @@ public interface UserRoleService {
 
     public void editUserRole(String userRoleId, String name, String userName);
 
-    public void getUserRole(String userRoleId);
+    public UserRole getUserRole(String userRoleId);
 
 }

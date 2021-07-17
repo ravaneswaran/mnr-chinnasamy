@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserRoleServiceTest {
@@ -90,5 +92,30 @@ public class UserRoleServiceTest {
         } catch (Exception e) {
             Assert.assertEquals("User name cannot be a empty string...",  e.getMessage());
         }
+    }
+
+    @Test
+    public void testDeleteUserRole() throws Exception {
+        String userRoleName = RandomString.make();
+        String userName = "Ravaneswaran Chinnasamy";
+        UserRoleForm userRoleForm = this.userRoleService.addUserRole(userRoleName, userName);
+
+        this.userRoleService.deleteUserRole(userRoleForm.getUserRoleId());
+        Optional<UserRole> response = this.userRoleRepository.findById(userRoleForm.getUserRoleId());
+
+        Assert.assertFalse(response.isPresent());
+
+    }
+
+    @Test
+    public void testGetUserRole() throws Exception {
+        String userRoleName = RandomString.make();
+        String userName = "Ravaneswaran Chinnasamy";
+        UserRoleForm userRoleForm = this.userRoleService.addUserRole(userRoleName, userName);
+
+        UserRole response = this.userRoleService.getUserRole(userRoleForm.getUserRoleId());
+
+        Assert.assertNotNull(response);
+
     }
 }
