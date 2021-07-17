@@ -5,6 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
+    <include file="1.0.0/user-role-changelog-1.0.0.xml" relativeToChangelogFile="true" />
     <include file="1.0.0/user-changelog-1.0.0.xml" relativeToChangelogFile="true" />
     <include file="1.0.0/user-profile-changelog-1.0.0.xml" relativeToChangelogFile="true" />
     <include file="1.0.0/user-almighty-changelog-1.0.0.xml" relativeToChangelogFile="true" />
