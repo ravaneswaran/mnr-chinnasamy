@@ -61,7 +61,15 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public void deleteUserRole(String userRoleId) {
+    public void deleteUserRole(String userRoleId) throws Exception {
+        if(null == userRoleId){
+            throw new Exception("User role id cannot be null...");
+        }
+
+        if("".equals(userRoleId)){
+            throw new Exception("User role id cannot be a empty string...");
+        }
+
         this.userRoleRepository.deleteById(userRoleId);
     }
 
@@ -71,7 +79,16 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public UserRole getUserRole(String userRoleId) {
+    public UserRole getUserRole(String userRoleId) throws Exception {
+
+        if(null == userRoleId){
+            throw new Exception("User role id cannot be null...");
+        }
+
+        if("".equals(userRoleId)){
+            throw new Exception("User role id cannot be a empty string...");
+        }
+
         return this.userRoleRepository.findById(userRoleId).get();
     }
 }

@@ -7,10 +7,10 @@ public interface UserRoleService {
 
     public UserRoleForm addUserRole(String name, String userName) throws Exception;
 
-    public void deleteUserRole(String userRoleId);
+    public void deleteUserRole(String userRoleId) throws Exception;
 
     public void editUserRole(String userRoleId, String name, String userName);
 
-    public UserRole getUserRole(String userRoleId);
+    public UserRole getUserRole(String userRoleId) throws Exception;
 
 }

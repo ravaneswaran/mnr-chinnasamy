@@ -104,8 +104,26 @@ public class UserRoleServiceTest {
         Optional<UserRole> response = this.userRoleRepository.findById(userRoleForm.getUserRoleId());
 
         Assert.assertFalse(response.isPresent());
-
     }
+
+    @Test
+    public void testDeleteUserRole_When_UserRole_Id_Is_Null() {
+        try {
+            this.userRoleService.deleteUserRole(null);
+        } catch (Exception e) {
+            Assert.assertEquals("User role id cannot be null...",  e.getMessage());
+        }
+    }
+
+    @Test
+    public void testDeleteUserRole_When_UserRole_Id_Is_Empty() {
+        try {
+            this.userRoleService.deleteUserRole("");
+        } catch (Exception e) {
+            Assert.assertEquals("User role id cannot be a empty string...",  e.getMessage());
+        }
+    }
+
 
     @Test
     public void testGetUserRole() throws Exception {
@@ -116,6 +134,23 @@ public class UserRoleServiceTest {
         UserRole response = this.userRoleService.getUserRole(userRoleForm.getUserRoleId());
 
         Assert.assertNotNull(response);
+    }
 
+    @Test
+    public void testGetUserRole_When_UserRole_Id_Is_Null() {
+        try {
+            this.userRoleService.getUserRole(null);
+        } catch (Exception e) {
+            Assert.assertEquals("User role id cannot be null...",  e.getMessage());
+        }
+    }
+
+    @Test
+    public void testGetUserRole_When_UserRole_Id_Is_Empty() {
+        try {
+            this.userRoleService.getUserRole("");
+        } catch (Exception e) {
+            Assert.assertEquals("User role id cannot be a empty string...",  e.getMessage());
+        }
     }
 }
