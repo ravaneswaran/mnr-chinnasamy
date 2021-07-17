@@ -3,6 +3,7 @@ package com.mnrc.profilepicture.error
 import com.mnrc.BaseIntegrationTest
 import io.cucumber.junit.{Cucumber, CucumberOptions}
 import io.cucumber.spring.CucumberContextConfiguration
+import net.bytebuddy.utility.RandomString
 import org.junit.runner.RunWith
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.{By, WebDriver}
@@ -27,9 +28,9 @@ class ProfilePictureValidationIntegrationTest extends BaseIntegrationTest {
   Given("""the user has logged into the system""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    val firstName: String = this.generateRandomString()
+    val firstName: String = RandomString.make();
     val emailId: String = String.format("%s@test.com", firstName)
-    val mobileNo: String = Math.abs(Random.nextInt()).toString
+    val mobileNo: String = String.valueOf(new Date().getTime).substring(0, 10);
     this.almightyCreatingNewAdminAndLoggingOut(this.webDriver, firstName, emailId, mobileNo)
     this.webDriver.findElement(By.id("emailId")).sendKeys(emailId);
     this.webDriver.findElement(By.id("password")).sendKeys("welcome");

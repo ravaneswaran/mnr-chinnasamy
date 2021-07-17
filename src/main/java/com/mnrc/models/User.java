@@ -93,7 +93,7 @@ public class User{
     }
 
     public String getUniqueId() {
-        return uniqueId;
+        return this.uniqueId;
     }
 
     public void setUniqueId(String uniqueId) {

@@ -1,9 +1,8 @@
 package com.mnrc
 
 import io.cucumber.scala.{EN, ScalaDsl}
+import net.bytebuddy.utility.RandomString
 import org.openqa.selenium.{By, WebDriver}
-
-import java.security.SecureRandom
 
 class BaseIntegrationTest extends ScalaDsl with EN{
 
@@ -17,23 +16,12 @@ class BaseIntegrationTest extends ScalaDsl with EN{
     webDriver.findElement(By.id("mobileNo")).sendKeys(mobileNo)
     webDriver.findElement(By.id("create")).click()
     webDriver.get("http://localhost:8080/logout");
+    webDriver.get("http://localhost:8080");
   }
 
   def generateRandomString(): String = {
-    val length = 10
-    val CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz"
-    val CHAR_UPPER = CHAR_LOWER.toUpperCase
-    val NUMBER = "0123456789"
-    val DATA_FOR_RANDOM_STRING = CHAR_LOWER + CHAR_UPPER + NUMBER
-    val sb = new StringBuilder(length)
-    val random = new SecureRandom()
-
-    for (i <- 0 until length) {
-      val rndCharAt = random.nextInt(DATA_FOR_RANDOM_STRING.length)
-      val rndChar = DATA_FOR_RANDOM_STRING.charAt(rndCharAt)
-      sb.append(rndChar)
-    }
-    sb.toString
+    RandomString.make();
   }
+
 }
 

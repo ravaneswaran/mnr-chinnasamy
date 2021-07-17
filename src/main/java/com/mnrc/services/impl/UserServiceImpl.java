@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService {
         user.setMiddleInitial(middleInitial);
         user.setLastName(lastName);
         user.setEmailId(emailId);
-        uniqueId = (null != uniqueId && !"".equals(uniqueId.trim())) ? uniqueId : String.format("DUMMY-%s", String.valueOf(new Date().getTime()));
-        user.setUniqueId(uniqueId);
+        String uniqueIdAlias = (null != uniqueId && !"".equals(uniqueId.trim())) ? uniqueId : String.format("DUMMY-%s", String.valueOf(new Date().getTime()));
+        user.setUniqueId(uniqueIdAlias);
         user.setMobileNo(mobileNo);
         user.setPassword("welcome");
         user.setType(type);

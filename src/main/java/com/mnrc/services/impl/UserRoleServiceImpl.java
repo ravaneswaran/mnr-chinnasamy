@@ -47,6 +47,7 @@ public class UserRoleServiceImpl implements UserRoleService {
         userRole.setCreatedBy(userName);
         userRole.setModifiedBy(userName);
         userRole.setCreatedDate(now);
+        userRole.setModifiedDate(now);
 
         UserRole response = this.userRoleRepository.save(userRole);
 
