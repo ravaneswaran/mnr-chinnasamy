@@ -8,12 +8,19 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@RequestMapping("/user/role")
+@RequestMapping("/user")
 public class UserRoleController extends BaseController {
 
     @Override
     protected List<String> getMandatoryFields() {
         return null;
+    }
+
+    @GetMapping("/role")
+    public ModelAndView userRoleHome(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user-role");
+        return modelAndView;
     }
 
     @GetMapping("/add")

@@ -1,0 +1,55 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="content-pane">
+    <form action="/user/role/add" method="POST">
+        <div class="top-space-50-pixel section">User Role Creation & Listing</div>
+        <div class="top-space-50-pixel error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
+        <div class="top-space-50-pixel user-role-sub-section">User Role Creation <span style="font-size:16px;">(fields marked with (*) are mandatory)</span></div>
+        <div class="top-space-50-pixel user-role-create">
+            <table style="margin-left: 55px;">
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="td-height-60">
+                        <input id="userRoleName" class="input-box-normal" type="text" name="userRoleName" placeholder="User Role Name"/>
+                        <span class="required-field">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="td-height-60">
+                        <input class="button-normal" id="create" type="submit" value="Create"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="top-space-50-pixel user-role-sub-section">User Role Listing</div>
+        <div class="top-space-50-pixel user-role-listing">
+            <div>
+                <table>
+                    <tr>
+                        <td class="td-height-60 user-role-list-td-left user-role-list-td-left-header">User Role</td>
+                        <td class="td-height-60 user-role-list-td-right user-role-list-td-right-header">Controls</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="user-role-listing-pane">
+                <table >
+                    <tr>
+                        <td class="td-height-60 user-role-list-td-left">Admin (10 users)</td><td class="td-height-60 user-role-list-td-right"><a href="#">Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td-height-60 user-role-list-td-left">Customer (5 users)</td><td class="td-height-60 user-role-list-td-right"><a href="#">Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td-height-60 user-role-list-td-left">Sys Admin (0 users)</td>
+                        <td class="td-height-60 user-role-list-td-right">
+                            <a href="#">Edit</a>
+                            <a href="#">Delete</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+</html>
