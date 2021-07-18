@@ -1,6 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="content-pane">
-    <form action="/user/role/add" method="POST">
+    <form th:action="${userrole != null ? userrole.action : '/user/role/add'}" method="POST">
+        <input type="hidden" th:if="${userrole != null}" th:value="${userrole.userRoleId}" name="userRoleId"/>
         <div class="top-space-50-pixel section">User Role Creation & Listing</div>
         <div class="top-space-50-pixel error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
         <div class="top-space-50-pixel user-role-sub-section">User Role Creation <span style="font-size:16px;">(fields marked with (*) are mandatory)</span></div>
@@ -11,7 +12,7 @@
                 </tr>
                 <tr>
                     <td class="td-height-60">
-                        <input id="userRoleName" class="input-box-normal" type="text" name="userRoleName" placeholder="User Role Name"/>
+                        <input id="userRoleName" class="input-box-normal" type="text" name="userRoleName" placeholder="User Role Name" th:value="${userrole != null ? userrole.userRoleName : ''}"/>
                         <span class="required-field">*</span>
                     </td>
                 </tr>
@@ -33,18 +34,12 @@
                 </table>
             </div>
             <div class="user-role-listing-pane">
-                <table >
-                    <tr>
-                        <td class="td-height-60 user-role-list-td-left">Admin (10 users)</td><td class="td-height-60 user-role-list-td-right"><a href="#">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td class="td-height-60 user-role-list-td-left">Customer (5 users)</td><td class="td-height-60 user-role-list-td-right"><a href="#">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td class="td-height-60 user-role-list-td-left">Sys Admin (0 users)</td>
+                <table>
+                    <tr th:each="userroleform: ${userroleforms}">
+                        <td class="td-height-60 user-role-list-td-left" th:text="${ userroleform.userRoleName + '     (' + userroleform.noOfUsers +' users)' }">Admin (10 users)</td>
                         <td class="td-height-60 user-role-list-td-right">
-                            <a href="#">Edit</a>
-                            <a href="#">Delete</a>
+                            <a  th:href="${'/user/role/edit?uuid=' + userroleform.userRoleId}">Edit</a>
+                            <a  th:if="${0 == userroleform.noOfUsers}" th:href="${'/user/role/delete?uuid=' + userroleform.userRoleId}">Delete</a>
                         </td>
                     </tr>
                 </table>

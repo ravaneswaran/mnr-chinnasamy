@@ -131,7 +131,7 @@ public class UserRoleServiceTest {
         String userName = "Ravaneswaran Chinnasamy";
         UserRoleForm userRoleForm = this.userRoleService.addUserRole(userRoleName, userName);
 
-        UserRole response = this.userRoleService.getUserRole(userRoleForm.getUserRoleId());
+        UserRoleForm response = this.userRoleService.getUserRole(userRoleForm.getUserRoleId());
 
         Assert.assertNotNull(response);
     }

@@ -39,6 +39,7 @@
     width: 580px;
     text-indent: 10px;
     border-radius: 5px;
+    ont-size: 16px;
 }
 
 .user-role-list-td-left-header {
@@ -51,6 +52,7 @@
     width: 284px;
     text-align:center;
     border-radius: 5px;
+    ont-size: 16px;
 }
 
 .user-role-list-td-right-header {
