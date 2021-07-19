@@ -6,9 +6,13 @@ import com.mnrc.services.UserRoleService;
 import com.mnrc.ui.forms.Login;
 import com.mnrc.ui.forms.UserRoleForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -56,21 +60,28 @@ public class UserRoleController extends BaseController {
         if(!bindingResult.hasErrors()){
             Login login = (Login) httpServletRequest.getSession().getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
             try {
-                UserRoleForm response = this.userRoleService.addUserRole(userRoleForm.getUserRoleName(), String.format("%s, %s", login.getFirstName(), login.getLastName()));
+                this.userRoleService.addUserRole(userRoleForm.getUserRoleName(), String.format("%s, %s", login.getFirstName(), login.getLastName()));
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("/user-role");
                 modelAndView.addObject("userrole", userRoleForm);
                 modelAndView.addObject("userroleforms", userRoleForms);
-
                 return modelAndView;
-
-            } catch (Exception e) {
-                ModelAndView modelAndView = new ModelAndView();
-                modelAndView.setViewName("/user-role");
-                modelAndView.addObject("userrole", userRoleForm);
-                modelAndView.addObject("userroleforms", userRoleForms);
-                modelAndView.addObject("errorMessage", e.getMessage());
-                return modelAndView;
+            } catch (Exception exception) {
+                if(DataIntegrityViolationException.class.equals(exception.getClass())){
+                    ModelAndView modelAndView = new ModelAndView();
+                    modelAndView.setViewName("/user-role");
+                    modelAndView.addObject("userrole", userRoleForm);
+                    modelAndView.addObject("userroleforms", userRoleForms);
+                    modelAndView.addObject("errorMessage", "User role already exists...");
+                    return modelAndView;
+                } else {
+                    ModelAndView modelAndView = new ModelAndView();
+                    modelAndView.setViewName("/user-role");
+                    modelAndView.addObject("userrole", userRoleForm);
+                    modelAndView.addObject("userroleforms", userRoleForms);
+                    modelAndView.addObject("errorMessage", exception.getMessage());
+                    return modelAndView;
+                }
             }
         } else {
             ModelAndView modelAndView = new ModelAndView();
@@ -140,7 +151,6 @@ public class UserRoleController extends BaseController {
         try {
             UserRoleForm userRoleForm = this.userRoleService.getUserRole(userRoleId);
             userRoleForm.setAction("/user/role/edit");
-            userRoleForm.setOperation("EDIT");
 
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("/user-role");
@@ -157,5 +167,4 @@ public class UserRoleController extends BaseController {
             return modelAndView;
         }
     }
-
 }

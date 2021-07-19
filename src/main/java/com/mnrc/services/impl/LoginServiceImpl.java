@@ -1,6 +1,5 @@
 package com.mnrc.services.impl;
 
-import com.mnrc.enums.UserStatus;
 import com.mnrc.models.User;
 import com.mnrc.services.LoginService;
 import com.mnrc.services.UserService;

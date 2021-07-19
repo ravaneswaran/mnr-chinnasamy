@@ -1,6 +1,5 @@
 package com.mnrc.services;
 
-import com.mnrc.models.UserRole;
 import com.mnrc.ui.forms.UserRoleForm;
 
 import java.util.List;

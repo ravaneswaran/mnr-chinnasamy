@@ -13,8 +13,6 @@ public class UserRoleForm {
 
     private String action = "/user/role/add";
 
-    private String operation = "ADD";
-
     public String getUserRoleName() {
         return userRoleName;
     }
@@ -45,13 +43,5 @@ public class UserRoleForm {
 
     public void setAction(String action) {
         this.action = action;
-    }
-
-    public String getOperation() {
-        return operation;
-    }
-
-    public void setOperation(String operation) {
-        this.operation = operation;
     }
 }

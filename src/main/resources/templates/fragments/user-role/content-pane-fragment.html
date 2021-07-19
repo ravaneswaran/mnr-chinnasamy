@@ -18,7 +18,9 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="td-height-60">
-                        <input class="button-normal" id="create" type="submit" value="Create"/>
+                        <input th:if="${userrole == null}" class="button-normal" type="submit" value="Create"/>
+                        <input th:if="${userrole != null && ('/user/role/add' == userrole.action)}" class="button-normal" type="submit" value="Create"/>
+                        <input th:if="${userrole != null && ('/user/role/edit' == userrole.action)}" class="button-normal" type="submit" value="Update"/>
                     </td>
                 </tr>
             </table>
