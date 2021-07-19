@@ -67,21 +67,17 @@ public class UserRoleController extends BaseController {
                 modelAndView.addObject("userroleforms", userRoleForms);
                 return modelAndView;
             } catch (Exception exception) {
+                ModelAndView modelAndView = new ModelAndView();
+                modelAndView.setViewName("/user-role");
+                modelAndView.addObject("userrole", userRoleForm);
+                modelAndView.addObject("userroleforms", userRoleForms);
+
                 if(DataIntegrityViolationException.class.equals(exception.getClass())){
-                    ModelAndView modelAndView = new ModelAndView();
-                    modelAndView.setViewName("/user-role");
-                    modelAndView.addObject("userrole", userRoleForm);
-                    modelAndView.addObject("userroleforms", userRoleForms);
-                    modelAndView.addObject("errorMessage", "User role already exists...");
-                    return modelAndView;
+                    modelAndView.addObject("errorMessage", "User Role already exists...");
                 } else {
-                    ModelAndView modelAndView = new ModelAndView();
-                    modelAndView.setViewName("/user-role");
-                    modelAndView.addObject("userrole", userRoleForm);
-                    modelAndView.addObject("userroleforms", userRoleForms);
                     modelAndView.addObject("errorMessage", exception.getMessage());
-                    return modelAndView;
                 }
+                return modelAndView;
             }
         } else {
             ModelAndView modelAndView = new ModelAndView();
@@ -102,22 +98,25 @@ public class UserRoleController extends BaseController {
         if(!bindingResult.hasErrors()){
             Login login = (Login) httpServletRequest.getSession().getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
             try {
-                UserRoleForm response = this.userRoleService.editUserRole(userRoleForm.getUserRoleId(), userRoleForm.getUserRoleName(), String.format("%s, %s", login.getFirstName(), login.getLastName()));
+                this.userRoleService.editUserRole(userRoleForm.getUserRoleId(), userRoleForm.getUserRoleName(), String.format("%s, %s", login.getFirstName(), login.getLastName()));
                 List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("/user-role");
                 modelAndView.addObject("userrole", userRoleForm);
                 modelAndView.addObject("userroleforms", userRoleForms);
-
                 return modelAndView;
-
-            } catch (Exception e) {
+            } catch (Exception exception) {
                 List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("/user-role");
                 modelAndView.addObject("userrole", userRoleForm);
                 modelAndView.addObject("userroleforms", userRoleForms);
-                modelAndView.addObject("errorMessage", e.getMessage());
+
+                if(DataIntegrityViolationException.class.equals(exception.getClass())){
+                    modelAndView.addObject("errorMessage", "User Role already exists...");
+                } else {
+                    modelAndView.addObject("errorMessage", exception.getMessage());
+                }
                 return modelAndView;
             }
         } else {
