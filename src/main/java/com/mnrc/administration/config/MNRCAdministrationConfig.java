@@ -17,7 +17,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.mnrc"})
+@ComponentScan(basePackages = {"com.mnrc.administration"})
 public class MNRCAdministrationConfig implements WebMvcConfigurer {
 
     @Bean

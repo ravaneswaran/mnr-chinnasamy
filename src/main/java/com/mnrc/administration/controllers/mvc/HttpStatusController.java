@@ -8,7 +8,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class MNRCAdministrationHttpStatusController implements ErrorController {
+public class HttpStatusController implements ErrorController {
 
     @RequestMapping("/error")
     public String handleError(HttpServletRequest request) {
