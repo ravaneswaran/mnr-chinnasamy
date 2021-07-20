@@ -2,7 +2,6 @@ package com.mnrc.changepassword.success
 
 import com.mnrc.BaseIntegrationTest
 import io.cucumber.junit.{Cucumber, CucumberOptions}
-import io.cucumber.scala.{EN, ScalaDsl}
 import io.cucumber.spring.CucumberContextConfiguration
 import net.bytebuddy.utility.RandomString
 import org.junit.runner.RunWith
@@ -12,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 
 import java.util.Date
-import scala.util.Random
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(

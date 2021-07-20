@@ -2,7 +2,6 @@ package com.mnrc.employee.error
 
 import com.mnrc.BaseIntegrationTest
 import io.cucumber.junit.{Cucumber, CucumberOptions}
-import io.cucumber.scala.{EN, ScalaDsl}
 import io.cucumber.spring.CucumberContextConfiguration
 import org.junit.runner.RunWith
 import org.openqa.selenium.firefox.FirefoxDriver

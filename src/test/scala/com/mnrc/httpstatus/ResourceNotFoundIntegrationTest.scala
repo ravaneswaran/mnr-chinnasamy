@@ -1,7 +1,7 @@
-package com.mnrc
+package com.mnrc.httpstatus
 
+import com.mnrc.BaseIntegrationTest
 import io.cucumber.junit.{Cucumber, CucumberOptions}
-import io.cucumber.scala.{EN, ScalaDsl}
 import io.cucumber.spring.CucumberContextConfiguration
 import org.junit.runner.RunWith
 import org.openqa.selenium.WebDriver
@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/resource-not-found.feature"),
-  glue = Array("com.mnrc"))
+  glue = Array("com.mnrc.httpstatus"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class ResourceNotFoundIntegrationTest extends BaseIntegrationTest  {
