@@ -1,5 +1,6 @@
 package com.mnrc.changepassword.success
 
+import com.mnrc.BaseIntegrationTest
 import io.cucumber.junit.{Cucumber, CucumberOptions}
 import io.cucumber.scala.{EN, ScalaDsl}
 import io.cucumber.spring.CucumberContextConfiguration
@@ -19,7 +20,7 @@ import scala.util.Random
   glue = Array("com.mnrc.changepassword.success"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class ChangePasswordSuccessIntegrationTest extends ScalaDsl with EN {
+class ChangePasswordSuccessIntegrationTest extends BaseIntegrationTest  {
 
   var webDriver: WebDriver = null
 

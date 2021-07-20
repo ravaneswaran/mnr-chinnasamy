@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 
 import java.io.{File, FileOutputStream}
 import java.util.Date
-import scala.util.Random
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(

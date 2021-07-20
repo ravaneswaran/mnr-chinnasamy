@@ -1,8 +1,10 @@
 package com.mnrc.profilepicture.success
 
+import com.mnrc.BaseIntegrationTest
 import io.cucumber.junit.{Cucumber, CucumberOptions}
 import io.cucumber.scala.{EN, ScalaDsl}
 import io.cucumber.spring.CucumberContextConfiguration
+import net.bytebuddy.utility.RandomString
 import org.junit.runner.RunWith
 import org.openqa.selenium.{By, WebDriver}
 import org.openqa.selenium.firefox.FirefoxDriver
@@ -21,17 +23,20 @@ import javax.imageio.ImageIO
   glue = Array("com.mnrc.profilepicture.success"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class ProfilePictureSuccessIntegrationTest extends ScalaDsl with EN {
+class ProfilePictureSuccessIntegrationTest extends BaseIntegrationTest {
 
   var webDriver: WebDriver = null
   var file: File = null
 
-    Given("""the user has logged into the system""") { () =>
+  Given("""the user has logged into the system""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-
+    val firstName: String = RandomString.make();
+    val emailId: String = String.format("%s@test.com", firstName)
+    val mobileNo: String = String.valueOf(new Date().getTime).substring(0, 10);
+    this.almightyCreatingNewAdminAndLoggingOut(this.webDriver, firstName, emailId, mobileNo)
     this.webDriver.get("http://localhost:8080");
-    this.webDriver.findElement(By.id("emailId")).sendKeys("ravaneswaran@gmail.com");
+    this.webDriver.findElement(By.id("emailId")).sendKeys(emailId);
     this.webDriver.findElement(By.id("password")).sendKeys("welcome");
     this.webDriver.findElement(By.id("login")).click();
   }
@@ -42,7 +47,7 @@ class ProfilePictureSuccessIntegrationTest extends ScalaDsl with EN {
   }
 
   When("""the user tries to submit the form filling his\/her profile picture""") { () =>
-    file = this.createTemporaryImageFile
+    this.file = this.createTemporaryImageFile
     val uploadElement = this.webDriver.findElement(By.id("employee-info-profile-picture-browse"));
     uploadElement.sendKeys(file.getAbsolutePath)
     this.webDriver.findElement(By.id("employee-info-profile-picture-submit")).click();

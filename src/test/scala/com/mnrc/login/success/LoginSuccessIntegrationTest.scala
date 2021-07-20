@@ -1,5 +1,6 @@
 package com.mnrc.login.success
 
+import com.mnrc.BaseIntegrationTest
 import io.cucumber.junit.{Cucumber, CucumberOptions}
 import io.cucumber.scala.{EN, ScalaDsl}
 import io.cucumber.spring.CucumberContextConfiguration
@@ -15,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
   glue = Array("com.mnrc.login.success"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class LoginSuccessIntegrationTest extends ScalaDsl with EN {
+class LoginSuccessIntegrationTest extends BaseIntegrationTest  {
 
   var webDriver: WebDriver = null
 

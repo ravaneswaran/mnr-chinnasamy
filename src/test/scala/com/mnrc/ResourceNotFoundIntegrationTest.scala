@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus
   glue = Array("com.mnrc"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class ResourceNotFoundIntegrationTest extends ScalaDsl with EN {
+class ResourceNotFoundIntegrationTest extends BaseIntegrationTest  {
 
   var webDriver: WebDriver = null
 
