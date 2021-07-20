@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:include="fragments/employee/list/page-title-fragment :: page-title"></title>
+    <title th:include="fragments/user/list/page-title-fragment :: page-title"></title>
     <link rel="stylesheet" th:href="@{/css/base/main.css}"/>
     <script type="text/javascript" src="/js/menu.js"></script>
 </head>
 <body>
 <div class="wrapper">
     <div class="banner" th:include="fragments/banner-fragment :: banner"></div>
-    <div class="content-pane" th:include="fragments/employee/list/content-pane-fragment :: content-pane"></div>
+    <div class="content-pane" th:include="fragments/user/list/content-pane-fragment :: content-pane"></div>
     <div class="footer" th:include="fragments/footer-fragment :: footer"></div>
 </div>
 </body>
