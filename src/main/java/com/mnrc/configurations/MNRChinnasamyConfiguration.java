@@ -23,7 +23,6 @@ public class MNRChinnasamyConfiguration implements WebMvcConfigurer {
     @Bean
     @Description("Thymeleaf template resolver serving HTML 5")
     public ClassLoaderTemplateResolver templateResolver() {
-
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
 
         templateResolver.setPrefix("templates/");
@@ -58,15 +57,16 @@ public class MNRChinnasamyConfiguration implements WebMvcConfigurer {
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:messages");
+        messageSource.setBasename("classpath:messages_en_US");
+        messageSource.setUseCodeAsDefaultMessage(true);
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
 
     @Bean
-    public LocalValidatorFactoryBean validator(MessageSource messageSource) {
+    public LocalValidatorFactoryBean validator() {
         LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-        bean.setValidationMessageSource(messageSource);
+        bean.setValidationMessageSource(messageSource());
         return bean;
     }
 

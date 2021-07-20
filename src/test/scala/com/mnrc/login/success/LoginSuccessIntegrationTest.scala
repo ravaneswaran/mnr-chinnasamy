@@ -30,7 +30,7 @@ class LoginSuccessIntegrationTest extends ScalaDsl with EN {
 
   Then("""the user should see the admin creation page""") { () =>
     val title = this.webDriver.getTitle
-    assert("Shoppe : Admin Creation".equals(title))
+    assert("Shoppe : Employee Create".equals(title))
   }
 
 }

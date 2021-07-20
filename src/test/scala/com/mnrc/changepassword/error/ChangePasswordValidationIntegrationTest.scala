@@ -24,7 +24,7 @@ class ChangePasswordValidationIntegrationTest extends ScalaDsl with EN {
     this.webDriver = new FirefoxDriver()
     this.webDriver.get("http://localhost:8080");
     this.webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com");
-    this.webDriver.findElement(By.id("password")).sendKeys("welcome");
+    this.webDriver.findElement(By.id("password")).sendKeys("almighty");
     this.webDriver.findElement(By.id("login")).click();
   }
 

@@ -6,7 +6,7 @@ public class UserRoleForm {
 
     private String userRoleId;
 
-    @NotEmpty(message = "{user.role.name.not.empty.error.message}")
+    @NotEmpty(message = "User Role name should not be empty")
     private String userRoleName;
 
     private int noOfUsers;

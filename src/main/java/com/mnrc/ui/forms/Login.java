@@ -12,10 +12,10 @@ public class Login extends BaseForm {
 
     private String lastName;
 
-    @NotEmpty(message = "{login.emailid.not.empty.error.message}")
+    @NotEmpty(message = "Email id should not be empty")
     private String emailId;
 
-    @NotEmpty(message = "{login.password.not.empty.error.message}")
+    @NotEmpty(message = "Password should not be empty")
     private String password;
 
     private String userId;
