@@ -1,15 +1,16 @@
 package com.mnrc.changepassword.success
 
+import com.mnrc.BaseIntegrationTest
 import io.cucumber.junit.{Cucumber, CucumberOptions}
-import io.cucumber.scala.{EN, ScalaDsl}
 import io.cucumber.spring.CucumberContextConfiguration
+import net.bytebuddy.utility.RandomString
 import org.junit.runner.RunWith
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.{By, WebDriver}
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 
-import scala.util.Random
+import java.util.Date
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
@@ -17,22 +18,22 @@ import scala.util.Random
   glue = Array("com.mnrc.changepassword.success"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class ChangePasswordSuccessIntegrationTest extends ScalaDsl with EN {
+class ChangePasswordSuccessIntegrationTest extends BaseIntegrationTest  {
 
   var webDriver: WebDriver = null
 
-  var firstName: String = Random.nextString(10)
+  var firstName: String = RandomString.make()
   var emailId: String = String.format("%s@test.com", firstName)
-  var password: String = Random.nextString(10)
-  var newPassword: String = Random.nextString(10)
-  var mobileNo: String = Random.nextInt().toString
+  var password: String = RandomString.make()
+  var newPassword: String = RandomString.make()
+  var mobileNo: String = String.valueOf(new Date().getTime).substring(0, 11)
 
   Given("""the user is created by the admin""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
     this.webDriver.get("http://localhost:8080");
     this.webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com");
-    this.webDriver.findElement(By.id("password")).sendKeys("welcome");
+    this.webDriver.findElement(By.id("password")).sendKeys("almighty");
     this.webDriver.findElement(By.id("login")).click();
     this.webDriver.findElement(By.id("firstName")).sendKeys(this.firstName)
     this.webDriver.findElement(By.id("emailId")).sendKeys(this.emailId)

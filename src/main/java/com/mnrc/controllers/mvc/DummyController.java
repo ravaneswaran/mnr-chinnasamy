@@ -65,4 +65,11 @@ public class DummyController {
         return modelAndView;
     }
 
+    @GetMapping("/user/role")
+    public ModelAndView userRoleHome(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user-role");
+        return modelAndView;
+    }
+
 }

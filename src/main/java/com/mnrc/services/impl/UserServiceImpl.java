@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService {
         user.setMiddleInitial(middleInitial);
         user.setLastName(lastName);
         user.setEmailId(emailId);
-        uniqueId = (null != uniqueId && !"".equals(uniqueId.trim())) ? uniqueId : String.format("DUMMY-%s", String.valueOf(new Date().getTime()));
-        user.setUniqueId(uniqueId);
+        String uniqueIdAlias = (null != uniqueId && !"".equals(uniqueId.trim())) ? uniqueId : String.format("DUMMY-%s", String.valueOf(new Date().getTime()));
+        user.setUniqueId(uniqueIdAlias);
         user.setMobileNo(mobileNo);
         user.setPassword("welcome");
         user.setType(type);
@@ -132,7 +132,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void blockUser(String uuid) {
+    public void lockUser(String uuid) {
         Optional<User> optionalUser = this.userRepository.findById(uuid);
         if(optionalUser.isPresent()){
             User user = optionalUser.get();
@@ -148,7 +148,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void unblockUser(String uuid) {
+    public void unLockUser(String uuid) {
         Optional<User> optionalUser = this.userRepository.findById(uuid);
         if(optionalUser.isPresent()){
             User user = optionalUser.get();

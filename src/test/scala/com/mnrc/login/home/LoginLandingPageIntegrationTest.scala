@@ -1,10 +1,10 @@
 package com.mnrc.login.home
 
+import com.mnrc.BaseIntegrationTest
 import io.cucumber.junit.{Cucumber, CucumberOptions}
-import io.cucumber.scala.{EN, ScalaDsl}
 import io.cucumber.spring.CucumberContextConfiguration
 import org.junit.runner.RunWith
-import org.openqa.selenium.{By, WebDriver}
+import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
   glue = Array("com.mnrc.login.home"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class LoginLandingPageIntegrationTest extends ScalaDsl with EN {
+class LoginLandingPageIntegrationTest extends BaseIntegrationTest  {
 
   var webDriver: WebDriver = null
 

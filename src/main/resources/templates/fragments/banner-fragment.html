@@ -3,11 +3,11 @@
         <image class="banner-logo" src="/images/logo.png"/>
         <th:block th:if="${#session != null && #session.getAttribute('LOGGED_IN_USER') != null}">
             <div class="app-launcher">
-                <img class="app-launcher-image" src="/images/app-launcher.png" onclick="toggleMenu()"/>
+                <img class="app-launcher-image" id="app-launcher" src="/images/app-launcher.png" onclick="toggleMenu()"/>
                 <div th:replace="fragments/menu-fragment :: menu"></div>
             </div>
             <div class="logged-in-as">
-                Logged in as : <b th:text="${#session.getAttribute('LOGGED_IN_USER').firstName}">Logged In User</b>
+                Logged in as : <b th:text="${#session.getAttribute('LOGGED_IN_USER').firstName + ' ' + #session.getAttribute('LOGGED_IN_USER').lastName}">Logged In User</b>
             </div>
         </th:block>
     </div>

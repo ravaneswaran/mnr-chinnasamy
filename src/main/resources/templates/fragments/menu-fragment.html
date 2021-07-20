@@ -1,10 +1,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <div class="dropdown" th:fragment="menu">
         <div id="menu" class="dropdown-content">
+            <a id="my-info" th:href="${'/employee/info?uuid=' + #session.getAttribute('LOGGED_IN_USER').userId}" href="#"><image src="/images/my-info.png" class="menu-icon"/><span class="menu-text">My Info</span></a>
             <a href="/employee/home"><image src="/images/user-creation.png" class="menu-icon"/><span class="menu-text">Employee Creation</span></a>
             <a href="/employee/list"><image src="/images/user-list.png" class="menu-icon"/><span class="menu-text">Employee Listing</span></a>
             <!--<hr class="menu-separator"></hr>-->
             <a href="/change-password"><image src="/images/change-password.png" class="menu-icon"/><span class="menu-text">Change Password</span></a>
+            <!--<hr class="menu-separator"></hr>-->
+            <a href="/user/role/view"><image src="/images/settings.png" class="menu-icon"/><span class="menu-text">User Role</span></a>
             <!--<hr class="menu-separator"></hr>-->
             <a href="/user/settings"><image src="/images/settings.png" class="menu-icon"/><span class="menu-text">Settings</span></a>
             <!--<hr class="menu-separator"></hr>-->

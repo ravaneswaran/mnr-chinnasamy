@@ -1,10 +1,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <div th:fragment="content-pane">
         <div class="top-space-100-pixel section">Employee Information</div>
+        <div id="errorMessage" class="employee-info-error-message" th:text="${errorMessage}"></div>
         <div class="employee-info-left-pane">
             <div class="employee-info-photo-frame">
-                <img class="employee-info-photo" src="/images/no-profile-pic.png" /><br/><br/>
-                <input type="file" name="upload-photo"/>
+                <form method="POST" action="/user/profile/picture-upload" enctype="multipart/form-data">
+                    <!--<img class="employee-info-photo" src="/images/no-profile-pic.png" id="employee-info-profile-picture"/>-->
+                    <img class="employee-info-photo" th:src="${employee.profilePic}" id="employee-info-profile-picture"/>
+                    <br/><br/>
+                    <input class="employee-info-profile-picture-browse" type="file" name="browseProfilePicture" id="employee-info-profile-picture-browse" accept="image/jpeg, image/png, image/jpg"/>
+                    <input class="employee-info-profile-picture-submit" type="submit" name="saveProfilePicture" id="employee-info-profile-picture-submit" value="Upload Profile Pic"/>
+                    <input type="hidden" name="userId" th:value="${employee.employeeId}"/>
+                </form>
                 <br/><br/>
                 <div th:if="${#session.getAttribute('LOGGED_IN_USER').userId.equals(employee.employeeId)}">
                     <a href="/employee/list">List Employees</a>
@@ -13,7 +20,7 @@
                     <a
                             th:href="${'VERIFIED'.equals(employee.status) ? '/employee/lock?uuid=' + employee.employeeId : '/employee/unlock?uuid=' + employee.employeeId}"
                             onclick="javascript:alert('Are you sure want to block this employee?');"
-                            th:text="${'VERIFIED'.equals(employee.status) ? 'Block this Employee' : 'UnBlock this Employee'}">Block this Employee
+                            th:text="${'VERIFIED'.equals(employee.status) ? 'Lock this Employee' : 'UnLock this Employee'}">Lock this Employee
                     </a>
                     <br/>
                     <a th:href="${'/employee/delete?uuid=' + employee.employeeId}" onclick="javascript:alert('Are you sure want to delete this employee?');">Delete this Employee</a>

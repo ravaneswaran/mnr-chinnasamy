@@ -1,6 +1,5 @@
-Feature: Signup Landing Page feature
-  Scenario: When the use hits the admin page of shoppe
+Feature: Employee Creation landing page
+  Scenario: User landing on employee create page
 
-    Given the user opens up a browser
-    When the user hits the following url 'http://localhost:8080/admin'
-    Then the user suppose to see the admin page of the shoppe app
+    Given the user opens up a browser and logs in
+    Then the user suppose to see the employee create page

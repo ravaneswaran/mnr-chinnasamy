@@ -8,13 +8,13 @@ public class ChangePassword extends BaseForm{
 
     private String emailId;
 
-    @NotEmpty(message = "{change.password.oldpassword.empty.error.message}")
+    @NotEmpty(message = "Old password should not be empty")
     private String oldPassword;
 
-    @NotEmpty(message = "{change.password.newpassword.empty.error.message}")
+    @NotEmpty(message = "New Password should not be empty")
     private String newPassword;
 
-    @NotEmpty(message = "{change.password.confirmpassword.empty.error.message}")
+    @NotEmpty(message = "Confirm Password should not be empty")
     private String confirmPassword;
 
     public String getUserId() {

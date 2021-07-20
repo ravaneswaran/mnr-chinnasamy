@@ -4,7 +4,8 @@
         <div class="employee-listing-pane">
             <div class="employee-listing-preview-div" th:each="employee: ${employees}">
                 <div class="employee-listing-preview-image-div">
-                    <image src="/images/no-profile-pic.png" class="employee-listing-preview-image"/>
+                    <!--<image src="/images/no-profile-pic.png" class="employee-listing-preview-image"/>-->
+                    <image th:src="${employee.profilePic}" class="employee-listing-preview-image"/>
                 </div>
                 <div class="employee-listing-preview-name-div" th:text="${employee.firstName + ' ' + employee.middleInitial + ' ' + employee.lastName}">User in List</div>
                 <div th:if="${#session.getAttribute('LOGGED_IN_USER').userId.equals(employee.employeeId)}">

@@ -48,27 +48,27 @@ public class EmployeeController extends BaseController {
     }
 
     @PostMapping("/create")
-    public ModelAndView addEmployee(@Valid @ModelAttribute("admin") Employee admin, BindingResult bindingResult, HttpServletRequest httpServletRequest) {
+    public ModelAndView addEmployee(@Valid @ModelAttribute("admin") Employee employee, BindingResult bindingResult, HttpServletRequest httpServletRequest) {
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
 
         if(!bindingResult.hasErrors()){
-            Employee response = this.employeeService.addEmployee(admin.getFirstName(), admin.getMiddleInitial(), admin.getLastName(), admin.getEmailId(), admin.getUniqueId(), admin.getMobileNo());
+            Employee response = this.employeeService.addEmployee(employee.getFirstName(), employee.getMiddleInitial(), employee.getLastName(), employee.getEmailId(), employee.getUniqueId(), employee.getMobileNo());
             if(null != response) {
-                String redirect = String.format("redirect:/admin/info?uuid=%s", response.getEmployeeId());
+                String redirect = String.format("redirect:/employee/info?uuid=%s", response.getEmployeeId());
                 return new ModelAndView(redirect);
             } else {
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("employee-create");
-                modelAndView.addObject("admin",admin);
+                modelAndView.addObject("admin",employee);
                 modelAndView.addObject("errorMessage", "Unable to add admin information...");
                 return modelAndView;
             }
         } else {
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("employee-create");
-            modelAndView.addObject("admin", admin);
+            modelAndView.addObject("admin", employee);
             modelAndView.addObject("errorMessage", this.getError(bindingResult));
 
             return modelAndView;
@@ -122,7 +122,7 @@ public class EmployeeController extends BaseController {
         }
 
         ModelAndView modelAndView = new ModelAndView();
-        this.employeeService.blockEmployee(uuid);
+        this.employeeService.lockEmployee(uuid);
         List<Employee> employees =  this.employeeService.listEmployees();
         modelAndView.setViewName("employee-list");
         modelAndView.addObject("employees", employees);
@@ -137,7 +137,7 @@ public class EmployeeController extends BaseController {
         }
 
         ModelAndView modelAndView = new ModelAndView();
-        this.employeeService.unblockEmployee(uuid);
+        this.employeeService.unLockEmployee(uuid);
         List<Employee> employees =  this.employeeService.listEmployees();
         modelAndView.setViewName("employee-list");
         modelAndView.addObject("employees", employees);

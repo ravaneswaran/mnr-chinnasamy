@@ -12,15 +12,17 @@ public class Login extends BaseForm {
 
     private String lastName;
 
-    @NotEmpty(message = "{login.emailid.not.empty.error.message}")
+    @NotEmpty(message = "Email id should not be empty")
     private String emailId;
 
-    @NotEmpty(message = "{login.password.not.empty.error.message}")
+    @NotEmpty(message = "Password should not be empty")
     private String password;
 
     private String userId;
 
     private String status;
+
+    private String type;
 
     public String getEmailId() {
         return emailId;
@@ -76,5 +78,13 @@ public class Login extends BaseForm {
 
     public void setMiddleInitial(String middleInitial) {
         this.middleInitial = middleInitial;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

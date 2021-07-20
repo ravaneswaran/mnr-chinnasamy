@@ -7,8 +7,8 @@ public class ForgotPassword extends BaseForm{
 
     private String userId;
 
-    @NotEmpty(message = "{forgot.password.emailid.empty.error.message}")
-    @Email(message = "{forgot.password.emailid.invalid.format.error.message}")
+    @NotEmpty(message = "Email id should not be empty")
+    @Email(message = "Email id format is invalid")
     private String emailId;
 
     private String password;

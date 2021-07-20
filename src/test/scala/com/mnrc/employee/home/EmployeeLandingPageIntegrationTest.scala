@@ -1,37 +1,36 @@
 package com.mnrc.employee.home
 
+import com.mnrc.BaseIntegrationTest
 import io.cucumber.junit.{Cucumber, CucumberOptions}
-import io.cucumber.scala.{EN, ScalaDsl}
 import io.cucumber.spring.CucumberContextConfiguration
 import org.junit.runner.RunWith
-import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.{By, WebDriver}
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/employee/employee-landing-page.feature"),
-  glue = Array("com.mnrc.admin.home"))
+  glue = Array("com.mnrc.employee.home"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
-class EmployeeLandingPageIntegrationTest extends ScalaDsl with EN {
+class EmployeeLandingPageIntegrationTest extends BaseIntegrationTest  {
 
   var webDriver: WebDriver = null
 
-  Given("""the user opens up a browser""") { () =>
+  Given("""the user opens up a browser and logs in""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
+    this.webDriver.get("http://localhost:8080");
+    this.webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com");
+    this.webDriver.findElement(By.id("password")).sendKeys("almighty");
+    this.webDriver.findElement(By.id("login")).click();
   }
 
-  When("""the user hits the following url {string}""") { (url: String) =>
-    this.webDriver.get(url)
-  }
-
-  Then("""the user suppose to see the admin page of the shoppe app""") { () =>
-    val titleOfThePage = this.webDriver.getTitle
-    assert("Shoppe : Employee Creation".equals(titleOfThePage))
+  Then("""the user suppose to see the employee create page""") { () =>
+    val pageTitle = this.webDriver.getTitle
+    assert("Shoppe : Employee Create".equals(pageTitle))
     this.webDriver.close()
   }
-
 }

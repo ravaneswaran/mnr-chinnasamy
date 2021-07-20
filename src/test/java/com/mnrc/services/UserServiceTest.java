@@ -119,7 +119,7 @@ public class UserServiceTest {
         String type = UserType.ADMIN.toString();
         User user = this.userService.addUserWithVerifiedStatus(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, type);
 
-        this.userService.blockUser(user.getUUID());
+        this.userService.lockUser(user.getUUID());
 
         User response = this.userRepository.findById(user.getUUID()).get();
         Assert.assertEquals(UserStatus.LOCKED.toString(), response.getStatus());
@@ -141,9 +141,9 @@ public class UserServiceTest {
         String status = UserStatus.VERIFIED.toString();
         String type = UserType.ADMIN.toString();
         User user = this.userService.addUserWithVerifiedStatus(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, type);
-        this.userService.blockUser(user.getUUID());
+        this.userService.lockUser(user.getUUID());
 
-        this.userService.unblockUser(user.getUUID());
+        this.userService.unLockUser(user.getUUID());
 
         User response = this.userRepository.findById(user.getUUID()).get();
         Assert.assertEquals(UserStatus.VERIFIED.toString(), user.getStatus());

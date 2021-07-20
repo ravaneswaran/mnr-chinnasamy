@@ -8,21 +8,21 @@ public class Employee extends BaseForm{
 
     private String employeeId;
 
-    @NotEmpty(message = "{admin.firstname.not.empty.error.message}")
+    @NotEmpty(message = "First name should not be empty")
     private String firstName;
 
     private String middleInitial;
 
     private String lastName;
 
-    @NotEmpty(message = "{admin.email.id.not.empty.error.message}")
-    @Email(message = "{admin.email.id.invalid.format.error.message}")
+    @NotEmpty(message = "Email Id should not be empty")
+    @Email(message = "Email Id not in valid format")
     private String emailId;
 
     private String uniqueId;
 
-    @NotEmpty(message = "{admin.mobile.number.not.empty.error.message}")
-    @Size(min = 10, max = 15, message = "{admin.mobile.number.min.length.error.message}")
+    @NotEmpty(message = "Mobile Number should not be empty")
+    @Size(min = 10, max = 15, message = "Mobile Number should be 10 characters in length")
     private String mobileNo;
 
     private String status;
@@ -34,6 +34,8 @@ public class Employee extends BaseForm{
     private String state;
     private String country;
     private String zipCode;
+
+    private String profilePic;
 
     public String getFirstName() {
         return firstName;
@@ -153,5 +155,13 @@ public class Employee extends BaseForm{
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
     }
 }

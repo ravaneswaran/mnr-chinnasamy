@@ -22,9 +22,9 @@ public interface UserService {
 
     public User getUser(String uuid);
 
-    public void blockUser(String uuid);
+    public void lockUser(String uuid);
 
-    public void unblockUser(String uuid);
+    public void unLockUser(String uuid);
 
     public void deleteUser(String uuid);
 
