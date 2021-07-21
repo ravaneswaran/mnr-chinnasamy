@@ -55,9 +55,9 @@ public class UserProfileController extends BaseController {
         LoginForm login = (LoginForm)httpSession.getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
 
         if(UserType.ALMIGHTY.toString().equals(login.getType())){
-            return new ModelAndView("redirect:/employee/list");
+            return new ModelAndView("redirect:/user/list");
         } else {
-            return new ModelAndView(String.format("redirect:/employee/info?uuid=%s", login.getUserId()));
+            return new ModelAndView(String.format("redirect:/user/info?uuid=%s", login.getUserId()));
         }
     }
 
@@ -73,7 +73,7 @@ public class UserProfileController extends BaseController {
             if(null != content && 0 == content.length){
                 UserForm employee = this.userService.getUserForm(userId);
                 ModelAndView modelAndView = new ModelAndView();
-                modelAndView.setViewName("employee-info");
+                modelAndView.setViewName("user-info");
                 modelAndView.addObject("employee", employee);
                 modelAndView.addObject("errorMessage", "Profile picture found to be empty...");
                 return modelAndView;
@@ -83,10 +83,10 @@ public class UserProfileController extends BaseController {
 
             if(null == bufferedImage){
                 String fileName = profilePicture.getOriginalFilename();
-                UserForm employee = this.userService.getUserForm(userId);
+                UserForm userForm = this.userService.getUserForm(userId);
                 ModelAndView modelAndView = new ModelAndView();
-                modelAndView.setViewName("employee-info");
-                modelAndView.addObject("employee", employee);
+                modelAndView.setViewName("user-info");
+                modelAndView.addObject("userForm", userForm);
                 modelAndView.addObject("errorMessage", String.format("Sorry!!! the file(%s) is not a valid one to be your profile pic", fileName));
                 return modelAndView;
             }
@@ -96,23 +96,23 @@ public class UserProfileController extends BaseController {
 
             if(null != userProfile){
                 this.imageService.createTemporaryProfilePicture(userId, content);
-                ModelAndView modelAndView = new ModelAndView(String.format("redirect:/employee/info?uuid=%s", userId));
+                ModelAndView modelAndView = new ModelAndView(String.format("redirect:/user/info?uuid=%s", userId));
                 return modelAndView;
             } else {
-                UserForm employee = this.userService.getUserForm(userId);
+                UserForm userForm = this.userService.getUserForm(userId);
                 ModelAndView modelAndView = new ModelAndView();
-                modelAndView.setViewName("employee-info");
-                modelAndView.addObject("employee", employee);
+                modelAndView.setViewName("user-info");
+                modelAndView.addObject("userForm", userForm);
                 modelAndView.addObject("errorMessage", "Unable to save the profile picture...");
                 return modelAndView;
             }
 
         } catch (IOException e) {
             this.logger.error(e.getMessage(), e);
-            UserForm employee = this.userService.getUserForm(userId);
+            UserForm userForm = this.userService.getUserForm(userId);
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("employee-info");
-            modelAndView.addObject("employee", employee);
+            modelAndView.setViewName("user-info");
+            modelAndView.addObject("userForm", userForm);
             modelAndView.addObject("errorMessage", "Unable to read profile picture...");
             return modelAndView;
         }

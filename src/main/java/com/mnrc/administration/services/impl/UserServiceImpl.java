@@ -2,7 +2,6 @@ package com.mnrc.administration.services.impl;
 
 import com.mnrc.administration.enums.UserStatus;
 import com.mnrc.administration.enums.UserType;
-import com.mnrc.administration.models.Token;
 import com.mnrc.administration.models.User;
 import com.mnrc.administration.repositories.UserRepository;
 import com.mnrc.administration.services.MailService;
@@ -157,30 +156,30 @@ public class UserServiceImpl implements UserService {
         List<User> users =  this.userRepository.findAllUsersByType(UserType.ADMIN.toString());
         List<UserForm> admins = new ArrayList<>();
         for(User user : users){
-            UserForm employee = new UserForm();
-            employee.setUserId(user.getUUID());
-            employee.setFirstName(user.getFirstName());
-            employee.setMiddleInitial(user.getMiddleInitial());
-            employee.setLastName(user.getLastName());
-            employee.setEmailId(user.getEmailId());
-            employee.setMobileNo(user.getMobileNo());
-            employee.setStatus(user.getStatus());
+            UserForm userForm = new UserForm();
+            userForm.setUserId(user.getUUID());
+            userForm.setFirstName(user.getFirstName());
+            userForm.setMiddleInitial(user.getMiddleInitial());
+            userForm.setLastName(user.getLastName());
+            userForm.setEmailId(user.getEmailId());
+            userForm.setMobileNo(user.getMobileNo());
+            userForm.setStatus(user.getStatus());
 
             File profilePic = new File(String.format("/tmp/%s-profile-pic.png", user.getUUID()));
             if(profilePic.exists()){
-                employee.setProfilePic(String.format("/employee/profile/%s-profile-pic.png", user.getUUID()));
+                userForm.setProfilePic(String.format("/user/profile/%s-profile-pic.png", user.getUUID()));
             } else {
-                employee.setProfilePic("/images/no-profile-pic.png");
+                userForm.setProfilePic("/images/no-profile-pic.png");
             }
 
             String uniqueId = user.getUniqueId();
 
             if(uniqueId.startsWith("DUMMY-")){
-                employee.setUniqueId("");
+                userForm.setUniqueId("");
             } else {
-                employee.setUniqueId(uniqueId);
+                userForm.setUniqueId(uniqueId);
             }
-            admins.add(employee);
+            admins.add(userForm);
         }
         return admins;
     }
@@ -204,30 +203,30 @@ public class UserServiceImpl implements UserService {
     public UserForm getUserForm(String uuid) {
         User user = this.getUser(uuid);
         if(null != user && UserType.ADMIN.toString().equals(user.getType())){
-            UserForm employee = new UserForm();
-            employee.setUserId(user.getUUID());
-            employee.setFirstName(user.getFirstName());
-            employee.setMiddleInitial(user.getMiddleInitial());
-            employee.setEmailId(user.getEmailId());
-            employee.setMobileNo(user.getMobileNo());
-            employee.setStatus(user.getStatus());
+            UserForm userForm = new UserForm();
+            userForm.setUserId(user.getUUID());
+            userForm.setFirstName(user.getFirstName());
+            userForm.setMiddleInitial(user.getMiddleInitial());
+            userForm.setEmailId(user.getEmailId());
+            userForm.setMobileNo(user.getMobileNo());
+            userForm.setStatus(user.getStatus());
 
             String uniqueId = user.getUniqueId();
 
             if(uniqueId.startsWith("DUMMY-")){
-                employee.setUniqueId("");
+                userForm.setUniqueId("");
             } else {
-                employee.setUniqueId(uniqueId);
+                userForm.setUniqueId(uniqueId);
             }
 
             File profilePic = new File(String.format("/tmp/%s-profile-pic.png", user.getUUID()));
             if(profilePic.exists()){
-                employee.setProfilePic(String.format("/employee/profile/%s-profile-pic.png", user.getUUID()));
+                userForm.setProfilePic(String.format("/user/profile/%s-profile-pic.png", user.getUUID()));
             } else {
-                employee.setProfilePic("/images/no-profile-pic.png");
+                userForm.setProfilePic("/images/no-profile-pic.png");
             }
 
-            return employee;
+            return userForm;
         } else {
             return null;
         }

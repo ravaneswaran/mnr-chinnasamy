@@ -76,6 +76,6 @@ public class MNRCAdministrationConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
         registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images/");
 
-        registry.addResourceHandler("/employee/profile/**").addResourceLocations("file:/tmp/");
+        registry.addResourceHandler("/user/profile/**").addResourceLocations("file:/tmp/");
     }
 }
