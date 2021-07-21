@@ -1,7 +1,6 @@
 package com.mnrc.administration.services;
 
 import com.mnrc.administration.models.User;
-import com.mnrc.administration.services.vo.UserVO;
 import com.mnrc.administration.ui.forms.UserForm;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +17,6 @@ public interface UserService {
             String uniqueId,
             String mobileNo,
             String type);
-
-    public UserVO verifySignedUpUser(String signUpVerificationTokenUUID);
 
     public User getUser(String uuid);
 

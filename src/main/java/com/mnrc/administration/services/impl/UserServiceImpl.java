@@ -8,7 +8,6 @@ import com.mnrc.administration.repositories.UserRepository;
 import com.mnrc.administration.services.MailService;
 import com.mnrc.administration.services.TokenService;
 import com.mnrc.administration.services.UserService;
-import com.mnrc.administration.services.vo.UserVO;
 import com.mnrc.administration.ui.forms.UserForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,33 +59,6 @@ public class UserServiceImpl implements UserService {
             logger.error(exp.getMessage(), exp);
             return null;
         }
-    }
-
-    @Override
-    public UserVO verifySignedUpUser(String signUpVerificationTokenUUID) {
-        UserVO userVO = new UserVO();
-        Token token = this.tokenService.getSignUpVerificationTokenByUUID(signUpVerificationTokenUUID);
-        if(null != token) {
-            User user = this.userRepository.findById(token.getCreatorUUID()).get();
-            if (null != user) {
-                Date now = new Date();
-                Date tokenCreatedDate = token.getCreatedDate();
-                Date expiryTime = new Date(tokenCreatedDate.getTime() + 24*60*60*1000);
-
-                if(now.before(expiryTime)){
-                    user.setStatus(UserStatus.VERIFIED.toString());
-                    user.setModifiedDate(new Date());
-                    this.userRepository.save(user);
-                } else {
-                    userVO.setErrorMessage("Token expired");
-                }
-            } else {
-                userVO.setErrorMessage(String.format("Token id '%s' found to be invalid", signUpVerificationTokenUUID));
-            }
-        } else {
-            userVO.setErrorMessage(String.format("Token id '%s' found to be invalid", signUpVerificationTokenUUID));
-        }
-        return userVO;
     }
 
     @Override
