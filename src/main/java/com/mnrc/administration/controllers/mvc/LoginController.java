@@ -23,7 +23,7 @@ public class LoginController extends BaseController {
     @Autowired
     private LoginService loginService;
 
-    private String redirectUrlIfLoggedIn = "redirect:/employee/home";
+    private String redirectUrlIfLoggedIn = "redirect:/user/home";
 
     @Override
     protected List<String> getMandatoryFields() {
@@ -67,7 +67,7 @@ public class LoginController extends BaseController {
                 } else {
                     HttpSession httpSession = httpServletRequest.getSession();
                     httpSession.setAttribute(SessionAttribute.LOGGED_IN_USER.toString(), response);
-                    ModelAndView modelAndView = new ModelAndView("redirect:/employee/home");
+                    ModelAndView modelAndView = new ModelAndView("redirect:/user/home");
                     return modelAndView;
                 }
             } else {

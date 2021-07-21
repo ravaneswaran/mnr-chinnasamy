@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 
 public class UserForm extends BaseForm{
 
-    private String employeeId;
+    private String userId;
 
     @NotEmpty(message = "First name should not be empty")
     private String firstName;
@@ -141,12 +141,12 @@ public class UserForm extends BaseForm{
         this.zipCode = zipCode;
     }
 
-    public String getEmployeeId() {
-        return employeeId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getStatus() {

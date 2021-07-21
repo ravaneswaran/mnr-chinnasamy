@@ -2,7 +2,10 @@ package com.mnrc.administration.services;
 
 import com.mnrc.administration.models.User;
 import com.mnrc.administration.services.vo.UserVO;
+import com.mnrc.administration.ui.forms.UserForm;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public interface UserService {
@@ -16,8 +19,6 @@ public interface UserService {
             String mobileNo,
             String type);
 
-    public UserVO signUpUser(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String password, String confirmPassword);
-
     public UserVO verifySignedUpUser(String signUpVerificationTokenUUID);
 
     public User getUser(String uuid);
@@ -30,5 +31,12 @@ public interface UserService {
 
     public User getUser(String emailId, String password);
 
+    public UserForm getUserForm(String uuid);
+
     public User getUserByEmailId(String emailId);
+
+    public UserForm addUser(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo);
+
+    public List<UserForm> listUsers();
+
 }

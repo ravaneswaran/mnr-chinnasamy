@@ -2,11 +2,10 @@ package com.mnrc.administration.services;
 
 import com.mnrc.administration.enums.UserStatus;
 import com.mnrc.administration.enums.UserType;
-import com.mnrc.administration.models.Token;
 import com.mnrc.administration.models.User;
 import com.mnrc.administration.repositories.TokenRepository;
 import com.mnrc.administration.repositories.UserRepository;
-import com.mnrc.administration.services.vo.UserVO;
+import com.mnrc.administration.ui.forms.UserForm;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -54,54 +54,6 @@ public class UserServiceTest {
 
         Assert.assertNotNull(user.getUUID());
     }
-
-    @Test
-    public void testSignUp(){
-        Random random = new Random();
-        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
-        String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
-
-        String firstName = "Ravaneswaran";
-        String middleInitial = " ";
-        String lastName = "Chinnasamy";
-        String emailId = String.format("mail-%s@test.com", randomNumberString);
-        String uniqueId = randomNumberString;
-        String mobileNo = mobileNoString;
-        String password = String.format("password-%s", randomNumberString);
-        String type = UserType.PERSON.toString();
-        String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
-
-        UserVO userVO = this.userService.signUpUser(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password);
-        User user = this.userRepository.findById(userVO.getUserUUID()).get();
-
-        Assert.assertEquals(UserStatus.SIGN_UP_VERIFICATION_PENDING.toString(), user.getStatus());
-    }
-
-    @Test
-    public void testVerifySignedUpUser(){
-        Random random = new Random();
-        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
-        String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
-
-        String firstName = "Ravaneswaran";
-        String middleInitial = " ";
-        String lastName = "Chinnasamy";
-        String emailId = String.format("mail-%s@test.com", randomNumberString);
-        String uniqueId = randomNumberString;
-        String mobileNo = mobileNoString;
-        String password = String.format("password-%s", randomNumberString);
-        String type = UserType.PERSON.toString();
-        String status = UserStatus.SIGN_UP_VERIFICATION_PENDING.toString();
-
-        UserVO userVO = this.userService.signUpUser(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, password, password);
-        Token token = tokenRepository.findSignUpVerificationTokenByCreatorUUID(userVO.getUserUUID());
-        this.userService.verifySignedUpUser(token.getUUID());
-        String userUUID = userVO.getUserUUID();
-
-        User user = this.userRepository.findById(userUUID).get();
-        Assert.assertEquals(UserStatus.VERIFIED.toString(), user.getStatus());
-    }
-
 
     @Test
     public void testBlockUser(){
@@ -170,5 +122,61 @@ public class UserServiceTest {
 
         Optional<User> optionalUser = this.userRepository.findById(user.getUUID());
         Assert.assertFalse(optionalUser.isPresent());
+    }
+
+    @Test
+    public void testAddUser(){
+        Random random = new Random();
+        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
+        String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
+
+        String firstName = "Ravaneswaran";
+        String middleInitial = " ";
+        String lastName = "Chinnasamy";
+        String emailId = String.format("mail-%s@test.com", randomNumberString);
+        String uniqueId = randomNumberString;
+        String mobileNo = mobileNoString;
+
+        UserForm admin = this.userService.addUser(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
+
+        Assert.assertNotNull(admin);
+    }
+
+    @Test
+    public void testListUsers(){
+        Random random = new Random();
+        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
+        String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
+
+        String firstName = "Ravaneswaran";
+        String middleInitial = " ";
+        String lastName = "Chinnasamy";
+        String emailId = String.format("mail-%s@test.com", randomNumberString);
+        String uniqueId = randomNumberString;
+        String mobileNo = mobileNoString;
+        this.userService.addUser(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
+
+        List<UserForm> admins = this.userService.listUsers();
+
+        Assert.assertTrue(admins.size() >= 1 );
+    }
+
+    @Test
+    public void testGetUser(){
+        Random random = new Random();
+        String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
+        String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
+
+        String firstName = "Ravaneswaran";
+        String middleInitial = " ";
+        String lastName = "Chinnasamy";
+        String emailId = String.format("mail-%s@test.com", randomNumberString);
+        String uniqueId = randomNumberString;
+        String mobileNo = mobileNoString;
+        UserForm userForm = this.userService.addUser(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
+
+        UserForm response = this.userService.getUserForm(userForm.getUserId());
+
+        Assert.assertEquals(userForm.getUserId(), response.getUserId());
     }
 }

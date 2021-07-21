@@ -1,6 +1,6 @@
 package com.mnrc.administration.controllers.mvc;
 
-import com.mnrc.administration.services.EmployeeService;
+import com.mnrc.administration.services.UserService;
 import com.mnrc.administration.ui.forms.UserForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ public class UserController extends BaseController {
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    private EmployeeService employeeService;
+    private UserService userService;
 
     @Override
     protected List<String> getMandatoryFields() {
@@ -37,37 +37,37 @@ public class UserController extends BaseController {
     }
 
     @GetMapping("/home")
-    public ModelAndView employeeHome(HttpServletRequest httpServletRequest){
+    public ModelAndView userHome(HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("employee-create");
+        modelAndView.setViewName("user-create");
         return modelAndView;
     }
 
     @PostMapping("/create")
-    public ModelAndView addEmployee(@Valid @ModelAttribute("admin") UserForm employee, BindingResult bindingResult, HttpServletRequest httpServletRequest) {
+    public ModelAndView addUser(@Valid @ModelAttribute("admin") UserForm userForm, BindingResult bindingResult, HttpServletRequest httpServletRequest) {
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
 
         if(!bindingResult.hasErrors()){
-            UserForm response = this.employeeService.addEmployee(employee.getFirstName(), employee.getMiddleInitial(), employee.getLastName(), employee.getEmailId(), employee.getUniqueId(), employee.getMobileNo());
+            UserForm response = this.userService.addUser(userForm.getFirstName(), userForm.getMiddleInitial(), userForm.getLastName(), userForm.getEmailId(), userForm.getUniqueId(), userForm.getMobileNo());
             if(null != response) {
-                String redirect = String.format("redirect:/employee/info?uuid=%s", response.getEmployeeId());
+                String redirect = String.format("redirect:/user/info?uuid=%s", response.getUserId());
                 return new ModelAndView(redirect);
             } else {
                 ModelAndView modelAndView = new ModelAndView();
-                modelAndView.setViewName("employee-create");
-                modelAndView.addObject("admin",employee);
+                modelAndView.setViewName("user-create");
+                modelAndView.addObject("userForm",userForm);
                 modelAndView.addObject("errorMessage", "Unable to add admin information...");
                 return modelAndView;
             }
         } else {
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("employee-create");
-            modelAndView.addObject("admin", employee);
+            modelAndView.setViewName("user-create");
+            modelAndView.addObject("userForm", userForm);
             modelAndView.addObject("errorMessage", this.getError(bindingResult));
 
             return modelAndView;
@@ -75,17 +75,17 @@ public class UserController extends BaseController {
     }
 
     @GetMapping("/info")
-    public ModelAndView getEmployeeInfo(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+    public ModelAndView getUserInfo(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
 
         if(null != uuid && !"".equals(uuid)){
-            UserForm employee = this.employeeService.getEmployee(uuid);
-            if(null != employee){
+            UserForm userForm = this.userService.getUserForm(uuid);
+            if(null != userForm){
                 ModelAndView modelAndView = new ModelAndView();
-                modelAndView.setViewName("employee-info");
-                modelAndView.addObject("employee", employee);
+                modelAndView.setViewName("user-info");
+                modelAndView.addObject("user-form", userForm);
                 return modelAndView;
             } else {
                 ModelAndView modelAndView = new ModelAndView("redirect:/404");
@@ -95,66 +95,66 @@ public class UserController extends BaseController {
         } else {
             logger.error("Request parameter uuid is found to be invalid...");
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("employee-info");
+            modelAndView.setViewName("user-info");
             return modelAndView;
         }
     }
 
     @GetMapping("/list")
-    public ModelAndView listEmployees(HttpServletRequest httpServletRequest){
+    public ModelAndView listUsers(HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
 
         ModelAndView modelAndView = new ModelAndView();
-        List<UserForm> employees =  this.employeeService.listEmployees();
-        modelAndView.setViewName("employee-list");
-        modelAndView.addObject("employees", employees);
+        List<UserForm> userForms =  this.userService.listUsers();
+        modelAndView.setViewName("user-list");
+        modelAndView.addObject("user-forms", userForms);
 
         return modelAndView;
     }
 
     @GetMapping("/lock")
-    public ModelAndView lockEmployee(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+    public ModelAndView lockUser(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
 
         ModelAndView modelAndView = new ModelAndView();
-        this.employeeService.lockEmployee(uuid);
-        List<UserForm> employees =  this.employeeService.listEmployees();
-        modelAndView.setViewName("employee-list");
-        modelAndView.addObject("employees", employees);
+        this.userService.lockUser(uuid);
+        List<UserForm> userForms =  this.userService.listUsers();
+        modelAndView.setViewName("user-list");
+        modelAndView.addObject("user-forms", userForms);
 
         return modelAndView;
     }
 
     @GetMapping("/unlock")
-    public ModelAndView unLockEmployee(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+    public ModelAndView unLockUser(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
 
         ModelAndView modelAndView = new ModelAndView();
-        this.employeeService.unLockEmployee(uuid);
-        List<UserForm> employees =  this.employeeService.listEmployees();
-        modelAndView.setViewName("employee-list");
-        modelAndView.addObject("employees", employees);
+        this.userService.unLockUser(uuid);
+        List<UserForm> userForms =  this.userService.listUsers();
+        modelAndView.setViewName("user-list");
+        modelAndView.addObject("user-forms", userForms);
 
         return modelAndView;
     }
 
     @GetMapping("/delete")
-    public ModelAndView deleteEmployee(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
+    public ModelAndView deleteUser(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
 
         ModelAndView modelAndView = new ModelAndView();
-        this.employeeService.deleteEmployee(uuid);
-        List<UserForm> employees =  this.employeeService.listEmployees();
-        modelAndView.setViewName("employee-list");
-        modelAndView.addObject("employees", employees);
+        this.userService.deleteUser(uuid);
+        List<UserForm> userForms =  this.userService.listUsers();
+        modelAndView.setViewName("user-list");
+        modelAndView.addObject("user-forms", userForms);
 
         return modelAndView;
     }

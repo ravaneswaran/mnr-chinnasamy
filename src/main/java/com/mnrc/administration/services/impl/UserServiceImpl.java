@@ -9,12 +9,16 @@ import com.mnrc.administration.services.MailService;
 import com.mnrc.administration.services.TokenService;
 import com.mnrc.administration.services.UserService;
 import com.mnrc.administration.services.vo.UserVO;
+import com.mnrc.administration.ui.forms.UserForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -59,37 +63,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVO signUpUser(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String password, String confirmPassword) {
-
-        UserVO userVO = new UserVO();
-        if(password.equals(confirmPassword)){
-            Date now = new Date();
-            User user = new User();
-
-            user.setFirstName(firstName);
-            user.setMiddleInitial(middleInitial);
-            user.setLastName(lastName);
-            user.setEmailId(emailId);
-            user.setUniqueId(uniqueId);
-            user.setMobileNo(mobileNo);
-            user.setPassword(password);
-            user.setType(UserType.PERSON.toString());
-            user.setStatus(UserStatus.SIGN_UP_VERIFICATION_PENDING.toString());
-            user.setCreatedDate(now);
-            user.setModifiedDate(now);
-
-            this.userRepository.save(user);
-
-            Token token = this.tokenService.storeAndGetSignUpVerificationToken(user.getUUID(), UserType.PERSON.toString());
-            this.mailService.sendUserVerificationMail(token.getUUID(), firstName, middleInitial, lastName, emailId);
-            userVO.setUserUUID(user.getUUID());
-        } else {
-            userVO.setErrorMessage("Password and Confirm Password do not match.");
-        }
-        return userVO;
-    }
-
-    @Override
     public UserVO verifySignedUpUser(String signUpVerificationTokenUUID) {
         UserVO userVO = new UserVO();
         Token token = this.tokenService.getSignUpVerificationTokenByUUID(signUpVerificationTokenUUID);
@@ -114,21 +87,6 @@ public class UserServiceImpl implements UserService {
             userVO.setErrorMessage(String.format("Token id '%s' found to be invalid", signUpVerificationTokenUUID));
         }
         return userVO;
-    }
-
-    @Override
-    public User getUser(String uuid) {
-        Optional<User> optionalUser =  this.userRepository.findById(uuid);
-        if(optionalUser.isPresent()){
-            User user = optionalUser.get();
-            if(user.getUniqueId().startsWith("DUMMY-")){
-                user.setUniqueId("");
-            }
-            return user;
-        } else {
-            logger.error(String.format("Unable to find the user for the id '%s'", uuid));
-            return null;
-        }
     }
 
     @Override
@@ -192,6 +150,113 @@ public class UserServiceImpl implements UserService {
             return user;
         } else {
             logger.error("NO USER FOUND : Unable to find the user registered with this email id");
+            return null;
+        }
+    }
+
+    @Override
+    public UserForm addUser(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo) {
+
+        User response = this.addUserWithVerifiedStatus(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, UserType.ADMIN.toString());
+
+        if(null != response){
+            UserForm admin = new UserForm();
+            admin.setUserId(response.getUUID());
+            admin.setFirstName(response.getFirstName());
+            admin.setMiddleInitial(response.getMiddleInitial());
+            admin.setLastName(response.getLastName());
+            admin.setEmailId(response.getEmailId());
+            admin.setMobileNo(response.getMobileNo());
+            uniqueId = response.getUniqueId();
+
+            if(uniqueId.startsWith("DUMMY-")){
+                admin.setUniqueId("");
+            } else {
+                admin.setUniqueId(uniqueId);
+            }
+            return admin;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public List<UserForm> listUsers(){
+        List<User> users =  this.userRepository.findAllUsersByType(UserType.ADMIN.toString());
+        List<UserForm> admins = new ArrayList<>();
+        for(User user : users){
+            UserForm employee = new UserForm();
+            employee.setUserId(user.getUUID());
+            employee.setFirstName(user.getFirstName());
+            employee.setMiddleInitial(user.getMiddleInitial());
+            employee.setLastName(user.getLastName());
+            employee.setEmailId(user.getEmailId());
+            employee.setMobileNo(user.getMobileNo());
+            employee.setStatus(user.getStatus());
+
+            File profilePic = new File(String.format("/tmp/%s-profile-pic.png", user.getUUID()));
+            if(profilePic.exists()){
+                employee.setProfilePic(String.format("/employee/profile/%s-profile-pic.png", user.getUUID()));
+            } else {
+                employee.setProfilePic("/images/no-profile-pic.png");
+            }
+
+            String uniqueId = user.getUniqueId();
+
+            if(uniqueId.startsWith("DUMMY-")){
+                employee.setUniqueId("");
+            } else {
+                employee.setUniqueId(uniqueId);
+            }
+            admins.add(employee);
+        }
+        return admins;
+    }
+
+    @Override
+    public User getUser(String uuid) {
+        Optional<User> optionalUser =  this.userRepository.findById(uuid);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            if(user.getUniqueId().startsWith("DUMMY-")){
+                user.setUniqueId("");
+            }
+            return user;
+        } else {
+            logger.error(String.format("Unable to find the user for the id '%s'", uuid));
+            return null;
+        }
+    }
+
+    @Override
+    public UserForm getUserForm(String uuid) {
+        User user = this.getUser(uuid);
+        if(null != user && UserType.ADMIN.toString().equals(user.getType())){
+            UserForm employee = new UserForm();
+            employee.setUserId(user.getUUID());
+            employee.setFirstName(user.getFirstName());
+            employee.setMiddleInitial(user.getMiddleInitial());
+            employee.setEmailId(user.getEmailId());
+            employee.setMobileNo(user.getMobileNo());
+            employee.setStatus(user.getStatus());
+
+            String uniqueId = user.getUniqueId();
+
+            if(uniqueId.startsWith("DUMMY-")){
+                employee.setUniqueId("");
+            } else {
+                employee.setUniqueId(uniqueId);
+            }
+
+            File profilePic = new File(String.format("/tmp/%s-profile-pic.png", user.getUUID()));
+            if(profilePic.exists()){
+                employee.setProfilePic(String.format("/employee/profile/%s-profile-pic.png", user.getUUID()));
+            } else {
+                employee.setProfilePic("/images/no-profile-pic.png");
+            }
+
+            return employee;
+        } else {
             return null;
         }
     }

@@ -3,9 +3,9 @@ package com.mnrc.administration.controllers.mvc;
 import com.mnrc.administration.enums.SessionAttribute;
 import com.mnrc.administration.enums.UserType;
 import com.mnrc.administration.models.UserProfile;
-import com.mnrc.administration.services.EmployeeService;
 import com.mnrc.administration.services.ImageService;
 import com.mnrc.administration.services.UserProfileService;
+import com.mnrc.administration.services.UserService;
 import com.mnrc.administration.ui.forms.LoginForm;
 import com.mnrc.administration.ui.forms.UserForm;
 import org.slf4j.Logger;
@@ -35,7 +35,7 @@ public class UserProfileController extends BaseController {
     private UserProfileService userProfileService;
 
     @Autowired
-    private EmployeeService employeeService;
+    private UserService userService;
 
     @Autowired
     private ImageService imageService;
@@ -71,7 +71,7 @@ public class UserProfileController extends BaseController {
             byte[] content = profilePicture.getBytes();
 
             if(null != content && 0 == content.length){
-                UserForm employee = this.employeeService.getEmployee(userId);
+                UserForm employee = this.userService.getUserForm(userId);
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("employee-info");
                 modelAndView.addObject("employee", employee);
@@ -83,7 +83,7 @@ public class UserProfileController extends BaseController {
 
             if(null == bufferedImage){
                 String fileName = profilePicture.getOriginalFilename();
-                UserForm employee = this.employeeService.getEmployee(userId);
+                UserForm employee = this.userService.getUserForm(userId);
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("employee-info");
                 modelAndView.addObject("employee", employee);
@@ -99,7 +99,7 @@ public class UserProfileController extends BaseController {
                 ModelAndView modelAndView = new ModelAndView(String.format("redirect:/employee/info?uuid=%s", userId));
                 return modelAndView;
             } else {
-                UserForm employee = this.employeeService.getEmployee(userId);
+                UserForm employee = this.userService.getUserForm(userId);
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("employee-info");
                 modelAndView.addObject("employee", employee);
@@ -109,7 +109,7 @@ public class UserProfileController extends BaseController {
 
         } catch (IOException e) {
             this.logger.error(e.getMessage(), e);
-            UserForm employee = this.employeeService.getEmployee(userId);
+            UserForm employee = this.userService.getUserForm(userId);
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("employee-info");
             modelAndView.addObject("employee", employee);
