@@ -8,7 +8,7 @@ public class MNRCAdministrationApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MNRCAdministrationApplication.class, args);
-		System.out.println("The application <<<<< The Store >>>>> is now up and running.");
+		System.out.println("The application <<<<< MNRC-Administration >>>>> is now up and running.");
 	}
 
 }
