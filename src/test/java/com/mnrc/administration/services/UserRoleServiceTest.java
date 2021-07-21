@@ -34,7 +34,7 @@ public class UserRoleServiceTest {
         String userName = "Ravaneswaran Chinnasamy";
         UserRoleForm userRoleForm = this.userRoleService.addUserRole(userRoleName, userName);
 
-        UserRole response = this.userRoleRepository.findById(userRoleForm.getUserRoleId()).get();
+        UserRole response = this.userRoleRepository.findById(userRoleForm.getRoleId()).get();
 
         Assert.assertEquals(userRoleName.toUpperCase(), response.getName());
     }
@@ -100,8 +100,8 @@ public class UserRoleServiceTest {
         String userName = "Ravaneswaran Chinnasamy";
         UserRoleForm userRoleForm = this.userRoleService.addUserRole(userRoleName, userName);
 
-        this.userRoleService.deleteUserRole(userRoleForm.getUserRoleId());
-        Optional<UserRole> response = this.userRoleRepository.findById(userRoleForm.getUserRoleId());
+        this.userRoleService.deleteUserRole(userRoleForm.getRoleId());
+        Optional<UserRole> response = this.userRoleRepository.findById(userRoleForm.getRoleId());
 
         Assert.assertFalse(response.isPresent());
     }
@@ -131,7 +131,7 @@ public class UserRoleServiceTest {
         String userName = "Ravaneswaran Chinnasamy";
         UserRoleForm userRoleForm = this.userRoleService.addUserRole(userRoleName, userName);
 
-        UserRoleForm response = this.userRoleService.getUserRole(userRoleForm.getUserRoleId());
+        UserRoleForm response = this.userRoleService.getUserRole(userRoleForm.getRoleId());
 
         Assert.assertNotNull(response);
     }

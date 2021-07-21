@@ -55,7 +55,7 @@ public class UserRoleServiceImpl implements UserRoleService {
         try {
             UserRole response = this.userRoleRepository.save(userRole);
             UserRoleForm userRoleForm = new UserRoleForm();
-            userRoleForm.setUserRoleId(response.getUUID());
+            userRoleForm.setRoleId(response.getUUID());
 
             return userRoleForm;
         } catch (ConstraintViolationException cve){
@@ -97,8 +97,8 @@ public class UserRoleServiceImpl implements UserRoleService {
             try{
                 userRole = this.userRoleRepository.save(userRole);
                 UserRoleForm userRoleForm = new UserRoleForm();
-                userRoleForm.setUserRoleId(userRole.getUUID());
-                userRoleForm.setUserRoleName(userRole.getName());
+                userRoleForm.setRoleId(userRole.getUUID());
+                userRoleForm.setRoleName(userRole.getName());
                 userRoleForm.setNoOfUsers(0);
 
                 return userRoleForm;
@@ -125,8 +125,8 @@ public class UserRoleServiceImpl implements UserRoleService {
 
         if(null != userRole){
             UserRoleForm userRoleForm = new UserRoleForm();
-            userRoleForm.setUserRoleId(userRole.getUUID());
-            userRoleForm.setUserRoleName(userRole.getName());
+            userRoleForm.setRoleId(userRole.getUUID());
+            userRoleForm.setRoleName(userRole.getName());
             userRoleForm.setNoOfUsers(0);
 
             return userRoleForm;
@@ -141,8 +141,8 @@ public class UserRoleServiceImpl implements UserRoleService {
         Iterable<UserRole> userRoles = this.userRoleRepository.findAll();
         for(UserRole userRole : userRoles){
             UserRoleForm userRoleForm = new UserRoleForm();
-            userRoleForm.setUserRoleName(userRole.getName());
-            userRoleForm.setUserRoleId(userRole.getUUID());
+            userRoleForm.setRoleName(userRole.getName());
+            userRoleForm.setRoleId(userRole.getUUID());
             userRoleForms.add(userRoleForm);
         }
         return userRoleForms;

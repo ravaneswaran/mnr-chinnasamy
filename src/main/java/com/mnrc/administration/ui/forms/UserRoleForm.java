@@ -4,22 +4,14 @@ import javax.validation.constraints.NotEmpty;
 
 public class UserRoleForm {
 
-    private String userRoleId;
+    private String roleId;
 
     @NotEmpty(message = "User Role name should not be empty")
-    private String userRoleName;
+    private String roleName;
 
     private int noOfUsers;
 
     private String action = "/user/role/add";
-
-    public String getUserRoleName() {
-        return userRoleName;
-    }
-
-    public void setUserRoleName(String userRoleName) {
-        this.userRoleName = userRoleName;
-    }
 
     public int getNoOfUsers() {
         return noOfUsers;
@@ -29,19 +21,27 @@ public class UserRoleForm {
         this.noOfUsers = noOfUsers;
     }
 
-    public String getUserRoleId() {
-        return userRoleId;
-    }
-
-    public void setUserRoleId(String userRoleId) {
-        this.userRoleId = userRoleId;
-    }
-
     public String getAction() {
         return action;
     }
 
     public void setAction(String action) {
         this.action = action;
+    }
+
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

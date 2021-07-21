@@ -85,7 +85,7 @@ public class UserController extends BaseController {
             if(null != userForm){
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("user-info");
-                modelAndView.addObject("user-form", userForm);
+                modelAndView.addObject("userForm", userForm);
                 return modelAndView;
             } else {
                 ModelAndView modelAndView = new ModelAndView("redirect:/404");
@@ -109,7 +109,7 @@ public class UserController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
         List<UserForm> userForms =  this.userService.listUsers();
         modelAndView.setViewName("user-list");
-        modelAndView.addObject("user-forms", userForms);
+        modelAndView.addObject("userForms", userForms);
 
         return modelAndView;
     }
@@ -124,7 +124,7 @@ public class UserController extends BaseController {
         this.userService.lockUser(uuid);
         List<UserForm> userForms =  this.userService.listUsers();
         modelAndView.setViewName("user-list");
-        modelAndView.addObject("user-forms", userForms);
+        modelAndView.addObject("userForms", userForms);
 
         return modelAndView;
     }
@@ -139,7 +139,7 @@ public class UserController extends BaseController {
         this.userService.unLockUser(uuid);
         List<UserForm> userForms =  this.userService.listUsers();
         modelAndView.setViewName("user-list");
-        modelAndView.addObject("user-forms", userForms);
+        modelAndView.addObject("userForms", userForms);
 
         return modelAndView;
     }
@@ -154,7 +154,7 @@ public class UserController extends BaseController {
         this.userService.deleteUser(uuid);
         List<UserForm> userForms =  this.userService.listUsers();
         modelAndView.setViewName("user-list");
-        modelAndView.addObject("user-forms", userForms);
+        modelAndView.addObject("userForms", userForms);
 
         return modelAndView;
     }

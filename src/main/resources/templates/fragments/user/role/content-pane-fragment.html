@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="content-pane">
-    <form th:action="${userrole != null ? userrole.action : '/user/role/add'}" method="POST">
-        <input type="hidden" th:if="${userrole != null}" th:value="${userrole.userRoleId}" name="userRoleId"/>
+    <form th:action="${userRoleForm != null ? userRoleForm.action : '/user/role/add'}" method="POST">
+        <input type="hidden" th:if="${userRoleForm != null}" th:value="${userRoleForm.roleId}" name="roleId"/>
         <div class="top-space-50-pixel section">User Role Creation & Listing</div>
         <div class="top-space-50-pixel error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
         <div class="top-space-50-pixel user-role-sub-section">User Role Creation <span style="font-size:16px;">(fields marked with (*) are mandatory)</span></div>
@@ -12,15 +12,15 @@
                 </tr>
                 <tr>
                     <td class="td-height-60">
-                        <input id="userRoleName" class="input-box-normal" type="text" name="userRoleName" placeholder="User Role Name" th:value="${userrole != null ? userrole.userRoleName : ''}"/>
+                        <input id="userRoleName" class="input-box-normal" type="text" name="roleName" placeholder="User Role Name" th:value="${userRoleForm != null ? userRoleForm.roleName : ''}"/>
                         <span class="required-field">*</span>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" class="td-height-60">
-                        <input th:if="${userrole == null}" class="button-normal" type="submit" value="Create"/>
-                        <input th:if="${userrole != null && ('/user/role/add' == userrole.action)}" class="button-normal" type="submit" value="Create"/>
-                        <input th:if="${userrole != null && ('/user/role/edit' == userrole.action)}" class="button-normal" type="submit" value="Update"/>
+                        <input th:if="${userRoleForm == null}" class="button-normal" type="submit" value="Create"/>
+                        <input th:if="${userRoleForm != null && ('/user/role/add' == userRoleForm.action)}" class="button-normal" type="submit" value="Create"/>
+                        <input th:if="${userRoleForm != null && ('/user/role/edit' == userRoleForm.action)}" class="button-normal" type="submit" value="Update"/>
                     </td>
                 </tr>
             </table>
@@ -37,11 +37,11 @@
             </div>
             <div class="user-role-listing-pane">
                 <table>
-                    <tr th:each="userroleform: ${userroleforms}">
-                        <td class="td-height-60 user-role-list-td-left" th:text="${ userroleform.userRoleName + '     (' + userroleform.noOfUsers +' users)' }">Admin (10 users)</td>
+                    <tr th:each="userRoleForm: ${userRoleForms}">
+                        <td class="td-height-60 user-role-list-td-left" th:text="${ userRoleForm.roleName + '     (' + userRoleForm.noOfUsers +' users)' }">Admin (10 users)</td>
                         <td class="td-height-60 user-role-list-td-right">
-                            <a  th:href="${'/user/role/edit?uuid=' + userroleform.userRoleId}">Edit</a>
-                            <a  th:if="${0 == userroleform.noOfUsers}" th:href="${'/user/role/delete?uuid=' + userroleform.userRoleId}">Delete</a>
+                            <a  th:href="${'/user/role/edit?uuid=' + userRoleForm.roleId}">Edit</a>
+                            <a  th:if="${0 == userRoleForm.noOfUsers}" th:href="${'/user/role/delete?uuid=' + userRoleForm.roleId}">Delete</a>
                         </td>
                     </tr>
                 </table>
