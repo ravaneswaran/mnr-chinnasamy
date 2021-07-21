@@ -1,6 +1,5 @@
 package com.mnrc.administration.repositories;
 
-import com.mnrc.administration.enums.OrderState;
 import com.mnrc.administration.models.User;
 
 import java.util.Date;
