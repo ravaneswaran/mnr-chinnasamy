@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class EmployeeControllerTest {
+public class UserControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
