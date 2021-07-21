@@ -1,4 +1,4 @@
-.employee-listing-pane {
+.user-listing-pane {
     height: 895px;
     width: 1120px;
     /*box-shadow: 1px -1px 15px 5px #505050;*/
@@ -7,7 +7,7 @@
     border-radius: 5px;
 }
 
-.employee-listing-name-td {
+.user-listing-name-td {
     border: 1px solid #505050;
     height: 50px;
     width: 749px;
@@ -15,7 +15,7 @@
     text-indent: 5px;
 }
 
-.employee-listing-anchor-td {
+.user-listing-anchor-td {
     border: 2px solid #505050;
     height: 50px;
     width: 115px;
@@ -25,7 +25,7 @@
     background-color: #FFF;
 }
 
-.employee-listing-preview-div {
+.user-listing-preview-div {
     border: 0px solid #505050;
     box-shadow: 0px 0px 5px 2px #505050;
     width: 250px;
@@ -36,7 +36,7 @@
     margin-right: 15px;
 }
 
-.employee-listing-preview-image-div {
+.user-listing-preview-image-div {
     border: 0px solid #505050;
     height: 185px;
     width: 230px;
@@ -45,7 +45,7 @@
     margin-top: 10px;
 }
 
-.employee-listing-preview-name-div {
+.user-listing-preview-name-div {
     border: 0px solid #505050;
     height: 55px;
     width: 230px;
@@ -57,7 +57,7 @@
     font-weight: bold;
 }
 
-.employee-listing-preview-controls-div {
+.user-listing-preview-controls-div {
     border: 0px solid #505050;
     height: 40px;
     width: 230px;
@@ -67,14 +67,14 @@
     text-align:center;
 }
 
-.employee-listing-preview-image {
+.user-listing-preview-image {
     width: 230px;
     height: 184px;
     border-radius: 5px;
     margin-top: 2px;
 }
 
-.employee-listing-preview-control-image {
+.user-listing-preview-control-image {
     width: 44px;
     height: 40px;
     border: 0px solid #505050;

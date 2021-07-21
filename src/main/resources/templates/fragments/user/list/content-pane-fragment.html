@@ -1,22 +1,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <div th:fragment="content-pane">
-        <div class="top-space-100-pixel section">Employee Listing</div>
-        <div class="employee-listing-pane">
-            <div class="employee-listing-preview-div" th:each="userForm: ${userForms}">
-                <div class="employee-listing-preview-image-div">
-                    <image th:src="${userForm.profilePic}" class="employee-listing-preview-image"/>
+        <div class="top-space-100-pixel section">User Listing</div>
+        <div class="user-listing-pane">
+            <div class="user-listing-preview-div" th:each="userForm: ${userForms}">
+                <div class="user-listing-preview-image-div">
+                    <image th:src="${userForm.profilePic}" class="user-listing-preview-image"/>
                 </div>
-                <div class="employee-listing-preview-name-div" th:text="${userForm.firstName + ' ' + userForm.middleInitial + ' ' + userForm.lastName}">User in List</div>
+                <div class="user-listing-preview-name-div" th:text="${userForm.firstName + ' ' + userForm.middleInitial + ' ' + userForm.lastName}">User in List</div>
                 <div th:if="${#session.getAttribute('LOGGED_IN_USER').userId.equals(userForm.userId)}">
-                    <div class="employee-listing-preview-controls-div">
-                        <a th:href="${'/user/info?uuid=' + userForm.userId}"><img src="/images/user-info.png" class="employee-listing-preview-control-image"/></a>
+                    <div class="user-listing-preview-controls-div">
+                        <a th:href="${'/user/info?uuid=' + userForm.userId}"><img src="/images/user-info.png" class="user-listing-preview-control-image"/></a>
                     </div>
                 </div>
                 <div th:unless="${#session.getAttribute('LOGGED_IN_USER').userId.equals(userForm.userId)}">
-                    <div class="employee-listing-preview-controls-div">
-                        <a th:href="${'/user/info?uuid=' + userForm.userId}"><img src="/images/user-info.png" class="employee-listing-preview-control-image"/></a>
-                        <a th:href="${'VERIFIED'.equals(userForm.status) ? '/user/lock?uuid=' + userForm.userId  : '/user/unlock?uuid=' + userForm.userId}"><img th:src="${'VERIFIED'.equals(userForm.status) ? '/images/lock-user.png' : '/images/unlock-user.png'}" class="employee-listing-preview-control-image"/></a>
-                        <a th:href="${'/user/delete?uuid=' + userForm.userId}"><img src="/images/delete-user.png" class="employee-listing-preview-control-image"/></a>
+                    <div class="user-listing-preview-controls-div">
+                        <a th:href="${'/user/info?uuid=' + userForm.userId}"><img src="/images/user-info.png" class="user-listing-preview-control-image"/></a>
+                        <a th:href="${'VERIFIED'.equals(userForm.status) ? '/user/lock?uuid=' + userForm.userId  : '/user/unlock?uuid=' + userForm.userId}"><img th:src="${'VERIFIED'.equals(userForm.status) ? '/images/lock-user.png' : '/images/unlock-user.png'}" class="user-listing-preview-control-image"/></a>
+                        <a th:href="${'/user/delete?uuid=' + userForm.userId}"><img src="/images/delete-user.png" class="user-listing-preview-control-image"/></a>
                     </div>
                 </div>
             </div>

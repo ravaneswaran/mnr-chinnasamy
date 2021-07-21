@@ -4,7 +4,7 @@
             <div class="top-space-50-pixel section">User Creation</div>
             <div class="top-space-50-pixel error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
             <div class="top-space-50-pixel sub-section">Personal Information <span style="font-size:16px;">(fields marked with (*) are mandatory)</span></div>
-            <div class="top-space-50-pixel employee-personal-info">
+            <div class="top-space-50-pixel user-personal-info">
                 <table>
                     <tr>
                         <td class="td-height-60">
@@ -41,7 +41,7 @@
                 </table>
             </div>
             <div class="sub-section">Permanent Address</div>
-            <div class="top-space-50-pixel employee-address-info">
+            <div class="top-space-50-pixel user-address-info">
                 <table>
                     <tr>
                         <td class="td-height-60"><input id="addressLine1" class="input-box-normal" type="text" name="addressLine1" placeholder="Address Line 1" th:value="${userForm != null} ? ${userForm.addressLine1} : ''"/></td>
@@ -66,7 +66,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="top-space-50-pixel employee-registration-commands">
+            <div class="top-space-50-pixel user-registration-commands">
                 <table>
                     <tr>
                         <td colspan="2" class="td-height-60">
