@@ -47,14 +47,14 @@ class ProfilePictureSuccessIntegrationTest extends MNRCAdministrationBaseIntegra
 
   When("""the user tries to submit the form filling his\/her profile picture""") { () =>
     this.file = this.createTemporaryImageFile
-    val uploadElement = this.webDriver.findElement(By.id("employee-info-profile-picture-browse"));
+    val uploadElement = this.webDriver.findElement(By.id("user-info-profile-picture-browse"));
     uploadElement.sendKeys(file.getAbsolutePath)
-    this.webDriver.findElement(By.id("employee-info-profile-picture-submit")).click();
+    this.webDriver.findElement(By.id("user-info-profile-picture-submit")).click();
   }
 
   Then("""the user is expected to see the image box with the uploaded image""") { () =>
     val pageTitle = this.webDriver.getTitle
-    assert("Shoppe : Employee Information".equals(pageTitle))
+    assert("MNRC-Administration : User Information".equals(pageTitle))
   }
 
   @throws[IOException]

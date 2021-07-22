@@ -11,8 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
-  features = Array("classpath:features/employee/employee-landing-page.feature"),
-  glue = Array("com.mnrc.employee.home"))
+  features = Array("classpath:features/user/user-landing-page.feature"),
+  glue = Array("com.mnrc.user.home"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class UserLandingPageIntegrationTest extends MNRCAdministrationBaseIntegrationTest  {
@@ -28,9 +28,9 @@ class UserLandingPageIntegrationTest extends MNRCAdministrationBaseIntegrationTe
     this.webDriver.findElement(By.id("login")).click();
   }
 
-  Then("""the user suppose to see the employee create page""") { () =>
+  Then("""the user suppose to see the user create page""") { () =>
     val pageTitle = this.webDriver.getTitle
-    assert("Shoppe : Employee Create".equals(pageTitle))
+    assert("MNRC-Administration : User Creation".equals(pageTitle))
     this.webDriver.close()
   }
 }

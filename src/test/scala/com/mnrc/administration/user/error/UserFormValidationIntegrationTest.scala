@@ -11,8 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
-  features = Array("classpath:features/employee/employee-form-validation.feature"),
-  glue = Array("com.mnrc.employee.error"))
+  features = Array("classpath:features/user/user-form-validation.feature"),
+  glue = Array("com.mnrc.user.error"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class UserFormValidationIntegrationTest extends MNRCAdministrationBaseIntegrationTest  {
@@ -34,7 +34,7 @@ class UserFormValidationIntegrationTest extends MNRCAdministrationBaseIntegratio
 
   Then("""The user should redirected to the same admin form page""") { () =>
     val pageTitle = this.webDriver.getTitle
-    assert("Shoppe : Employee Create".equals(pageTitle))
+    assert("MNRC-Administration : User Creation".equals(pageTitle))
   }
 
   Given("""the user has filled the first name but not the email id in the admin form""") { () =>

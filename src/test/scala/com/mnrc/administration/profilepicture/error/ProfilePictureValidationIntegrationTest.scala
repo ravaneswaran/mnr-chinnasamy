@@ -42,7 +42,7 @@ class ProfilePictureValidationIntegrationTest extends MNRCAdministrationBaseInte
   }
 
   When("""the user tries to submit the form without filling profile picture""") { () =>
-    this.webDriver.findElement(By.id("employee-info-profile-picture-submit")).click();
+    this.webDriver.findElement(By.id("user-info-profile-picture-submit")).click();
   }
 
   When("""the user tries to submit the form with inappropriate file""") { () =>
@@ -51,9 +51,9 @@ class ProfilePictureValidationIntegrationTest extends MNRCAdministrationBaseInte
     outputStream.write("some text content".getBytes())
     outputStream.close()
 
-    val uploadElement = this.webDriver.findElement(By.id("employee-info-profile-picture-browse"));
+    val uploadElement = this.webDriver.findElement(By.id("user-info-profile-picture-browse"));
     uploadElement.sendKeys(this.file.getAbsolutePath)
-    this.webDriver.findElement(By.id("employee-info-profile-picture-submit")).click();
+    this.webDriver.findElement(By.id("user-info-profile-picture-submit")).click();
   }
 
   Then("""the user is expected to see the error message {string}""") { (errorMessage: String) =>

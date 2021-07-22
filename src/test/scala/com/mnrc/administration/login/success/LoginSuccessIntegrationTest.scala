@@ -30,7 +30,7 @@ class LoginSuccessIntegrationTest extends MNRCAdministrationBaseIntegrationTest 
 
   Then("""the user should see the admin creation page""") { () =>
     val title = this.webDriver.getTitle
-    assert("Shoppe : Employee Create".equals(title))
+    assert("MNRC-Administration : User Creation".equals(title))
   }
 
 }
