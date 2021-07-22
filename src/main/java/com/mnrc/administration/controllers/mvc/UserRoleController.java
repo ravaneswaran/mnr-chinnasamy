@@ -53,19 +53,19 @@ public class UserRoleController extends BaseController {
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
-
-        List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
-
+        
         if(!bindingResult.hasErrors()){
             LoginForm login = (LoginForm) httpServletRequest.getSession().getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
             try {
-                this.userRoleService.addUserRole(userRoleForm.getRoleName(), String.format("%s, %s", login.getFirstName(), login.getLastName()));
+                this.userRoleService.addUserRole(userRoleForm.getRoleName(), String.format("%s %s", login.getFirstName(), login.getLastName()).trim());
+                List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("/user-role");
                 modelAndView.addObject("userRoleForm", userRoleForm);
                 modelAndView.addObject("userRoleForms", userRoleForms);
                 return modelAndView;
             } catch (Exception exception) {
+                List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("/user-role");
                 modelAndView.addObject("userRoleForm", userRoleForm);
@@ -79,6 +79,7 @@ public class UserRoleController extends BaseController {
                 return modelAndView;
             }
         } else {
+            List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("/user-role");
             modelAndView.addObject("userRoleForm", userRoleForm);
@@ -157,6 +158,38 @@ public class UserRoleController extends BaseController {
 
             return modelAndView;
         } catch (Exception e) {
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("/user-role");
+            modelAndView.addObject("userRoleForms", userRoleForms);
+            modelAndView.addObject("errorMessage", e.getMessage());
+
+            return modelAndView;
+        }
+    }
+
+    @GetMapping("/delete")
+    public ModelAndView deleteRole(@RequestParam(name = "uuid") String userRoleId, HttpServletRequest httpServletRequest){
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
+
+        if(null == userRoleId || "".equals(userRoleId)){
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("/user-role");
+            List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
+            modelAndView.addObject("userRoleForms", userRoleForms);
+            modelAndView.addObject("errorMessage", "Invalid uuid parameter...");
+
+            return modelAndView;
+        }
+
+        try {
+            this.userRoleService.deleteUserRole(userRoleId);
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("redirect:/user/role/add");
+            return modelAndView;
+        } catch (Exception e) {
+            List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("/user-role");
             modelAndView.addObject("userRoleForms", userRoleForms);
