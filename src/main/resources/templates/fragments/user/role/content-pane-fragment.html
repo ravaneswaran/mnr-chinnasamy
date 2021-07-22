@@ -12,15 +12,15 @@
                 </tr>
                 <tr>
                     <td class="td-height-60">
-                        <input id="userRoleName" class="input-box-normal" type="text" name="roleName" placeholder="User Role Name" th:value="${userRoleForm != null ? userRoleForm.roleName : ''}"/>
+                        <input id="roleName" class="input-box-normal" type="text" name="roleName" placeholder="User Role Name" th:value="${userRoleForm != null ? userRoleForm.roleName : ''}"/>
                         <span class="required-field">*</span>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" class="td-height-60">
-                        <input th:if="${userRoleForm == null}" class="button-normal" type="submit" value="Create"/>
-                        <input th:if="${userRoleForm != null && ('/user/role/add' == userRoleForm.action)}" class="button-normal" type="submit" value="Create"/>
-                        <input th:if="${userRoleForm != null && ('/user/role/edit' == userRoleForm.action)}" class="button-normal" type="submit" value="Update"/>
+                        <input id="create" th:if="${userRoleForm == null}" class="button-normal" type="submit" value="Create"/>
+                        <input th:id="${userRoleForm != null && ('/user/role/add' == userRoleForm.action) ? 'create' : ''}" th:if="${userRoleForm != null && ('/user/role/add' == userRoleForm.action)}" class="button-normal" type="submit" value="Create"/>
+                        <input th:id="${userRoleForm != null && ('/user/role/edit' == userRoleForm.action) ? 'update' : ''}" th:if="${userRoleForm != null && ('/user/role/edit' == userRoleForm.action)}" class="button-normal" type="submit" value="Update"/>
                     </td>
                 </tr>
             </table>

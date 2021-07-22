@@ -22,6 +22,18 @@ class MNRCAdministrationBaseIntegrationTest extends ScalaDsl with EN{
     webDriver.get("http://localhost:8080");
   }
 
+  def userHasloggedIn(webDriver : WebDriver, emailId: String, password: String): Unit = {
+    webDriver.get("http://localhost:8080");
+    webDriver.findElement(By.id("emailId")).sendKeys(emailId);
+    webDriver.findElement(By.id("password")).sendKeys(password);
+    webDriver.findElement(By.id("login")).click();
+  }
+
+  def clickingUserRoleMenuItem(webDriver : WebDriver): Unit ={
+    webDriver.findElement(By.id("app-launcher")).click();
+    webDriver.findElement(By.id("userRole")).click();
+  }
+
   def generateRandomString(): String = {
     RandomString.make();
   }
