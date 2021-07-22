@@ -53,7 +53,7 @@ public class UserRoleController extends BaseController {
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
-        
+
         if(!bindingResult.hasErrors()){
             LoginForm login = (LoginForm) httpServletRequest.getSession().getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
             try {

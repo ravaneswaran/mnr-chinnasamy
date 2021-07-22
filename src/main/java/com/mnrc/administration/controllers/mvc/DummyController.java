@@ -65,6 +65,13 @@ public class DummyController {
         return modelAndView;
     }
 
+    @GetMapping("/403")
+    public ModelAndView forbidden(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("403");
+        return modelAndView;
+    }
+
     @GetMapping("/user/role")
     public ModelAndView userRoleHome(){
         ModelAndView modelAndView = new ModelAndView();
