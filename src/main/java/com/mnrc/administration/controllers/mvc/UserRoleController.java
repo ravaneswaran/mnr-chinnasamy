@@ -50,8 +50,6 @@ public class UserRoleController extends BaseController {
     @PostMapping("/add")
     public ModelAndView addRole(@Valid UserRoleForm userRoleForm, BindingResult bindingResult, HttpServletRequest httpServletRequest){
 
-        System.out.println("-----------------------------------111111111111111111-----------------------------------------");
-
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
