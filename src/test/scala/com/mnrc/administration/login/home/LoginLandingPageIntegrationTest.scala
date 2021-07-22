@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/login/login-landing-page.feature"),
-  glue = Array("com.mnrc.login.home"))
+  glue = Array("com.mnrc.administration.login.home"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class LoginLandingPageIntegrationTest extends MNRCAdministrationBaseIntegrationTest  {
@@ -27,7 +27,7 @@ class LoginLandingPageIntegrationTest extends MNRCAdministrationBaseIntegrationT
 
   Then("""the user should see the login page""") { () =>
     val title = this.webDriver.getTitle
-    assert("Shoppe : Login".equals(title))
+    assert("MNRC-Administration : Login".equals(title))
     this.webDriver.close()
   }
 }

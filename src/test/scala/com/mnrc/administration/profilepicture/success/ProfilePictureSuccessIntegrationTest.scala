@@ -19,7 +19,7 @@ import javax.imageio.ImageIO
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/profile-picture/profile-picture-success.feature"),
-  glue = Array("com.mnrc.profilepicture.success"))
+  glue = Array("com.mnrc.administration.profilepicture.success"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class ProfilePictureSuccessIntegrationTest extends MNRCAdministrationBaseIntegrationTest {

@@ -16,7 +16,7 @@ import java.util.Date
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/profile-picture/profile-picture-validation.feature"),
-  glue = Array("com.mnrc.profilepicture.error"))
+  glue = Array("com.mnrc.administration.profilepicture.error"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class ProfilePictureValidationIntegrationTest extends MNRCAdministrationBaseIntegrationTest {

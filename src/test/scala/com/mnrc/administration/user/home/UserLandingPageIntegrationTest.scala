@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/user/user-landing-page.feature"),
-  glue = Array("com.mnrc.user.home"))
+  glue = Array("com.mnrc.administration.user.home"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class UserLandingPageIntegrationTest extends MNRCAdministrationBaseIntegrationTest  {

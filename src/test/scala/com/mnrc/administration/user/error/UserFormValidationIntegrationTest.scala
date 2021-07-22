@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/user/user-form-validation.feature"),
-  glue = Array("com.mnrc.user.error"))
+  glue = Array("com.mnrc.administration.user.error"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class UserFormValidationIntegrationTest extends MNRCAdministrationBaseIntegrationTest  {

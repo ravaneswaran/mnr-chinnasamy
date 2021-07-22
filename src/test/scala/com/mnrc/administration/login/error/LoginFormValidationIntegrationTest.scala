@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/login/login-validation.feature"),
-  glue = Array("com.mnrc.login.error"))
+  glue = Array("com.mnrc.administration.login.error"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class LoginFormValidationIntegrationTest extends MNRCAdministrationBaseIntegrationTest  {

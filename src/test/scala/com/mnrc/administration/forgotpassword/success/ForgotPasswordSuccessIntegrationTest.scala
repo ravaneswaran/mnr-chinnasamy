@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/forgot-password/forgot-password-success.feature"),
-  glue = Array("com.mnrc.forgotpassword.success"))
+  glue = Array("com.mnrc.administration.forgotpassword.success"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class ForgotPasswordSuccessIntegrationTest extends MNRCAdministrationBaseIntegrationTest  {
@@ -32,7 +32,7 @@ class ForgotPasswordSuccessIntegrationTest extends MNRCAdministrationBaseIntegra
 
   Then("""the user should see the password sent page""") { () =>
     val title =  this.webDriver.getTitle
-    assert("Shoppe : Password Sent".equals(title))
+    assert("MNRC-Administration : Password Sent".equals(title))
   }
 
 }

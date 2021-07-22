@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/login/login-success.feature"),
-  glue = Array("com.mnrc.login.success"))
+  glue = Array("com.mnrc.administration.login.success"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class LoginSuccessIntegrationTest extends MNRCAdministrationBaseIntegrationTest  {

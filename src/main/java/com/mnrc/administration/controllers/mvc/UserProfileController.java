@@ -46,7 +46,7 @@ public class UserProfileController extends BaseController {
     }
 
     @GetMapping("/picture-upload")
-    public ModelAndView redirectToEmployeeInfo(HttpServletRequest httpServletRequest){
+    public ModelAndView redirectToUserInfo(HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
@@ -71,10 +71,10 @@ public class UserProfileController extends BaseController {
             byte[] content = profilePicture.getBytes();
 
             if(null != content && 0 == content.length){
-                UserForm employee = this.userService.getUserForm(userId);
+                UserForm userForm = this.userService.getUserForm(userId);
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("user-info");
-                modelAndView.addObject("employee", employee);
+                modelAndView.addObject("userForm", userForm);
                 modelAndView.addObject("errorMessage", "Profile picture found to be empty...");
                 return modelAndView;
             }

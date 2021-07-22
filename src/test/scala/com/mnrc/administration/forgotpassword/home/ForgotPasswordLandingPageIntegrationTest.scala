@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/forgot-password/forgot-password-landing-page.feature"),
-  glue = Array("com.mnrc.forgotpassword.home"))
+  glue = Array("com.mnrc.administration.forgotpassword.home"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class ForgotPasswordLandingPageIntegrationTest extends MNRCAdministrationBaseIntegrationTest  {
@@ -27,7 +27,7 @@ class ForgotPasswordLandingPageIntegrationTest extends MNRCAdministrationBaseInt
 
   Then("""the user should see the forgot password page""") { () =>
     val title = this.webDriver.getTitle
-    assert("Shoppe : Forgot Password".equals(title))
+    assert("MNRC-Administration : Forgot Password".equals(title))
     this.webDriver.close()
   }
 }

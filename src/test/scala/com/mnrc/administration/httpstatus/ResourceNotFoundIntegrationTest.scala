@@ -12,8 +12,8 @@ import org.springframework.http.HttpStatus
 
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
-  features = Array("classpath:features/resource-not-found.feature"),
-  glue = Array("com.mnrc.httpstatus"))
+  features = Array("classpath:features/httpstatus/resource-not-found.feature"),
+  glue = Array("com.mnrc.administration.httpstatus"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class ResourceNotFoundIntegrationTest extends MNRCAdministrationBaseIntegrationTest  {

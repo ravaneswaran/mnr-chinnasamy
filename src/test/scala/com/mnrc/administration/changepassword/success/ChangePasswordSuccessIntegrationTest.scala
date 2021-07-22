@@ -15,7 +15,7 @@ import java.util.Date
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/change-password/change-password-success.feature"),
-  glue = Array("com.mnrc.changepassword.success"))
+  glue = Array("com.mnrc.administration.changepassword.success"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class ChangePasswordSuccessIntegrationTest extends MNRCAdministrationBaseIntegrationTest  {
@@ -58,7 +58,7 @@ class ChangePasswordSuccessIntegrationTest extends MNRCAdministrationBaseIntegra
 
   Then("""the user is expected to see the login page""") { () =>
     val title = this.webDriver.getTitle
-    assert("Shoppe : Login".equals(title))
+    assert("MNRC-Administration : Login".equals(title))
   }
 
   And("""the user is able to login with the new password""") { () =>
@@ -66,7 +66,7 @@ class ChangePasswordSuccessIntegrationTest extends MNRCAdministrationBaseIntegra
     this.webDriver.findElement(By.id("password")).sendKeys(this.newPassword);
     this.webDriver.findElement(By.id("login")).click();
     val title = this.webDriver.getTitle
-    assert("Shoppe : Employee Create".equals(title))
+    assert("MNRC-Administration : User Creation".equals(title))
     this.webDriver.close()
   }
 }

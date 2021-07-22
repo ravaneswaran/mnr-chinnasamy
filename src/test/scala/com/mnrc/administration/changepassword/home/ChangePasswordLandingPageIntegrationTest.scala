@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("classpath:features/change-password/change-password-landing-page.feature"),
-  glue = Array("com.mnrc.changepassword.home"))
+  glue = Array("com.mnrc.administration.changepassword.home"))
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @CucumberContextConfiguration
 class ChangePasswordLandingPageIntegrationTest extends MNRCAdministrationBaseIntegrationTest  {
@@ -34,7 +34,7 @@ class ChangePasswordLandingPageIntegrationTest extends MNRCAdministrationBaseInt
 
   Then("""the user is expected to see the change password page""") { () =>
     val title = this.webDriver.getTitle
-    assert("Shoppe : Change Password".equals(title))
+    assert("MNRC-Administration : Change Password".equals(title))
     this.webDriver.close()
   }
 
