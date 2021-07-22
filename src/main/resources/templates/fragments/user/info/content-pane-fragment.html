@@ -1,0 +1,77 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="content-pane">
+        <div class="top-space-100-pixel section">User Information</div>
+        <div id="errorMessage" class="user-info-error-message" th:text="${errorMessage}"></div>
+        <div class="user-info-left-pane">
+            <div class="user-info-photo-frame">
+                <form method="POST" action="/user/profile/picture-upload" enctype="multipart/form-data">
+                    <!--<img class="user-info-photo" src="/images/no-profile-pic.png" id="user-info-profile-picture"/>-->
+                    <img class="user-info-photo" th:src="${userForm.profilePic}" id="user-info-profile-picture"/>
+                    <br/><br/>
+                    <input class="user-info-profile-picture-browse" type="file" name="browseProfilePicture" id="user-info-profile-picture-browse" accept="image/jpeg, image/png, image/jpg"/>
+                    <input class="user-info-profile-picture-submit" type="submit" name="saveProfilePicture" id="user-info-profile-picture-submit" value="Upload Profile Pic"/>
+                    <input type="hidden" name="userId" th:value="${userForm.userId}"/>
+                </form>
+                <br/><br/>
+                <div th:if="${#session.getAttribute('LOGGED_IN_USER').userId.equals(userForm.userId)}">
+                    <a href="/user/list">List Users</a>
+                </div>
+                <div th:unless="${#session.getAttribute('LOGGED_IN_USER').userId.equals(userForm.userId)}">
+                    <a
+                            th:href="${'VERIFIED'.equals(userForm.status) ? '/user/lock?uuid=' + userForm.userId : '/user/unlock?uuid=' + userForm.userId}"
+                            onclick="javascript:alert('Are you sure want to block this user?');"
+                            th:text="${'VERIFIED'.equals(userForm.status) ? 'Lock this User' : 'UnLock this User'}">Lock this User
+                    </a>
+                    <br/>
+                    <a th:href="${'/user/delete?uuid=' + userForm.userId}" onclick="javascript:alert('Are you sure want to delete this user?');">Delete this User</a>
+                </div>
+            </div>
+        </div>
+        <div class="user-info-right-pane">
+            <table>
+                <tr>
+                    <td colspan="2" class="user-info-header">Personal Information...</td>
+                </tr>
+                <tr>
+                    <td class="user-info-td bold">First Name</td><td class="user-info-td" th:text="${userForm.firstName}"></td>
+                </tr>
+                <tr>
+                    <td class="user-info-td bold">Middle Initial</td><td class="user-info-td" th:text="${userForm.middleInitial}"></td>
+                </tr>
+                <tr>
+                    <td class="user-info-td bold">Last Name</td><td class="user-info-td" th:text="${userForm.lastName}"></td>
+                </tr>
+                <tr>
+                    <td class="user-info-td bold">Email Id</td><td class="user-info-td" th:text="${userForm.emailId}"></td>
+                </tr>
+                <tr>
+                    <td class="user-info-td bold">Mobile Number</td><td class="user-info-td" th:text="${userForm.mobileNo}"></td>
+                </tr>
+                <tr>
+                    <td class="user-info-td bold">Unique Id</td><td class="user-info-td" th:text="${userForm.uniqueId}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="user-info-header">Address Information...</td>
+                </tr>
+                <tr>
+                    <td class="user-info-td bold">Address Line 1</td><td class="user-info-td" th:text="${userForm.addressLine1}"></td>
+                </tr>
+                <tr>
+                    <td class="user-info-td bold">Address Line 2</td><td class="user-info-td" th:text="${userForm.addressLine2}"></td>
+                </tr>
+                <tr>
+                    <td class="user-info-td bold">Address Line 3</td><td class="user-info-td" th:text="${userForm.addressLine3}"></td>
+                </tr>
+                <tr>
+                    <td class="user-info-td bold">City</td><td class="user-info-td" th:text="${userForm.city}"></td>
+                </tr>
+                <tr>
+                    <td class="user-info-td bold">State</td><td class="user-info-td" th:text="${userForm.state}"></td>
+                </tr>
+                <tr>
+                    <td class="user-info-td bold">Zip Code</td><td class="user-info-td" th:text="${userForm.zipCode}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</html>
