@@ -27,7 +27,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user/profile")
-public class UserProfileController extends BaseController {
+public class UserProfileController extends BaseMVCController {
 
     Logger logger = LoggerFactory.getLogger(UserProfileController.class);
 

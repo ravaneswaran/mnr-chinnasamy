@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class LoginController extends BaseController {
+public class LoginController extends BaseMVCController {
 
     @Autowired
     private LoginService loginService;

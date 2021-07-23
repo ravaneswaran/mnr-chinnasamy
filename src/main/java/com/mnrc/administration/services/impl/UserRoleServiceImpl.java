@@ -1,17 +1,16 @@
 package com.mnrc.administration.services.impl;
 
+import com.fasterxml.jackson.databind.JsonSerializable;
 import com.mnrc.administration.models.UserRole;
 import com.mnrc.administration.repositories.UserRoleRepository;
 import com.mnrc.administration.services.UserRoleService;
 import com.mnrc.administration.ui.forms.UserRoleForm;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Component
 public class UserRoleServiceImpl implements UserRoleService {
@@ -146,5 +145,34 @@ public class UserRoleServiceImpl implements UserRoleService {
             userRoleForms.add(userRoleForm);
         }
         return userRoleForms;
+    }
+
+    @Override
+    public String toggleCanAccessAdministrationApp(String userRoleId, boolean canAccessAdministrationApp) throws Exception {
+        if(null == userRoleId){
+            throw new Exception("User role id cannot be null...");
+        }
+
+        if("".equals(userRoleId)){
+            throw new Exception("User role id cannot be a empty string...");
+        }
+
+        Optional<UserRole> optionalUserRole = this.userRoleRepository.findById(userRoleId);
+
+        if(!optionalUserRole.isPresent()){
+            throw new Exception(String.format("User role is not found for the id (%s)", userRoleId));
+        }
+
+        UserRole userRole = optionalUserRole.get();
+        int toggleValue = 0;
+        if(canAccessAdministrationApp){
+            toggleValue = 1;
+            userRole.setCanAccessAdministrationApp(toggleValue);
+        } else {
+            userRole.setCanAccessAdministrationApp(toggleValue);
+        }
+        this.userRoleRepository.save(userRole);
+
+        return String.valueOf(toggleValue);
     }
 }

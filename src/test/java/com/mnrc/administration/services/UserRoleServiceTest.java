@@ -153,4 +153,54 @@ public class UserRoleServiceTest {
             Assert.assertEquals("User role id cannot be a empty string...",  e.getMessage());
         }
     }
+
+    @Test
+    public void testToggleCanAccessAdministrationApp_Active() throws Exception {
+        String userRoleName = RandomString.make();
+        String userName = "Ravaneswaran Chinnasamy";
+        UserRoleForm userRoleForm = this.userRoleService.addUserRole(userRoleName, userName);
+
+        String respose = this.userRoleService.toggleCanAccessAdministrationApp(userRoleForm.getRoleId(), true);
+
+        Assert.assertTrue("1".equals(respose));
+    }
+
+    @Test
+    public void testToggleCanAccessAdministrationApp_InActive() throws Exception {
+        String userRoleName = RandomString.make();
+        String userName = "Ravaneswaran Chinnasamy";
+        UserRoleForm userRoleForm = this.userRoleService.addUserRole(userRoleName, userName);
+
+        String respose = this.userRoleService.toggleCanAccessAdministrationApp(userRoleForm.getRoleId(), false);
+
+        Assert.assertTrue("0".equals(respose));
+    }
+
+    @Test
+    public void testToggleCanAccessAdministrationApp_When_User_Role_Id_Is_Null(){
+        try {
+            this.userRoleService.toggleCanAccessAdministrationApp(null, false);
+        } catch (Exception exception) {
+            Assert.assertTrue("User role id cannot be null...".equals(exception.getMessage()));
+        }
+    }
+
+    @Test
+    public void testToggleCanAccessAdministrationApp_When_User_Role_Id_Is_Empty(){
+        try {
+           this.userRoleService.toggleCanAccessAdministrationApp("", false);
+        } catch (Exception exception) {
+            Assert.assertTrue("User role id cannot be a empty string...".equals(exception.getMessage()));
+        }
+    }
+
+    @Test
+    public void testToggleCanAccessAdministrationApp_When_User_Role_Id_Is_Not_In_The_System() {
+        String roleId = "989876";
+        try {
+            this.userRoleService.toggleCanAccessAdministrationApp(roleId, false);
+        } catch (Exception exception) {
+            Assert.assertTrue(String.format("User role is not found for the id (%s)", roleId).equals(exception.getMessage()));
+        }
+    }
 }

@@ -37,6 +37,8 @@ class UserRoleSuccessIntegrationTest extends MNRCAdministrationBaseIntegrationTe
   }
 
   Then("""the user is expected to see the newly created user role on the page""") { () =>
+    val anchorTags = this.webDriver.findElements(By.tagName("a"))
+
     this.webDriver.close()
   }
 

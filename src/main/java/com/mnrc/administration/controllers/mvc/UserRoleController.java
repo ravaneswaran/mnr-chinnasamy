@@ -21,7 +21,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user/role")
-public class UserRoleController extends BaseController {
+public class UserRoleController extends BaseMVCController {
 
     @Autowired
     private UserRoleService userRoleService;

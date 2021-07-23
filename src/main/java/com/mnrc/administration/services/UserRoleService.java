@@ -16,4 +16,6 @@ public interface UserRoleService {
 
     public List<UserRoleForm> getUserRoles();
 
+    public String toggleCanAccessAdministrationApp(String userRoleId, boolean canAccessAdministrationApp) throws Exception;
+
 }
