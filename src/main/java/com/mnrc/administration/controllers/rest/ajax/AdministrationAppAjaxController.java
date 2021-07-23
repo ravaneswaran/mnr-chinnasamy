@@ -20,12 +20,11 @@ public class AdministrationAppAjaxController extends AbstractAjaxController {
             @RequestParam(name = "canAccessAdministrationApp") boolean canAccessAdministrationApp,
             HttpServletRequest httpServletRequest) {
 
-        if(canAccessAdministrationApp){
-            
-        } else {
-
+        try {
+            String response = this.userRoleService.toggleCanAccessAdministrationApp(userRoleId, canAccessAdministrationApp);
+            return ResponseEntity.ok().body(String.format("{\"response\" : \"%s\", \"status\" : \"success\"}",response));
+        } catch (Exception exception) {
+            return ResponseEntity.badRequest().body(String.format("{\"response\" : \"%s\", \"status\" : \"failure\"}", exception.getMessage()));
         }
-
-        return null;
     }
 }
