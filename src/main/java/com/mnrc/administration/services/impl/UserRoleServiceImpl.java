@@ -98,6 +98,7 @@ public class UserRoleServiceImpl implements UserRoleService {
                 UserRoleForm userRoleForm = new UserRoleForm();
                 userRoleForm.setRoleId(userRole.getUUID());
                 userRoleForm.setRoleName(userRole.getName());
+                userRoleForm.setCanAccessAdministrationApp(userRole.getCanAccessAdministrationApp());
                 userRoleForm.setNoOfUsers(0);
 
                 return userRoleForm;
@@ -126,6 +127,7 @@ public class UserRoleServiceImpl implements UserRoleService {
             UserRoleForm userRoleForm = new UserRoleForm();
             userRoleForm.setRoleId(userRole.getUUID());
             userRoleForm.setRoleName(userRole.getName());
+            userRoleForm.setCanAccessAdministrationApp(userRole.getCanAccessAdministrationApp());
             userRoleForm.setNoOfUsers(0);
 
             return userRoleForm;
@@ -142,6 +144,7 @@ public class UserRoleServiceImpl implements UserRoleService {
             UserRoleForm userRoleForm = new UserRoleForm();
             userRoleForm.setRoleName(userRole.getName());
             userRoleForm.setRoleId(userRole.getUUID());
+            userRoleForm.setCanAccessAdministrationApp(userRole.getCanAccessAdministrationApp());
             userRoleForms.add(userRoleForm);
         }
         return userRoleForms;

@@ -21,11 +21,17 @@ public class AdministrationAppAjaxController extends AbstractAjaxController {
             @RequestParam(name = "canAccessAdministrationApp") boolean canAccessAdministrationApp,
             HttpServletRequest httpServletRequest) {
 
+        System.out.println("-----------------------------------------------------------------");
+
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body(String.format("{\"response\":\"%s\", \"status\":\"failure\"}", "BAD-REQUEST"));
+        }
+
         try {
             String response = this.userRoleService.toggleCanAccessAdministrationApp(userRoleId, canAccessAdministrationApp);
-            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(String.format("{\"response\" : \"%s\", \"status\" : \"success\"}",response));
+            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(String.format("{\"response\":\"%s\", \"status\":\"success\"}",response));
         } catch (Exception exception) {
-            return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body(String.format("{\"response\" : \"%s\", \"status\" : \"failure\"}", exception.getMessage()));
+            return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body(String.format("{\"response\":\"%s\", \"status\":\"failure\"}", exception.getMessage()));
         }
     }
 }

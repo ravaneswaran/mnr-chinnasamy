@@ -39,7 +39,7 @@
                 <table>
                     <tr th:each="userRoleForm: ${userRoleForms}">
                         <td class="td-height-60 user-role-list-td-left" >
-                            <input type="checkbox" title="Can access administration app"/>
+                            <input th:id="${userRoleForm.roleId}" type="checkbox" th:checked="${userRoleForm.canAccessAdministrationApp == 1}" title="Can access administration app" th:attr="onclick=|toggleCanAccessAdministrationApp('${userRoleForm.roleId}')|" />
                             <span th:text="${ userRoleForm.roleName + '     (' + userRoleForm.noOfUsers +' users)' }">Admin (10 users)</span>
                         </td>
                         <td class="td-height-60 user-role-list-td-right">
