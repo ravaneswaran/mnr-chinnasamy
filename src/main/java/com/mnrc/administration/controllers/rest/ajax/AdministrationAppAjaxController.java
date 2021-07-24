@@ -2,6 +2,7 @@ package com.mnrc.administration.controllers.rest.ajax;
 
 import com.mnrc.administration.services.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +23,9 @@ public class AdministrationAppAjaxController extends AbstractAjaxController {
 
         try {
             String response = this.userRoleService.toggleCanAccessAdministrationApp(userRoleId, canAccessAdministrationApp);
-            return ResponseEntity.ok().body(String.format("{\"response\" : \"%s\", \"status\" : \"success\"}",response));
+            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(String.format("{\"response\" : \"%s\", \"status\" : \"success\"}",response));
         } catch (Exception exception) {
-            return ResponseEntity.badRequest().body(String.format("{\"response\" : \"%s\", \"status\" : \"failure\"}", exception.getMessage()));
+            return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body(String.format("{\"response\" : \"%s\", \"status\" : \"failure\"}", exception.getMessage()));
         }
     }
 }
