@@ -1,13 +1,11 @@
 package com.mnrc.administration.services.impl;
 
-import com.fasterxml.jackson.databind.JsonSerializable;
 import com.mnrc.administration.models.UserRole;
 import com.mnrc.administration.repositories.UserRoleRepository;
 import com.mnrc.administration.services.UserRoleService;
 import com.mnrc.administration.ui.forms.UserRoleForm;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
