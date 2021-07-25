@@ -139,7 +139,7 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Override
     public List<UserRoleForm> getUserRoles() {
         List<UserRoleForm> userRoleForms = new ArrayList<>();
-        Iterable<UserRole> userRoles = this.userRoleRepository.findAll();
+        Iterable<UserRole> userRoles = this.userRoleRepository.findAllExcludingAlmightyRole();
         for(UserRole userRole : userRoles){
             UserRoleForm userRoleForm = new UserRoleForm();
             userRoleForm.setRoleName(userRole.getName());

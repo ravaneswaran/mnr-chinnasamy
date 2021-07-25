@@ -1,6 +1,9 @@
 package com.mnrc.administration.controllers.rest.ajax;
 
 import com.mnrc.administration.services.UserRoleService;
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/ajax/administration-app")
 public class AdministrationAppAjaxController extends AbstractAjaxController {
 
+    Logger logger = LoggerFactory.getLogger(AdministrationAppAjaxController.class);
+
     @Autowired
     private UserRoleService userRoleService;
 
@@ -20,18 +25,27 @@ public class AdministrationAppAjaxController extends AbstractAjaxController {
             @PathVariable(name = "userRoleId") String userRoleId,
             @RequestParam(name = "canAccessAdministrationApp") boolean canAccessAdministrationApp,
             HttpServletRequest httpServletRequest) {
-
-        System.out.println("-----------------------------------------------------------------");
-
         if(this.isNotUserLoggedIn(httpServletRequest)) {
-            return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body(String.format("{\"response\":\"%s\", \"status\":\"failure\"}", "BAD-REQUEST"));
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("response", "BAD-REQUEST");
+            jsonObject.put("status", "failure");
+            this.logger.error(jsonObject.toString());
+            return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body(jsonObject.toString());
         }
-
         try {
             String response = this.userRoleService.toggleCanAccessAdministrationApp(userRoleId, canAccessAdministrationApp);
-            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(String.format("{\"response\":\"%s\", \"status\":\"success\"}",response));
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("response", response);
+            jsonObject.put("status", "success");
+            this.logger.info(jsonObject.toString());
+            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(jsonObject.toString());
         } catch (Exception exception) {
-            return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body(String.format("{\"response\":\"%s\", \"status\":\"failure\"}", exception.getMessage()));
+            this.logger.error(exception.getMessage(), exception);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("response", exception.getMessage());
+            jsonObject.put("status", "failure");
+            this.logger.error(jsonObject.toString());
+            return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body(jsonObject);
         }
     }
 }
