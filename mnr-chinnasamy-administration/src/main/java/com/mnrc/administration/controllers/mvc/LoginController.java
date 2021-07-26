@@ -2,7 +2,10 @@ package com.mnrc.administration.controllers.mvc;
 
 import com.mnrc.administration.enums.SessionAttribute;
 import com.mnrc.administration.services.LoginService;
+import com.mnrc.administration.services.impl.LoginServiceImpl;
 import com.mnrc.administration.ui.forms.LoginForm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,6 +22,8 @@ import java.util.List;
 
 @Controller
 public class LoginController extends BaseMVCController {
+
+    Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private LoginService loginService;
@@ -58,16 +63,25 @@ public class LoginController extends BaseMVCController {
         if(!bindingResult.hasErrors()){
             LoginForm response = this.loginService.login(login.getEmailId(), login.getPassword());
             if(null != response){
-                if(response.isUserBlocked()){
+                if(response.isCanAccessAdministrationApp()){
+                    if(response.isUserBlocked()){
+                        ModelAndView modelAndView = new ModelAndView();
+                        modelAndView.setViewName("/login");
+                        modelAndView.addObject("login", login);
+                        modelAndView.addObject("errorMessage", "Sorry you have been locked...");
+                        return modelAndView;
+                    } else {
+                        HttpSession httpSession = httpServletRequest.getSession();
+                        httpSession.setAttribute(SessionAttribute.LOGGED_IN_USER.toString(), response);
+                        ModelAndView modelAndView = new ModelAndView("redirect:/user/home");
+                        return modelAndView;
+                    }
+                } else {
+                    this.logger.error(String.format("Access is denied for the role <%s>", response.getRoleName()));
                     ModelAndView modelAndView = new ModelAndView();
                     modelAndView.setViewName("/login");
                     modelAndView.addObject("login", login);
-                    modelAndView.addObject("errorMessage", "Sorry you have been locked...");
-                    return modelAndView;
-                } else {
-                    HttpSession httpSession = httpServletRequest.getSession();
-                    httpSession.setAttribute(SessionAttribute.LOGGED_IN_USER.toString(), response);
-                    ModelAndView modelAndView = new ModelAndView("redirect:/user/home");
+                    modelAndView.addObject("errorMessage", "Your are not authorized to access...contact you system administrator");
                     return modelAndView;
                 }
             } else {
