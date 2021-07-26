@@ -1,0 +1,212 @@
+@import "login.css";
+@import "user-signup.css";
+@import "user-role.css";
+@import "employee.css";
+@import "employee-info.css";
+@import "employee-listing.css";
+@import "forgot-password.css";
+@import "change-password.css";
+@import "menu.css";
+
+body{
+    background-color: #505050;
+}
+
+.wrapper {
+    background-color: #FFFFFF;
+    border: 3px solid #505050;
+    border-radius: 5px;
+    width: 1500px;
+    margin: auto;
+    min-height:2000px;
+    height:auto;
+    box-shadow: 0px -4px 15px 5px #FFFFFF;
+}
+
+.banner {
+    height: 225px;
+    width: 100%;
+    background-color: #505050;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu-bar {
+    border: 0px solid #505050;
+    height: 50px;
+}
+
+.content-pane {
+    border: 0px solid red;
+    height: 1670px;
+    width: 100%;
+}
+
+.footer {
+    background-color: #505050;
+    color: #FFFFFF;
+    border: 0px solid red;
+    width: 100%;
+    font-weight: bold;
+    text-indent: 10px;
+    height: 51px;
+    font-size: 14px;
+}
+
+.menu-item {
+    border: 2px solid #FFF;
+    height: 50px;
+    float: left;
+    width: 371px;
+    background-color: #505050;
+    color: #FFF;
+}
+
+.banner-logo{
+    border: 0px solid red;
+    height: 175px;
+}
+
+.top-space-50-pixel{
+    margin-top: 50px;
+}
+
+.top-space-100-pixel{
+    margin-top: 100px;
+}
+
+.section {
+    height: 50px;
+    width: 75%;
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #505050;
+    font-size: 35px;
+    text-indent : 10px;
+    color: #505050;
+    margin-left: 185px;
+}
+
+.sub-section {
+    height: 50px;
+    width: 60%;
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #505050;
+    font-size: 35px;
+    text-indent: 10px;
+    color: #505050;
+    margin-left: 408px;
+}
+
+.input-box-normal {
+    border:1px solid #505050;
+    font-size: 18px;
+    height: 45px;
+    width: 450px;
+    border-radius: 10px;
+    text-indent: 15px;
+}
+
+.button-normal {
+    background-color: #505050;
+    border-radius: 10px;
+    color: #FFFFFF;
+    height: 50px;
+    width: 225px;
+    border: 4px solid #00FF7F;
+    text-align:center;
+}
+
+.button-reset {
+    background-color: #505050;
+    border-radius: 10px;
+    color: #FFFFFF;
+    height: 50px;
+    width: 225px;
+    border: 4px solid #F06464;
+}
+
+.td-height-60 {
+    height: 60px;
+}
+
+.required-field {
+    color: red;
+}
+
+.center-text{
+    text-align:center;
+}
+
+a {
+    color: #505050;
+    font-size: 18px;
+}
+
+.error-message-box {
+    height: 60px;
+    color: red;
+    font-size: 16px;
+    text-align: center;
+}
+
+.logged-in-as{
+    float: right;
+    margin-top: -19px;
+    border: 0px solid white;
+    font-size: 16px;
+    margin-right: 10px;
+    width: 508px;
+    text-align: right;
+}
+
+.app-launcher-image{
+    margin-left: 0px;
+    cursor:pointer;
+}
+
+.app-launcher{
+    border-radius: 5px;
+    height: 32px;
+    width: 32px;
+    box-shadow: 0px 0px 4px 2px #2d2424;
+    margin-left: 8px;
+    background: #423939;
+    cursor:pointer;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+/******************************/
+
+.http-status-content-pane{
+    width: 750px;
+    height: 420px;
+    margin-left: 375px;
+    margin-top: 200px;
+    border-radius: 5px;
+    box-shadow: 1px -1px 15px 5px #505050;
+    background: #505050;
+}
+
+.http-status-header{
+    background: #505050;
+    color: #FFF;
+    height: 50px;
+    border-radius: 5px;
+    text-indent: 10px;
+}
+
+.http-status-image {
+    border-radius: 5px;
+}
+
+.http-status-image-big{
+    height: 325px;
+    width: 750px;
+}
+

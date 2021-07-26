@@ -1,0 +1,20 @@
+.user-personal-info {
+   border: 0px solid red;
+   height: 460px;
+   width: 490px;
+   margin-left: 450px;
+}
+
+.user-address-info {
+    border: 0px solid red;
+    height: 452px;
+    width: 463px;
+    margin-left: 450px;
+}
+
+.user-registration-commands {
+    border: 0px solid red;
+    height: 67px;
+    width: 463px;
+    margin-left: 450px;
+}

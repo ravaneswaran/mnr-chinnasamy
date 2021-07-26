@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="01" author="ravaneswaran">
+        <createTable tableName="user_role">
+            <column name="uuid" type="varchar(200)" >
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(200)" />
+            <column name="can_access_administration_app" type="tinyint" />
+            <column name="created_by" type="varchar(100)" />
+            <column name="modified_by" type="varchar(100)" />
+            <column name="created_date" type="datetime" />
+            <column name="modified_date" type="datetime" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="02"  author="ravaneswaran">
+        <addUniqueConstraint columnNames="name" tableName="user_role"/>
+    </changeSet>
+
+    <changeSet id="03" author="ravaneswaran">
+
+        <insert tableName="user_role">
+            <column  name="uuid"  value="0000000000"/>
+            <column  name="name"  value="ALMIGHTY"/>
+            <column  name="can_access_administration_app"  value="1"/>
+            <column  name="created_by" value="Liquibase Script" />
+            <column  name="modified_by" value="Liquibase Script" />
+            <column  name="created_date"  value="1900-01-01 00:00:00"/>
+            <column  name="modified_date"  value="1900-01-01 00:00:00"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

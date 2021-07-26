@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="01" author="ravaneswaran">
+
+        <createTable tableName="item_range_price">
+            <column name="uuid" type="varchar(200)" >
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="item_uuid" type="varchar(200)" />
+            <column name="low_1" type="int" />
+            <column name="high_1" type="int" />
+            <column name="price_1" type="varchar(20)" />
+            <column name="low_2" type="int" />
+            <column name="high_2" type="int" />
+            <column name="price_2" type="varchar(20)" />
+            <column name="low_3" type="int" />
+            <column name="high_3" type="int" />
+            <column name="price_3" type="varchar(20)" />
+            <column name="low_4" type="int" />
+            <column name="high_4" type="int" />
+            <column name="price_4" type="varchar(20)" />
+            <column name="created_by" type="varchar(200)" />
+            <column name="created_date" type="datetime" />
+            <column name="modified_date" type="datetime" />
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="item_range_price" baseColumnNames="item_uuid" constraintName="fk_item_range_price_item_uuid"
+                                 referencedTableName="item"
+                                 referencedColumnNames="uuid"/>
+
+    </changeSet>
+
+</databaseChangeLog>

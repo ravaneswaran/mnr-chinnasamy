@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/base/main.css}"/>
+    <th:block th:include="fragments/head-script-fragment :: scripts"></th:block>
+    <title th:include="fragments/user/role/page-title-fragment :: page-title"></title>
+</head>
+<body>
+<div class="wrapper">
+    <div class="banner" th:include="fragments/banner-fragment :: banner"></div>
+    <div class="content-pane" th:include="fragments/user/role/content-pane-fragment :: content-pane"></div>
+    <div class="footer" th:include="fragments/footer-fragment :: footer"></div>
+</div>
+</body>
+</html>
