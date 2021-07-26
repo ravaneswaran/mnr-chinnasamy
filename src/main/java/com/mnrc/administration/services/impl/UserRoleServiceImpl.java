@@ -8,10 +8,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Component
 public class UserRoleServiceImpl implements UserRoleService {
@@ -99,6 +96,7 @@ public class UserRoleServiceImpl implements UserRoleService {
                 UserRoleForm userRoleForm = new UserRoleForm();
                 userRoleForm.setRoleId(userRole.getUUID());
                 userRoleForm.setRoleName(userRole.getName());
+                userRoleForm.setCanAccessAdministrationApp(userRole.getCanAccessAdministrationApp());
                 userRoleForm.setNoOfUsers(0);
 
                 return userRoleForm;
@@ -127,6 +125,7 @@ public class UserRoleServiceImpl implements UserRoleService {
             UserRoleForm userRoleForm = new UserRoleForm();
             userRoleForm.setRoleId(userRole.getUUID());
             userRoleForm.setRoleName(userRole.getName());
+            userRoleForm.setCanAccessAdministrationApp(userRole.getCanAccessAdministrationApp());
             userRoleForm.setNoOfUsers(0);
 
             return userRoleForm;
@@ -138,13 +137,43 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Override
     public List<UserRoleForm> getUserRoles() {
         List<UserRoleForm> userRoleForms = new ArrayList<>();
-        Iterable<UserRole> userRoles = this.userRoleRepository.findAll();
+        Iterable<UserRole> userRoles = this.userRoleRepository.findAllExcludingAlmightyRole();
         for(UserRole userRole : userRoles){
             UserRoleForm userRoleForm = new UserRoleForm();
             userRoleForm.setRoleName(userRole.getName());
             userRoleForm.setRoleId(userRole.getUUID());
+            userRoleForm.setCanAccessAdministrationApp(userRole.getCanAccessAdministrationApp());
             userRoleForms.add(userRoleForm);
         }
         return userRoleForms;
+    }
+
+    @Override
+    public String toggleCanAccessAdministrationApp(String userRoleId, boolean canAccessAdministrationApp) throws Exception {
+        if(null == userRoleId){
+            throw new Exception("User role id cannot be null...");
+        }
+
+        if("".equals(userRoleId)){
+            throw new Exception("User role id cannot be a empty string...");
+        }
+
+        Optional<UserRole> optionalUserRole = this.userRoleRepository.findById(userRoleId);
+
+        if(!optionalUserRole.isPresent()){
+            throw new Exception(String.format("User role is not found for the id (%s)", userRoleId));
+        }
+
+        UserRole userRole = optionalUserRole.get();
+        int toggleValue = 0;
+        if(canAccessAdministrationApp){
+            toggleValue = 1;
+            userRole.setCanAccessAdministrationApp(toggleValue);
+        } else {
+            userRole.setCanAccessAdministrationApp(toggleValue);
+        }
+        this.userRoleRepository.save(userRole);
+
+        return String.valueOf(toggleValue);
     }
 }

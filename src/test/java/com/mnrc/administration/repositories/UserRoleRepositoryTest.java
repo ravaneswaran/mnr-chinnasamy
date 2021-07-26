@@ -1,6 +1,7 @@
 package com.mnrc.administration.repositories;
 
 import com.mnrc.administration.models.UserRole;
+import net.bytebuddy.utility.RandomString;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @RunWith(SpringRunner.class)
@@ -39,5 +41,26 @@ public class UserRoleRepositoryTest {
         UserRole response = this.userRoleRepository.save(userRole);
 
         Assert.assertEquals(uuid, response.getUUID());
+    }
+
+    @Test
+    public void testFindAllExcludingAlmightyRole(){
+        String uuid = UUID.randomUUID().toString();
+        Date now = new Date();
+
+        UserRole userRole = new UserRole();
+        userRole.setUUID(uuid);
+        userRole.setName(RandomString.make());
+        userRole.setCreatedBy("ALMIGHTY");
+        userRole.setModifiedBy("ALMIGHTY");
+        userRole.setCreatedDate(now);
+        userRole.setModifiedDate(now);
+        this.userRoleRepository.save(userRole);
+
+        List<UserRole> userRoles = this.userRoleRepository.findAllExcludingAlmightyRole();
+
+        for (UserRole usrRole: userRoles) {
+            Assert.assertTrue(!"ALMIGHTY".equals(usrRole.getName()));
+        }
     }
 }

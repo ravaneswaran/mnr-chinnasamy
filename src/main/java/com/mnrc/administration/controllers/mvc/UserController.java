@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user")
-public class UserController extends BaseController {
+public class UserController extends BaseMVCController {
 
     Logger logger = LoggerFactory.getLogger(UserController.class);
 

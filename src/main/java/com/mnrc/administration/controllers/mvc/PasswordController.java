@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class PasswordController extends BaseController {
+public class PasswordController extends BaseMVCController {
 
     @Autowired
     private PasswordService passwordService;

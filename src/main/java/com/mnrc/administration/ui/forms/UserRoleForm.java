@@ -13,6 +13,8 @@ public class UserRoleForm {
 
     private String action = "/user/role/add";
 
+    private int canAccessAdministrationApp;
+
     public int getNoOfUsers() {
         return noOfUsers;
     }
@@ -43,5 +45,13 @@ public class UserRoleForm {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public int getCanAccessAdministrationApp() {
+        return canAccessAdministrationApp;
+    }
+
+    public void setCanAccessAdministrationApp(int canAccessAdministrationApp) {
+        this.canAccessAdministrationApp = canAccessAdministrationApp;
     }
 }

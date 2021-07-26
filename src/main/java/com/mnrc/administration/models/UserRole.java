@@ -17,6 +17,9 @@ public class UserRole {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "can_access_administration_app")
+    private int canAccessAdministrationApp;
+
     @Column(name = "created_by")
     private String createdBy;
 
@@ -75,5 +78,13 @@ public class UserRole {
 
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    public int getCanAccessAdministrationApp() {
+        return canAccessAdministrationApp;
+    }
+
+    public void setCanAccessAdministrationApp(int canAccessAdministrationApp) {
+        this.canAccessAdministrationApp = canAccessAdministrationApp;
     }
 }
