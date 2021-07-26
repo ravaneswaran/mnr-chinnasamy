@@ -1,5 +1,6 @@
 .idea
-shoppe.iml
+mnr-chinnasamy.iml
 
+mnr-chinnasamy-administration/mnr-chinnasamy-administration.iml
 mnr-chinnasamy-administration/target
 mnr-chinnasamy-administration/src/main/resources/liquibase/shoppe-master-output-changelog.xml
