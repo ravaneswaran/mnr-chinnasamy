@@ -9,7 +9,6 @@
     <name>mnr-chinnasamy</name>
     <packaging>pom</packaging>
 
-    
     <modules>
         <module>mnr-chinnasamy-administration</module>
     </modules>
