@@ -1,7 +1,9 @@
 package com.mnrc.administration.controllers.mvc;
 
+import com.mnrc.administration.services.UserRoleService;
 import com.mnrc.administration.services.UserService;
 import com.mnrc.administration.ui.forms.UserForm;
+import com.mnrc.administration.ui.forms.UserRoleForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class UserController extends BaseMVCController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserRoleService userRoleService;
+
     @Override
     protected List<String> getMandatoryFields() {
         List<String> mandatoryFields = new ArrayList<>();
@@ -41,8 +46,12 @@ public class UserController extends BaseMVCController {
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
+
+        List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user-create");
+        modelAndView.addObject("userRoleForms", userRoleForms);
         return modelAndView;
     }
 
@@ -52,22 +61,37 @@ public class UserController extends BaseMVCController {
             return new ModelAndView("redirect:/");
         }
 
+        if("-1".equals(userForm.getUserRoleId())){
+            List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("user-create");
+            modelAndView.addObject("userForm", userForm);
+            modelAndView.addObject("userRoleForms", userRoleForms);
+            modelAndView.addObject("errorMessage", "Please select a valid user role...");
+
+            return modelAndView;
+        }
+
         if(!bindingResult.hasErrors()){
             UserForm response = this.userService.addUser(userForm.getFirstName(), userForm.getMiddleInitial(), userForm.getLastName(), userForm.getEmailId(), userForm.getUniqueId(), userForm.getMobileNo());
             if(null != response) {
                 String redirect = String.format("redirect:/user/info?uuid=%s", response.getUserId());
                 return new ModelAndView(redirect);
             } else {
+                List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("user-create");
                 modelAndView.addObject("userForm",userForm);
+                modelAndView.addObject("userRoleForms", userRoleForms);
                 modelAndView.addObject("errorMessage", "Unable to add admin information...");
                 return modelAndView;
             }
         } else {
+            List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("user-create");
             modelAndView.addObject("userForm", userForm);
+            modelAndView.addObject("userRoleForms", userRoleForms);
             modelAndView.addObject("errorMessage", this.getError(bindingResult));
 
             return modelAndView;

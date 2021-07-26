@@ -1,3 +1,18 @@
+.user-role-info {
+    border: 0px solid red;
+    height: 68px;
+    width: 490px;
+    margin-left: 450px;
+}
+
+.user-role-select {
+    border: 1px solid #505050;
+    width: 450px;
+    height: 55px;
+    border-radius: 5px;
+    text-indent: 10px;
+}
+
 .user-personal-info {
    border: 0px solid red;
    height: 460px;

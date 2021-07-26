@@ -3,6 +3,7 @@ package com.mnrc.administration.ui.forms;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 public class UserForm extends BaseForm{
 
@@ -36,6 +37,10 @@ public class UserForm extends BaseForm{
     private String zipCode;
 
     private String profilePic;
+
+    private String userRoleId;
+
+    private List<UserRoleForm> userRoleForms;
 
     public String getFirstName() {
         return firstName;
@@ -163,5 +168,21 @@ public class UserForm extends BaseForm{
 
     public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
+    }
+
+    public String getUserRoleId() {
+        return userRoleId;
+    }
+
+    public void setUserRoleId(String userRoleId) {
+        this.userRoleId = userRoleId;
+    }
+
+    public List<UserRoleForm> getUserRoleForms() {
+        return userRoleForms;
+    }
+
+    public void setUserRoleForms(List<UserRoleForm> userRoleForms) {
+        this.userRoleForms = userRoleForms;
     }
 }
