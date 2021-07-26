@@ -1,6 +1,7 @@
 package com.mnrc.administration.controllers.rest.ajax;
 
 import com.mnrc.administration.services.UserRoleService;
+import com.mnrc.administration.ui.forms.UserRoleForm;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,12 @@ public class AdministrationAppAjaxController extends AbstractAjaxController {
         }
         try {
             String response = this.userRoleService.toggleCanAccessAdministrationApp(userRoleId, canAccessAdministrationApp);
+            UserRoleForm userRoleForm = this.userRoleService.getUserRole(userRoleId);
+            if(null != userRoleForm && "1".equals(response)){
+                this.logger.info(String.format("the user role <%s> is able to access administration app now...", userRoleForm.getRoleName()));
+            } else {
+                this.logger.info(String.format("the user role <%s> is not able to access administration app now..", userRoleForm.getRoleName()));
+            }
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("response", response);
             jsonObject.put("status", "success");

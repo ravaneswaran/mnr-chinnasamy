@@ -19,6 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 class UserRoleSuccessIntegrationTest extends MNRCAdministrationBaseIntegrationTest{
 
   var webDriver: WebDriver = null
+  val roleName = String.format("%s-%s", RandomString.make(), RandomString.make())
 
   Given("""the user has logged into the system""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
@@ -31,15 +32,20 @@ class UserRoleSuccessIntegrationTest extends MNRCAdministrationBaseIntegrationTe
   }
 
   When("""the user tries to submit the form filling a valid user role name""") { () =>
-    val roleName = String.format("%s-%s", RandomString.make(), RandomString.make())
-    this.webDriver.findElement(By.id("roleName")).sendKeys(roleName)
+    this.webDriver.findElement(By.id("roleName")).sendKeys(this.roleName)
     this.webDriver.findElement(By.id("create")).click();
   }
 
   Then("""the user is expected to see the newly created user role on the page""") { () =>
-    val anchorTags = this.webDriver.findElements(By.tagName("a"))
-
+    val textTags = this.webDriver.findElements(By.tagName("span"))
+    var found = false;
+    textTags.forEach(textTab => {
+      val text = textTab.getText
+      if(text.equals(String.format("%s (0 users)", this.roleName.toUpperCase))){
+        found = true;
+      }
+    })
+    assert(found)
     this.webDriver.close()
   }
-
 }
