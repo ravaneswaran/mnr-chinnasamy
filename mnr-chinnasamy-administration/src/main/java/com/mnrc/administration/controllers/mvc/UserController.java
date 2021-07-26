@@ -73,7 +73,18 @@ public class UserController extends BaseMVCController {
         }
 
         if(!bindingResult.hasErrors()){
-            UserForm response = this.userService.addUser(userForm.getFirstName(), userForm.getMiddleInitial(), userForm.getLastName(), userForm.getEmailId(), userForm.getUniqueId(), userForm.getMobileNo());
+            UserForm response = null;
+            try {
+                response = this.userService.addUser(userForm.getFirstName(), userForm.getMiddleInitial(), userForm.getLastName(), userForm.getEmailId(), userForm.getUniqueId(), userForm.getMobileNo());
+            } catch (Exception exception) {
+                List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
+                ModelAndView modelAndView = new ModelAndView();
+                modelAndView.setViewName("user-create");
+                modelAndView.addObject("userForm",userForm);
+                modelAndView.addObject("userRoleForms", userRoleForms);
+                modelAndView.addObject("errorMessage", exception.getMessage());
+                return modelAndView;
+            }
             if(null != response) {
                 String redirect = String.format("redirect:/user/info?uuid=%s", response.getUserId());
                 return new ModelAndView(redirect);
