@@ -1,6 +1,5 @@
 .idea
 shoppe.iml
-target
-src/main/resources/liquibase/shoppe-master-output-changelog.xml
-temp/*
 
+mnr-chinnasamy-administration/target
+mnr-chinnasamy-administration/src/main/resources/liquibase/shoppe-master-output-changelog.xml
