@@ -9,6 +9,7 @@ import java.util.List;
 @Component
 public interface UserService {
 
+    @Deprecated
     public User addUserWithVerifiedStatus(
             String firstName,
             String middleInitial,
@@ -42,6 +43,7 @@ public interface UserService {
 
     public User getUserByEmailId(String emailId);
 
+    @Deprecated
     public UserForm addUser(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo) throws Exception;
 
     public UserForm addUser(String userRoleId, String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo) throws Exception;

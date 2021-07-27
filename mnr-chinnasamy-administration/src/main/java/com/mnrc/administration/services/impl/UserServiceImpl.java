@@ -49,21 +49,21 @@ public class UserServiceImpl implements UserService {
         User response = this.addUserWithVerifiedStatus(userRoleId, firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, UserType.ADMIN.toString());
 
         if(null != response){
-            UserForm admin = new UserForm();
-            admin.setUserId(response.getUUID());
-            admin.setFirstName(response.getFirstName());
-            admin.setMiddleInitial(response.getMiddleInitial());
-            admin.setLastName(response.getLastName());
-            admin.setEmailId(response.getEmailId());
-            admin.setMobileNo(response.getMobileNo());
+            UserForm userForm = new UserForm();
+            userForm.setUserId(response.getUUID());
+            userForm.setFirstName(response.getFirstName());
+            userForm.setMiddleInitial(response.getMiddleInitial());
+            userForm.setLastName(response.getLastName());
+            userForm.setEmailId(response.getEmailId());
+            userForm.setMobileNo(response.getMobileNo());
             uniqueId = response.getUniqueId();
 
             if(uniqueId.startsWith("DUMMY-")){
-                admin.setUniqueId("");
+                userForm.setUniqueId("");
             } else {
-                admin.setUniqueId(uniqueId);
+                userForm.setUniqueId(uniqueId);
             }
-            return admin;
+            return userForm;
         } else {
             return null;
         }
@@ -90,8 +90,9 @@ public class UserServiceImpl implements UserService {
         user.setMiddleInitial(middleInitial);
         user.setLastName(lastName);
         user.setEmailId(emailId);
-        String uniqueIdAlias = (null != uniqueId && !"".equals(uniqueId.trim())) ? uniqueId : String.format("DUMMY-%s", String.valueOf(new Date().getTime()));
-        user.setUniqueId(uniqueIdAlias);
+        if(null != uniqueId && !"".equals(uniqueId.trim())){
+            user.setUniqueId(uniqueId);
+        }
         user.setMobileNo(mobileNo);
         user.setPassword("welcome");
         user.setType(type);
@@ -101,6 +102,7 @@ public class UserServiceImpl implements UserService {
         user.setModifiedDate(now);
 
         try {
+            System.out.println("getUniqueId ------------------------>>>>>>> "+user.getUniqueId());
             User response = this.userRepository.save(user);
             return response;
         } catch (Exception exp) {

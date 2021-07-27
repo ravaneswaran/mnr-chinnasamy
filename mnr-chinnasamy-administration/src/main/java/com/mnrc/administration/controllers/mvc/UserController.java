@@ -75,7 +75,7 @@ public class UserController extends BaseMVCController {
         if(!bindingResult.hasErrors()){
             UserForm response = null;
             try {
-                response = this.userService.addUser(userForm.getFirstName(), userForm.getMiddleInitial(), userForm.getLastName(), userForm.getEmailId(), userForm.getUniqueId(), userForm.getMobileNo());
+                response = this.userService.addUser(userForm.getUserRoleId(), userForm.getFirstName(), userForm.getMiddleInitial(), userForm.getLastName(), userForm.getEmailId(), userForm.getUniqueId(), userForm.getMobileNo());
             } catch (Exception exception) {
                 List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
                 ModelAndView modelAndView = new ModelAndView();

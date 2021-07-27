@@ -53,6 +53,7 @@ public class User{
 
     public User(){
         this.setUUID(java.util.UUID.randomUUID().toString());
+        this.setUniqueId(String.format("DUMMY-%s", String.valueOf(new Date().getTime())));
     }
 
     public String getUUID() {

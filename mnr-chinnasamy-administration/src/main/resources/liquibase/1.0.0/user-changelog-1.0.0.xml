@@ -11,6 +11,7 @@
             <column name="uuid" type="varchar(200)" >
                 <constraints primaryKey="true"/>
             </column>
+            <column name="role_uuid" type="varchar(200)" />
             <column name="first_name" type="varchar(200)" />
             <column name="middle_initial" type="varchar(200)" />
             <column name="last_name" type="varchar(200)" />
@@ -33,27 +34,10 @@
     </changeSet>
 
     <changeSet id="03"  author="ravaneswaran">
-        <addColumn tableName="user" >
-            <column name="role_uuid"
-                    position="2"
-                    type="varchar(200)"/>
-            <!--<column afterColumn="uuid"
-                    name="name"
-                    type="varchar(50)" >
-                <constraints primaryKey="true"/>
-            </column>-->
-        </addColumn>
-
         <addForeignKeyConstraint baseTableName="user" baseColumnNames="role_uuid" constraintName="fk_user_userRole_uuid"
                                  referencedTableName="user_role"
                                  referencedColumnNames="uuid" />
     </changeSet>
 
-    <changeSet id="04"  author="ravaneswaran">
-        <update tableName="user">
-            <column name="role_uuid" value="0000000000"/>
-            <where>uuid='0000000000'</where>
-        </update>
-    </changeSet>
 
 </databaseChangeLog>

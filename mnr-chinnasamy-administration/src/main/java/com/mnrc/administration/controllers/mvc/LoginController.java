@@ -73,7 +73,7 @@ public class LoginController extends BaseMVCController {
                     } else {
                         HttpSession httpSession = httpServletRequest.getSession();
                         httpSession.setAttribute(SessionAttribute.LOGGED_IN_USER.toString(), response);
-                        ModelAndView modelAndView = new ModelAndView("redirect:/user/home");
+                        ModelAndView modelAndView = new ModelAndView("redirect:/user/role/view");
                         return modelAndView;
                     }
                 } else {
