@@ -28,9 +28,9 @@ class LoginSuccessIntegrationTest extends MNRCAdministrationBaseIntegrationTest 
     this.webDriver.findElement(By.id("login")).click();
   }
 
-  Then("""the user should see the admin creation page""") { () =>
+  Then("""the user should see the user role page""") { () =>
     val title = this.webDriver.getTitle
-    assert("MNRC-Administration : User Creation".equals(title))
+    assert("MNRC-Administration : User Role".equals(title))
   }
 
 }
