@@ -24,6 +24,12 @@ public class LoginForm extends BaseForm {
 
     private String type;
 
+    private String roleId;
+
+    private String roleName;
+
+    private boolean canAccessAdministrationApp;
+
     public String getEmailId() {
         return emailId;
     }
@@ -86,5 +92,29 @@ public class LoginForm extends BaseForm {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public boolean isCanAccessAdministrationApp() {
+        return canAccessAdministrationApp;
+    }
+
+    public void setCanAccessAdministrationApp(boolean canAccessAdministrationApp) {
+        this.canAccessAdministrationApp = canAccessAdministrationApp;
     }
 }

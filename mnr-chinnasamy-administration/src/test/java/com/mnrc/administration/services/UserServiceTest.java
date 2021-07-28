@@ -36,7 +36,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testAddUserWithVerifiedStatus() {
+    public void testAddUserWithVerifiedStatus() throws Exception {
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
@@ -56,7 +56,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testBlockUser(){
+    public void testBlockUser() throws Exception {
 
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
@@ -78,7 +78,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testUnBlockUser(){
+    public void testUnBlockUser() throws Exception {
 
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
@@ -102,7 +102,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testDeleteUser(){
+    public void testDeleteUser() throws Exception {
 
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
@@ -125,7 +125,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testAddUser(){
+    public void testAddUser() throws Exception {
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
@@ -143,7 +143,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testListUsers(){
+    public void testListUsers() throws Exception {
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));
@@ -162,7 +162,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testGetUser(){
+    public void testGetUser() throws Exception {
         Random random = new Random();
         String randomNumberString = String.valueOf(Math.abs(random.nextLong()));
         String mobileNoString = String.valueOf(Math.abs(random.nextLong()));

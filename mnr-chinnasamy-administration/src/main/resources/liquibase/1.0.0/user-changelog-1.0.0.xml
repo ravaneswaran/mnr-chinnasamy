@@ -11,6 +11,7 @@
             <column name="uuid" type="varchar(200)" >
                 <constraints primaryKey="true"/>
             </column>
+            <column name="role_uuid" type="varchar(200)" />
             <column name="first_name" type="varchar(200)" />
             <column name="middle_initial" type="varchar(200)" />
             <column name="last_name" type="varchar(200)" />
@@ -30,6 +31,16 @@
         <addUniqueConstraint columnNames="email_id" tableName="user"/>
         <addUniqueConstraint columnNames="unique_id" tableName="user"/>
         <addUniqueConstraint columnNames="mobile_no" tableName="user"/>
+    </changeSet>
+
+    <changeSet id="03"  author="ravaneswaran">
+        <addForeignKeyConstraint baseTableName="user" baseColumnNames="role_uuid" constraintName="fk_user_userRole_uuid"
+                                 referencedTableName="user_role"
+                                 referencedColumnNames="uuid" />
+    </changeSet>
+
+    <changeSet id="04" author="ravaneswaran">
+        <dropUniqueConstraint constraintName="unique_id" tableName="user" uniqueColumns="unique_id"/>
     </changeSet>
 
 </databaseChangeLog>

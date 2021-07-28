@@ -48,8 +48,12 @@ public class User{
     @OneToMany
     private List<Address> addresses;
 
+    @ManyToOne
+    private UserRole role;
+
     public User(){
         this.setUUID(java.util.UUID.randomUUID().toString());
+        this.setUniqueId(String.format("DUMMY-%s", String.valueOf(new Date().getTime())));
     }
 
     public String getUUID() {
@@ -154,5 +158,13 @@ public class User{
 
     public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 }

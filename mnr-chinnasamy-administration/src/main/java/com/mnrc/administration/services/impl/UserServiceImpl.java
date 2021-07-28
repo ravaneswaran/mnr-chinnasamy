@@ -3,7 +3,9 @@ package com.mnrc.administration.services.impl;
 import com.mnrc.administration.enums.UserStatus;
 import com.mnrc.administration.enums.UserType;
 import com.mnrc.administration.models.User;
+import com.mnrc.administration.models.UserRole;
 import com.mnrc.administration.repositories.UserRepository;
+import com.mnrc.administration.repositories.UserRoleRepository;
 import com.mnrc.administration.services.MailService;
 import com.mnrc.administration.services.TokenService;
 import com.mnrc.administration.services.UserService;
@@ -23,6 +25,9 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     @Autowired
+    private UserRoleRepository userRoleRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -34,7 +39,50 @@ public class UserServiceImpl implements UserService {
     Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
-    public User addUserWithVerifiedStatus(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String type) {
+    public UserForm addUser(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo) throws Exception {
+        return this.addUser(null, firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
+    }
+
+    @Override
+    public UserForm addUser(String userRoleId, String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo) throws Exception {
+
+        User response = this.addUserWithVerifiedStatus(userRoleId, firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, UserType.ADMIN.toString());
+
+        if(null != response){
+            UserForm userForm = new UserForm();
+            userForm.setUserId(response.getUUID());
+            userForm.setFirstName(response.getFirstName());
+            userForm.setMiddleInitial(response.getMiddleInitial());
+            userForm.setLastName(response.getLastName());
+            userForm.setEmailId(response.getEmailId());
+            userForm.setMobileNo(response.getMobileNo());
+            uniqueId = response.getUniqueId();
+
+            if(uniqueId.startsWith("DUMMY-")){
+                userForm.setUniqueId("");
+            } else {
+                userForm.setUniqueId(uniqueId);
+            }
+            return userForm;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public User addUserWithVerifiedStatus(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String type) throws Exception {
+        return this.addUserWithVerifiedStatus(null, firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, UserType.ADMIN.toString());
+    }
+
+    @Override
+    public User addUserWithVerifiedStatus(String userRoleId, String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String type) throws Exception {
+
+        if(null == userRoleId || "".equals(userRoleId) ){
+            throw new Exception("User cannot be created with out a role");
+        }
+
+        UserRole userRole = this.userRoleRepository.findById(userRoleId).get();
+
         Date now = new Date();
         User user = new User();
 
@@ -42,11 +90,13 @@ public class UserServiceImpl implements UserService {
         user.setMiddleInitial(middleInitial);
         user.setLastName(lastName);
         user.setEmailId(emailId);
-        String uniqueIdAlias = (null != uniqueId && !"".equals(uniqueId.trim())) ? uniqueId : String.format("DUMMY-%s", String.valueOf(new Date().getTime()));
-        user.setUniqueId(uniqueIdAlias);
+        if(null != uniqueId && !"".equals(uniqueId.trim())){
+            user.setUniqueId(uniqueId);
+        }
         user.setMobileNo(mobileNo);
         user.setPassword("welcome");
         user.setType(type);
+        user.setRole(userRole);
         user.setStatus(UserStatus.VERIFIED.toString());
         user.setCreatedDate(now);
         user.setModifiedDate(now);
@@ -125,31 +175,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public UserForm addUser(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo) {
 
-        User response = this.addUserWithVerifiedStatus(firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, UserType.ADMIN.toString());
-
-        if(null != response){
-            UserForm admin = new UserForm();
-            admin.setUserId(response.getUUID());
-            admin.setFirstName(response.getFirstName());
-            admin.setMiddleInitial(response.getMiddleInitial());
-            admin.setLastName(response.getLastName());
-            admin.setEmailId(response.getEmailId());
-            admin.setMobileNo(response.getMobileNo());
-            uniqueId = response.getUniqueId();
-
-            if(uniqueId.startsWith("DUMMY-")){
-                admin.setUniqueId("");
-            } else {
-                admin.setUniqueId(uniqueId);
-            }
-            return admin;
-        } else {
-            return null;
-        }
-    }
 
     @Override
     public List<UserForm> listUsers(){

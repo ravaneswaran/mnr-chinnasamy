@@ -9,6 +9,7 @@ import java.util.List;
 @Component
 public interface UserService {
 
+    @Deprecated
     public User addUserWithVerifiedStatus(
             String firstName,
             String middleInitial,
@@ -16,7 +17,17 @@ public interface UserService {
             String emailId,
             String uniqueId,
             String mobileNo,
-            String type);
+            String type) throws Exception;
+
+    public User addUserWithVerifiedStatus(
+            String userRoleId,
+            String firstName,
+            String middleInitial,
+            String lastName,
+            String emailId,
+            String uniqueId,
+            String mobileNo,
+            String type) throws Exception;
 
     public User getUser(String uuid);
 
@@ -32,7 +43,10 @@ public interface UserService {
 
     public User getUserByEmailId(String emailId);
 
-    public UserForm addUser(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo);
+    @Deprecated
+    public UserForm addUser(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo) throws Exception;
+
+    public UserForm addUser(String userRoleId, String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo) throws Exception;
 
     public List<UserForm> listUsers();
 

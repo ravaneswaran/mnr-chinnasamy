@@ -1,9 +1,9 @@
 @import "login.css";
 @import "user-signup.css";
 @import "user-role.css";
-@import "employee.css";
-@import "employee-info.css";
-@import "employee-listing.css";
+@import "user-create.css";
+@import "user-info.css";
+@import "user-listing.css";
 @import "forgot-password.css";
 @import "change-password.css";
 @import "menu.css";
@@ -41,7 +41,7 @@ body{
 
 .content-pane {
     border: 0px solid red;
-    height: 1670px;
+    height: 1700px;
     width: 100%;
 }
 

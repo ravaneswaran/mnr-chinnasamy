@@ -3,6 +3,20 @@
         <form action="/user/create" method="POST">
             <div class="top-space-50-pixel section">User Creation</div>
             <div class="top-space-50-pixel error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
+            <div class="top-space-50-pixel sub-section">User Role</div>
+            <div class="top-space-50-pixel user-role-info">
+                <table>
+                    <tr>
+                        <td class="td-height-60">
+                            <select name="userRoleId" class="user-role-select" id="userRoleId">
+                                <option value="-1">Select a Role</option>
+                                <option th:each="userRoleForm: ${userRoleForms}" th:text="${userRoleForm.roleName}" th:value="${userRoleForm.roleId}" th:selected="${selectedUserRoleId.equals(userRoleForm.roleId)}"></option>
+                            </select>
+                            <span class="required-field">*</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
             <div class="top-space-50-pixel sub-section">Personal Information <span style="font-size:16px;">(fields marked with (*) are mandatory)</span></div>
             <div class="top-space-50-pixel user-personal-info">
                 <table>

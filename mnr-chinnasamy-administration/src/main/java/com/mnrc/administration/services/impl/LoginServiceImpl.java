@@ -31,6 +31,9 @@ public class LoginServiceImpl implements LoginService {
             login.setUserId(user.getUUID());
             login.setStatus(user.getStatus());
             login.setType(user.getType());
+            login.setRoleId(user.getRole().getUUID());
+            login.setRoleName(user.getRole().getName());
+            login.setCanAccessAdministrationApp(1 == user.getRole().getCanAccessAdministrationApp());
 
             return login;
         } else {

@@ -9,6 +9,7 @@
 
         <insert tableName="user">
             <column  name="uuid"  value="0000000000"/>
+            <column  name="role_uuid"  value="0000000000"/>
             <column  name="first_name"  value="Almighty"/>
             <column  name="middle_initial"  value=" "/>
             <column  name="last_name"  value=" "/>
