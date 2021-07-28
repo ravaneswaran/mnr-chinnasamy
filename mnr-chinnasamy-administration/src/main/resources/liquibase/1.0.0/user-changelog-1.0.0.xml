@@ -39,5 +39,8 @@
                                  referencedColumnNames="uuid" />
     </changeSet>
 
+    <changeSet id="04" author="ravaneswaran">
+        <dropUniqueConstraint constraintName="unique_id" tableName="user" uniqueColumns="unique_id"/>
+    </changeSet>
 
 </databaseChangeLog>

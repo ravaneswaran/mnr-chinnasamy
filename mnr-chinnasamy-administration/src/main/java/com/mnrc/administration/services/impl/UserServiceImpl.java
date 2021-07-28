@@ -102,7 +102,6 @@ public class UserServiceImpl implements UserService {
         user.setModifiedDate(now);
 
         try {
-            System.out.println("getUniqueId ------------------------>>>>>>> "+user.getUniqueId());
             User response = this.userRepository.save(user);
             return response;
         } catch (Exception exp) {
