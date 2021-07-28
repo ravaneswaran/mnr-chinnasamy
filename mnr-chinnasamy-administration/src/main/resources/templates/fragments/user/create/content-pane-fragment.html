@@ -8,7 +8,7 @@
                 <table>
                     <tr>
                         <td class="td-height-60">
-                            <select name="userRoleId" class="user-role-select">
+                            <select name="userRoleId" class="user-role-select" id="userRoleId">
                                 <option value="-1">Select a Role</option>
                                 <option th:each="userRoleForm: ${userRoleForms}" th:text="${userRoleForm.roleName}" th:value="${userRoleForm.roleId}" th:selected="${selectedUserRoleId.equals(userRoleForm.roleId)}"></option>
                             </select>
