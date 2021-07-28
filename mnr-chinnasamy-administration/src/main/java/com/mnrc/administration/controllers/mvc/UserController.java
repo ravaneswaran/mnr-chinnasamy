@@ -52,6 +52,7 @@ public class UserController extends BaseMVCController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user-create");
         modelAndView.addObject("userRoleForms", userRoleForms);
+        modelAndView.addObject("selectedUserRoleId", "-1");
         return modelAndView;
     }
 
@@ -67,6 +68,7 @@ public class UserController extends BaseMVCController {
             modelAndView.setViewName("user-create");
             modelAndView.addObject("userForm", userForm);
             modelAndView.addObject("userRoleForms", userRoleForms);
+            modelAndView.addObject("selectedUserRoleId", userForm.getUserRoleId());
             modelAndView.addObject("errorMessage", "Please select a valid user role...");
 
             return modelAndView;
@@ -82,6 +84,7 @@ public class UserController extends BaseMVCController {
                 modelAndView.setViewName("user-create");
                 modelAndView.addObject("userForm",userForm);
                 modelAndView.addObject("userRoleForms", userRoleForms);
+                modelAndView.addObject("selectedUserRoleId", userForm.getUserRoleId());
                 modelAndView.addObject("errorMessage", exception.getMessage());
                 return modelAndView;
             }
@@ -94,6 +97,7 @@ public class UserController extends BaseMVCController {
                 modelAndView.setViewName("user-create");
                 modelAndView.addObject("userForm",userForm);
                 modelAndView.addObject("userRoleForms", userRoleForms);
+                modelAndView.addObject("selectedUserRoleId", userForm.getUserRoleId());
                 modelAndView.addObject("errorMessage", "Unable to add admin information...");
                 return modelAndView;
             }
@@ -103,6 +107,7 @@ public class UserController extends BaseMVCController {
             modelAndView.setViewName("user-create");
             modelAndView.addObject("userForm", userForm);
             modelAndView.addObject("userRoleForms", userRoleForms);
+            modelAndView.addObject("selectedUserRoleId", userForm.getUserRoleId());
             modelAndView.addObject("errorMessage", this.getError(bindingResult));
 
             return modelAndView;
