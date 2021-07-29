@@ -5,6 +5,8 @@
             <a id="userCreation" href="/user/home"><image src="/images/user-creation.png" class="menu-icon"/><span class="menu-text">User Creation</span></a>
             <a id="userListing" href="/user/list"><image src="/images/user-list.png" class="menu-icon"/><span class="menu-text">User Listing</span></a>
             <!--<hr class="menu-separator"></hr>-->
+            <a id="paymentGateway" href="/payment-gateway"><image src="/images/payment-gateway.png" class="menu-icon"/><span class="menu-text">Payment Gateway</span></a>
+            <!--<hr class="menu-separator"></hr>-->
             <a id="changePassword" href="/change-password"><image src="/images/change-password.png" class="menu-icon"/><span class="menu-text">Change Password</span></a>
             <!--<hr class="menu-separator"></hr>-->
             <a id="my-info" th:href="${'/user/info?uuid=' + #session.getAttribute('LOGGED_IN_USER').userId}" href="#"><image src="/images/my-info.png" class="menu-icon"/><span class="menu-text">My Info</span></a>
