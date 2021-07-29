@@ -1,6 +1,7 @@
 package com.mnrc.administration.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class User{
     @Column(name = "modified_date")
     protected Date modifiedDate;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
     private List<Address> addresses;
 
     @ManyToOne

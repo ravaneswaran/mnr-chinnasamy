@@ -41,7 +41,7 @@ public class Address {
     @Column(name = "modified_date")
     private Date modifiedDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
     public String getUUID() {
