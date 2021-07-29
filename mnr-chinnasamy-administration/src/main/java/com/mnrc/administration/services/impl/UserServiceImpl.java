@@ -2,8 +2,10 @@ package com.mnrc.administration.services.impl;
 
 import com.mnrc.administration.enums.UserStatus;
 import com.mnrc.administration.enums.UserType;
+import com.mnrc.administration.models.Address;
 import com.mnrc.administration.models.User;
 import com.mnrc.administration.models.UserRole;
+import com.mnrc.administration.repositories.AddressRepository;
 import com.mnrc.administration.repositories.UserRepository;
 import com.mnrc.administration.repositories.UserRoleRepository;
 import com.mnrc.administration.services.MailService;
@@ -29,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
 
     @Autowired
     private TokenService tokenService;
@@ -143,7 +148,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(String uuid) {
+    public void deleteUser(String uuid){
         Optional<User> optionalUser = this.userRepository.findById(uuid);
         if(optionalUser.isPresent()){
             User user = optionalUser.get();

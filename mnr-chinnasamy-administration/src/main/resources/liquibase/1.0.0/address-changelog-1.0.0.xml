@@ -30,4 +30,8 @@
 
     </changeSet>
 
+    <changeSet id="02" author="ravaneswaran">
+        <renameColumn columnDataType="varchar(100)" newColumnName="zipcode" oldColumnName="zip_code" tableName="address"/>
+    </changeSet>
+
 </databaseChangeLog>
