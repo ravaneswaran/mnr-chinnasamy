@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -77,6 +78,79 @@ public class PaymentGatewayController extends BaseMVCController{
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("/payment-gateway");
             modelAndView.addObject("paymentGatewayForm", paymentGatewayForm);
+            modelAndView.addObject("errorMessage", this.getError(bindingResult));
+            return modelAndView;
+        }
+    }
+
+    @GetMapping("/payment-gateway/edit")
+    public ModelAndView editPaymentGateway(@RequestParam(name = "uuid") String paymentGatewayUUID, HttpServletRequest httpServletRequest){
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
+
+        List<PaymentGatewayForm> paymentGatewayForms = this.paymentGatewayService.getPaymentGateways();
+
+        if(null == paymentGatewayUUID || "".equals(paymentGatewayUUID)){
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("/payment-gateway");
+            modelAndView.addObject("paymentGatewayForms", paymentGatewayForms);
+            modelAndView.addObject("errorMessage", "Invalid uuid parameter...");
+
+            return modelAndView;
+        }
+
+        try {
+            PaymentGatewayForm paymentGatewayForm = this.paymentGatewayService.getPaymentGateway(paymentGatewayUUID);
+            paymentGatewayForm.setAction("/payment-gateway/edit");
+
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("/payment-gateway");
+            modelAndView.addObject("paymentGatewayForm", paymentGatewayForm);
+            modelAndView.addObject("paymentGatewayForms", paymentGatewayForms);
+
+            return modelAndView;
+        } catch (Exception e) {
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("/payment-gateway");
+            modelAndView.addObject("paymentGatewayForms", paymentGatewayForms);
+            modelAndView.addObject("errorMessage", e.getMessage());
+
+            return modelAndView;
+        }
+    }
+
+    @PostMapping("/payment-gateway/edit")
+    public ModelAndView editRole(@Valid PaymentGatewayForm paymentGatewayForm, BindingResult bindingResult, HttpServletRequest httpServletRequest){
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
+
+        if(!bindingResult.hasErrors()){
+            LoginForm login = (LoginForm) httpServletRequest.getSession().getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
+            try {
+                String userFullName = String.format("%s, %s", login.getFirstName(), login.getLastName());
+                this.paymentGatewayService.editPaymentGateway(paymentGatewayForm.getPaymentGatewayUUID(), paymentGatewayForm.getName(), paymentGatewayForm.getMerchantId(), paymentGatewayForm.getPaymentGatewayKey(), paymentGatewayForm.getPaymentGatewaySecret(), paymentGatewayForm.getCallbackUrl(), userFullName);
+                List<PaymentGatewayForm> paymentGatewayForms = this.paymentGatewayService.getPaymentGateways();
+                ModelAndView modelAndView = new ModelAndView();
+                modelAndView.setViewName("/payment-gateway");
+                modelAndView.addObject("paymentGatewayForm", paymentGatewayForm);
+                modelAndView.addObject("paymentGatewayForms", paymentGatewayForms);
+                return modelAndView;
+            } catch (Exception exception) {
+                List<PaymentGatewayForm> paymentGatewayForms = this.paymentGatewayService.getPaymentGateways();
+                ModelAndView modelAndView = new ModelAndView();
+                modelAndView.setViewName("/payment-gateway");
+                modelAndView.addObject("paymentGatewayForm", paymentGatewayForm);
+                modelAndView.addObject("paymentGatewayForms", paymentGatewayForms);
+                return modelAndView;
+            }
+        } else {
+            List<PaymentGatewayForm> paymentGatewayForms = this.paymentGatewayService.getPaymentGateways();
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("/payment-gateway");
+            modelAndView.addObject("paymentGatewayForm", paymentGatewayForm);
+            modelAndView.addObject("paymentGatewayForms", paymentGatewayForms);
             modelAndView.addObject("errorMessage", this.getError(bindingResult));
             return modelAndView;
         }

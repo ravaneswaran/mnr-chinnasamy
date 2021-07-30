@@ -4,7 +4,8 @@
         <div class="top-space-50-pixel error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
         <div class="top-space-50-pixel payment-gateway-sub-section">Payment Gateway Creation <span style="font-size:16px;">(fields marked with (*) are mandatory)</span></div>
         <div class="top-space-50-pixel payment-gateway-create">
-            <form action="/payment-gateway/add" method="POST">
+            <form th:action="${paymentGatewayForm != null ? paymentGatewayForm.action : '/payment-gateway/add'}" method="POST">
+                <input type="hidden" th:if="${paymentGatewayForm != null}" th:value="${paymentGatewayForm.paymentGatewayUUID}" name="paymentGatewayUUID"/>
                 <table>
                     <tr>
                         <td class="td-height-60">
@@ -38,7 +39,9 @@
                     </tr>
                     <tr>
                         <td class="td-height-60">
-                            <input id="create" class="button-normal" type="submit" value="Create"/>
+                            <input id="create" th:if="${paymentGatewayForm == null}" class="button-normal" type="submit" value="Create"/>
+                            <input th:id="${paymentGatewayForm != null && ('/payment-gateway/add' == paymentGatewayForm.action) ? 'create' : ''}" th:if="${paymentGatewayForm != null && ('/payment-gateway/add' == paymentGatewayForm.action)}" class="button-normal" type="submit" value="Create"/>
+                            <input th:id="${paymentGatewayForm != null && ('/payment-gateway/edit' == paymentGatewayForm.action) ? 'update' : ''}" th:if="${paymentGatewayForm != null && ('/payment-gateway/edit' == paymentGatewayForm.action)}" class="button-normal" type="submit" value="Update"/>
                         </td>
                     </tr>
                 </table>

@@ -25,6 +25,8 @@ public class PaymentGatewayForm {
 
     private String enabled;
 
+    private String action = "/payment-gateway/add";
+
     public String getName() {
         return name;
     }
@@ -87,5 +89,13 @@ public class PaymentGatewayForm {
 
     public void setCallbackUrl(String callbackUrl) {
         this.callbackUrl = callbackUrl;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 }
