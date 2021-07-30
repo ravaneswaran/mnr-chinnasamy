@@ -4,7 +4,6 @@ import com.mnrc.administration.models.PaymentGateway;
 import com.mnrc.administration.repositories.PaymentGatewayRepository;
 import com.mnrc.administration.services.PaymentGatewayService;
 import com.mnrc.administration.ui.forms.PaymentGatewayForm;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -127,5 +126,18 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
         } else {
             throw new Exception("Invalid payment gateway id...");
         }
+    }
+
+    @Override
+    public void deletePaymentGateway(String paymentGatewayUUID) throws Exception {
+        if(null == paymentGatewayUUID){
+            throw new Exception("Payment Gateway id cannot be null...");
+        }
+
+        if("".equals(paymentGatewayUUID)){
+            throw new Exception("Payment Gateway id cannot be a empty string...");
+        }
+
+        this.paymentGatewayRepository.deleteById(paymentGatewayUUID);
     }
 }

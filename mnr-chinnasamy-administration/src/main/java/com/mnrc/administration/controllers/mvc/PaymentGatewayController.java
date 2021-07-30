@@ -155,4 +155,36 @@ public class PaymentGatewayController extends BaseMVCController{
             return modelAndView;
         }
     }
+
+    @GetMapping("/payment-gateway/delete")
+    public ModelAndView deleteRole(@RequestParam(name = "uuid") String paymentGatewayUUID, HttpServletRequest httpServletRequest){
+        if(this.isNotUserLoggedIn(httpServletRequest)) {
+            return new ModelAndView("redirect:/");
+        }
+
+        if(null == paymentGatewayUUID || "".equals(paymentGatewayUUID)){
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("/payment-gateway");
+            List<PaymentGatewayForm> paymentGatewayForms = this.paymentGatewayService.getPaymentGateways();
+            modelAndView.addObject("userRoleForms", paymentGatewayForms);
+            modelAndView.addObject("errorMessage", "Invalid uuid parameter...");
+
+            return modelAndView;
+        }
+
+        try {
+            this.paymentGatewayService.deletePaymentGateway(paymentGatewayUUID);
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("redirect:/payment-gateway");
+            return modelAndView;
+        } catch (Exception e) {
+            List<PaymentGatewayForm> paymentGatewayForms = this.paymentGatewayService.getPaymentGateways();
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("/payment-gateway");
+            modelAndView.addObject("userRoleForms", paymentGatewayForms);
+            modelAndView.addObject("errorMessage", e.getMessage());
+
+            return modelAndView;
+        }
+    }
 }

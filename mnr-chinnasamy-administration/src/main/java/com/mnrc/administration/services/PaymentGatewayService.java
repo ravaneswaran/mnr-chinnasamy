@@ -13,4 +13,6 @@ public interface PaymentGatewayService {
     public PaymentGatewayForm getPaymentGateway(String paymentGatewayUUID) throws Exception;
 
     public PaymentGatewayForm editPaymentGateway(String paymentGatewayUUID, String name, String merchantId, String paymentGatewayKey, String paymentGatewaySecret, String callbackUrl, String userFullName) throws Exception;
+
+    public void deletePaymentGateway(String paymentGatewayUUID) throws Exception;
 }
