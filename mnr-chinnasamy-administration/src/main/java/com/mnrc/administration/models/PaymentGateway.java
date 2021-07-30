@@ -29,6 +29,9 @@ public class PaymentGateway {
     @Column(name = "payment_gateway_secret")
     private String paymentGatewaySecret;
 
+    @Column(name = "callback_url")
+    private String callbackUrl;
+
     @Column(name = "enabled")
     private int enabled;
 
@@ -134,5 +137,13 @@ public class PaymentGateway {
 
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    public String getCallbackUrl() {
+        return callbackUrl;
+    }
+
+    public void setCallbackUrl(String callbackUrl) {
+        this.callbackUrl = callbackUrl;
     }
 }

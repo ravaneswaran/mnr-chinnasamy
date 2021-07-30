@@ -27,9 +27,10 @@ public class PaymentGatewayServiceTest {
         String merchantId = RandomString.make();
         String paymentGatewayKey = RandomString.make();
         String paymentGatewaySecret = RandomString.make();
+        String callbackUrl = String.format("/%s/%s", RandomString.make(), RandomString.make());
         String userFullName = String.format("%s %s", RandomString.make(), RandomString.make());
 
-        PaymentGatewayForm paymentGatewayForm = this.paymentGatewayService.addPaymentGateway(name, merchantId, paymentGatewayKey, paymentGatewaySecret, userFullName);
+        PaymentGatewayForm paymentGatewayForm = this.paymentGatewayService.addPaymentGateway(name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
 
         Assert.assertNotNull(paymentGatewayForm.getPaymentGatewayUUID());
     }

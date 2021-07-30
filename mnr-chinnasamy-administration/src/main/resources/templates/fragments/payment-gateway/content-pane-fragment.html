@@ -1,0 +1,73 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="content-pane">
+        <div class="top-space-50-pixel section">Payment Gateway Creation & Listing</div>
+        <div class="top-space-50-pixel error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
+        <div class="top-space-50-pixel payment-gateway-sub-section">Payment Gateway Creation <span style="font-size:16px;">(fields marked with (*) are mandatory)</span></div>
+        <div class="top-space-50-pixel payment-gateway-create">
+            <form action="/payment-gateway/add" method="POST">
+                <table>
+                    <tr>
+                        <td class="td-height-60">
+                            <input id="name" class="input-box-normal" type="text" name="name" placeholder="Payment Gateway Name"  th:value="${paymentGatewayForm != null ? paymentGatewayForm.name : ''}"/>
+                            <span class="required-field">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-height-60">
+                            <input id="merchantId" class="input-box-normal" type="text" name="merchantId" placeholder="Merchant Id" th:value="${paymentGatewayForm != null ? paymentGatewayForm.merchantId : ''}"/>
+                            <span class="required-field">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-height-60">
+                            <input id="paymentGatewayKey" class="input-box-normal" type="text" name="paymentGatewayKey" placeholder="Payment Gateway Key" th:value="${paymentGatewayForm != null ? paymentGatewayForm.paymentGatewayKey : ''}"/>
+                            <span class="required-field">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-height-60">
+                            <input id="paymentGatewaySecret" class="input-box-normal" type="text" name="paymentGatewaySecret" placeholder="Payment Gateway Secret" th:value="${paymentGatewayForm != null ? paymentGatewayForm.paymentGatewaySecret : ''}"/>
+                            <span class="required-field">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-height-60">
+                            <input id="callbackUrl" class="input-box-normal" type="text" name="callbackUrl" placeholder="Callback (URL)" th:value="${paymentGatewayForm != null ? paymentGatewayForm.callbackUrl : ''}"/>
+                            <span class="required-field">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-height-60">
+                            <input id="create" class="button-normal" type="submit" value="Create"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="top-space-50-pixel payment-gateway-sub-section">Payment Gateway Listing</div>
+        <div class="top-space-50-pixel payment-gateway-listing">
+            <div>
+                <table>
+                    <tr>
+                        <td class="td-height-60 payment-gateway-list-td-left payment-gateway-list-td-left-header">Payment Gateway</td>
+                        <td class="td-height-60 payment-gateway-list-td-right payment-gateway-list-td-right-header">Controls</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="payment-gateway-listing-pane">
+                <table>
+                    <tr th:each="paymentGatewayForm: ${paymentGatewayForms}">
+                        <td class="td-height-60 payment-gateway-list-td-left" >
+                            <input th:id="${paymentGatewayForm.paymentGatewayUUID}" type="radio" name="paymentGateway"/>
+                            <span th:text="${ paymentGatewayForm.name}">name</span>
+                        </td>
+                        <td class="td-height-60 payment-gateway-list-td-right">
+                            <a  th:href="${'/payment-gateway/edit?uuid=' + paymentGatewayForm.paymentGatewayUUID}">Edit</a>
+                            <a  th:href="${'/payment-gateway/delete?uuid=' + paymentGatewayForm.paymentGatewayUUID}">Delete</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</html>

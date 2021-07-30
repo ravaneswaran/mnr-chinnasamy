@@ -1,18 +1,27 @@
 package com.mnrc.administration.ui.forms;
 
+import javax.validation.constraints.NotEmpty;
+
 public class PaymentGatewayForm {
 
     private String paymentGatewayUUID;
 
+    @NotEmpty(message = "Name should not be empty")
     private String name;
 
+    @NotEmpty(message = "Merchant Id cannot be empty")
     private String merchantId;
 
     private String paymentGatewayLogo;
 
+    @NotEmpty(message = "Payment gateway key cannot be empty")
     private String paymentGatewayKey;
 
+    @NotEmpty(message = "Payment gateway secret cannot be empty")
     private String paymentGatewaySecret;
+
+    @NotEmpty(message = "Callback URL cannot be empty")
+    private String callbackUrl;
 
     private String enabled;
 
@@ -70,5 +79,13 @@ public class PaymentGatewayForm {
 
     public void setPaymentGatewayUUID(String paymentGatewayUUID) {
         this.paymentGatewayUUID = paymentGatewayUUID;
+    }
+
+    public String getCallbackUrl() {
+        return callbackUrl;
+    }
+
+    public void setCallbackUrl(String callbackUrl) {
+        this.callbackUrl = callbackUrl;
     }
 }

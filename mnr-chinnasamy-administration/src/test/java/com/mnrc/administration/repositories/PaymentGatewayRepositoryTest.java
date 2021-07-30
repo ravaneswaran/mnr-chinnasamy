@@ -33,6 +33,7 @@ public class PaymentGatewayRepositoryTest {
         paymentGateway.setPaymentGatewayLogo("/images/razorpay-pg.png");
         paymentGateway.setPaymentGatewayKey(RandomString.make());
         paymentGateway.setPaymentGatewaySecret(RandomString.make());
+        paymentGateway.setCallbackUrl("/razor-pay/callback");
         paymentGateway.setEnabled(0);
         String user = "Test";
         paymentGateway.setCreatedBy(user);

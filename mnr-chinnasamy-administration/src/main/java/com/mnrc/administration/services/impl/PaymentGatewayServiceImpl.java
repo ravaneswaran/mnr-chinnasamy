@@ -7,7 +7,9 @@ import com.mnrc.administration.ui.forms.PaymentGatewayForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class PaymentGatewayServiceImpl implements PaymentGatewayService {
@@ -16,7 +18,7 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
     private PaymentGatewayRepository paymentGatewayRepository;
 
     @Override
-    public PaymentGatewayForm addPaymentGateway(String name, String merchantId, String paymentGatewayKey, String paymentGatewaySecret, String userFullName) {
+    public PaymentGatewayForm addPaymentGateway(String name, String merchantId, String paymentGatewayKey, String paymentGatewaySecret, String callbackUrl, String userFullName) {
 
         PaymentGateway paymentGateway = new PaymentGateway();
         paymentGateway.setName(name);
@@ -25,6 +27,7 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
         paymentGateway.setPaymentGatewayLogo(imagePath);
         paymentGateway.setPaymentGatewayKey(paymentGatewayKey);
         paymentGateway.setPaymentGatewaySecret(paymentGatewaySecret);
+        paymentGateway.setCallbackUrl(callbackUrl);
         paymentGateway.setEnabled(0);
         paymentGateway.setCreatedBy(userFullName);
         paymentGateway.setModifiedBy(userFullName);
@@ -38,5 +41,25 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
         paymentGatewayForm.setPaymentGatewayUUID(response.getUUID());
 
         return paymentGatewayForm;
+    }
+
+    @Override
+    public List<PaymentGatewayForm> getPaymentGateways() {
+        List<PaymentGatewayForm> paymentGatewayForms = new ArrayList<>();
+        Iterable<PaymentGateway> paymentGateways = this.paymentGatewayRepository.findAll();
+        for(PaymentGateway paymentGateway: paymentGateways){
+            PaymentGatewayForm paymentGatewayForm = new PaymentGatewayForm();
+
+            paymentGatewayForm.setPaymentGatewayUUID(paymentGateway.getUUID());
+            paymentGatewayForm.setName(paymentGateway.getName());
+            paymentGatewayForm.setMerchantId(paymentGateway.getMerchantId());
+            paymentGatewayForm.setPaymentGatewayKey(paymentGateway.getPaymentGatewayKey());
+            paymentGatewayForm.setPaymentGatewaySecret(paymentGateway.getPaymentGatewaySecret());
+            paymentGatewayForm.setCallbackUrl(paymentGateway.getCallbackUrl());
+
+            paymentGatewayForms.add(paymentGatewayForm);
+        }
+
+        return paymentGatewayForms;
     }
 }

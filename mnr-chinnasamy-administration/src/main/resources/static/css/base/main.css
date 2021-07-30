@@ -6,6 +6,7 @@
 @import "user-listing.css";
 @import "forgot-password.css";
 @import "change-password.css";
+@import "payment-gateway.css";
 @import "menu.css";
 
 body{

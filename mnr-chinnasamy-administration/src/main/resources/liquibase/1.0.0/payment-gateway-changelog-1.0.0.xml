@@ -15,6 +15,7 @@
             <column name="payment_gateway_logo" type="varchar(200)" />
             <column name="payment_gateway_key" type="varchar(200)" />
             <column name="payment_gateway_secret" type="varchar(200)" />
+            <column name="callback_url" type="varchar(400)" />
             <column name="enabled" type="tinyint" />
             <column name="created_by" type="varchar(100)" />
             <column name="modified_by" type="varchar(100)" />
