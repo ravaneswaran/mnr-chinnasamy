@@ -10,7 +10,8 @@
             <a id="changePassword" href="/change-password"><image src="/images/change-password.png" class="menu-icon"/><span class="menu-text">Change Password</span></a>
             <!--<hr class="menu-separator"></hr>-->
             <!--<a id="my-info" th:href="${'/user/info?uuid=' + #session.getAttribute('LOGGED_IN_USER').userId}" href="#"><image src="/images/my-info.png" class="menu-icon"/><span class="menu-text">My Info</span></a>-->
-            <!--<a id="settings" href="/user/settings"><image src="/images/settings.png" class="menu-icon"/><span class="menu-text">Settings</span></a>-->
+            <a id="demos" th:if="${#session != null && #session.getAttribute('LOGGED_IN_USER') != null && 'ALMIGHTY'.equals(#session.getAttribute('LOGGED_IN_USER').roleName)}" href="/demo/payment-gateways/razor-pay"><image src="/images/demo.png" class="menu-icon"/><span class="menu-text">Demos</span></a>
+            <a id="howTo" th:if="${#session != null && #session.getAttribute('LOGGED_IN_USER') != null && 'ALMIGHTY'.equals(#session.getAttribute('LOGGED_IN_USER').roleName)}" href="/demo/how-to/razor-pay"><image src="/images/how-to.png" class="menu-icon"/><span class="menu-text">How-To</span></a>
             <!--<hr class="menu-separator"></hr>-->
             <a id="logout" href="/logout"><image src="/images/logout.png" class="menu-icon"/><span class="menu-text">Logout</span></a>
         </div>
