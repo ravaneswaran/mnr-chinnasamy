@@ -14,8 +14,9 @@ public class MNRCAdministrationApplication {
 		System.out.println("| |  | | |\\  |  _ <_____| |___| | | | | | | | | | | (_| \\__ \\ (_| | | | | | || |_| |_____/ ___ \\ (_| | | | | | | | | | | \\__ \\ |_| | | (_| | |_| | (_) || | | |");
 		System.out.println("|_|  |_|_| \\_|_| \\_\\     \\____|_| |_|_|_| |_|_| |_|\\__,_|___/\\__,_|_| |_| |_| \\__, |    /_/   \\_\\__,_|_| |_| |_|_|_| |_|_|___/\\__|_|  \\__,_|\\__|_|\\___/ |_| |_|");
 		System.out.println("                                                                              |___/                                                                            ");
-		System.out.println("========================");
-		System.out.println("Version : 0.0.1-SNAPSHOT");
+		System.out.println("+--------------------------------+");
+		System.out.println("|    Version : 0.0.1-SNAPSHOT    |");
+		System.out.println("+--------------------------------+");
 	}
 
 }

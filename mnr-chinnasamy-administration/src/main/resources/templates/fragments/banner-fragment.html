@@ -8,6 +8,8 @@
             </div>
             <div class="logged-in-as">
                 Logged in as : <b th:text="${#session.getAttribute('LOGGED_IN_USER').firstName + ' ' + #session.getAttribute('LOGGED_IN_USER').lastName}">Logged In User</b>
+                <a id="settings" href="/user/settings"><image src="/images/settings.png" class="menu-icon"/></a>
+                <a id="my-info" th:href="${'/user/info?uuid=' + #session.getAttribute('LOGGED_IN_USER').userId}" ><image src="/images/my-info.png" class="menu-icon"/></a>
             </div>
         </th:block>
     </div>

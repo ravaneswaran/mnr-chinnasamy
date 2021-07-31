@@ -44,7 +44,7 @@
                         </td>
                         <td class="td-height-60 user-role-list-td-right">
                             <a  th:href="${'/user/role/edit?uuid=' + userRoleForm.roleId}">Edit</a>
-                            <a  th:if="${0 == userRoleForm.noOfUsers}" th:href="${'/user/role/delete?uuid=' + userRoleForm.roleId}">Delete</a>
+                            <a  th:if="${0 == userRoleForm.noOfUsers}" th:href="${'/user/role/delete?uuid=' + userRoleForm.roleId}" onclick="return confirm('Are you sure want to delete?')">Delete</a>
                         </td>
                     </tr>
                 </table>

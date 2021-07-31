@@ -79,4 +79,11 @@ public class DummyController {
         return modelAndView;
     }
 
+    @GetMapping("/payment-gateway")
+    public ModelAndView paymentGatewayHome(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("payment-gateway");
+        return modelAndView;
+    }
+
 }
