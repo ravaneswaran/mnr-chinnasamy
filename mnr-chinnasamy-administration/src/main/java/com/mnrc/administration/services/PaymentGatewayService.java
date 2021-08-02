@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PaymentGatewayService {
 
-    public PaymentGatewayForm addPaymentGateway(String name, String merchantId, String paymentGatewayKey, String paymentGatewaySecret, String callbackUrl, String userFullName);
+    public PaymentGatewayForm addPaymentGateway(String name, String merchantId, String paymentGatewayKey, String paymentGatewaySecret, String callbackUrl, String userFullName) throws Exception;
 
     public List<PaymentGatewayForm> getPaymentGateways();
 

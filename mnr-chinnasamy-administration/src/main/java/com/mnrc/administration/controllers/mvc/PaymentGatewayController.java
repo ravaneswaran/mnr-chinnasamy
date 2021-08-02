@@ -57,16 +57,15 @@ public class PaymentGatewayController extends BaseMVCController{
         if(!bindingResult.hasErrors()){
             LoginForm loginForm = (LoginForm) httpServletRequest.getSession().getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
             String userFullName = String.format("%s %s", loginForm.getFirstName(), loginForm.getLastName()).trim();
+            try {
+                this.paymentGatewayService.addPaymentGateway(paymentGatewayForm.getName(), paymentGatewayForm.getMerchantId(), paymentGatewayForm.getPaymentGatewayKey(), paymentGatewayForm.getPaymentGatewaySecret(), paymentGatewayForm.getCallbackUrl(), userFullName);
 
-            PaymentGatewayForm response = this.paymentGatewayService.addPaymentGateway(paymentGatewayForm.getName(), paymentGatewayForm.getMerchantId(), paymentGatewayForm.getPaymentGatewayKey(), paymentGatewayForm.getPaymentGatewaySecret(), paymentGatewayForm.getCallbackUrl(), userFullName);
-
-            if(null != response){
                 List<PaymentGatewayForm> paymentGatewayForms = this.paymentGatewayService.getPaymentGateways();
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("/payment-gateway");
                 modelAndView.addObject("paymentGatewayForms", paymentGatewayForms);
                 return modelAndView;
-            } else {
+            } catch (Exception e) {
                 List<PaymentGatewayForm> paymentGatewayForms = this.paymentGatewayService.getPaymentGateways();
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("/payment-gateway");
