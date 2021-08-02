@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class PaymentGatewayServiceImpl implements PaymentGatewayService {
@@ -97,11 +98,12 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
             throw new Exception("UPayment Gateway id cannot be a empty string...");
         }
 
-        PaymentGateway paymentGateway = this.paymentGatewayRepository.findById(paymentGatewayUUID).get();
+        Optional<PaymentGateway> optionalPaymentGateway = this.paymentGatewayRepository.findById(paymentGatewayUUID);
 
-        if(null != paymentGateway){
+        if(optionalPaymentGateway.isPresent()){
+            PaymentGateway paymentGateway = optionalPaymentGateway.get();
+
             PaymentGatewayForm paymentGatewayForm = new PaymentGatewayForm();
-
             paymentGatewayForm.setPaymentGatewayUUID(paymentGateway.getUUID());
             paymentGatewayForm.setName(paymentGateway.getName());
             paymentGatewayForm.setMerchantId(paymentGateway.getMerchantId());

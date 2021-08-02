@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PaymentGatewayServiceTest {
@@ -341,5 +343,53 @@ public class PaymentGatewayServiceTest {
 
         Assert.assertNotNull(paymentGatewayForm.getPaymentGatewayUUID().equals(response.getPaymentGatewayUUID()));
         Assert.assertNotEquals(name, response.getName());
+    }
+
+    @Test
+    public void testGetPaymentGateways() throws Exception {
+        String name = RandomString.make();
+        String merchantId = RandomString.make();
+        String paymentGatewayKey = RandomString.make();
+        String paymentGatewaySecret = RandomString.make();
+        String callbackUrl = String.format("/%s/%s", RandomString.make(), RandomString.make());
+        String userFullName = String.format("%s %s", RandomString.make(), RandomString.make());
+        this.paymentGatewayService.addPaymentGateway(name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+
+        List<PaymentGatewayForm> paymentGatewayForms = this.paymentGatewayService.getPaymentGateways();
+
+        Assert.assertTrue(paymentGatewayForms.size() > 0);
+    }
+
+    @Test
+    public void testGetPaymentGateway() throws Exception {
+        String name = RandomString.make();
+        String merchantId = RandomString.make();
+        String paymentGatewayKey = RandomString.make();
+        String paymentGatewaySecret = RandomString.make();
+        String callbackUrl = String.format("/%s/%s", RandomString.make(), RandomString.make());
+        String userFullName = String.format("%s %s", RandomString.make(), RandomString.make());
+        PaymentGatewayForm paymentGatewayForm = this.paymentGatewayService.addPaymentGateway(name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+
+        PaymentGatewayForm response = this.paymentGatewayService.getPaymentGateway(paymentGatewayForm.getPaymentGatewayUUID());
+
+        Assert.assertTrue(paymentGatewayForm.getPaymentGatewayUUID().equals(response.getPaymentGatewayUUID()));
+    }
+
+    @Test
+    public void testDeletePaymentGateway() throws Exception {
+        String name = RandomString.make();
+        String merchantId = RandomString.make();
+        String paymentGatewayKey = RandomString.make();
+        String paymentGatewaySecret = RandomString.make();
+        String callbackUrl = String.format("/%s/%s", RandomString.make(), RandomString.make());
+        String userFullName = String.format("%s %s", RandomString.make(), RandomString.make());
+        PaymentGatewayForm paymentGatewayForm = this.paymentGatewayService.addPaymentGateway(name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+        this.paymentGatewayService.deletePaymentGateway(paymentGatewayForm.getPaymentGatewayUUID());
+
+        try{
+            this.paymentGatewayService.getPaymentGateway(paymentGatewayForm.getPaymentGatewayUUID());
+        } catch(Exception exp){
+            Assert.assertTrue("Invalid Payment Gateway id...".equals(exp.getMessage()));
+        }
     }
 }
