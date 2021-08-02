@@ -30,8 +30,7 @@ public class PaymentGatewayController extends BaseMVCController{
         mandatoryFields.add("merchantId");
         mandatoryFields.add("paymentGatewayKey");
         mandatoryFields.add("paymentGatewaySecret");
-        mandatoryFields.add("applicationPaymentSuccessPage");
-        mandatoryFields.add("applicationPaymentFailurePage");
+        mandatoryFields.add("callbackUrl");
         return mandatoryFields;
     }
 

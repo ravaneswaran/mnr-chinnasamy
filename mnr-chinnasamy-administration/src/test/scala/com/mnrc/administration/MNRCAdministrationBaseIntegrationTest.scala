@@ -34,6 +34,11 @@ class MNRCAdministrationBaseIntegrationTest extends ScalaDsl with EN{
     webDriver.findElement(By.id("userRole")).click();
   }
 
+  def clickingPaymentGatewayMenuItem(webDriver : WebDriver): Unit ={
+    webDriver.findElement(By.id("app-launcher")).click();
+    webDriver.findElement(By.id("paymentGateway")).click();
+  }
+
   def generateRandomString(): String = {
     RandomString.make();
   }
