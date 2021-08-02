@@ -205,4 +205,141 @@ public class PaymentGatewayServiceTest {
         Assert.assertNotNull(paymentGatewayForm.getPaymentGatewayUUID());
     }
 
+    /*-------------------------------------------------*/
+
+    @Test
+    public void testEditPaymentGateway_When_Payment_Gateway_UUID_Is_Null() throws Exception {
+        String name = RandomString.make();
+        String merchantId = RandomString.make();
+        String paymentGatewayKey = RandomString.make();
+        String paymentGatewaySecret = RandomString.make();
+        String callbackUrl = String.format("/%s/%s", RandomString.make(), RandomString.make());
+        String userFullName = String.format("%s %s", RandomString.make(), RandomString.make());
+        this.paymentGatewayService.addPaymentGateway(name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+
+        try{
+            this.paymentGatewayService.editPaymentGateway(null, name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+        } catch (Exception exp){
+            Assert.assertEquals("Payment Gateway id cannot be null or empty...", exp.getMessage());
+        }
+    }
+
+    @Test
+    public void testEditPaymentGateway_When_Name_Is_Null() throws Exception {
+        String name = RandomString.make();
+        String merchantId = RandomString.make();
+        String paymentGatewayKey = RandomString.make();
+        String paymentGatewaySecret = RandomString.make();
+        String callbackUrl = String.format("/%s/%s", RandomString.make(), RandomString.make());
+        String userFullName = String.format("%s %s", RandomString.make(), RandomString.make());
+        PaymentGatewayForm paymentGatewayForm = this.paymentGatewayService.addPaymentGateway(name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+
+        try{
+            this.paymentGatewayService.editPaymentGateway(paymentGatewayForm.getPaymentGatewayUUID(), null, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+        } catch (Exception exp){
+            Assert.assertEquals("Payment gateway name cannot be null or empty...", exp.getMessage());
+        }
+    }
+
+    @Test
+    public void testEditPaymentGateway_When_MerchantId_Is_Null() throws Exception {
+        String name = RandomString.make();
+        String merchantId = RandomString.make();
+        String paymentGatewayKey = RandomString.make();
+        String paymentGatewaySecret = RandomString.make();
+        String callbackUrl = String.format("/%s/%s", RandomString.make(), RandomString.make());
+        String userFullName = String.format("%s %s", RandomString.make(), RandomString.make());
+        PaymentGatewayForm paymentGatewayForm = this.paymentGatewayService.addPaymentGateway(name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+
+        try{
+            this.paymentGatewayService.editPaymentGateway(paymentGatewayForm.getPaymentGatewayUUID(), name, null, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+        } catch (Exception exp){
+            Assert.assertEquals("Merchant id cannot be null or empty...", exp.getMessage());
+        }
+    }
+
+    @Test
+    public void testEditPaymentGateway_When_Payment_Gateway_Key_Is_Null() throws Exception {
+        String name = RandomString.make();
+        String merchantId = RandomString.make();
+        String paymentGatewayKey = RandomString.make();
+        String paymentGatewaySecret = RandomString.make();
+        String callbackUrl = String.format("/%s/%s", RandomString.make(), RandomString.make());
+        String userFullName = String.format("%s %s", RandomString.make(), RandomString.make());
+        PaymentGatewayForm paymentGatewayForm = this.paymentGatewayService.addPaymentGateway(name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+
+        try{
+            this.paymentGatewayService.editPaymentGateway(paymentGatewayForm.getPaymentGatewayUUID(), name, merchantId, null, paymentGatewaySecret, callbackUrl, userFullName);
+        } catch (Exception exp){
+            Assert.assertEquals("Payment gateway key cannot be null or empty...", exp.getMessage());
+        }
+    }
+
+    @Test
+    public void testEditPaymentGateway_When_Payment_Gateway_Secret_Is_Null() throws Exception {
+        String name = RandomString.make();
+        String merchantId = RandomString.make();
+        String paymentGatewayKey = RandomString.make();
+        String paymentGatewaySecret = RandomString.make();
+        String callbackUrl = String.format("/%s/%s", RandomString.make(), RandomString.make());
+        String userFullName = String.format("%s %s", RandomString.make(), RandomString.make());
+        PaymentGatewayForm paymentGatewayForm = this.paymentGatewayService.addPaymentGateway(name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+
+        try{
+            this.paymentGatewayService.editPaymentGateway(paymentGatewayForm.getPaymentGatewayUUID(), name, merchantId, paymentGatewayKey, null, callbackUrl, userFullName);
+        } catch (Exception exp){
+            Assert.assertEquals("Payment gateway secret cannot be null or empty...", exp.getMessage());
+        }
+    }
+
+    @Test
+    public void testEditPaymentGateway_When_callback_URL_Is_Null() throws Exception {
+        String name = RandomString.make();
+        String merchantId = RandomString.make();
+        String paymentGatewayKey = RandomString.make();
+        String paymentGatewaySecret = RandomString.make();
+        String callbackUrl = String.format("/%s/%s", RandomString.make(), RandomString.make());
+        String userFullName = String.format("%s %s", RandomString.make(), RandomString.make());
+        PaymentGatewayForm paymentGatewayForm = this.paymentGatewayService.addPaymentGateway(name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+
+        try{
+            this.paymentGatewayService.editPaymentGateway(paymentGatewayForm.getPaymentGatewayUUID(), name, merchantId, paymentGatewayKey, paymentGatewaySecret, null, userFullName);
+        } catch (Exception exp){
+            Assert.assertEquals("Call back url cannot be null or empty...", exp.getMessage());
+        }
+    }
+
+    @Test
+    public void testEditPaymentGateway_When_User_Full_Name_Is_Null() throws Exception {
+        String name = RandomString.make();
+        String merchantId = RandomString.make();
+        String paymentGatewayKey = RandomString.make();
+        String paymentGatewaySecret = RandomString.make();
+        String callbackUrl = String.format("/%s/%s", RandomString.make(), RandomString.make());
+        String userFullName = String.format("%s %s", RandomString.make(), RandomString.make());
+        PaymentGatewayForm paymentGatewayForm = this.paymentGatewayService.addPaymentGateway(name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+
+        try{
+            this.paymentGatewayService.editPaymentGateway(paymentGatewayForm.getPaymentGatewayUUID(), name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, null);
+        } catch (Exception exp){
+            Assert.assertEquals("User full name cannot be null or empty...", exp.getMessage());
+        }
+    }
+
+    @Test
+    public void testEditPaymentGateway() throws Exception {
+        String name = RandomString.make();
+        String merchantId = RandomString.make();
+        String paymentGatewayKey = RandomString.make();
+        String paymentGatewaySecret = RandomString.make();
+        String callbackUrl = String.format("/%s/%s", RandomString.make(), RandomString.make());
+        String userFullName = String.format("%s %s", RandomString.make(), RandomString.make());
+        PaymentGatewayForm paymentGatewayForm = this.paymentGatewayService.addPaymentGateway(name, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+
+        String editName = RandomString.make();
+        PaymentGatewayForm response = this.paymentGatewayService.editPaymentGateway(paymentGatewayForm.getPaymentGatewayUUID(), editName, merchantId, paymentGatewayKey, paymentGatewaySecret, callbackUrl, userFullName);
+
+        Assert.assertNotNull(paymentGatewayForm.getPaymentGatewayUUID().equals(response.getPaymentGatewayUUID()));
+        Assert.assertNotEquals(name, response.getName());
+    }
 }

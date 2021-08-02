@@ -117,12 +117,8 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
 
     @Override
     public PaymentGatewayForm editPaymentGateway(String paymentGatewayUUID, String name, String merchantId, String paymentGatewayKey, String paymentGatewaySecret, String callbackUrl, String userFullName) throws Exception {
-        if(null == paymentGatewayUUID){
-            throw new Exception("Payment Gateway id cannot be null...");
-        }
-
-        if("".equals(paymentGatewayUUID)){
-            throw new Exception("Payment Gateway  id cannot be a empty string...");
+        if(null == paymentGatewayUUID || "".equals(paymentGatewayUUID)){
+            throw new Exception("Payment Gateway id cannot be null or empty...");
         }
 
         if(null == name || "".equals(name)){
