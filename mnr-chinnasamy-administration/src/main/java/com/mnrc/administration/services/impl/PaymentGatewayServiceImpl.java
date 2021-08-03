@@ -4,21 +4,50 @@ import com.mnrc.administration.models.PaymentGateway;
 import com.mnrc.administration.repositories.PaymentGatewayRepository;
 import com.mnrc.administration.services.PaymentGatewayService;
 import com.mnrc.administration.ui.forms.PaymentGatewayForm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class PaymentGatewayServiceImpl implements PaymentGatewayService {
+
+    Logger logger = LoggerFactory.getLogger(PaymentGatewayServiceImpl.class);
 
     @Autowired
     private PaymentGatewayRepository paymentGatewayRepository;
 
     @Override
-    public PaymentGatewayForm addPaymentGateway(String name, String merchantId, String paymentGatewayKey, String paymentGatewaySecret, String callbackUrl, String userFullName) {
+    public PaymentGatewayForm addPaymentGateway(String name, String merchantId, String paymentGatewayKey, String paymentGatewaySecret, String callbackUrl, String userFullName) throws Exception {
+
+        if(null == name || "".equals(name)){
+            throw new Exception("Payment gateway name cannot be null or empty...");
+        }
+
+        if(null == merchantId || "".equals(merchantId)){
+            throw new Exception("Merchant id cannot be null or empty...");
+        }
+
+        if(null == paymentGatewayKey || "".equals(paymentGatewayKey)){
+            throw new Exception("Payment gateway key cannot be null or empty...");
+        }
+
+        if(null == paymentGatewaySecret || "".equals(paymentGatewaySecret)){
+            throw new Exception("Payment gateway secret cannot be null or empty...");
+        }
+
+        if(null == callbackUrl || "".equals(callbackUrl)){
+            throw new Exception("Call back url cannot be null or empty...");
+        }
+
+        if(null == userFullName || "".equals(userFullName)){
+            throw new Exception("User full name cannot be null or empty...");
+        }
 
         PaymentGateway paymentGateway = new PaymentGateway();
         paymentGateway.setName(name);
@@ -56,6 +85,7 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
             paymentGatewayForm.setPaymentGatewayKey(paymentGateway.getPaymentGatewayKey());
             paymentGatewayForm.setPaymentGatewaySecret(paymentGateway.getPaymentGatewaySecret());
             paymentGatewayForm.setCallbackUrl(paymentGateway.getCallbackUrl());
+            paymentGatewayForm.setEnabled(paymentGateway.getEnabled());
 
             paymentGatewayForms.add(paymentGatewayForm);
         }
@@ -73,11 +103,12 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
             throw new Exception("UPayment Gateway id cannot be a empty string...");
         }
 
-        PaymentGateway paymentGateway = this.paymentGatewayRepository.findById(paymentGatewayUUID).get();
+        Optional<PaymentGateway> optionalPaymentGateway = this.paymentGatewayRepository.findById(paymentGatewayUUID);
 
-        if(null != paymentGateway){
+        if(optionalPaymentGateway.isPresent()){
+            PaymentGateway paymentGateway = optionalPaymentGateway.get();
+
             PaymentGatewayForm paymentGatewayForm = new PaymentGatewayForm();
-
             paymentGatewayForm.setPaymentGatewayUUID(paymentGateway.getUUID());
             paymentGatewayForm.setName(paymentGateway.getName());
             paymentGatewayForm.setMerchantId(paymentGateway.getMerchantId());
@@ -93,12 +124,32 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
 
     @Override
     public PaymentGatewayForm editPaymentGateway(String paymentGatewayUUID, String name, String merchantId, String paymentGatewayKey, String paymentGatewaySecret, String callbackUrl, String userFullName) throws Exception {
-        if(null == paymentGatewayUUID){
-            throw new Exception("Payment Gateway id cannot be null...");
+        if(null == paymentGatewayUUID || "".equals(paymentGatewayUUID)){
+            throw new Exception("Payment Gateway id cannot be null or empty...");
         }
 
-        if("".equals(paymentGatewayUUID)){
-            throw new Exception("Payment Gateway  id cannot be a empty string...");
+        if(null == name || "".equals(name)){
+            throw new Exception("Payment gateway name cannot be null or empty...");
+        }
+
+        if(null == merchantId || "".equals(merchantId)){
+            throw new Exception("Merchant id cannot be null or empty...");
+        }
+
+        if(null == paymentGatewayKey || "".equals(paymentGatewayKey)){
+            throw new Exception("Payment gateway key cannot be null or empty...");
+        }
+
+        if(null == paymentGatewaySecret || "".equals(paymentGatewaySecret)){
+            throw new Exception("Payment gateway secret cannot be null or empty...");
+        }
+
+        if(null == callbackUrl || "".equals(callbackUrl)){
+            throw new Exception("Call back url cannot be null or empty...");
+        }
+
+        if(null == userFullName || "".equals(userFullName)){
+            throw new Exception("User full name cannot be null or empty...");
         }
 
         PaymentGateway paymentGateway = this.paymentGatewayRepository.findById(paymentGatewayUUID).get();
@@ -139,5 +190,51 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
         }
 
         this.paymentGatewayRepository.deleteById(paymentGatewayUUID);
+    }
+
+    @Override
+    public String enablePaymentGateway(String paymentGatewayId) throws Exception {
+        if(null == paymentGatewayId){
+            throw new Exception("Payment Gateway id cannot be null...");
+        }
+
+        if("".equals(paymentGatewayId)){
+            throw new Exception("Payment Gateway id cannot be a empty string...");
+        }
+
+        Optional<PaymentGateway> optionalPaymentGateway = this.paymentGatewayRepository.findById(paymentGatewayId);
+
+        if(optionalPaymentGateway.isPresent()){
+            PaymentGateway paymentGateway = optionalPaymentGateway.get();
+            paymentGateway.setEnabled(1);
+            this.paymentGatewayRepository.save(paymentGateway);
+            this.logger.info(String.format("the payment gateway [ %s ] is now enabled for use...", paymentGateway.getName()));
+            return "1";
+        } else {
+            this.logger.info(String.format("the payment gateway with id [ %s ] is does not exist...", paymentGatewayId));
+            return "0";
+        }
+    }
+
+    @Override
+    public void disablePaymentGateway(String paymentGatewayId) throws Exception {
+        if(null == paymentGatewayId){
+            throw new Exception("Payment Gateway id cannot be null...");
+        }
+
+        if("".equals(paymentGatewayId)){
+            throw new Exception("Payment Gateway id cannot be a empty string...");
+        }
+
+        Optional<PaymentGateway> optionalPaymentGateway = this.paymentGatewayRepository.findById(paymentGatewayId);
+
+        if(optionalPaymentGateway.isPresent()){
+            PaymentGateway paymentGateway = optionalPaymentGateway.get();
+            paymentGateway.setEnabled(0);
+            this.paymentGatewayRepository.save(paymentGateway);
+            this.logger.info(String.format("the payment gateway [ %s ] is now disabled...", paymentGateway.getName()));
+        } else {
+            this.logger.info(String.format("the payment gateway with id [ %s ] is does not exist...", paymentGatewayId));
+        }
     }
 }

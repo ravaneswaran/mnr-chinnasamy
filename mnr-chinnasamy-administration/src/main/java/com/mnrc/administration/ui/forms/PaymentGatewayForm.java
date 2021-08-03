@@ -23,9 +23,11 @@ public class PaymentGatewayForm {
     @NotEmpty(message = "Callback URL cannot be empty")
     private String callbackUrl;
 
-    private String enabled;
+    private int enabled;
 
     private String action = "/payment-gateway/add";
+
+    private String title;
 
     public String getName() {
         return name;
@@ -67,11 +69,11 @@ public class PaymentGatewayForm {
         this.paymentGatewaySecret = paymentGatewaySecret;
     }
 
-    public String getEnabled() {
+    public int getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(String enabled) {
+    public void setEnabled(int enabled) {
         this.enabled = enabled;
     }
 
@@ -97,5 +99,9 @@ public class PaymentGatewayForm {
 
     public void setAction(String action) {
         this.action = action;
+    }
+
+    public String getTitle() {
+        return String.format("Selecting this would make [ %s ] available for the application", this.getName());
     }
 }

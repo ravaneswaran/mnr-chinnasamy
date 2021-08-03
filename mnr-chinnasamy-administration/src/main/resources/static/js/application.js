@@ -40,3 +40,31 @@ function toggleCanAccessAdministrationApp(elementId){
         //console.log(err);
     }
 }
+
+function enDisablePaymentGateway(elementId){
+    try {
+        var isElementChecked = $("#"+elementId).is(':checked');
+        var uri = "/ajax/payment-gateway/enable/" + elementId;
+        $.ajax({
+            type: "GET",
+            contentType: "text/html",
+            url: uri,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                console.log("SUCCESS : ", data);
+                //var obj = jQuery.parseJSON('{"response":"1", "status":"success"}');
+                var obj = jQuery.parseJSON(data);
+                alert(obj.response);
+            },
+            error: function (e) {
+                console.log("FAILURE : ", data);
+                //var obj = jQuery.parseJSON("{'response':'1', 'status':'success'}");
+                var obj = jQuery.parseJSON(data);
+                alert(obj.response);
+            }
+        });
+    } catch(err) {
+        //console.log(err);
+    }
+}

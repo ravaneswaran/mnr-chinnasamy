@@ -1,6 +1,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <div th:fragment="content-pane">
-        <div class="top-space-50-pixel section">Payment Gateway Creation & Listing</div>
+        <div class="top-space-50-pixel section" id="payment-gateway-creation-listing">Payment Gateway Creation & Listing</div>
         <div class="top-space-50-pixel error-message-box" th:text="${errorMessage}" id="errorMessage"></div>
         <div class="top-space-50-pixel payment-gateway-sub-section">Payment Gateway Creation <span style="font-size:16px;">(fields marked with (*) are mandatory)</span></div>
         <div class="top-space-50-pixel payment-gateway-create">
@@ -48,7 +48,7 @@
             </form>
         </div>
         <div class="top-space-50-pixel payment-gateway-sub-section">Payment Gateway Listing</div>
-        <div class="top-space-50-pixel payment-gateway-listing">
+        <div id="payment-gateway-listing" class="top-space-50-pixel payment-gateway-listing">
             <div>
                 <table>
                     <tr>
@@ -61,7 +61,7 @@
                 <table>
                     <tr th:each="paymentGatewayForm: ${paymentGatewayForms}">
                         <td class="td-height-60 payment-gateway-list-td-left" >
-                            <input th:id="${paymentGatewayForm.paymentGatewayUUID}" type="radio" name="paymentGateway"/>
+                            <input th:id="${paymentGatewayForm.paymentGatewayUUID}" type="radio" name="paymentGateway" th:title="${paymentGatewayForm.title}" th:checked="${1 == paymentGatewayForm.enabled}" th:attr="onclick=|enDisablePaymentGateway('${paymentGatewayForm.paymentGatewayUUID}')|"/>
                             <span th:text="${ paymentGatewayForm.name}">name</span>
                         </td>
                         <td class="td-height-60 payment-gateway-list-td-right">
