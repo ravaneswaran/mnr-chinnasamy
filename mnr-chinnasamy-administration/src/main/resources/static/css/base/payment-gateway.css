@@ -23,12 +23,12 @@
     margin-left: 326px;
     box-shadow: 1px -1px 15px 5px #505050;
     border-radius: 5px;
-    height: 725px;
+    height: 685px;
 }
 
 .payment-gateway-listing-pane{
     border: 0px solid red;
-    height: 830px;
+    height: 652px;
     border-radius: 5px;
     overflow-y: auto;
 }

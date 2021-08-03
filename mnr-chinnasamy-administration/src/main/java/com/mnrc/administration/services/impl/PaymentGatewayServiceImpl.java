@@ -85,6 +85,7 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
             paymentGatewayForm.setPaymentGatewayKey(paymentGateway.getPaymentGatewayKey());
             paymentGatewayForm.setPaymentGatewaySecret(paymentGateway.getPaymentGatewaySecret());
             paymentGatewayForm.setCallbackUrl(paymentGateway.getCallbackUrl());
+            paymentGatewayForm.setEnabled(paymentGateway.getEnabled());
 
             paymentGatewayForms.add(paymentGatewayForm);
         }

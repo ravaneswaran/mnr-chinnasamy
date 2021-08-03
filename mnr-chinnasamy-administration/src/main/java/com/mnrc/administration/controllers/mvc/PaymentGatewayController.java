@@ -73,9 +73,11 @@ public class PaymentGatewayController extends BaseMVCController{
                 return modelAndView;
             }
         } else {
+            List<PaymentGatewayForm> paymentGatewayForms = this.paymentGatewayService.getPaymentGateways();
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("/payment-gateway");
             modelAndView.addObject("paymentGatewayForm", paymentGatewayForm);
+            modelAndView.addObject("paymentGatewayForms", paymentGatewayForms);
             modelAndView.addObject("errorMessage", this.getError(bindingResult));
             return modelAndView;
         }
@@ -119,7 +121,7 @@ public class PaymentGatewayController extends BaseMVCController{
     }
 
     @PostMapping("/payment-gateway/edit")
-    public ModelAndView editRole(@Valid PaymentGatewayForm paymentGatewayForm, BindingResult bindingResult, HttpServletRequest httpServletRequest){
+    public ModelAndView editPaymentGateway(@Valid PaymentGatewayForm paymentGatewayForm, BindingResult bindingResult, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
@@ -155,7 +157,7 @@ public class PaymentGatewayController extends BaseMVCController{
     }
 
     @GetMapping("/payment-gateway/delete")
-    public ModelAndView deleteRole(@RequestParam(name = "uuid") String paymentGatewayUUID, HttpServletRequest httpServletRequest){
+    public ModelAndView deletePaymentGateway(@RequestParam(name = "uuid") String paymentGatewayUUID, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
         }
@@ -173,7 +175,7 @@ public class PaymentGatewayController extends BaseMVCController{
         try {
             this.paymentGatewayService.deletePaymentGateway(paymentGatewayUUID);
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/payment-gateway");
+            modelAndView.setViewName("redirect:/payment-gateway?#payment-gateway-listing");
             return modelAndView;
         } catch (Exception e) {
             List<PaymentGatewayForm> paymentGatewayForms = this.paymentGatewayService.getPaymentGateways();
