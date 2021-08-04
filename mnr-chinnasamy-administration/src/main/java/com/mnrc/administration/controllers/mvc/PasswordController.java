@@ -47,7 +47,7 @@ public class PasswordController extends BaseMVCController {
     @GetMapping("/forgot-password")
     public ModelAndView forgotPasswordHome(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("forgot-password");
+        modelAndView.setViewName("/forgot-password");
         return modelAndView;
     }
 
