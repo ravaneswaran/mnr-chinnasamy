@@ -53,8 +53,9 @@ body{
     width: 100%;
     font-weight: bold;
     text-indent: 10px;
-    height: 51px;
+    height: 40px;
     font-size: 14px;
+    padding-top: 20px;
 }
 
 .menu-item {
@@ -155,12 +156,19 @@ a {
 
 .logged-in-as{
     float: right;
-    margin-top: -19px;
+    margin-top: -60px;
     border: 0px solid white;
     font-size: 16px;
     margin-right: 10px;
-    width: 508px;
+    width: 476px;
     text-align: right;
+    padding-top: 30px;
+    height: 36px;
+}
+
+.logged-in-as-user{
+    border: 0px solid red;
+    width: 470px;
 }
 
 .app-launcher-image{

@@ -9,12 +9,13 @@
 }
 
 .login-header {
-    height: 50px;
+    height: 45px;
     width: 100%;
     color: #FFFFFF;
     background-color: #505050;
     text-indent : 10px;
     border-radius: 5px;
+    padding-top: 12px;
 }
 
 .login-body {
