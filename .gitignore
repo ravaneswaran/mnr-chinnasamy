@@ -1,13 +1,13 @@
 .idea
+
 mnr-chinnasamy.iml
-
-target
-
 mnr-chinnasamy-core/mnr-chinnasamy-core.iml
+mnr-chinnasamy-core/target
 
 mnr-chinnasamy-administration/mnr-chinnasamy-administration.iml
 mnr-chinnasamy-administration/target
 mnr-chinnasamy-administration/src/main/resources/liquibase/shoppe-master-output-changelog.xml
 
-mnr-chinnasamy-payment-gateway/mnr-chinnasamy-payment-gateway.iml
-mnr-chinnasamy-payment-gateway/target
+mnr-chinnasamy-payment-midman/mnr-chinnasamy-payment-midman.iml
+mnr-chinnasamy-payment-midman/target
+mnr-chinnasamy-payment-midman/HELP.md

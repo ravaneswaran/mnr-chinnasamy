@@ -12,7 +12,7 @@
     <modules>
         <module>mnr-chinnasamy-core</module>
         <module>mnr-chinnasamy-administration</module>
-        <module>mnr-chinnasamy-payment-gateway</module>
+        <module>mnr-chinnasamy-payment-midman</module>
     </modules>
 
 </project>
