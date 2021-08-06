@@ -1,6 +1,5 @@
 package com.mnrc.core.repositories;
 
-
 import com.mnrc.core.entities.User;
 
 import java.util.Date;

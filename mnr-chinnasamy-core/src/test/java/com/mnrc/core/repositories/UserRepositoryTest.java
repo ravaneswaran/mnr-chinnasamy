@@ -1,5 +1,7 @@
 package com.mnrc.core.repositories;
 
+import com.mnrc.core.enums.UserStatus;
+import com.mnrc.core.enums.UserType;
 import com.mnrc.core.entities.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -41,8 +43,8 @@ public class UserRepositoryTest {
         user.setUniqueId(randomNumberString);
         user.setMobileNo(randomNumberString);
         user.setPassword(String.format("password%s", randomNumberString));
-        user.setType("ADMIN");
-        user.setStatus("VERIFIED");
+        user.setType(UserType.ADMIN.toString());
+        user.setStatus(UserStatus.VERIFIED.toString());
         user.setCreatedDate(newDate);
         user.setModifiedDate(newDate);
         this.userRepository.save(user);
@@ -74,8 +76,8 @@ public class UserRepositoryTest {
         user.setUniqueId(randomNumberString);
         user.setMobileNo(randomNumberString);
         user.setPassword(String.format("password%s", randomNumberString));
-        user.setType("ADMIN");
-        user.setStatus("VERIFIED");
+        user.setType(UserType.ADMIN.toString());
+        user.setStatus(UserStatus.VERIFIED.toString());
         user.setCreatedDate(newDate);
         user.setModifiedDate(newDate);
         this.userRepository.save(user);
@@ -104,8 +106,8 @@ public class UserRepositoryTest {
         user.setUniqueId(randomNumberString);
         user.setMobileNo(randomNumberString);
         user.setPassword(String.format("password%s", randomNumberString));
-        user.setType("ADMIN");
-        user.setStatus("VERIFIED");
+        user.setType(UserType.ADMIN.toString());
+        user.setStatus(UserStatus.VERIFIED.toString());
         user.setCreatedDate(newDate);
         user.setModifiedDate(newDate);
         this.userRepository.save(user);
