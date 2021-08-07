@@ -40,6 +40,8 @@ public class PasswordServiceImpl implements PasswordService {
             this.userRepository.save(user);
 
             ChangePasswordForm changePassword = new ChangePasswordForm();
+            changePassword.setUserId(user.getUUID());
+            changePassword.setEmailId(user.getEmailId());
             changePassword.setOldPassword(newPassword);
             changePassword.setNewPassword("");
             changePassword.setConfirmPassword("");

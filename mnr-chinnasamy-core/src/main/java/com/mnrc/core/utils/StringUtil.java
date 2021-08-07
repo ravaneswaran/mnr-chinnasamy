@@ -15,7 +15,7 @@ public class StringUtil {
 
     public String getResourceAsString(String relativePathOfTheResource) throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(relativePathOfTheResource).getFile());
+        File file = new File(this.getClass().getResource(relativePathOfTheResource).getFile());
         String content = new String(Files.readAllBytes(file.toPath()));
 
         return content;

@@ -43,11 +43,6 @@ public class UserServiceImpl implements UserService {
     Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
-    public UserForm addUser(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo) throws Exception {
-        return this.addUser(null, firstName, middleInitial, lastName, emailId, uniqueId, mobileNo);
-    }
-
-    @Override
     public UserForm addUser(String userRoleId, String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo) throws Exception {
 
         User response = this.addUserWithVerifiedStatus(userRoleId, firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, UserType.ADMIN.toString());
@@ -71,11 +66,6 @@ public class UserServiceImpl implements UserService {
         } else {
             return null;
         }
-    }
-
-    @Override
-    public User addUserWithVerifiedStatus(String firstName, String middleInitial, String lastName, String emailId, String uniqueId, String mobileNo, String type) throws Exception {
-        return this.addUserWithVerifiedStatus(null, firstName, middleInitial, lastName, emailId, uniqueId, mobileNo, UserType.ADMIN.toString());
     }
 
     @Override

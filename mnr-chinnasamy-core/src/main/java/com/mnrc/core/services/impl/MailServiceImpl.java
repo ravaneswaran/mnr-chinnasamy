@@ -35,7 +35,7 @@ public class MailServiceImpl implements MailService {
         String mailContent = null;
         int result = -1;
         try {
-            mailContent = this.stringUtil.getResourceAsString("mail-messages/signup-verification-mail.html");
+            mailContent = this.stringUtil.getResourceAsString("/mail-messages/signup-verification-mail.html");
         } catch (IOException e) {
             this.logger.error(e.getMessage(), e);
         }
@@ -58,7 +58,7 @@ public class MailServiceImpl implements MailService {
         String mailContent = null;
         int result = -1;
         try {
-            mailContent = this.stringUtil.getResourceAsString("mail-messages/forgot-password-mail.html");
+            mailContent = this.stringUtil.getResourceAsString("/mail-messages/forgot-password-mail.html");
         } catch (IOException e) {
             this.logger.error(e.getMessage(), e);
         }
