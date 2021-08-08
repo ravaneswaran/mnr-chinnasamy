@@ -1,7 +1,7 @@
 package com.mnrc.administration.controllers.rest.ajax;
 
-import com.mnrc.administration.services.UserRoleService;
-import com.mnrc.administration.ui.forms.UserRoleForm;
+import com.mnrc.core.services.UserRoleService;
+import com.mnrc.core.forms.UserRoleForm;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -5,7 +5,7 @@ import com.mnrc.administration.enums.UserType;
 import com.mnrc.administration.models.Token;
 import com.mnrc.administration.repositories.TokenRepository;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

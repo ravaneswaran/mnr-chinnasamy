@@ -1,11 +1,11 @@
 package com.mnrc.administration.controllers.mvc;
 
 import com.mnrc.administration.enums.SessionAttribute;
-import com.mnrc.administration.services.MailService;
-import com.mnrc.administration.services.PasswordService;
-import com.mnrc.administration.ui.forms.ChangePasswordForm;
-import com.mnrc.administration.ui.forms.ForgotPasswordForm;
-import com.mnrc.administration.ui.forms.LoginForm;
+import com.mnrc.core.services.MailService;
+import com.mnrc.core.services.PasswordService;
+import com.mnrc.core.forms.ChangePasswordForm;
+import com.mnrc.core.forms.ForgotPasswordForm;
+import com.mnrc.core.forms.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

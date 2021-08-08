@@ -1,7 +1,7 @@
 package com.mnrc.administration.controllers.mvc;
 
 import com.mnrc.administration.enums.SessionAttribute;
-import com.mnrc.administration.ui.forms.LoginForm;
+import com.mnrc.core.forms.LoginForm;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 

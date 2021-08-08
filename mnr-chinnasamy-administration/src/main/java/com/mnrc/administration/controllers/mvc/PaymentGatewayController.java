@@ -1,9 +1,9 @@
 package com.mnrc.administration.controllers.mvc;
 
 import com.mnrc.administration.enums.SessionAttribute;
-import com.mnrc.administration.services.PaymentGatewayService;
-import com.mnrc.administration.ui.forms.LoginForm;
-import com.mnrc.administration.ui.forms.PaymentGatewayForm;
+import com.mnrc.core.services.PaymentGatewayService;
+import com.mnrc.core.forms.LoginForm;
+import com.mnrc.core.forms.PaymentGatewayForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

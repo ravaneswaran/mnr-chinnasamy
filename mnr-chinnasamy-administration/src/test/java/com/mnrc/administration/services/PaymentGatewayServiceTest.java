@@ -3,7 +3,7 @@ package com.mnrc.administration.services;
 import com.mnrc.administration.ui.forms.PaymentGatewayForm;
 import net.bytebuddy.utility.RandomString;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

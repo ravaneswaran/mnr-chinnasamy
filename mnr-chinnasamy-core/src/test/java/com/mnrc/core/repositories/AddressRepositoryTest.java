@@ -3,7 +3,7 @@ package com.mnrc.core.repositories;
 import com.mnrc.core.entities.Address;
 import com.mnrc.core.entities.User;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,7 +28,7 @@ public class AddressRepositoryTest extends AbstractRepositoryTest{
         Assert.assertNotNull(this.addressRepository);
     }
 
-    @Test
+
     public void testSave(){
         User user = this.getTestUser();
         this.userRepository.save(user);

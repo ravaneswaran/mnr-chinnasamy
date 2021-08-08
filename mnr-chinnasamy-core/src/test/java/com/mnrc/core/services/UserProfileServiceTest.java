@@ -6,7 +6,7 @@ import com.mnrc.core.entities.User;
 import com.mnrc.core.entities.UserProfile;
 import com.mnrc.core.repositories.UserRepository;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

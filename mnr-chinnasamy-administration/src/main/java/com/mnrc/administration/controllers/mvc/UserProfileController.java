@@ -1,13 +1,13 @@
 package com.mnrc.administration.controllers.mvc;
 
 import com.mnrc.administration.enums.SessionAttribute;
-import com.mnrc.administration.enums.UserType;
-import com.mnrc.administration.models.UserProfile;
-import com.mnrc.administration.services.ImageService;
-import com.mnrc.administration.services.UserProfileService;
-import com.mnrc.administration.services.UserService;
-import com.mnrc.administration.ui.forms.LoginForm;
-import com.mnrc.administration.ui.forms.UserForm;
+import com.mnrc.core.enums.UserType;
+import com.mnrc.core.entities.UserProfile;
+import com.mnrc.core.services.ImageService;
+import com.mnrc.core.services.UserProfileService;
+import com.mnrc.core.services.UserService;
+import com.mnrc.core.forms.LoginForm;
+import com.mnrc.core.forms.UserForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
