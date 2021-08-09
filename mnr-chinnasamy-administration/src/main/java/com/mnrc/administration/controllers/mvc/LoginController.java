@@ -2,7 +2,6 @@ package com.mnrc.administration.controllers.mvc;
 
 import com.mnrc.administration.enums.SessionAttribute;
 import com.mnrc.core.services.LoginService;
-import com.mnrc.core.services.impl.LoginServiceImpl;
 import com.mnrc.core.forms.LoginForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
