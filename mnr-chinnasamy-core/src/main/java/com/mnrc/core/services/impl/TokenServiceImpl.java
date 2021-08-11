@@ -6,10 +6,11 @@ import com.mnrc.core.repositories.TokenRepository;
 import com.mnrc.core.services.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-@Component
+@Service
 public class TokenServiceImpl implements TokenService {
 
     @Autowired

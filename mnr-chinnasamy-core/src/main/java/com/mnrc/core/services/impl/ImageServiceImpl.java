@@ -2,6 +2,7 @@ package com.mnrc.core.services.impl;
 
 import com.mnrc.core.services.ImageService;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -13,7 +14,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Date;
 
-@Component
+@Service
 public class ImageServiceImpl implements ImageService {
 
     @Override

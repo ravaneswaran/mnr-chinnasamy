@@ -1,6 +1,9 @@
 .idea
 
 mnr-chinnasamy.iml
+mnr-chinnasamy.ipr
+mnr-chinnasamy.iws
+
 mnr-chinnasamy-core/mnr-chinnasamy-core.iml
 mnr-chinnasamy-core/target
 

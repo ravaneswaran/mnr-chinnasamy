@@ -1,9 +1,12 @@
 package com.mnrc.core.services;
 
+import org.springframework.stereotype.Service;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+@Service
 public interface ImageService {
 
     public BufferedImage resizeImageTo_265_By_293(byte[] imageContent) throws IOException;

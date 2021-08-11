@@ -9,16 +9,36 @@
     <name>mnr-chinnasamy</name>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>mnr-chinnasamy-core</module>
+        <module>mnr-chinnasamy-administration</module>
+        <!--<module>mnr-chinnasamy-payment-midman</module>-->
+    </modules>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.5.0</version>
+        <relativePath />
     </parent>
 
-    <modules>
-        <module>mnr-chinnasamy-core</module>
-        <module>mnr-chinnasamy-administration</module>
-        <module>mnr-chinnasamy-payment-midman</module>
-    </modules>
+    <dependencies>
+        <!-- Spring DevTool Dependency-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>

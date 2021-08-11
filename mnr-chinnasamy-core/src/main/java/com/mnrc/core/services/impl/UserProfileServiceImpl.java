@@ -7,11 +7,12 @@ import com.mnrc.core.repositories.UserRepository;
 import com.mnrc.core.services.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.UUID;
 
-@Component
+@Service
 public class UserProfileServiceImpl implements UserProfileService {
 
     @Autowired

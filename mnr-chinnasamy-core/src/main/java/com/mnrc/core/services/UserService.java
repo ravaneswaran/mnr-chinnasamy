@@ -3,10 +3,11 @@ package com.mnrc.core.services;
 import com.mnrc.core.entities.User;
 import com.mnrc.core.forms.UserForm;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public interface UserService {
 
     public User addUserWithVerifiedStatus(

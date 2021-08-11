@@ -3,39 +3,30 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.mnrc.administration</groupId>
+    <groupId>com.mnrc</groupId>
     <artifactId>mnr-chinnasamy-administration</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>mnr-chinnasamy-administration</name>
     <description>Administration App</description>
 
-    <!--<parent>
-        <groupId>com.mnrc</groupId>
-        <artifactId>mnr-chinnasamy</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.5.0</version>
+        <relativePath/>
     </parent>
 
     <properties>
         <java.version>1.8</java.version>
-        <junit-jupiter.version>5.6.0</junit-jupiter.version>
     </properties>
 
     <dependencies>
-        <!-- Module dependency -->
-        <dependency>
-            <groupId>com.mnrc.core</groupId>
-            <artifactId>mnr-chinnasamy-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-
         <!-- Application core libraries -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -99,6 +90,8 @@
             <artifactId>json</artifactId>
             <version>20210307</version>
         </dependency>
+
+
 
         <!-- Spring DevTool Dependency-->
         <dependency>
@@ -166,12 +159,14 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.mnrc.</groupId>
+            <artifactId>mnr-chinnasamy-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
-
-        <sourceDirectory>src/main/java</sourceDirectory>
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -228,7 +223,7 @@
                 <version>4.3.5</version>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
-                    <changeLogFile>src/main/resources/liquibase/mnr-chinnasamy-master-input-changelog.xml</changeLogFile>
+                    <changeLogFile>src/main/resources/liquibase/mnrc-administration-master-input-changelog.xml</changeLogFile>
                 </configuration>
             </plugin>
 
@@ -261,3 +256,4 @@
         </plugins>
     </build>
 </project>
+
