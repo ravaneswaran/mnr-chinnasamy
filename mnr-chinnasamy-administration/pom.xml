@@ -160,7 +160,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.mnrc.</groupId>
+            <groupId>com.mnrc</groupId>
             <artifactId>mnr-chinnasamy-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
