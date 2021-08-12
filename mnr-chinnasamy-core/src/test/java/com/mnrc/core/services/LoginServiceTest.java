@@ -1,11 +1,11 @@
 package com.mnrc.core.services;
 
+import com.mnrc.core.entities.User;
 import com.mnrc.core.entities.UserRole;
 import com.mnrc.core.enums.UserStatus;
 import com.mnrc.core.enums.UserType;
-import com.mnrc.core.entities.User;
-import com.mnrc.core.repositories.UserRepository;
 import com.mnrc.core.forms.LoginForm;
+import com.mnrc.core.repositories.UserRepository;
 import com.mnrc.core.repositories.UserRoleRepository;
 import net.bytebuddy.utility.RandomString;
 import org.junit.Assert;

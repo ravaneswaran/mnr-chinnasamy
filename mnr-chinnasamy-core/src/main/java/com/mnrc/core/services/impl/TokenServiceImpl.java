@@ -1,11 +1,10 @@
 package com.mnrc.core.services.impl;
 
-import com.mnrc.core.enums.TokenType;
 import com.mnrc.core.entities.Token;
+import com.mnrc.core.enums.TokenType;
 import com.mnrc.core.repositories.TokenRepository;
 import com.mnrc.core.services.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

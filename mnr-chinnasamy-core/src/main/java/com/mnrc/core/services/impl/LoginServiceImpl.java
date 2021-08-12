@@ -1,9 +1,9 @@
 package com.mnrc.core.services.impl;
 
 import com.mnrc.core.entities.User;
+import com.mnrc.core.forms.LoginForm;
 import com.mnrc.core.services.LoginService;
 import com.mnrc.core.services.UserService;
-import com.mnrc.core.forms.LoginForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

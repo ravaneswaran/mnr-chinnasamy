@@ -1,12 +1,11 @@
 package com.mnrc.core.services.impl;
 
 import com.mnrc.core.entities.UserRole;
+import com.mnrc.core.forms.UserRoleForm;
 import com.mnrc.core.repositories.UserRoleRepository;
 import com.mnrc.core.services.UserRoleService;
-import com.mnrc.core.forms.UserRoleForm;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

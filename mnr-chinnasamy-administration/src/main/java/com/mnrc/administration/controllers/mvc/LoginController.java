@@ -1,8 +1,8 @@
 package com.mnrc.administration.controllers.mvc;
 
 import com.mnrc.administration.enums.SessionAttribute;
-import com.mnrc.core.services.LoginService;
 import com.mnrc.core.forms.LoginForm;
+import com.mnrc.core.services.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

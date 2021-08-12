@@ -1,9 +1,9 @@
 package com.mnrc.administration.controllers.mvc;
 
 import com.mnrc.administration.enums.SessionAttribute;
-import com.mnrc.core.services.UserRoleService;
 import com.mnrc.core.forms.LoginForm;
 import com.mnrc.core.forms.UserRoleForm;
+import com.mnrc.core.services.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;

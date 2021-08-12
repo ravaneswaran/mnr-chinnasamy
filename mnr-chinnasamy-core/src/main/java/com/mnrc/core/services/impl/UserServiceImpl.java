@@ -1,20 +1,19 @@
 package com.mnrc.core.services.impl;
 
-import com.mnrc.core.enums.UserStatus;
-import com.mnrc.core.enums.UserType;
 import com.mnrc.core.entities.User;
 import com.mnrc.core.entities.UserRole;
+import com.mnrc.core.enums.UserStatus;
+import com.mnrc.core.enums.UserType;
+import com.mnrc.core.forms.UserForm;
 import com.mnrc.core.repositories.AddressRepository;
 import com.mnrc.core.repositories.UserRepository;
 import com.mnrc.core.repositories.UserRoleRepository;
 import com.mnrc.core.services.MailService;
 import com.mnrc.core.services.TokenService;
 import com.mnrc.core.services.UserService;
-import com.mnrc.core.forms.UserForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.File;

@@ -1,11 +1,9 @@
 package com.mnrc.core.services;
 
 import com.mnrc.core.forms.PaymentGatewayForm;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface PaymentGatewayService {
 
     public PaymentGatewayForm addPaymentGateway(String name, String merchantId, String paymentGatewayKey, String paymentGatewaySecret, String callbackUrl, String userFullName) throws Exception;

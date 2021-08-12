@@ -1,11 +1,11 @@
 package com.mnrc.core.services;
 
+import com.mnrc.core.entities.User;
 import com.mnrc.core.enums.UserStatus;
 import com.mnrc.core.enums.UserType;
-import com.mnrc.core.entities.User;
-import com.mnrc.core.repositories.UserRepository;
 import com.mnrc.core.forms.ChangePasswordForm;
 import com.mnrc.core.forms.ForgotPasswordForm;
+import com.mnrc.core.repositories.UserRepository;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

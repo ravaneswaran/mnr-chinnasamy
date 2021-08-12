@@ -1,8 +1,8 @@
 package com.mnrc.core.services;
 
 import com.mnrc.core.entities.UserRole;
-import com.mnrc.core.repositories.UserRoleRepository;
 import com.mnrc.core.forms.UserRoleForm;
+import com.mnrc.core.repositories.UserRoleRepository;
 import net.bytebuddy.utility.RandomString;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;

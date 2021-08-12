@@ -1,12 +1,11 @@
 package com.mnrc.core.services.impl;
 
 import com.mnrc.core.entities.User;
-import com.mnrc.core.repositories.UserRepository;
-import com.mnrc.core.services.PasswordService;
 import com.mnrc.core.forms.ChangePasswordForm;
 import com.mnrc.core.forms.ForgotPasswordForm;
+import com.mnrc.core.repositories.UserRepository;
+import com.mnrc.core.services.PasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service

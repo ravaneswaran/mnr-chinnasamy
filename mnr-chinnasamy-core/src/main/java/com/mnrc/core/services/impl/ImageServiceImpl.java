@@ -1,7 +1,6 @@
 package com.mnrc.core.services.impl;
 
 import com.mnrc.core.services.ImageService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;

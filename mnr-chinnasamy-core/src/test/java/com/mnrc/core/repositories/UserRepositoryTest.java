@@ -1,8 +1,8 @@
 package com.mnrc.core.repositories;
 
+import com.mnrc.core.entities.User;
 import com.mnrc.core.enums.UserStatus;
 import com.mnrc.core.enums.UserType;
-import com.mnrc.core.entities.User;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

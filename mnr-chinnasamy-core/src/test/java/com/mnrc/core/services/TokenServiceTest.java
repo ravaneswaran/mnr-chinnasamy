@@ -1,8 +1,8 @@
 package com.mnrc.core.services;
 
+import com.mnrc.core.entities.Token;
 import com.mnrc.core.enums.TokenType;
 import com.mnrc.core.enums.UserType;
-import com.mnrc.core.entities.Token;
 import com.mnrc.core.repositories.TokenRepository;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;

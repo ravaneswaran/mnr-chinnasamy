@@ -1,11 +1,9 @@
 package com.mnrc.core.services;
 
 import com.mnrc.core.forms.UserRoleForm;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface UserRoleService {
 
     public UserRoleForm addUserRole(String name, String userName) throws Exception;
