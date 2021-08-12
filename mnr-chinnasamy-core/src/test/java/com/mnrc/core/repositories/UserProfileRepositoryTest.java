@@ -1,5 +1,6 @@
 package com.mnrc.core.repositories;
 
+import com.mnrc.core.AbstractCoreTest;
 import com.mnrc.core.entities.User;
 import com.mnrc.core.entities.UserProfile;
 import org.junit.Assert;
@@ -16,7 +17,7 @@ import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserProfileRepositoryTest extends AbstractRepositoryTest{
+public class UserProfileRepositoryTest extends AbstractCoreTest {
 
     @Autowired
     private UserProfileRepository userProfileRepository;

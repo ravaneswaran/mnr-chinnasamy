@@ -14,5 +14,6 @@
     <include file="0.0.1/state-changelog-1.0.0.xml" relativeToChangelogFile="true" />
     <include file="0.0.1/token-changelog-1.0.0.xml" relativeToChangelogFile="true" />
     <include file="0.0.1/payment-gateway-changelog-1.0.0.xml" relativeToChangelogFile="true" />
+    <include file="0.0.1/order-changelog-1.0.0.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>

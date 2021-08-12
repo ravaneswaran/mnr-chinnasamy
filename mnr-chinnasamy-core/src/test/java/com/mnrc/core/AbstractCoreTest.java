@@ -1,12 +1,14 @@
-package com.mnrc.core.repositories;
+package com.mnrc.core;
 
 import com.mnrc.core.entities.User;
+import com.mnrc.core.entities.UserRole;
+import net.bytebuddy.utility.RandomString;
 
 import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 
-public class AbstractRepositoryTest {
+public class AbstractCoreTest {
 
     protected User getTestUser(){
         String uuid = UUID.randomUUID().toString();
@@ -29,5 +31,18 @@ public class AbstractRepositoryTest {
         user.setModifiedDate(newDate);
 
         return user;
+    }
+
+    protected UserRole getTestRole(){
+        UserRole userRole = new UserRole();
+        Date newDate = new Date();
+
+        userRole.setName(RandomString.make().toUpperCase());
+        userRole.setCreatedBy("Almighty");
+        userRole.setModifiedBy("Almighty");
+        userRole.setCreatedDate(newDate);
+        userRole.setModifiedDate(newDate);
+
+        return userRole;
     }
 }

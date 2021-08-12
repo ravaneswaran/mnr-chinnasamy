@@ -1,25 +1,18 @@
 package com.mnrc.core.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
-@Table(name = "user_role")
-public class UserRole {
+@Table(name="`order`")
+public class Order {
 
     @Id
     @Column(name = "uuid")
     private String UUID;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "can_access_administration_app")
-    private int canAccessAdministrationApp;
+    @Column(name = "state")
+    private String state;
 
     @Column(name = "created_by")
     private String createdBy;
@@ -33,7 +26,10 @@ public class UserRole {
     @Column(name = "modified_date")
     private Date modifiedDate;
 
-    public UserRole(){
+    @ManyToOne
+    private User user;
+
+    public Order(){
         this.setUUID(java.util.UUID.randomUUID().toString());
     }
 
@@ -45,12 +41,12 @@ public class UserRole {
         this.UUID = UUID;
     }
 
-    public String getName() {
-        return name;
+    public String getState() {
+        return state;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getCreatedBy() {
@@ -85,11 +81,11 @@ public class UserRole {
         this.modifiedDate = modifiedDate;
     }
 
-    public int getCanAccessAdministrationApp() {
-        return canAccessAdministrationApp;
+    public User getUser() {
+        return user;
     }
 
-    public void setCanAccessAdministrationApp(int canAccessAdministrationApp) {
-        this.canAccessAdministrationApp = canAccessAdministrationApp;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

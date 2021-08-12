@@ -1,5 +1,6 @@
 package com.mnrc.core.repositories;
 
+import com.mnrc.core.AbstractCoreTest;
 import com.mnrc.core.entities.Address;
 import com.mnrc.core.entities.User;
 import org.junit.Assert;
@@ -15,7 +16,7 @@ import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AddressRepositoryTest extends AbstractRepositoryTest{
+public class AddressRepositoryTest extends AbstractCoreTest {
 
     @Autowired
     private AddressRepository addressRepository;
