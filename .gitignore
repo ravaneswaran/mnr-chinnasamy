@@ -14,3 +14,6 @@ mnr-chinnasamy-administration/src/main/resources/liquibase/shoppe-master-output-
 mnr-chinnasamy-payment-midman/mnr-chinnasamy-payment-midman.iml
 mnr-chinnasamy-payment-midman/target
 mnr-chinnasamy-payment-midman/HELP.md
+
+bhairava-siddhar-temple/bhairava-siddhar-temple.iml
+bhairava-siddhar-trust/bhairava-siddhar-trust.iml

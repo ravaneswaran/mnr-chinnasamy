@@ -12,7 +12,9 @@
     <modules>
         <module>mnr-chinnasamy-core</module>
         <module>mnr-chinnasamy-administration</module>
-        <!--<module>mnr-chinnasamy-payment-midman</module>-->
+        <module>mnr-chinnasamy-payment-midman</module>
+        <module>bhairava-siddhar-temple</module>
+        <module>bhairava-siddhar-trust</module>
     </modules>
 
     <parent>
