@@ -12,7 +12,6 @@
     <modules>
         <module>mnr-chinnasamy-core</module>
         <module>mnr-chinnasamy-administration-webapp</module>
-        <module>mnr-chinnasamy-payment-midman</module>
         <module>bhairava-siddhar-temple-webapp</module>
         <module>bhairava-siddhar-trust-webapp</module>
     </modules>
