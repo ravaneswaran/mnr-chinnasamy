@@ -4,10 +4,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mnrc.administration</groupId>
-    <artifactId>mnr-chinnasamy-administration</artifactId>
+    <artifactId>mnr-chinnasamy-administration-webapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>mnr-chinnasamy-administration</name>
+    <name>mnr-chinnasamy-administration-webapp</name>
     <description>Administration App</description>
 
     <parent>
