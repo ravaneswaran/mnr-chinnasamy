@@ -20,9 +20,9 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user")
-public class UserController extends BaseMVCController {
+public class MNRCAdministrationUserController extends MNRCAdministrationMvcController {
 
-    Logger logger = LoggerFactory.getLogger(UserController.class);
+    Logger logger = LoggerFactory.getLogger(MNRCAdministrationUserController.class);
 
     @Autowired
     private UserService userService;

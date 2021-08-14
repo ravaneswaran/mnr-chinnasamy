@@ -1,6 +1,6 @@
 package com.mnrc.administration.controllers.mvc;
 
-import com.mnrc.administration.enums.SessionAttribute;
+import com.mnrc.administration.enums.MNRCAdministrationSessionAttribute;
 import com.mnrc.core.forms.LoginForm;
 import com.mnrc.core.forms.UserRoleForm;
 import com.mnrc.core.services.UserRoleService;
@@ -21,7 +21,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user/role")
-public class UserRoleController extends BaseMVCController {
+public class MNRCAdministrationUserRoleController extends MNRCAdministrationMvcController {
 
     @Autowired
     private UserRoleService userRoleService;
@@ -60,7 +60,7 @@ public class UserRoleController extends BaseMVCController {
         }
 
         if(!bindingResult.hasErrors()){
-            LoginForm login = (LoginForm) httpServletRequest.getSession().getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
+            LoginForm login = (LoginForm) httpServletRequest.getSession().getAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString());
             try {
                 this.userRoleService.addUserRole(userRoleForm.getRoleName(), String.format("%s %s", login.getFirstName(), login.getLastName()).trim());
                 List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
@@ -101,7 +101,7 @@ public class UserRoleController extends BaseMVCController {
         }
 
         if(!bindingResult.hasErrors()){
-            LoginForm login = (LoginForm) httpServletRequest.getSession().getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
+            LoginForm login = (LoginForm) httpServletRequest.getSession().getAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString());
             try {
                 this.userRoleService.editUserRole(userRoleForm.getRoleId(), userRoleForm.getRoleName(), String.format("%s, %s", login.getFirstName(), login.getLastName()));
                 List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();

@@ -1,6 +1,6 @@
 package com.mnrc.administration.controllers.mvc;
 
-import com.mnrc.administration.enums.SessionAttribute;
+import com.mnrc.administration.enums.MNRCAdministrationSessionAttribute;
 import com.mnrc.core.forms.LoginForm;
 import com.mnrc.core.forms.PaymentGatewayForm;
 import com.mnrc.core.services.PaymentGatewayService;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class PaymentGatewayController extends BaseMVCController{
+public class MNRCAdministrationPaymentGatewayController extends MNRCAdministrationMvcController {
 
     @Autowired
     private PaymentGatewayService paymentGatewayService;
@@ -54,7 +54,7 @@ public class PaymentGatewayController extends BaseMVCController{
         }
 
         if(!bindingResult.hasErrors()){
-            LoginForm loginForm = (LoginForm) httpServletRequest.getSession().getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
+            LoginForm loginForm = (LoginForm) httpServletRequest.getSession().getAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString());
             String userFullName = String.format("%s %s", loginForm.getFirstName(), loginForm.getLastName()).trim();
             try {
                 this.paymentGatewayService.addPaymentGateway(paymentGatewayForm.getName(), paymentGatewayForm.getMerchantId(), paymentGatewayForm.getPaymentGatewayKey(), paymentGatewayForm.getPaymentGatewaySecret(), paymentGatewayForm.getCallbackUrl(), userFullName);
@@ -127,7 +127,7 @@ public class PaymentGatewayController extends BaseMVCController{
         }
 
         if(!bindingResult.hasErrors()){
-            LoginForm login = (LoginForm) httpServletRequest.getSession().getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
+            LoginForm login = (LoginForm) httpServletRequest.getSession().getAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString());
             try {
                 String userFullName = String.format("%s, %s", login.getFirstName(), login.getLastName());
                 this.paymentGatewayService.editPaymentGateway(paymentGatewayForm.getPaymentGatewayUUID(), paymentGatewayForm.getName(), paymentGatewayForm.getMerchantId(), paymentGatewayForm.getPaymentGatewayKey(), paymentGatewayForm.getPaymentGatewaySecret(), paymentGatewayForm.getCallbackUrl(), userFullName);

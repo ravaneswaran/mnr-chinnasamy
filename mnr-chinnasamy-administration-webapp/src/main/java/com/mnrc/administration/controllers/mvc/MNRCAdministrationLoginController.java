@@ -1,6 +1,6 @@
 package com.mnrc.administration.controllers.mvc;
 
-import com.mnrc.administration.enums.SessionAttribute;
+import com.mnrc.administration.enums.MNRCAdministrationSessionAttribute;
 import com.mnrc.core.forms.LoginForm;
 import com.mnrc.core.services.LoginService;
 import org.slf4j.Logger;
@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class LoginController extends BaseMVCController {
+public class MNRCAdministrationLoginController extends MNRCAdministrationMvcController {
 
-    Logger logger = LoggerFactory.getLogger(LoginController.class);
+    Logger logger = LoggerFactory.getLogger(MNRCAdministrationLoginController.class);
 
     @Autowired
     private LoginService loginService;
@@ -71,7 +71,7 @@ public class LoginController extends BaseMVCController {
                         return modelAndView;
                     } else {
                         HttpSession httpSession = httpServletRequest.getSession();
-                        httpSession.setAttribute(SessionAttribute.LOGGED_IN_USER.toString(), response);
+                        httpSession.setAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString(), response);
                         ModelAndView modelAndView = new ModelAndView("redirect:/user/role/view");
                         return modelAndView;
                     }

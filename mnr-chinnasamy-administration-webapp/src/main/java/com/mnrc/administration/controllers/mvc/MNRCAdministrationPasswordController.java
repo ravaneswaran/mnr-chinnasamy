@@ -1,6 +1,6 @@
 package com.mnrc.administration.controllers.mvc;
 
-import com.mnrc.administration.enums.SessionAttribute;
+import com.mnrc.administration.enums.MNRCAdministrationSessionAttribute;
 import com.mnrc.core.forms.ChangePasswordForm;
 import com.mnrc.core.forms.ForgotPasswordForm;
 import com.mnrc.core.forms.LoginForm;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class PasswordController extends BaseMVCController {
+public class MNRCAdministrationPasswordController extends MNRCAdministrationMvcController {
 
     @Autowired
     private PasswordService passwordService;
@@ -132,8 +132,8 @@ public class PasswordController extends BaseMVCController {
         }
 
         HttpSession httpSession = httpServletRequest.getSession();
-        String emailIdInSession = ((LoginForm)httpSession.getAttribute(SessionAttribute.LOGGED_IN_USER.toString())).getEmailId();
-        String passwordInSession = ((LoginForm)httpSession.getAttribute(SessionAttribute.LOGGED_IN_USER.toString())).getPassword();
+        String emailIdInSession = ((LoginForm)httpSession.getAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString())).getEmailId();
+        String passwordInSession = ((LoginForm)httpSession.getAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString())).getPassword();
 
         if(!passwordInSession.equals(changePassword.getOldPassword())) {
             ModelAndView modelAndView = new ModelAndView();

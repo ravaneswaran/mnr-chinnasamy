@@ -1,6 +1,6 @@
 package com.mnrc.administration.controllers.mvc;
 
-import com.mnrc.administration.enums.SessionAttribute;
+import com.mnrc.administration.enums.MNRCAdministrationSessionAttribute;
 import com.mnrc.core.forms.LoginForm;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public abstract class BaseMVCController {
+public abstract class MNRCAdministrationMvcController {
 
     protected abstract List<String> getMandatoryFields();
 
@@ -28,7 +28,7 @@ public abstract class BaseMVCController {
 
     protected boolean isUserLoggedIn(HttpServletRequest httpServletRequest){
         HttpSession httpSession = httpServletRequest.getSession();
-        LoginForm login = (LoginForm)httpSession.getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
+        LoginForm login = (LoginForm)httpSession.getAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString());
         return null != login;
     }
 
@@ -38,7 +38,7 @@ public abstract class BaseMVCController {
 
     protected String getSessionUserId(HttpServletRequest httpServletRequest){
         HttpSession httpSession = httpServletRequest.getSession();
-        LoginForm login = (LoginForm)httpSession.getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
+        LoginForm login = (LoginForm)httpSession.getAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString());
         if(null != login){
             return login.getUserId();
         } else {
@@ -48,7 +48,7 @@ public abstract class BaseMVCController {
 
     protected String getSessionUserFullName(HttpServletRequest httpServletRequest){
         HttpSession httpSession = httpServletRequest.getSession();
-        LoginForm login = (LoginForm)httpSession.getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
+        LoginForm login = (LoginForm)httpSession.getAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString());
         if(null != login){
             return "test test";
         } else {

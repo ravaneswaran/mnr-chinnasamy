@@ -1,4 +1,4 @@
-package com.mnrc.administration.exceptions;
+package com.mnrc.administration;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import javax.validation.ConstraintViolationException;
 
 @ControllerAdvice
-public class ExceptionInterceptor extends ResponseEntityExceptionHandler {
+public class MNRCAdministrationExceptionInterceptor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
     public final ResponseEntity<Object> handleConstraintViolationExceptions(

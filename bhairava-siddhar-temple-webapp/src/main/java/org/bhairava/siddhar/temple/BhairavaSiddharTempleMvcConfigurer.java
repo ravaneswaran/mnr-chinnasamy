@@ -1,4 +1,4 @@
-package com.mnrc.administration.config;
+package org.bhairava.siddhar.temple;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -17,8 +17,8 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.mnrc.administration"})
-public class MNRCAdministrationConfig implements WebMvcConfigurer {
+@ComponentScan(basePackages = {"org.bhairava.siddhar.temple"})
+public class BhairavaSiddharTempleMvcConfigurer implements WebMvcConfigurer {
 
     @Bean
     @Description("Thymeleaf template resolver serving HTML 5")
@@ -76,6 +76,6 @@ public class MNRCAdministrationConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
         registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images/");
 
-        registry.addResourceHandler("/user/profile/**").addResourceLocations("file:/tmp/");
+        //registry.addResourceHandler("/user/profile/**").addResourceLocations("file:/tmp/");
     }
 }

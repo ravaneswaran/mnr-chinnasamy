@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/dummy")
-public class DummyController {
+public class MNRCAdministrationDummyController {
 
     @GetMapping("/admin/info")
     public ModelAndView getAdminInfoPage(){

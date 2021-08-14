@@ -1,6 +1,6 @@
 package com.mnrc.administration.controllers.mvc;
 
-import com.mnrc.administration.enums.SessionAttribute;
+import com.mnrc.administration.enums.MNRCAdministrationSessionAttribute;
 import com.mnrc.core.entities.UserProfile;
 import com.mnrc.core.enums.UserType;
 import com.mnrc.core.forms.LoginForm;
@@ -27,9 +27,9 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user/profile")
-public class UserProfileController extends BaseMVCController {
+public class MNRCAdministrationUserProfileController extends MNRCAdministrationMvcController {
 
-    Logger logger = LoggerFactory.getLogger(UserProfileController.class);
+    Logger logger = LoggerFactory.getLogger(MNRCAdministrationUserProfileController.class);
 
     @Autowired
     private UserProfileService userProfileService;
@@ -52,7 +52,7 @@ public class UserProfileController extends BaseMVCController {
         }
 
         HttpSession httpSession = httpServletRequest.getSession();
-        LoginForm login = (LoginForm)httpSession.getAttribute(SessionAttribute.LOGGED_IN_USER.toString());
+        LoginForm login = (LoginForm)httpSession.getAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString());
 
         if(UserType.ALMIGHTY.toString().equals(login.getType())){
             return new ModelAndView("redirect:/user/list");
