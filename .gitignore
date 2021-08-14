@@ -1,11 +1,23 @@
 .idea
+
 mnr-chinnasamy.iml
+mnr-chinnasamy.ipr
+mnr-chinnasamy.iws
 
-target
+mnr-chinnasamy-core/mnr-chinnasamy-core.iml
+mnr-chinnasamy-core/target
 
-mnr-chinnasamy-administration/mnr-chinnasamy-administration.iml
-mnr-chinnasamy-administration/target
-mnr-chinnasamy-administration/src/main/resources/liquibase/shoppe-master-output-changelog.xml
+mnr-chinnasamy-administration-webapp/mnr-chinnasamy-administration-webapp.iml
+mnr-chinnasamy-administration-webapp/target
+mnr-chinnasamy-administration-webapp/src/main/resources/liquibase/shoppe-master-output-changelog.xml
 
-mnr-chinnasamy-payment-gateway/mnr-chinnasamy-payment-gateway.iml
-mnr-chinnasamy-payment-gateway/target
+mnr-chinnasamy-payment-midman/mnr-chinnasamy-payment-midman.iml
+mnr-chinnasamy-payment-midman/target
+mnr-chinnasamy-payment-midman/HELP.md
+
+bhairava-siddhar-temple-webapp/bhairava-siddhar-temple-webapp.iml
+bhairava-siddhar-temple-webapp/target
+
+bhairava-siddhar-trust-webapp/bhairava-siddhar-trust-webapp.iml
+bhairava-siddhar-trust-webapp/target
+
