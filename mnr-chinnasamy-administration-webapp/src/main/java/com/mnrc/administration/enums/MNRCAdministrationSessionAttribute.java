@@ -1,5 +1,5 @@
 package com.mnrc.administration.enums;
 
-public enum SessionAttribute {
+public enum MNRCAdministrationSessionAttribute {
     LOGGED_IN_USER
 }

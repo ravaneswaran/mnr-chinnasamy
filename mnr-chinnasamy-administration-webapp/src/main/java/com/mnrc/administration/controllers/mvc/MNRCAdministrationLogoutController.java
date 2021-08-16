@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class LogoutController {
+public class MNRCAdministrationLogoutController {
 
     @GetMapping("/logout")
     public ModelAndView logout(HttpServletRequest request){

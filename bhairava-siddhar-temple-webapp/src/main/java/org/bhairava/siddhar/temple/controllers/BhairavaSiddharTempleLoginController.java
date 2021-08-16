@@ -1,12 +1,11 @@
-package com.mnrc.administration.controllers.mvc;
+package org.bhairava.siddhar.temple.controllers;
 
-import com.mnrc.administration.enums.SessionAttribute;
 import com.mnrc.core.forms.LoginForm;
 import com.mnrc.core.services.LoginService;
+import org.bhairava.siddhar.temple.enums.BhairavaSiddharTempleSessionAttribute;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,10 +18,9 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
-public class LoginController extends BaseMVCController {
+public class BhairavaSiddharTempleLoginController extends BhairavaSiddharTempleMvcController {
 
-    Logger logger = LoggerFactory.getLogger(LoginController.class);
+    Logger logger = LoggerFactory.getLogger(BhairavaSiddharTempleLoginController.class);
 
     @Autowired
     private LoginService loginService;
@@ -71,7 +69,7 @@ public class LoginController extends BaseMVCController {
                         return modelAndView;
                     } else {
                         HttpSession httpSession = httpServletRequest.getSession();
-                        httpSession.setAttribute(SessionAttribute.LOGGED_IN_USER.toString(), response);
+                        httpSession.setAttribute(BhairavaSiddharTempleSessionAttribute.LOGGED_IN_USER.toString(), response);
                         ModelAndView modelAndView = new ModelAndView("redirect:/user/role/view");
                         return modelAndView;
                     }
