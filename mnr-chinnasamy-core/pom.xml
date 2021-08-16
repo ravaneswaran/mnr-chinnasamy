@@ -16,18 +16,6 @@
     <relativePath />
   </parent>
 
-  <!--<dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <type>pom</type>
-        <version>2.5.0</version>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>-->
-
   <dependencies>
     <!-- Application core libraries -->
     <dependency>
@@ -104,7 +92,7 @@
     </dependency>
   </dependencies>
 
-  <!--<build>
+  <build>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
@@ -120,6 +108,6 @@
         </configuration>
       </plugin>
     </plugins>
-  </build>-->
+  </build>
 
 </project>
