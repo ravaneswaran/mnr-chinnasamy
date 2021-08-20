@@ -14,6 +14,7 @@
         <module>mnr-chinnasamy-administration-webapp</module>
         <module>bhairava-siddhar-temple-webapp</module>
         <module>bhairava-siddhar-trust-webapp</module>
+        <module>mnr-chinnasamy-keycloak-sso-server</module>
     </modules>
 
     <parent>
