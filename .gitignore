@@ -7,7 +7,7 @@ mnr-chinnasamy.iws
 mnr-chinnasamy-core/mnr-chinnasamy-core.iml
 mnr-chinnasamy-core/target
 
-mnr-chinnasamy-keycloak-sso-server/mnr-chinnasamy-sso-webapp.iml
+mnr-chinnasamy-keycloak-sso-server/mnr-chinnasamy-keycloak-sso-server.iml
 mnr-chinnasamy-keycloak-sso-server/target
 
 mnr-chinnasamy-administration-webapp/mnr-chinnasamy-administration-webapp.iml

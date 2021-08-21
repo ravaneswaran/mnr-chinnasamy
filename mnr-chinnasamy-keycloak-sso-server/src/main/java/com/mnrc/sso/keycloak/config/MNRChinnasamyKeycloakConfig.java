@@ -16,17 +16,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class EmbeddedKeycloakConfig {
+public class MNRChinnasamyKeycloakConfig {
 
     @Bean
     public ServletRegistrationBean<HttpServlet30Dispatcher> keycloakJaxRsApplication(
-            KeycloakServerProperties keycloakServerProperties, DataSource dataSource) throws Exception {
+            MNRChinnasamyKeycloakServerProperties keycloakServerProperties, DataSource dataSource) throws Exception {
 
         mockJndiEnvironment(dataSource);
-        EmbeddedKeycloakApplication.keycloakServerProperties = keycloakServerProperties;
+        MNRChinnasamyKeycloakApplication.keycloakServerProperties = keycloakServerProperties;
         ServletRegistrationBean<HttpServlet30Dispatcher> servlet = new ServletRegistrationBean<>(
                 new HttpServlet30Dispatcher());
-        servlet.addInitParameter("javax.ws.rs.Application", EmbeddedKeycloakApplication.class.getName());
+        servlet.addInitParameter("javax.ws.rs.Application", MNRChinnasamyKeycloakApplication.class.getName());
         servlet.addInitParameter(ResteasyContextParameters.RESTEASY_SERVLET_MAPPING_PREFIX,
                 keycloakServerProperties.getContextPath());
         servlet.addInitParameter(ResteasyContextParameters.RESTEASY_USE_CONTAINER_FORM_PARAMS, "true");
@@ -38,10 +38,10 @@ public class EmbeddedKeycloakConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<EmbeddedKeycloakRequestFilter> keycloakSessionManagement(KeycloakServerProperties keycloakServerProperties) {
-        FilterRegistrationBean<EmbeddedKeycloakRequestFilter> filter = new FilterRegistrationBean<>();
+    public FilterRegistrationBean<MNRChinnasamyKeycloakRequestFilter> keycloakSessionManagement(MNRChinnasamyKeycloakServerProperties keycloakServerProperties) {
+        FilterRegistrationBean<MNRChinnasamyKeycloakRequestFilter> filter = new FilterRegistrationBean<>();
         filter.setName("Keycloak Session Management");
-        filter.setFilter(new EmbeddedKeycloakRequestFilter());
+        filter.setFilter(new MNRChinnasamyKeycloakRequestFilter());
         filter.addUrlPatterns(keycloakServerProperties.getContextPath() + "/*");
         return filter;
     }

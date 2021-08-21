@@ -16,11 +16,11 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 
-public class EmbeddedKeycloakApplication extends KeycloakApplication {
+public class MNRChinnasamyKeycloakApplication extends KeycloakApplication {
 
-    private static final Logger LOG = LoggerFactory.getLogger(EmbeddedKeycloakApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MNRChinnasamyKeycloakApplication.class);
 
-    static KeycloakServerProperties keycloakServerProperties;
+    static MNRChinnasamyKeycloakServerProperties keycloakServerProperties;
 
     protected void loadConfig() {
         JsonConfigProviderFactory factory = new RegularJsonConfigProviderFactory();
@@ -28,7 +28,7 @@ public class EmbeddedKeycloakApplication extends KeycloakApplication {
                 .orElseThrow(() -> new NoSuchElementException("No value present")));
     }
 
-    public EmbeddedKeycloakApplication() {
+    public MNRChinnasamyKeycloakApplication() {
         super();
         createMasterRealmAdminUser();
         createMNRChinnasamyRealm();
@@ -37,7 +37,7 @@ public class EmbeddedKeycloakApplication extends KeycloakApplication {
     private void createMasterRealmAdminUser() {
         KeycloakSession session = getSessionFactory().create();
         ApplianceBootstrap applianceBootstrap = new ApplianceBootstrap(session);
-        KeycloakServerProperties.AdminUser admin = keycloakServerProperties.getAdminUser();
+        MNRChinnasamyKeycloakServerProperties.AdminUser admin = keycloakServerProperties.getAdminUser();
         try {
             session.getTransactionManager().begin();
             applianceBootstrap.createMasterRealmUser(admin.getUsername(), admin.getPassword());

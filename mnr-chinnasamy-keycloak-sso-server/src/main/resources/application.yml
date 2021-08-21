@@ -8,7 +8,7 @@ spring:
 
 keycloak:
   server:
-    contextPath: /auth
+    contextPath: /sso
     adminUser:
       username: ravaneswaran
       password: welcome
