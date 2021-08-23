@@ -11,7 +11,7 @@ public class UserRoleForm {
 
     private int noOfUsers;
 
-    private String action = "/user/role/add";
+    private String action = "/administration/user/role/add";
 
     private int canAccessAdministrationApp;
 

@@ -34,7 +34,7 @@ class ProfilePictureSuccessIntegrationTest extends MNRCAdministrationBaseIntegra
     val emailId: String = String.format("%s@test.com", firstName)
     val mobileNo: String = String.valueOf(new Date().getTime).substring(0, 10);
     this.almightyCreatingNewAdminAndLoggingOut(this.webDriver, firstName, emailId, mobileNo)
-    this.webDriver.get("http://localhost:8080");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys(emailId);
     this.webDriver.findElement(By.id("password")).sendKeys("welcome");
     this.webDriver.findElement(By.id("login")).click();

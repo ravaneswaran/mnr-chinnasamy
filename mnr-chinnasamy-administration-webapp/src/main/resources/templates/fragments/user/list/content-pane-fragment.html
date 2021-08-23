@@ -9,14 +9,14 @@
                 <div class="user-listing-preview-name-div" th:text="${userForm.firstName + ' ' + userForm.middleInitial + ' ' + userForm.lastName}">User in List</div>
                 <div th:if="${#session.getAttribute('LOGGED_IN_USER').userId.equals(userForm.userId)}">
                     <div class="user-listing-preview-controls-div">
-                        <a th:href="${'/user/info?uuid=' + userForm.userId}"><img src="/images/user-info.png" class="user-listing-preview-control-image"/></a>
+                        <a th:href="${'/administration/user/info?uuid=' + userForm.userId}"><img src="/images/user-info.png" class="user-listing-preview-control-image"/></a>
                     </div>
                 </div>
                 <div th:unless="${#session.getAttribute('LOGGED_IN_USER').userId.equals(userForm.userId)}">
                     <div class="user-listing-preview-controls-div">
-                        <a th:href="${'/user/info?uuid=' + userForm.userId}"><img src="/images/user-info.png" class="user-listing-preview-control-image"/></a>
-                        <a th:href="${'VERIFIED'.equals(userForm.status) ? '/user/lock?uuid=' + userForm.userId  : '/user/unlock?uuid=' + userForm.userId}"><img th:src="${'VERIFIED'.equals(userForm.status) ? '/images/lock-user.png' : '/images/unlock-user.png'}" class="user-listing-preview-control-image"/></a>
-                        <a th:href="${'/user/delete?uuid=' + userForm.userId}"><img src="/images/delete-user.png" class="user-listing-preview-control-image"/></a>
+                        <a th:href="${'/administration/user/info?uuid=' + userForm.userId}"><img src="/images/user-info.png" class="user-listing-preview-control-image"/></a>
+                        <a th:href="${'VERIFIED'.equals(userForm.status) ? '/administration/user/lock?uuid=' + userForm.userId  : '/administration/user/unlock?uuid=' + userForm.userId}"><img th:src="${'VERIFIED'.equals(userForm.status) ? '/images/lock-user.png' : '/images/unlock-user.png'}" class="user-listing-preview-control-image"/></a>
+                        <a th:href="${'/administration/user/delete?uuid=' + userForm.userId}"><img src="/images/delete-user.png" class="user-listing-preview-control-image"/></a>
                     </div>
                 </div>
             </div>

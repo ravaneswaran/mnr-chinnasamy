@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/ajax/administration-app")
+@RequestMapping("/administration/ajax/administration-app")
 public class MNRCAdministrationAppAjaxController extends MNRCAdministrationAjaxController {
 
     Logger logger = LoggerFactory.getLogger(MNRCAdministrationAppAjaxController.class);

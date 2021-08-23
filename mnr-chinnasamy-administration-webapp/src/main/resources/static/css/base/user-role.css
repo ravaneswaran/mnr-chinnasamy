@@ -12,7 +12,7 @@
 .user-role-create {
    border: 0px solid red;
    border-radius: 5px;
-   height: 180px;
+   height: 235px;
    width: 570px;
    margin-left: 480px;
    box-shadow: 1px -1px 15px 5px #505050;
@@ -73,4 +73,9 @@
     background: #505050;
     color: #fff;
     text-align:center;
+}
+
+.access-checkbox {
+    font-size: 18px;
+    color: #505050;
 }

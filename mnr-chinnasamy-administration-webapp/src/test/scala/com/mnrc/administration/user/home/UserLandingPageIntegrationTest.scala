@@ -22,7 +22,7 @@ class UserLandingPageIntegrationTest extends MNRCAdministrationBaseIntegrationTe
   Given("""the user opens up a browser and logs in""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com");
     this.webDriver.findElement(By.id("password")).sendKeys("almighty");
     this.webDriver.findElement(By.id("login")).click();

@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
 public class MNRCAdministrationUserController extends MNRCAdministrationMvcController {
 
     Logger logger = LoggerFactory.getLogger(MNRCAdministrationUserController.class);
@@ -41,7 +40,7 @@ public class MNRCAdministrationUserController extends MNRCAdministrationMvcContr
         return mandatoryFields;
     }
 
-    @GetMapping("/home")
+    @GetMapping("/administration/user/home")
     public ModelAndView userHome(HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
@@ -56,7 +55,7 @@ public class MNRCAdministrationUserController extends MNRCAdministrationMvcContr
         return modelAndView;
     }
 
-    @PostMapping("/create")
+    @PostMapping("/administration/user/create")
     public ModelAndView addUser(@Valid @ModelAttribute("admin") UserForm userForm, BindingResult bindingResult, HttpServletRequest httpServletRequest) {
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
@@ -89,7 +88,7 @@ public class MNRCAdministrationUserController extends MNRCAdministrationMvcContr
                 return modelAndView;
             }
             if(null != response) {
-                String redirect = String.format("redirect:/user/info?uuid=%s", response.getUserId());
+                String redirect = String.format("redirect:/administration/user/info?uuid=%s", response.getUserId());
                 return new ModelAndView(redirect);
             } else {
                 List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
@@ -114,7 +113,7 @@ public class MNRCAdministrationUserController extends MNRCAdministrationMvcContr
         }
     }
 
-    @GetMapping("/info")
+    @GetMapping("/administration/user/info")
     public ModelAndView getUserInfo(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
@@ -140,7 +139,7 @@ public class MNRCAdministrationUserController extends MNRCAdministrationMvcContr
         }
     }
 
-    @GetMapping("/list")
+    @GetMapping("/administration/user/list")
     public ModelAndView listUsers(HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
@@ -154,7 +153,7 @@ public class MNRCAdministrationUserController extends MNRCAdministrationMvcContr
         return modelAndView;
     }
 
-    @GetMapping("/lock")
+    @GetMapping("/administration/user/lock")
     public ModelAndView lockUser(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
@@ -169,10 +168,10 @@ public class MNRCAdministrationUserController extends MNRCAdministrationMvcContr
         return modelAndView;
     }
 
-    @GetMapping("/unlock")
+    @GetMapping("/administration/user/unlock")
     public ModelAndView unLockUser(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:/administration");
         }
 
         ModelAndView modelAndView = new ModelAndView();
@@ -184,10 +183,10 @@ public class MNRCAdministrationUserController extends MNRCAdministrationMvcContr
         return modelAndView;
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/administration/user/delete")
     public ModelAndView deleteUser(@RequestParam(name = "uuid") String uuid, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:/administration");
         }
 
         ModelAndView modelAndView = new ModelAndView();

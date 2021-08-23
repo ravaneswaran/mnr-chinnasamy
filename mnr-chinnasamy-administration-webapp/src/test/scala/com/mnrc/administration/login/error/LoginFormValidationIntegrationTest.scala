@@ -22,14 +22,14 @@ class LoginFormValidationIntegrationTest extends MNRCAdministrationBaseIntegrati
   Given("""the user is trying to login with empty email id""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080/");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("login")).click();
   }
 
   Given("""the user is trying to login with empty password""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080/");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys("test@test.com");
     this.webDriver.findElement(By.id("login")).click();
   }
@@ -37,7 +37,7 @@ class LoginFormValidationIntegrationTest extends MNRCAdministrationBaseIntegrati
   Given("""the user is trying to login with wrong email id and password""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080/");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys("test@test.com");
     this.webDriver.findElement(By.id("password")).sendKeys("test");
     this.webDriver.findElement(By.id("login")).click();

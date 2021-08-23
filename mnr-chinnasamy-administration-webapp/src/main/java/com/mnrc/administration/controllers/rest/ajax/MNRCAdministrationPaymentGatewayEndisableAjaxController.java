@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ajax/payment-gateway")
+@RequestMapping("/administration/ajax/payment-gateway")
 public class MNRCAdministrationPaymentGatewayEndisableAjaxController extends MNRCAdministrationAjaxController {
 
     Logger logger = LoggerFactory.getLogger(MNRCAdministrationAppAjaxController.class);

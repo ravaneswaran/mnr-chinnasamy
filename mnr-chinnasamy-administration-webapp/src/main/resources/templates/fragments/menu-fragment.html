@@ -1,19 +1,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <div class="dropdown" th:fragment="menu">
         <div id="menu" class="dropdown-content">
-            <a id="userRole" href="/user/role/view"><image src="/images/user-role.png" class="menu-icon"/><span class="menu-text">User Role</span></a>
-            <a id="userCreation" href="/user/home"><image src="/images/user-creation.png" class="menu-icon"/><span class="menu-text">User Creation</span></a>
-            <a id="userListing" href="/user/list"><image src="/images/user-list.png" class="menu-icon"/><span class="menu-text">User Listing</span></a>
+            <a id="userRole" href="/administration/user/role/view"><image src="/images/user-role.png" class="menu-icon"/><span class="menu-text">User Role</span></a>
+            <a id="userCreation" href="/administration/user/home"><image src="/images/user-creation.png" class="menu-icon"/><span class="menu-text">User Creation</span></a>
+            <a id="userListing" href="/administration/user/list"><image src="/images/user-list.png" class="menu-icon"/><span class="menu-text">User Listing</span></a>
             <!--<hr class="menu-separator"></hr>-->
-            <a id="paymentGateway" href="/payment-gateway"><image src="/images/payment-gateway.png" class="menu-icon"/><span class="menu-text">Payment Gateway</span></a>
+            <a id="paymentGateway" href="/administration/payment-gateway"><image src="/images/payment-gateway.png" class="menu-icon"/><span class="menu-text">Payment Gateway</span></a>
             <!--<hr class="menu-separator"></hr>-->
-            <a id="changePassword" href="/change-password"><image src="/images/change-password.png" class="menu-icon"/><span class="menu-text">Change Password</span></a>
+            <a id="changePassword" href="/administration/change-password"><image src="/images/change-password.png" class="menu-icon"/><span class="menu-text">Change Password</span></a>
             <!--<hr class="menu-separator"></hr>-->
             <!--<a id="my-info" th:href="${'/user/info?uuid=' + #session.getAttribute('LOGGED_IN_USER').userId}" href="#"><image src="/images/my-info.png" class="menu-icon"/><span class="menu-text">My Info</span></a>-->
-            <a id="demos" th:if="${#session != null && #session.getAttribute('LOGGED_IN_USER') != null && 'ALMIGHTY'.equals(#session.getAttribute('LOGGED_IN_USER').roleName)}" href="/demo/payment-gateways/razor-pay"><image src="/images/demo.png" class="menu-icon"/><span class="menu-text">Demos</span></a>
-            <a id="howTo" th:if="${#session != null && #session.getAttribute('LOGGED_IN_USER') != null && 'ALMIGHTY'.equals(#session.getAttribute('LOGGED_IN_USER').roleName)}" href="/demo/how-to/razor-pay"><image src="/images/how-to.png" class="menu-icon"/><span class="menu-text">How-To</span></a>
+            <a id="demos" th:if="${#session != null && #session.getAttribute('LOGGED_IN_USER') != null && 'ALMIGHTY'.equals(#session.getAttribute('LOGGED_IN_USER').roleName)}" href="/administration/demo/payment-gateways/razor-pay"><image src="/images/demo.png" class="menu-icon"/><span class="menu-text">Demos</span></a>
+            <a id="howTo" th:if="${#session != null && #session.getAttribute('LOGGED_IN_USER') != null && 'ALMIGHTY'.equals(#session.getAttribute('LOGGED_IN_USER').roleName)}" href="/administration/demo/how-to/razor-pay"><image src="/images/how-to.png" class="menu-icon"/><span class="menu-text">How-To</span></a>
             <!--<hr class="menu-separator"></hr>-->
-            <a id="logout" href="/logout"><image src="/images/logout.png" class="menu-icon"/><span class="menu-text">Logout</span></a>
+            <a id="logout" href="/administration/logout"><image src="/images/logout.png" class="menu-icon"/><span class="menu-text">Logout</span></a>
         </div>
     </div>
 </html>
