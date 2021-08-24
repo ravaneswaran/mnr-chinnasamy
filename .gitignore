@@ -11,6 +11,9 @@ mnr-chinnasamy-keycloak-sso-server/mnr-chinnasamy-keycloak-sso-server.iml
 mnr-chinnasamy-keycloak-sso-server/target
 
 mnr-chinnasamy-administration-webapp/mnr-chinnasamy-administration-webapp.iml
+mnr-chinnasamy-administration-webapp/mnr-chinnasamy-administration-webapp.ipr
+mnr-chinnasamy-administration-webapp/mnr-chinnasamy-administration-webapp.iws
+
 mnr-chinnasamy-administration-webapp/target
 mnr-chinnasamy-administration-webapp/src/main/resources/liquibase/shoppe-master-output-changelog.xml
 

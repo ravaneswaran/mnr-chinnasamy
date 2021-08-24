@@ -18,6 +18,11 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public UserRoleForm addUserRole(String name, String userName) throws Exception {
+        return this.addUserRole(name, false, userName);
+    }
+
+    @Override
+    public UserRoleForm addUserRole(String name, boolean canAccessAdministrationApp, String userName) throws Exception {
         if(null == name){
             throw new Exception("User Role name cannot be null...");
         }
@@ -44,6 +49,7 @@ public class UserRoleServiceImpl implements UserRoleService {
         UserRole userRole = new UserRole();
         userRole.setUUID(uuid);
         userRole.setName(name.toUpperCase());
+        userRole.setCanAccessAdministrationApp(canAccessAdministrationApp ? 1 : 0);
         userRole.setCreatedBy(userName);
         userRole.setModifiedBy(userName);
         userRole.setCreatedDate(now);
@@ -75,6 +81,11 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public UserRoleForm editUserRole(String userRoleId, String name, String userName) throws Exception {
+        return this.editUserRole(userRoleId, name, false, userName);
+    }
+
+    @Override
+    public UserRoleForm editUserRole(String userRoleId, String name, boolean canAccessAdministrationApp, String userName) throws Exception {
         if(null == userRoleId){
             throw new Exception("User role id cannot be null...");
         }
@@ -88,6 +99,7 @@ public class UserRoleServiceImpl implements UserRoleService {
         if(null != userRole){
 
             userRole.setName(name.toUpperCase());
+            userRole.setCanAccessAdministrationApp(canAccessAdministrationApp ? 1 : 0);
             userRole.setModifiedBy(userName);
             userRole.setModifiedDate(new Date());
 
@@ -96,7 +108,7 @@ public class UserRoleServiceImpl implements UserRoleService {
                 UserRoleForm userRoleForm = new UserRoleForm();
                 userRoleForm.setRoleId(userRole.getUUID());
                 userRoleForm.setRoleName(userRole.getName());
-                userRoleForm.setCanAccessAdministrationApp(userRole.getCanAccessAdministrationApp());
+                userRoleForm.setCanAccessAdministrationApp(userRole.getCanAccessAdministrationApp() == 1);
                 userRoleForm.setNoOfUsers(0);
 
                 return userRoleForm;
@@ -125,7 +137,7 @@ public class UserRoleServiceImpl implements UserRoleService {
             UserRoleForm userRoleForm = new UserRoleForm();
             userRoleForm.setRoleId(userRole.getUUID());
             userRoleForm.setRoleName(userRole.getName());
-            userRoleForm.setCanAccessAdministrationApp(userRole.getCanAccessAdministrationApp());
+            userRoleForm.setCanAccessAdministrationApp(userRole.getCanAccessAdministrationApp() == 1);
             userRoleForm.setNoOfUsers(0);
 
             return userRoleForm;
@@ -142,7 +154,7 @@ public class UserRoleServiceImpl implements UserRoleService {
             UserRoleForm userRoleForm = new UserRoleForm();
             userRoleForm.setRoleName(userRole.getName());
             userRoleForm.setRoleId(userRole.getUUID());
-            userRoleForm.setCanAccessAdministrationApp(userRole.getCanAccessAdministrationApp());
+            userRoleForm.setCanAccessAdministrationApp(userRole.getCanAccessAdministrationApp() == 1);
             userRoleForms.add(userRoleForm);
         }
         return userRoleForms;
