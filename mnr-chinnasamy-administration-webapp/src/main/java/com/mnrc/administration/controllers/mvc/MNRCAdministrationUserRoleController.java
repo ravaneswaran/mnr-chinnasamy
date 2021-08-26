@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user/role")
 public class MNRCAdministrationUserRoleController extends MNRCAdministrationMvcController {
 
     @Autowired
@@ -33,7 +32,7 @@ public class MNRCAdministrationUserRoleController extends MNRCAdministrationMvcC
         return mandatoryFields;
     }
 
-    @GetMapping("/view")
+    @GetMapping("/administration/user/role/view")
     public ModelAndView userRoleHome(HttpServletRequest httpServletRequest){
 
         if(this.isNotUserLoggedIn(httpServletRequest)) {
@@ -47,12 +46,12 @@ public class MNRCAdministrationUserRoleController extends MNRCAdministrationMvcC
         return modelAndView;
     }
 
-    @GetMapping("/add")
+    @GetMapping("/administration/user/role/add")
     public ModelAndView returnToUserRoleHome(HttpServletRequest httpServletRequest){
         return userRoleHome(httpServletRequest);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/administration/user/role/add")
     public ModelAndView addRole(@Valid UserRoleForm userRoleForm, BindingResult bindingResult, HttpServletRequest httpServletRequest){
 
         if(this.isNotUserLoggedIn(httpServletRequest)) {
@@ -94,7 +93,7 @@ public class MNRCAdministrationUserRoleController extends MNRCAdministrationMvcC
         }
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/administration/user/role/edit")
     public ModelAndView editRole(@Valid UserRoleForm userRoleForm, BindingResult bindingResult, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
@@ -135,7 +134,7 @@ public class MNRCAdministrationUserRoleController extends MNRCAdministrationMvcC
         }
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/administration/user/role/edit")
     public ModelAndView editRole(@RequestParam(name = "uuid") String userRoleId, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
@@ -172,7 +171,7 @@ public class MNRCAdministrationUserRoleController extends MNRCAdministrationMvcC
         }
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/administration/user/role/delete")
     public ModelAndView deleteRole(@RequestParam(name = "uuid") String userRoleId, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");

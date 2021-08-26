@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,7 +35,7 @@ public class MNRCAdministrationPaymentGatewayController extends MNRCAdministrati
         return mandatoryFields;
     }
 
-    @GetMapping("/payment-gateway")
+    @GetMapping("/administration/payment-gateway")
     public ModelAndView paymentGatewayLandingPage(HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
@@ -47,7 +48,7 @@ public class MNRCAdministrationPaymentGatewayController extends MNRCAdministrati
         return modelAndView;
     }
 
-    @PostMapping("/payment-gateway/add")
+    @PostMapping("/administration/payment-gateway/add")
     public ModelAndView addPaymentGateway(@Valid PaymentGatewayForm paymentGatewayForm, BindingResult bindingResult, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
@@ -83,7 +84,7 @@ public class MNRCAdministrationPaymentGatewayController extends MNRCAdministrati
         }
     }
 
-    @GetMapping("/payment-gateway/edit")
+    @GetMapping("/administration/payment-gateway/edit")
     public ModelAndView editPaymentGateway(@RequestParam(name = "uuid") String paymentGatewayUUID, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
@@ -120,7 +121,7 @@ public class MNRCAdministrationPaymentGatewayController extends MNRCAdministrati
         }
     }
 
-    @PostMapping("/payment-gateway/edit")
+    @PostMapping("/administration/payment-gateway/edit")
     public ModelAndView editPaymentGateway(@Valid PaymentGatewayForm paymentGatewayForm, BindingResult bindingResult, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
@@ -156,7 +157,7 @@ public class MNRCAdministrationPaymentGatewayController extends MNRCAdministrati
         }
     }
 
-    @GetMapping("/payment-gateway/delete")
+    @GetMapping("/administration/payment-gateway/delete")
     public ModelAndView deletePaymentGateway(@RequestParam(name = "uuid") String paymentGatewayUUID, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");

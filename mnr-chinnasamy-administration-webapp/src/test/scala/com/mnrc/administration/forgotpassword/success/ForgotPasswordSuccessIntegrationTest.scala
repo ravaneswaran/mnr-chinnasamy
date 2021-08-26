@@ -22,7 +22,7 @@ class ForgotPasswordSuccessIntegrationTest extends MNRCAdministrationBaseIntegra
   Given("""the user has entered his\/her registered mail id with the system""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080/forgot-password");
+    this.webDriver.get("http://localhost:8080/administration/forgot-password");
     this.webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com")
   }
 

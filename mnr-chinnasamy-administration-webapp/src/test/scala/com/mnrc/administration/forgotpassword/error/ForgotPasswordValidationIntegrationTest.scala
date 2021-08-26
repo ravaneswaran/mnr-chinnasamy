@@ -22,7 +22,7 @@ class ForgotPasswordValidationIntegrationTest extends MNRCAdministrationBaseInte
   Given("""When the user submits the form with the empty email id""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080/forgot-password");
+    this.webDriver.get("http://localhost:8080/administration/forgot-password");
     this.webDriver.findElement(By.id("mail-my-password")).click()
   }
 

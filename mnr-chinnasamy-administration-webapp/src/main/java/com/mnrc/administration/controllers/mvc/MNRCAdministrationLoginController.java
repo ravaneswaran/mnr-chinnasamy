@@ -27,7 +27,7 @@ public class MNRCAdministrationLoginController extends MNRCAdministrationMvcCont
     @Autowired
     private LoginService loginService;
 
-    private String redirectUrlIfLoggedIn = "redirect:/user/home";
+    private String redirectUrlIfLoggedIn = "redirect:/administration/user/home";
 
     @Override
     protected List<String> getMandatoryFields() {
@@ -37,7 +37,7 @@ public class MNRCAdministrationLoginController extends MNRCAdministrationMvcCont
         return mandatoryFields;
     }
 
-    @GetMapping("/")
+    @GetMapping("/administration")
     public ModelAndView home(HttpServletRequest httpServletRequest){
         if(this.isUserLoggedIn(httpServletRequest)) {
             return new ModelAndView(this.redirectUrlIfLoggedIn);
@@ -45,15 +45,15 @@ public class MNRCAdministrationLoginController extends MNRCAdministrationMvcCont
         return new ModelAndView("/login");
     }
 
-    @GetMapping("/login")
+    @GetMapping("/administration/login")
     public ModelAndView redirectToLoginHome(HttpServletRequest httpServletRequest){
         if(this.isUserLoggedIn(httpServletRequest)) {
             return new ModelAndView(this.redirectUrlIfLoggedIn);
         }
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/administration");
     }
 
-    @PostMapping("/login")
+    @PostMapping("/administration/login")
     public ModelAndView login(@Valid @ModelAttribute("login") LoginForm login, BindingResult bindingResult, HttpServletRequest httpServletRequest){
         if(this.isUserLoggedIn(httpServletRequest)) {
             return new ModelAndView(this.redirectUrlIfLoggedIn);
@@ -72,7 +72,7 @@ public class MNRCAdministrationLoginController extends MNRCAdministrationMvcCont
                     } else {
                         HttpSession httpSession = httpServletRequest.getSession();
                         httpSession.setAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString(), response);
-                        ModelAndView modelAndView = new ModelAndView("redirect:/user/role/view");
+                        ModelAndView modelAndView = new ModelAndView("redirect:/administration/user/role/view");
                         return modelAndView;
                     }
                 } else {

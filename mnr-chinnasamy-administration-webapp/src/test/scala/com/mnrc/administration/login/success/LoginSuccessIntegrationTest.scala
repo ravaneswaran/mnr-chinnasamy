@@ -22,7 +22,7 @@ class LoginSuccessIntegrationTest extends MNRCAdministrationBaseIntegrationTest 
   Given("""the user is trying to login with empty email id {string} and password {string}""") { (emailId: String, password: String) =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys(emailId);
     this.webDriver.findElement(By.id("password")).sendKeys(password);
     this.webDriver.findElement(By.id("login")).click();

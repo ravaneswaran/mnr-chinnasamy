@@ -8,6 +8,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
+@RequestMapping("/administration")
 public class MNRCAdministrationHttpStatusController implements ErrorController {
 
     @RequestMapping("/error")

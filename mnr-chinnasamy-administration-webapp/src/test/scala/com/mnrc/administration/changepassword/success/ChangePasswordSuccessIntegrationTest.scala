@@ -31,22 +31,34 @@ class ChangePasswordSuccessIntegrationTest extends MNRCAdministrationBaseIntegra
   Given("""the user is created by the admin""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com");
     this.webDriver.findElement(By.id("password")).sendKeys("almighty");
     this.webDriver.findElement(By.id("login")).click();
+
+    //creating a user role
+    val roleName = RandomString.make()
+    this.webDriver.findElement(By.id("roleName")).sendKeys(roleName)
+    this.webDriver.findElement(By.id("create")).click();
+
+    //moving ahead to create the user
+    this.clickingUserCreationMenuItem(this.webDriver);
+
+    //selecting the user role
+    this.selectFromDropDown(this.webDriver, "userRoleId", roleName)
+
     this.webDriver.findElement(By.id("firstName")).sendKeys(this.firstName)
     this.webDriver.findElement(By.id("emailId")).sendKeys(this.emailId)
     this.webDriver.findElement(By.id("mobileNo")).sendKeys(this.mobileNo)
     this.webDriver.findElement(By.id("create")).click()
-    this.webDriver.get("http://localhost:8080/logout");
+    this.webDriver.get("http://localhost:8080/administration/logout");
   }
 
   And("""the user has logged into the system to change the password""") { () =>
     this.webDriver.findElement(By.id("emailId")).sendKeys(this.emailId);
     this.webDriver.findElement(By.id("password")).sendKeys("welcome");
     this.webDriver.findElement(By.id("login")).click();
-    this.webDriver.get("http://localhost:8080/change-password");
+    this.webDriver.get("http://localhost:8080/administration/change-password");
   }
 
   When("""the user submits the change password form and hits the submit button""") { () =>

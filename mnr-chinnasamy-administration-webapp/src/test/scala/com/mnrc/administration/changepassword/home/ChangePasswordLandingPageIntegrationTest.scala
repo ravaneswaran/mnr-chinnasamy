@@ -22,14 +22,14 @@ class ChangePasswordLandingPageIntegrationTest extends MNRCAdministrationBaseInt
   Given("""the user has logged into the system""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com");
     this.webDriver.findElement(By.id("password")).sendKeys("almighty");
     this.webDriver.findElement(By.id("login")).click();
   }
 
   When("""the user hits the url change password url on the address bar""") { () =>
-    this.webDriver.get("http://localhost:8080/change-password")
+    this.webDriver.get("http://localhost:8080/administration/change-password")
   }
 
   Then("""the user is expected to see the change password page""") { () =>

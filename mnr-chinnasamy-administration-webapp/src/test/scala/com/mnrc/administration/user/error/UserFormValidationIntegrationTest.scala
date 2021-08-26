@@ -23,7 +23,7 @@ class UserFormValidationIntegrationTest extends MNRCAdministrationBaseIntegratio
   Given("""the admin has not selected the user role parameter""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com");
     this.webDriver.findElement(By.id("password")).sendKeys("almighty");
     this.webDriver.findElement(By.id("login")).click();
@@ -35,7 +35,7 @@ class UserFormValidationIntegrationTest extends MNRCAdministrationBaseIntegratio
   Given("""the admin has selected the user role and not filled the first name, email id but not the mobile no in the user form""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com");
     this.webDriver.findElement(By.id("password")).sendKeys("almighty");
     this.webDriver.findElement(By.id("login")).click();
@@ -48,7 +48,7 @@ class UserFormValidationIntegrationTest extends MNRCAdministrationBaseIntegratio
   Given("""the admin has selected the user role and filled the first name but not the email id in the user form""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com");
     this.webDriver.findElement(By.id("password")).sendKeys("almighty");
     this.webDriver.findElement(By.id("login")).click();
@@ -62,7 +62,7 @@ class UserFormValidationIntegrationTest extends MNRCAdministrationBaseIntegratio
   Given("""the admin has selected the user role and filled the first name but the email id in wrong format""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com");
     this.webDriver.findElement(By.id("password")).sendKeys("almighty");
     this.webDriver.findElement(By.id("login")).click();
@@ -77,7 +77,7 @@ class UserFormValidationIntegrationTest extends MNRCAdministrationBaseIntegratio
   Given("""the admin has selected the user role and filled the first name, email id but not the mobile no in the user form""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com");
     this.webDriver.findElement(By.id("password")).sendKeys("almighty");
     this.webDriver.findElement(By.id("login")).click();
@@ -92,7 +92,7 @@ class UserFormValidationIntegrationTest extends MNRCAdministrationBaseIntegratio
   Given("""the admin has selected the user role and filled the first name, email id and mobile number with less than 10 characters in the user form""") { () =>
     System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver")
     this.webDriver = new FirefoxDriver()
-    this.webDriver.get("http://localhost:8080");
+    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com");
     this.webDriver.findElement(By.id("password")).sendKeys("almighty");
     this.webDriver.findElement(By.id("login")).click();

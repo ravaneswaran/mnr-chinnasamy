@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,19 +45,19 @@ public class MNRCAdministrationPasswordController extends MNRCAdministrationMvcC
         return mandatoryFields;
     }
 
-    @GetMapping("/forgot-password")
+    @GetMapping("/administration/forgot-password")
     public ModelAndView forgotPasswordHome(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/forgot-password");
         return modelAndView;
     }
 
-    @GetMapping("/mail-my-forgotten-password")
+    @GetMapping("/administration/mail-my-forgotten-password")
     public ModelAndView redirectToForgotPasswordHome(){
         return new ModelAndView("redirect:/forgot-password");
     }
 
-    @PostMapping("/mail-my-forgotten-password")
+    @PostMapping("/administration/mail-my-forgotten-password")
     public ModelAndView mailForgottenPassword(@Valid ForgotPasswordForm forgotPassword, BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
             ForgotPasswordForm response = this.passwordService.forgotPassword(forgotPassword.getEmailId());
@@ -81,10 +82,10 @@ public class MNRCAdministrationPasswordController extends MNRCAdministrationMvcC
         }
     }
 
-    @GetMapping("/change-password")
+    @GetMapping("/administration/change-password")
     public ModelAndView changePasswordHome(HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:/administration");
         }
 
         ModelAndView modelAndView = new ModelAndView();
@@ -92,16 +93,16 @@ public class MNRCAdministrationPasswordController extends MNRCAdministrationMvcC
         return modelAndView;
     }
 
-    @GetMapping("/change-my-password")
+    @GetMapping("/administration/change-my-password")
     public ModelAndView redirectToChangePasswordHome(HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:/administration");
         }
 
-        return new ModelAndView("redirect:/change-password");
+        return new ModelAndView("redirect:/administration/change-password");
     }
 
-    @PostMapping("/change-my-password")
+    @PostMapping("/administration/change-my-password")
     public ModelAndView changePassword(@Valid ChangePasswordForm changePassword, BindingResult bindingResult, HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
@@ -147,7 +148,7 @@ public class MNRCAdministrationPasswordController extends MNRCAdministrationMvcC
 
         if(null != response){
             httpSession.invalidate();
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:/administration");
         } else {
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("/change-password");

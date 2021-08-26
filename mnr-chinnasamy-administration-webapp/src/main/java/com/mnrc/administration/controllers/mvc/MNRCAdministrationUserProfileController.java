@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user/profile")
 public class MNRCAdministrationUserProfileController extends MNRCAdministrationMvcController {
 
     Logger logger = LoggerFactory.getLogger(MNRCAdministrationUserProfileController.class);
@@ -45,7 +44,7 @@ public class MNRCAdministrationUserProfileController extends MNRCAdministrationM
         return null;
     }
 
-    @GetMapping("/picture-upload")
+    @GetMapping("/administration/user/profile/picture-upload")
     public ModelAndView redirectToUserInfo(HttpServletRequest httpServletRequest){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");
@@ -61,7 +60,7 @@ public class MNRCAdministrationUserProfileController extends MNRCAdministrationM
         }
     }
 
-    @PostMapping("/picture-upload")
+    @PostMapping("/administration/user/profile/picture-upload")
     public ModelAndView saveProfilePicture(HttpServletRequest httpServletRequest, @RequestParam("userId") String userId, @RequestParam(name = "browseProfilePicture") MultipartFile profilePicture){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
             return new ModelAndView("redirect:/");

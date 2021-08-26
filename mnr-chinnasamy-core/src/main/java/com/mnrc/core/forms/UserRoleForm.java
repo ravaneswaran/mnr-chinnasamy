@@ -11,9 +11,9 @@ public class UserRoleForm {
 
     private int noOfUsers;
 
-    private String action = "/user/role/add";
+    private String action = "/administration/user/role/add";
 
-    private int canAccessAdministrationApp;
+    private boolean canAccessAdministrationApp;
 
     public int getNoOfUsers() {
         return noOfUsers;
@@ -47,11 +47,11 @@ public class UserRoleForm {
         this.roleName = roleName;
     }
 
-    public int getCanAccessAdministrationApp() {
+    public boolean getCanAccessAdministrationApp() {
         return canAccessAdministrationApp;
     }
 
-    public void setCanAccessAdministrationApp(int canAccessAdministrationApp) {
+    public void setCanAccessAdministrationApp(boolean canAccessAdministrationApp) {
         this.canAccessAdministrationApp = canAccessAdministrationApp;
     }
 }
