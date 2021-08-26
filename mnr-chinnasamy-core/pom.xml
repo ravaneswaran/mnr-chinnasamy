@@ -5,7 +5,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mnrc.core</groupId>
   <artifactId>mnr-chinnasamy-core</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <!--<version>0.0.1-SNAPSHOT</version>-->
+  <version>0.0.1</version>
   <name>mnr-chinnasamy-core</name>
   <description>Demo project for Spring Boot</description>
 
