@@ -14,12 +14,12 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication(exclude = LiquibaseAutoConfiguration.class)
 @EnableConfigurationProperties({ MNRChinnasamyKeycloakServerProperties.class })
-public class MNRChinnasamyKeyCloakSSOServerApplication {
+public class MNRChinnasamyKeySSOCloakServerApplication {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MNRChinnasamyKeyCloakSSOServerApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MNRChinnasamyKeySSOCloakServerApplication.class);
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(MNRChinnasamyKeyCloakSSOServerApplication.class, args);
+        SpringApplication.run(MNRChinnasamyKeySSOCloakServerApplication.class, args);
     }
 
     @Bean

@@ -11,9 +11,9 @@
     </parent>
 
     <groupId>com.mnrc.sso.keycloak</groupId>
-    <artifactId>mnr-chinnasamy-keycloak-sso-server</artifactId>
+    <artifactId>mnr-chinnasamy-sso-keycloak-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mnr-chinnasamy-keycloak-sso-server</name>
+    <name>mnr-chinnasamy-sso-keycloak-server</name>
     <description>Application for Centralized Login</description>
     <modelVersion>4.0.0</modelVersion>
 
