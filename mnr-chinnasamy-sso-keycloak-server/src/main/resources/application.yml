@@ -4,11 +4,11 @@ server:
 spring:
   datasource:
     username: sa
-    url: jdbc:h2:mem:customdb
+    url: jdbc:h2:~/.h2-database:testdb
 
 keycloak:
   server:
-    contextPath: /sso
+    contextPath: /auth
     adminUser:
       username: ravaneswaran
       password: welcome
