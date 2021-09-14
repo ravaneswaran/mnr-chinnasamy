@@ -1,8 +1,11 @@
 package com.mnrc.core.forms;
 
+import org.springframework.stereotype.Component;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+@Component
 public class ForgotPasswordForm extends BaseForm{
 
     private String userId;

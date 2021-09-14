@@ -1,51 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-         
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.mnrc</groupId>
-    <artifactId>mnr-chinnasamy</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>mnr-chinnasamy</name>
-    <packaging>pom</packaging>
 
-    <modules>
-        <module>mnr-chinnasamy-core</module>
-        <module>mnr-chinnasamy-sso-keycloak-server</module>
-        <module>mnr-chinnasamy-administration-webapp</module>
-        <module>bhairava-siddhar-temple-webapp</module>
-        <module>bhairava-siddhar-trust-webapp</module>
-    </modules>
+    <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.5.0</version>
-        <relativePath />
     </parent>
 
-    <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
-    </build>
+    <groupId>com.mnrc</groupId>
+    <artifactId>mnr-chinnasamy</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+    </properties>
 
     <dependencies>
-        <!-- Spring DevTool Dependency-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
+
+    <modules>
+        <module>mnr-chinnasamy-core</module>
+        <module>mnr-chinnasamy-administration-webapp</module>
+        <!--<module>mnr-chinnasamy-sso-keycloak-server</module>
+       <module>bhairava-siddhar-temple-webapp</module>
+       <module>bhairava-siddhar-trust-webapp</module>-->
+    </modules>
+
 </project>

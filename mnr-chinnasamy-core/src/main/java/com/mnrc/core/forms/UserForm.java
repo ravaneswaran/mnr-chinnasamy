@@ -1,10 +1,13 @@
 package com.mnrc.core.forms;
 
+import org.springframework.stereotype.Component;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+@Component
 public class UserForm extends BaseForm{
 
     private String userId;

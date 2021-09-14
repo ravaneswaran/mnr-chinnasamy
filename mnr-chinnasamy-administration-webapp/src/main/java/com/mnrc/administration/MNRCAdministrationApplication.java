@@ -3,7 +3,7 @@ package com.mnrc.administration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"com.mnrc.core", "com.mnrc.administration"})
+@SpringBootApplication(scanBasePackages = {"com.mnrc", "com.mnrc.core", "com.mnrc.administration"})
 public class MNRCAdministrationApplication {
 
 	public static void main(String[] args) {

@@ -1,7 +1,10 @@
 package com.mnrc.core.forms;
 
+import org.springframework.stereotype.Component;
+
 import javax.validation.constraints.NotEmpty;
 
+@Component
 public class UserRoleForm {
 
     private String roleId;

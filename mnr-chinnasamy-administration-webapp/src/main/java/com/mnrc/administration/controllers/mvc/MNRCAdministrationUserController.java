@@ -7,6 +7,7 @@ import com.mnrc.core.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@ComponentScan(basePackages = {"com.mnrc.core.*"})
 public class MNRCAdministrationUserController extends MNRCAdministrationMvcController {
 
     Logger logger = LoggerFactory.getLogger(MNRCAdministrationUserController.class);
