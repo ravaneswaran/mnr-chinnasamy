@@ -30,7 +30,7 @@ class UserLandingPageIntegrationTest extends MNRCAdministrationBaseIntegrationTe
 
   Then("""the user suppose to see the user create page""") { () =>
     val pageTitle = this.webDriver.getTitle
-    assert("MNRC-Administration : User Creation".equals(pageTitle))
+    assert("MNRC-Administration : User Role".equals(pageTitle))
     this.webDriver.close()
   }
 }
