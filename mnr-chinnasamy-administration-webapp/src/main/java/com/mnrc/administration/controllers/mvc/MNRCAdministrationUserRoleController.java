@@ -60,7 +60,7 @@ public class MNRCAdministrationUserRoleController extends MNRCAdministrationMvcC
         if(!bindingResult.hasErrors()){
             LoginForm login = (LoginForm) httpServletRequest.getSession().getAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString());
             try {
-                this.userRoleService.addUserRole(userRoleForm.getRoleName(), String.format("%s %s", login.getFirstName(), login.getLastName()).trim());
+                this.userRoleService.addUserRole(userRoleForm.getRoleName(), userRoleForm.getCanAccessAdministrationApp(), String.format("%s %s", login.getFirstName(), login.getLastName()).trim());
                 List<UserRoleForm> userRoleForms = this.userRoleService.getUserRoles();
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.setViewName("/user-role");

@@ -51,8 +51,15 @@ class MNRCAdministrationBaseIntegrationTest extends ScalaDsl with EN{
 
   def selectFromDropDown(webDriver : WebDriver, id: String, value: String): Unit = {
     val userRole: Select = new Select(webDriver.findElement(By.id(id)));
-    userRole.selectByIndex(1);
+    var index = 0;
+    var indexToBeSelected = 0;
+    userRole.getOptions.forEach(option => {
+      if(!value.equals(option.getText)){
+        index += 1
+      } else {
+        indexToBeSelected = index
+      }})
+    userRole.selectByIndex(indexToBeSelected)
   }
-
 }
 
