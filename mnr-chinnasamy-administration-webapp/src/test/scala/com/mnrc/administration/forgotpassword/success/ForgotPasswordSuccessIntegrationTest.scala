@@ -33,6 +33,7 @@ class ForgotPasswordSuccessIntegrationTest extends MNRCAdministrationBaseIntegra
   Then("""the user should see the password sent page""") { () =>
     val title =  this.webDriver.getTitle
     assert("MNRC-Administration : Password Sent".equals(title))
+    this.webDriver.close()
   }
 
 }

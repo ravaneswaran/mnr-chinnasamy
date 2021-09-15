@@ -39,13 +39,14 @@ class ChangePasswordSuccessIntegrationTest extends MNRCAdministrationBaseIntegra
     //creating a user role
     val roleName = RandomString.make()
     this.webDriver.findElement(By.id("roleName")).sendKeys(roleName)
+    this.webDriver.findElement(By.id("canAccessAdministrationApp")).click()
     this.webDriver.findElement(By.id("create")).click();
 
     //moving ahead to create the user
     this.clickingUserCreationMenuItem(this.webDriver);
 
     //selecting the user role
-    this.selectFromDropDown(this.webDriver, "userRoleId", roleName)
+    this.selectFromDropDown(this.webDriver, "userRoleId", roleName.toUpperCase)
 
     this.webDriver.findElement(By.id("firstName")).sendKeys(this.firstName)
     this.webDriver.findElement(By.id("emailId")).sendKeys(this.emailId)
@@ -78,7 +79,7 @@ class ChangePasswordSuccessIntegrationTest extends MNRCAdministrationBaseIntegra
     this.webDriver.findElement(By.id("password")).sendKeys(this.newPassword);
     this.webDriver.findElement(By.id("login")).click();
     val title = this.webDriver.getTitle
-    assert("MNRC-Administration : User Creation".equals(title))
+    assert("MNRC-Administration : User Role".equals(title))
     this.webDriver.close()
   }
 }

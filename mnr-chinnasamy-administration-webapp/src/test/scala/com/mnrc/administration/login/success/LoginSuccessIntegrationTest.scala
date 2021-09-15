@@ -31,6 +31,7 @@ class LoginSuccessIntegrationTest extends MNRCAdministrationBaseIntegrationTest 
   Then("""the user should see the user role page""") { () =>
     val title = this.webDriver.getTitle
     assert("MNRC-Administration : User Role".equals(title))
+    this.webDriver.close()
   }
 
 }
