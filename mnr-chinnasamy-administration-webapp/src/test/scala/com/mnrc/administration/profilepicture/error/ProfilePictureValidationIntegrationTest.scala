@@ -36,8 +36,7 @@ class ProfilePictureValidationIntegrationTest extends MNRCAdministrationBaseInte
     this.webDriver.findElement(By.id("login")).click();
   }
 
-  And("""the user hits the My Info in the menu""") { () =>
-    this.webDriver.findElement(By.id("app-launcher")).click();
+  And("""the user hits the My Info in the banner""") { () =>
     this.webDriver.findElement(By.id("my-info")).click();
   }
 

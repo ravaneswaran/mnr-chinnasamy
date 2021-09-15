@@ -34,14 +34,13 @@ class ProfilePictureSuccessIntegrationTest extends MNRCAdministrationBaseIntegra
     val emailId: String = String.format("%s@test.com", firstName)
     val mobileNo: String = String.valueOf(new Date().getTime).substring(0, 10);
     this.almightyCreatingNewAdminAndLoggingOut(this.webDriver, firstName, emailId, mobileNo)
-    this.webDriver.get("http://localhost:8080/administration");
     this.webDriver.findElement(By.id("emailId")).sendKeys(emailId);
     this.webDriver.findElement(By.id("password")).sendKeys("welcome");
     this.webDriver.findElement(By.id("login")).click();
   }
 
   And("""the user hits the My Info in the menu""") { () =>
-    this.webDriver.findElement(By.id("app-launcher")).click();
+    //this.webDriver.findElement(By.id("app-launcher")).click();
     this.webDriver.findElement(By.id("my-info")).click();
   }
 

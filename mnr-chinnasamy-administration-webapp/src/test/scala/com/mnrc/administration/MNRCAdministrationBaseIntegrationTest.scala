@@ -14,13 +14,16 @@ class MNRCAdministrationBaseIntegrationTest extends ScalaDsl with EN{
     webDriver.findElement(By.id("emailId")).sendKeys("almighty@test.com");
     webDriver.findElement(By.id("password")).sendKeys("almighty");
     webDriver.findElement(By.id("login")).click();
+    val roleName: String = RandomString.make().toUpperCase
+    createNewRoleWithAdministrationAppAccess(webDriver, roleName)
+    this.clickingUserCreationMenuItem(webDriver)
+    this.selectFromDropDown(webDriver, "userRoleId", roleName)
     webDriver.findElement(By.id("firstName")).sendKeys(firstName)
     webDriver.findElement(By.id("emailId")).sendKeys(emailId)
     webDriver.findElement(By.id("mobileNo")).sendKeys(mobileNo)
     webDriver.findElement(By.id("uniqueId")).sendKeys(String.valueOf(new Date().getTime).substring(0,11))
     webDriver.findElement(By.id("create")).click()
     webDriver.get("http://localhost:8080/administration/logout");
-    webDriver.get("http://localhost:8080/administration");
   }
 
   def userHasloggedIn(webDriver : WebDriver, emailId: String, password: String): Unit = {
@@ -60,6 +63,12 @@ class MNRCAdministrationBaseIntegrationTest extends ScalaDsl with EN{
         indexToBeSelected = index
       }})
     userRole.selectByIndex(indexToBeSelected)
+  }
+
+  def createNewRoleWithAdministrationAppAccess(webDriver : WebDriver, roleName: String):Unit = {
+    webDriver.findElement(By.id("roleName")).sendKeys(roleName)
+    webDriver.findElement(By.id("canAccessAdministrationApp")).click()
+    webDriver.findElement(By.id("create")).click();
   }
 }
 

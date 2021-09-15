@@ -4,7 +4,7 @@
         <div id="errorMessage" class="user-info-error-message" th:text="${errorMessage}"></div>
         <div class="user-info-left-pane">
             <div class="user-info-photo-frame">
-                <form method="POST" action="/user/profile/picture-upload" enctype="multipart/form-data">
+                <form method="POST" action="/administration/user/profile/picture-upload" enctype="multipart/form-data">
                     <!--<img class="user-info-photo" src="/images/no-profile-pic.png" id="user-info-profile-picture"/>-->
                     <img class="user-info-photo" th:src="${userForm.profilePic}" id="user-info-profile-picture"/>
                     <br/><br/>

@@ -53,16 +53,16 @@ public class MNRCAdministrationUserProfileController extends MNRCAdministrationM
         LoginForm login = (LoginForm)httpSession.getAttribute(MNRCAdministrationSessionAttribute.LOGGED_IN_USER.toString());
 
         if(UserType.ALMIGHTY.toString().equals(login.getType())){
-            return new ModelAndView("redirect:/user/list");
+            return new ModelAndView("redirect:/administration/user/list");
         } else {
-            return new ModelAndView(String.format("redirect:/user/info?uuid=%s", login.getUserId()));
+            return new ModelAndView(String.format("redirect:/administration/user/info?uuid=%s", login.getUserId()));
         }
     }
 
     @PostMapping("/administration/user/profile/picture-upload")
     public ModelAndView saveProfilePicture(HttpServletRequest httpServletRequest, @RequestParam("userId") String userId, @RequestParam(name = "browseProfilePicture") MultipartFile profilePicture){
         if(this.isNotUserLoggedIn(httpServletRequest)) {
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:/administration");
         }
 
         try {
@@ -94,7 +94,7 @@ public class MNRCAdministrationUserProfileController extends MNRCAdministrationM
 
             if(null != userProfile){
                 this.imageService.createTemporaryProfilePicture(userId, content);
-                ModelAndView modelAndView = new ModelAndView(String.format("redirect:/user/info?uuid=%s", userId));
+                ModelAndView modelAndView = new ModelAndView(String.format("redirect:/administration/user/info?uuid=%s", userId));
                 return modelAndView;
             } else {
                 UserForm userForm = this.userService.getUserForm(userId);

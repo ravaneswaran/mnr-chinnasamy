@@ -9,8 +9,8 @@
             <div class="logged-in-as">
                 <div class="logged-in-as-user">
                     Logged in as : <b th:text="${#session.getAttribute('LOGGED_IN_USER').firstName + ' ' + #session.getAttribute('LOGGED_IN_USER').lastName}">Logged In User</b>
-                    <a id="settings" href="/user/settings"><image src="/images/settings.png" class="menu-icon"/></a>
-                    <a id="my-info" th:href="${'/user/info?uuid=' + #session.getAttribute('LOGGED_IN_USER').userId}" ><image src="/images/my-info.png" class="menu-icon"/></a>
+                    <a id="settings" href="/administration/user/settings"><image src="/images/settings.png" class="menu-icon"/></a>
+                    <a id="my-info" th:href="${'/administration/user/info?uuid=' + #session.getAttribute('LOGGED_IN_USER').userId}" ><image src="/images/my-info.png" class="menu-icon"/></a>
                 </div>
             </div>
         </th:block>
