@@ -30,9 +30,9 @@
     <modules>
         <module>mnr-chinnasamy-core</module>
         <module>mnr-chinnasamy-administration-webapp</module>
-        <!--<module>mnr-chinnasamy-sso-keycloak-server</module>
-       <module>bhairava-siddhar-temple-webapp</module>
-       <module>bhairava-siddhar-trust-webapp</module>-->
+        <module>mnr-chinnasamy-embedded-sso-keycloak-server</module>
+        <!--<module>bhairava-siddhar-temple-webapp</module>
+        <module>bhairava-siddhar-trust-webapp</module>-->
     </modules>
 
 </project>

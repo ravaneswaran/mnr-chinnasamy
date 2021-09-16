@@ -1,6 +1,6 @@
 {
-  "id" : "mnr-chinnasamy",
-  "realm" : "mnr-chinnasamy",
+  "id" : "baeldung",
+  "realm" : "baeldung",
   "notBefore" : 0,
   "revokeRefreshToken" : false,
   "refreshTokenMaxReuse" : 0,
