@@ -3,13 +3,13 @@ package com.mnrc.sso.keycloak.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "keycloak.server")
-public class MNRChinnasamyKeycloakServerProperties {
+public class MNRChinnasamyEmbeddedKeycloakServerProperties {
 
     String contextPath = "/auth";
 
-    String realmImportFile = "baeldung-realm.json";
+    String realmImportFile = "mnr-chinnasamy-realm.json";
 
-    AdminUser adminUser = new AdminUser();
+    MNRChinnasamyEmbeddedKeycloakServerProperties.AdminUser adminUser = new AdminUser();
 
     public String getContextPath() {
         return contextPath;

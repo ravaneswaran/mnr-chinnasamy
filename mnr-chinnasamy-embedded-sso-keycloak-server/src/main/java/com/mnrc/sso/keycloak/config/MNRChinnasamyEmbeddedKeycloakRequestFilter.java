@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.keycloak.common.ClientConnection;
 import org.keycloak.services.filters.AbstractRequestFilter;
 
-public class MNRChinnasamyKeycloakRequestFilter extends AbstractRequestFilter implements Filter {
+public class MNRChinnasamyEmbeddedKeycloakRequestFilter extends AbstractRequestFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws UnsupportedEncodingException {

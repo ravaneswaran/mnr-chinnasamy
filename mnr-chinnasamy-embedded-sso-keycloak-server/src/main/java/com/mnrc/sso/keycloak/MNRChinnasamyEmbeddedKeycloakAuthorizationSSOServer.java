@@ -1,6 +1,6 @@
 package com.mnrc.sso.keycloak;
 
-import com.mnrc.sso.keycloak.config.MNRChinnasamyKeycloakServerProperties;
+import com.mnrc.sso.keycloak.config.MNRChinnasamyEmbeddedKeycloakServerProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -13,18 +13,18 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication(exclude = LiquibaseAutoConfiguration.class)
-@EnableConfigurationProperties({ MNRChinnasamyKeycloakServerProperties.class })
-public class MNRChinnasamyKeySSOCloakServerApplication {
+@EnableConfigurationProperties({MNRChinnasamyEmbeddedKeycloakServerProperties.class})
+public class MNRChinnasamyEmbeddedKeycloakAuthorizationSSOServer {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MNRChinnasamyKeySSOCloakServerApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MNRChinnasamyEmbeddedKeycloakAuthorizationSSOServer.class);
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(MNRChinnasamyKeySSOCloakServerApplication.class, args);
+        SpringApplication.run(MNRChinnasamyEmbeddedKeycloakAuthorizationSSOServer.class, args);
     }
 
     @Bean
     ApplicationListener<ApplicationReadyEvent> onApplicationReadyEventListener(ServerProperties serverProperties,
-                                                                               MNRChinnasamyKeycloakServerProperties keycloakServerProperties) {
+                                                                               MNRChinnasamyEmbeddedKeycloakServerProperties keycloakServerProperties) {
         return (evt) -> {
             Integer port = serverProperties.getPort();
             String keycloakContextPath = keycloakServerProperties.getContextPath();

@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = { MNRChinnasamyKeySSOCloakServerApplication.class })
+@SpringBootTest(classes = { MNRChinnasamyEmbeddedKeycloakAuthorizationSSOServer.class })
 public class ContextIntegrationTest {
 
     @Test

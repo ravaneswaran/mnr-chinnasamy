@@ -16,11 +16,11 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 
-public class MNRChinnasamyKeycloakApplication extends KeycloakApplication {
+public class MNRChinnasamyEmbeddedKeycloakApplication extends KeycloakApplication {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MNRChinnasamyKeycloakApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MNRChinnasamyEmbeddedKeycloakApplication.class);
 
-    static MNRChinnasamyKeycloakServerProperties keycloakServerProperties;
+    static MNRChinnasamyEmbeddedKeycloakServerProperties keycloakServerProperties;
 
     protected void loadConfig() {
         JsonConfigProviderFactory factory = new RegularJsonConfigProviderFactory();
@@ -28,7 +28,7 @@ public class MNRChinnasamyKeycloakApplication extends KeycloakApplication {
                 .orElseThrow(() -> new NoSuchElementException("No value present")));
     }
 
-    public MNRChinnasamyKeycloakApplication() {
+    public MNRChinnasamyEmbeddedKeycloakApplication() {
         super();
         createMasterRealmAdminUser();
         createMNRChinnasamyRealm();
@@ -37,7 +37,7 @@ public class MNRChinnasamyKeycloakApplication extends KeycloakApplication {
     private void createMasterRealmAdminUser() {
         KeycloakSession session = getSessionFactory().create();
         ApplianceBootstrap applianceBootstrap = new ApplianceBootstrap(session);
-        MNRChinnasamyKeycloakServerProperties.AdminUser admin = keycloakServerProperties.getAdminUser();
+        MNRChinnasamyEmbeddedKeycloakServerProperties.AdminUser admin = keycloakServerProperties.getAdminUser();
         try {
             session.getTransactionManager().begin();
             applianceBootstrap.createMasterRealmUser(admin.getUsername(), admin.getPassword());
