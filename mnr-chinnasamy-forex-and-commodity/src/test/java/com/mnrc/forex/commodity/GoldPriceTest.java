@@ -1,14 +1,13 @@
 package com.mnrc.forex.commodity;
 
 import com.google.gson.Gson;
-import com.mnrc.forex.commodity.model.GoldPrice;
+import com.mnrc.forex.commodity.entities.GoldPrice;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -16,8 +15,8 @@ import java.io.IOException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@SpringBootConfiguration
-public class MNRCGoldPriceTest {
+//@SpringBootConfiguration
+public class GoldPriceTest {
 
     @Test
     public void testGoldPriceRequest() throws IOException {

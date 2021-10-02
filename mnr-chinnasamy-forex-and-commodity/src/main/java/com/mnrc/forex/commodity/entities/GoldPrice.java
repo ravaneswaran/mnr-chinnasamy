@@ -1,116 +1,170 @@
-package com.mnrc.forex.commodity.model;
+package com.mnrc.forex.commodity.entities;
 
 import com.google.gson.annotations.SerializedName;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Date;
+
+@Entity
+@Table(name = "address")
 public class GoldPrice {
 
+    @Id
+    @Column(name = "uuid")
+    private String UUID;
+
     @SerializedName(value = "ounce_price_usd")
+    @Column(name = "ounce_price_usd")
     private String ouncePriceUSD;
 
     @SerializedName(value = "gmt_ounce_price_usd_updated")
+    @Column(name = "gmt_ounce_price_usd_updated")
     private String gmtOuncePriceUSDUpdated;
 
     @SerializedName(value = "ounce_price_ask")
+    @Column(name = "ounce_price_ask")
     private String ouncePriceAsk;
 
     @SerializedName(value = "ounce_price_bid")
+    @Column(name = "ounce_price_bid")
     private String ouncePriceBid;
 
     @SerializedName(value = "ounce_price_usd_today_low")
+    @Column(name = "ounce_price_usd_today_low")
     private String ouncePriceUSDTodayLow;
 
     @SerializedName(value = "ounce_price_usd_today_high")
+    @Column(name = "ounce_price_usd_today_high")
     private String ouncePriceUSDTodayHigh;
 
     @SerializedName(value = "usd_to_inr")
+    @Column(name = "usd_to_inr")
     private String USDToINR;
 
     @SerializedName(value = "gmt_inr_updated")
+    @Column(name = "gmt_inr_updated")
     private String gmtInrUpdated;
 
     @SerializedName(value = "ounce_in_inr")
+    @Column(name = "ounce_in_inr")
     private String ounceInINR;
 
     @SerializedName(value = "gram_to_ounce_formula")
+    @Column(name = "gram_to_ounce_formula")
     private String gramToOunceFormula;
 
     @SerializedName(value = "gram_in_usd")
+    @Column(name = "gram_in_usd")
     private String gramInUSD;
 
     @SerializedName(value = "gram_in_inr")
+    @Column(name = "gram_in_inr")
     private String gramInINR;
 
     @SerializedName(value = "kg_to_ounce_formula")
+    @Column(name = "kg_to_ounce_formula")
     private String  kgToOunceFormula;
 
     @SerializedName(value = "kg_in_usd")
+    @Column(name = "kg_in_usd")
     private String kgInUSD;
 
     @SerializedName(value = "kg_in_inr")
+    @Column(name = "kg_in_inr")
     private String kgInINR;
 
     @SerializedName(value = "grain_to_ounce_formula")
+    @Column(name = "grain_to_ounce_formula")
     private String grainToOunceFormula;
 
     @SerializedName(value = "grain_in_usd")
+    @Column(name = "grain_in_usd")
     private String grainInUSD;
 
     @SerializedName(value = "grain_in_inr")
+    @Column(name = "grain_in_inr")
     private String grainInINR;
 
     @SerializedName(value = "tael-hongkong_to_ounce_formula")
+    @Column(name = "tael_hongkong_to_ounce_formula")
     private String taelHongKongToOunceFormula;
 
     @SerializedName(value = "tael-hongkong_in_usd")
+    @Column(name = "tael_hongkong_in_usd")
     private String taelHongKongInUSD;
 
     @SerializedName(value = "tael-hongkong_in_inr")
+    @Column(name = "tael_hongkong_in_inr")
     private String taelHongKongInINR;
 
     @SerializedName(value = "tael-japan_to_ounce_formula")
+    @Column(name = "tael_japan_to_ounce_formula")
     private String taelJapanToOunceFormula;
 
     @SerializedName(value = "tael-japan_in_usd")
+    @Column(name = "tael_japan_in_usd")
     private String taelJapanInUSD;
 
     @SerializedName(value = "tael-japan_in_inr")
+    @Column(name = "tael_japan_in_inr")
     private String taelJapanInINR;
 
     @SerializedName(value = "tola-india_to_ounce_formula")
+    @Column(name = "tola_india_to_ounce_formula")
     private String tolaIndiaToOunceFormula;
 
     @SerializedName(value = "tola-india_in_usd")
+    @Column(name = "tola_india_in_usd")
     private String tolaIndiaInUSD;
 
     @SerializedName(value = "tola-india_in_inr")
+    @Column(name = "tola_india_in_inr")
     private String tolaIndiaInINR;
 
     @SerializedName(value = "tola-pakistan_to_ounce_formula")
+    @Column(name = "tola_pakistan_to_ounce_formula")
     private String tolaPakistanToOunceFormula;
 
     @SerializedName(value = "tola-pakistan_in_usd")
+    @Column(name = "tola_pakistan_in_usd")
     private String tolaPakistanInUSD;
 
     @SerializedName(value = "tola-pakistan_in_inr")
+    @Column(name = "tola_pakistan_in_inr")
     private String tolaPakistanInINR;
 
     @SerializedName(value = "masha_to_ounce_formula")
+    @Column(name = "masha_to_ounce_formula")
     private String mashaToOunceFormula;
 
     @SerializedName(value = "masha_in_usd")
+    @Column(name = "masha_in_usd")
     private String mashaInUSD;
 
     @SerializedName(value = "masha_in_inr")
+    @Column(name = "masha_in_inr")
     private String mashaInINR;
 
     @SerializedName(value = "ratti_to_ounce_formula")
+    @Column(name = "ratti_to_ounce_formula")
     private String rattiToOunceFormula;
 
     @SerializedName(value = "ratti_in_usd")
+    @Column(name = "ratti_in_usd")
     private String rattiInUSD;
 
     @SerializedName(value = "ratti_in_inr")
+    @Column(name = "ratti_in_inr")
     private String rattiInINR;
+
+    @Column(name = "created_date")
+    private Date createdDate;
+
+    @Column(name = "modified_date")
+    private Date modifiedDate;
 
     public String getOuncePriceUSD() {
         return ouncePriceUSD;
