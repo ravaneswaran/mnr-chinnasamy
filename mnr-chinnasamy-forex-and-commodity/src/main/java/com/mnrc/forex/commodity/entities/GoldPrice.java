@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "address")
+@Table(name = "gold_price")
 public class GoldPrice {
 
     @Id
@@ -42,7 +42,7 @@ public class GoldPrice {
 
     @SerializedName(value = "usd_to_inr")
     @Column(name = "usd_to_inr")
-    private String USDToINR;
+    private String usdToInr;
 
     @SerializedName(value = "gmt_inr_updated")
     @Column(name = "gmt_inr_updated")
@@ -166,6 +166,30 @@ public class GoldPrice {
     @Column(name = "modified_date")
     private Date modifiedDate;
 
+    public String getUUID() {
+        return UUID;
+    }
+
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
     public String getOuncePriceUSD() {
         return ouncePriceUSD;
     }
@@ -214,12 +238,12 @@ public class GoldPrice {
         this.ouncePriceUSDTodayHigh = ouncePriceUSDTodayHigh;
     }
 
-    public String getUSDToINR() {
-        return USDToINR;
+    public String getUsdToInr() {
+        return usdToInr;
     }
 
-    public void setUSDToINR(String USDToINR) {
-        this.USDToINR = USDToINR;
+    public void setUsdToInr(String usdToInr) {
+        this.usdToInr = usdToInr;
     }
 
     public String getGmtInrUpdated() {
