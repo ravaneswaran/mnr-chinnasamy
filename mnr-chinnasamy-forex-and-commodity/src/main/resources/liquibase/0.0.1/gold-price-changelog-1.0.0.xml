@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="01" author="ravaneswaran">
+
+        <createTable tableName="gold_price">
+            <column name="uuid" type="varchar(200)" >
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="ounce_price_usd" type="varchar(50)" />
+            <column name="gmt_ounce_price_usd_updated" type="varchar(50)" />
+            <column name="ounce_price_ask" type="varchar(50)" />
+            <column name="ounce_price_bid" type="varchar(50)" />
+            <column name="ounce_price_usd_today_low" type="varchar(50)" />
+            <column name="ounce_price_usd_today_high" type="varchar(50)" />
+            <column name="usd_to_inr" type="varchar(50)" />
+            <column name="gmt_inr_updated" type="varchar(50)" />
+            <column name="ounce_in_inr" type="varchar(50)" />
+            <column name="gram_to_ounce_formula" type="varchar(50)" />
+            <column name="gram_in_usd" type="varchar(50)" />
+            <column name="gram_in_inr" type="varchar(50)" />
+            <column name="kg_to_ounce_formula" type="varchar(50)" />
+            <column name="kg_in_usd" type="varchar(50)" />
+            <column name="kg_in_inr" type="varchar(50)" />
+            <column name="grain_to_ounce_formula" type="varchar(50)" />
+            <column name="grain_in_usd" type="varchar(50)" />
+            <column name="grain_in_inr" type="varchar(50)" />
+            <column name="tael_hongkong_to_ounce_formula" type="varchar(50)" />
+            <column name="tael_hongkong_in_usd" type="varchar(50)" />
+            <column name="tael_hongkong_in_inr" type="varchar(50)" />
+            <column name="tael_japan_to_ounce_formula" type="varchar(50)" />
+            <column name="tael_japan_in_usd" type="varchar(50)" />
+            <column name="tael_japan_in_inr" type="varchar(50)" />
+            <column name="tola_india_to_ounce_formula" type="varchar(50)" />
+            <column name="tola_india_in_usd" type="varchar(50)" />
+            <column name="tola_india_in_inr" type="varchar(50)" />
+            <column name="tola_pakistan_to_ounce_formula" type="varchar(50)" />
+            <column name="tola_pakistan_in_usd" type="varchar(50)" />
+            <column name="tola_pakistan_in_inr" type="varchar(50)" />
+            <column name="masha_to_ounce_formula" type="varchar(50)" />
+            <column name="masha_in_usd" type="varchar(50)" />
+            <column name="masha_in_inr" type="varchar(50)" />
+            <column name="ratti_to_ounce_formula" type="varchar(50)" />
+            <column name="ratti_in_usd" type="varchar(50)" />
+            <column name="ratti_in_inr" type="varchar(50)" />
+
+            <column name="created_by" type="varchar(200)" />
+            <column name="modified_by" type="varchar(200)" />
+            <column name="created_date" type="datetime" />
+            <column name="modified_date" type="datetime" />
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -6,12 +6,12 @@ spring:
     defer-datasource-initialization: true
   datasource:
     username: sa
-    url: jdbc:h2:mem:keycloakdb1
+    url: jdbc:h2:mem:keycloakdb2
 
 keycloak:
   server:
     contextPath: /auth
     adminUser:
-      username: ravaneswaran
-      password: welcome
+      username: admin
+      password: admin
     realmImportFile: mnr-chinnasamy-realm.json
