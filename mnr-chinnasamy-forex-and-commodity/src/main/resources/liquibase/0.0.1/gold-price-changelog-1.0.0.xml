@@ -49,6 +49,8 @@
             <column name="ratti_in_usd" type="varchar(50)" />
             <column name="ratti_in_inr" type="varchar(50)" />
 
+            <column name="created_by" type="varchar(200)" />
+            <column name="modified_by" type="varchar(200)" />
             <column name="created_date" type="datetime" />
             <column name="modified_date" type="datetime" />
         </createTable>

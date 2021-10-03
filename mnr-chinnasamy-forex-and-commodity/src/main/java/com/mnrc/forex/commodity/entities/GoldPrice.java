@@ -160,6 +160,12 @@ public class GoldPrice {
     @Column(name = "ratti_in_inr")
     private String rattiInINR;
 
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @Column(name = "modified_by")
+    private String modifiedBy;
+
     @Column(name = "created_date")
     private Date createdDate;
 
@@ -476,5 +482,21 @@ public class GoldPrice {
 
     public void setRattiInINR(String rattiInINR) {
         this.rattiInINR = rattiInINR;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
     }
 }

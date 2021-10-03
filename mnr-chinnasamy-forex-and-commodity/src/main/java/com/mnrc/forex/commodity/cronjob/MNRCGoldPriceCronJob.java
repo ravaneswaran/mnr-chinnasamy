@@ -67,6 +67,8 @@ public class MNRCGoldPriceCronJob implements MNRCCronJob {
 
                 Date now = new Date();
                 goldPrice.setUUID(UUID.randomUUID().toString());
+                goldPrice.setCreatedBy("MNRCGoldPriceCronJob");
+                goldPrice.setModifiedBy("-");
                 goldPrice.setCreatedDate(now);
                 goldPrice.setModifiedDate(now);
 
