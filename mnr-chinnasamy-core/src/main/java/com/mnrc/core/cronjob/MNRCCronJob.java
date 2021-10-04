@@ -4,5 +4,5 @@ import java.io.IOException;
 
 public interface MNRCCronJob {
 
-    public void job() throws IOException;
+    public void job();
 }

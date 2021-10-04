@@ -10,6 +10,7 @@ import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -31,6 +32,12 @@ public class MNRCGoldPriceCronJob implements MNRCCronJob {
     @Autowired
     private GoldPriceService goldPriceService;
 
+    @Value("${goldpricez.inr.measure.all}")
+    private String goldPriceInrMeasureAllApiUrl;
+
+    @Value("${goldpricez.api.key}")
+    private String apikey;
+
     @Async
     @Scheduled(cron = "1 * * * * ?")
     public void job() {
@@ -38,10 +45,11 @@ public class MNRCGoldPriceCronJob implements MNRCCronJob {
         this.logger.info(this.getDecoratedTimeStamp());
 
         Request request = new Request.Builder()
-                .url("http://goldpricez.com/api/rates/currency/inr/measure/all")
-                .addHeader("X-API-KEY", "4f8b6dee787a3163b4402d9a277bc5924f8b6dee")
+                .url(this.goldPriceInrMeasureAllApiUrl)
+                .addHeader("X-API-KEY", this.apikey)
                 .get()
                 .build();
+
         OkHttpClient client = new OkHttpClient();
         Response response = null;
         try {
